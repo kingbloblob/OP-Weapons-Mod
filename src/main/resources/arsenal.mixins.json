@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "com.onepiecearsenal.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"MarineEntityMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
