@@ -12,7 +12,7 @@ public enum Trait {
 	SEASTONE("Seastone", "Drains a Devil Fruit user's power on hit. As armor, drains fruit users who hit you.", true),
 
 	// ---- Handle traits (from the guard and hilt) ----
-	LIGHT("Light", "Swings faster.", true),
+	LIGHT("Light", "Weighs little: swords swing faster and guns reload quicker.", true),
 	RIVETED("Riveted", "+10% durability.", true),
 	ISSUED("Issued", "Repaired for free at a Marine base while disguised.", false),
 	DRAINING("Draining", "Fruit users who hold or wear it feel weak.", true);
