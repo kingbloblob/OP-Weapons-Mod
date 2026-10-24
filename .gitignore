@@ -48,3 +48,6 @@ __pycache__/
 *.zip
 !gradle/wrapper/gradle-wrapper.jar
 !libs/*.jar
+
+# The One Piece Mod jar is private; each developer drops their own copy into libs/
+libs/onepiece-*.jar
