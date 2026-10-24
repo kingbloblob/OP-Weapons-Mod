@@ -25,11 +25,13 @@ import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.part.PartItem;
 import com.onepiecearsenal.part.PartType;
 import com.onepiecearsenal.station.ShipwrightsAnvilBlock;
+import com.onepiecearsenal.tool.FlintlockItem;
+import com.onepiecearsenal.tool.GunStats;
 import com.onepiecearsenal.tool.KatanaItem;
 import com.onepiecearsenal.tool.KatanaStats;
 
 /**
- * Every Arsenal item and block. Parts and katanas are one item each; their material is saved on the stack.
+ * Every Arsenal item and block. Parts and weapons are one item each; their materials are saved on the stack.
  */
 public class ArsenalItems {
 	private static final List<Item> PART_ITEMS = new ArrayList<>();
@@ -46,12 +48,18 @@ public class ArsenalItems {
 	public static final Item KATANA_BLADE = part(PartType.KATANA_BLADE);
 	public static final Item TSUBA = part(PartType.TSUBA);
 	public static final Item HILT = part(PartType.HILT);
+	public static final Item BARREL = part(PartType.BARREL);
+	public static final Item FIRING_LOCK = part(PartType.LOCK);
+	public static final Item STOCK = part(PartType.STOCK);
 
 	// ---- Weapons ----
 
 	/** Starts with iron sword numbers; KatanaStats replaces them with the parts' numbers when it is forged. */
 	public static final Item KATANA = register("katana", KatanaItem::new,
 			new Item.Properties().sword(ToolMaterial.IRON, 0.0f, -2.4f));
+	/** A One Piece Mod gun whose stats come from its parts (see FlintlockItem). GunStats sets the durability when forged. */
+	public static final Item FLINTLOCK = register("flintlock", FlintlockItem::new,
+			new Item.Properties().durability(300).enchantable(10));
 
 	// ---- Stations ----
 
@@ -74,9 +82,12 @@ public class ArsenalItems {
 							output.accept(PartItem.of(part, material));
 						}
 					}
-					// One katana of each material, with a Ship Iron tsuba and hilt.
+					// One katana and one flintlock of each material, with Ship Iron for the other parts.
 					for (ArsenalMaterial material : ArsenalMaterial.values()) {
 						output.accept(KatanaStats.build(material, ArsenalMaterial.SHIP_IRON, ArsenalMaterial.SHIP_IRON));
+					}
+					for (ArsenalMaterial material : ArsenalMaterial.values()) {
+						output.accept(GunStats.build(material, ArsenalMaterial.SHIP_IRON, ArsenalMaterial.SHIP_IRON));
 					}
 				})
 				.build());

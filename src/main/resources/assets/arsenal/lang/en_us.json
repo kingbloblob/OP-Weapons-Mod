@@ -5,5 +5,9 @@
   "item.arsenal.tsuba": "Tsuba",
   "item.arsenal.hilt": "Hilt",
   "item.arsenal.katana": "Katana",
+  "item.arsenal.barrel": "Barrel",
+  "item.arsenal.firing_lock": "Firing Lock",
+  "item.arsenal.stock": "Stock",
+  "item.arsenal.flintlock": "Flintlock",
   "block.arsenal.shipwrights_anvil": "Shipwright's Anvil"
 }

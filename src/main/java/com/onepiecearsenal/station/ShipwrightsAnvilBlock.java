@@ -20,14 +20,17 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.BlockHitResult;
 
+import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.part.PartItem;
 import com.onepiecearsenal.part.PartType;
+import com.onepiecearsenal.tool.GunStats;
 import com.onepiecearsenal.tool.KatanaStats;
 
 /**
- * The pirate assembly station. Right-click it with an empty hand while you carry a katana blade, a tsuba
- * and a hilt anywhere in your inventory, and it joins them into a katana. Like the One Piece Mod's
- * stations, the parts don't need to be in a grid.
+ * The pirate assembly station. Right-click it with an empty hand while you carry a full set of parts
+ * anywhere in your inventory, and it joins them into a weapon: a katana blade, tsuba and hilt make a katana;
+ * a barrel, firing lock and stock make a flintlock. Like the One Piece Mod's stations, the parts don't need
+ * to be in a grid. If you carry both sets, the katana is forged first.
  */
 public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 	public ShipwrightsAnvilBlock(Properties properties) {
@@ -51,25 +54,47 @@ public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 			return InteractionResult.SUCCESS;
 		}
 		Inventory inventory = smith.getInventory();
-		int blade = findPart(inventory, PartType.KATANA_BLADE);
-		int tsuba = findPart(inventory, PartType.TSUBA);
-		int hilt = findPart(inventory, PartType.HILT);
-		if (blade < 0 || tsuba < 0 || hilt < 0) {
-			smith.sendOverlayMessage(Component.literal("You need a katana blade, a tsuba and a hilt.").withStyle(ChatFormatting.RED));
+		int[] katana = findParts(inventory, PartType.KATANA_BLADE, PartType.TSUBA, PartType.HILT);
+		int[] gun = findParts(inventory, PartType.BARREL, PartType.LOCK, PartType.STOCK);
+		ItemStack weapon;
+		int[] used;
+		if (katana != null) {
+			weapon = KatanaStats.build(material(inventory, katana[0]), material(inventory, katana[1]), material(inventory, katana[2]));
+			used = katana;
+		} else if (gun != null) {
+			weapon = GunStats.build(material(inventory, gun[0]), material(inventory, gun[1]), material(inventory, gun[2]));
+			used = gun;
+		} else {
+			smith.sendOverlayMessage(Component.literal("You need a katana blade, tsuba and hilt, or a barrel, firing lock and stock.")
+					.withStyle(ChatFormatting.RED));
 			return InteractionResult.FAIL;
 		}
 
-		ItemStack katana = KatanaStats.build(PartItem.material(inventory.getItem(blade)),
-				PartItem.material(inventory.getItem(tsuba)), PartItem.material(inventory.getItem(hilt)));
-		inventory.removeItem(blade, 1);
-		inventory.removeItem(tsuba, 1);
-		inventory.removeItem(hilt, 1);
-		if (!inventory.add(katana)) {
-			smith.drop(katana, false, Prediction.SERVER_ONLY); // Inventory full: drop it at their feet.
+		for (int slot : used) {
+			inventory.removeItem(slot, 1);
+		}
+		if (!inventory.add(weapon)) {
+			smith.drop(weapon, false, Prediction.SERVER_ONLY); // Inventory full: drop it at their feet.
 		}
 		level.playSound(null, pos, SoundEvents.ANVIL_USE, SoundSource.BLOCKS, 1.0f, 1.0f);
-		smith.sendOverlayMessage(Component.literal("Forged a " + katana.getHoverName().getString() + "!").withStyle(ChatFormatting.GREEN));
+		smith.sendOverlayMessage(Component.literal("Forged a " + weapon.getHoverName().getString() + "!").withStyle(ChatFormatting.GREEN));
 		return InteractionResult.SUCCESS;
+	}
+
+	/** The slots holding one of each of these parts, in the same order, or null if one is missing. */
+	private static int[] findParts(Inventory inventory, PartType... types) {
+		int[] slots = new int[types.length];
+		for (int i = 0; i < types.length; i++) {
+			slots[i] = findPart(inventory, types[i]);
+			if (slots[i] < 0) {
+				return null;
+			}
+		}
+		return slots;
+	}
+
+	private static ArsenalMaterial material(Inventory inventory, int slot) {
+		return PartItem.material(inventory.getItem(slot));
 	}
 
 	/** The first inventory slot holding this kind of part with a known material, or -1. */
