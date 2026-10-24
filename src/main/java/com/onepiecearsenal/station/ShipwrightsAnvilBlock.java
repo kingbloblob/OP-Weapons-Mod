@@ -83,11 +83,12 @@ public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 		for (int slot : used) {
 			inventory.removeItem(slot, 1);
 		}
+		String name = weapon.getHoverName().getString(); // inventory.add empties the stack, so read the name first.
 		if (!inventory.add(weapon)) {
 			smith.drop(weapon, false, Prediction.SERVER_ONLY); // Inventory full: drop it at their feet.
 		}
 		level.playSound(null, pos, SoundEvents.ANVIL_USE, SoundSource.BLOCKS, 1.0f, 1.0f);
-		smith.sendOverlayMessage(Component.literal("Forged a " + weapon.getHoverName().getString() + "!").withStyle(ChatFormatting.GREEN));
+		smith.sendOverlayMessage(Component.literal("Forged a " + name + "!").withStyle(ChatFormatting.GREEN));
 		return InteractionResult.SUCCESS;
 	}
 
