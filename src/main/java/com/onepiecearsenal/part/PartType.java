@@ -1,8 +1,9 @@
 package com.onepiecearsenal.part;
 
 /**
- * The parts weapons are built from. The head part (blade or barrel) decides the damage and the head trait;
- * the others decide the speed or aim and give their handle trait. All parts share the durability.
+ * The parts weapons and armor are built from. The head part (blade, barrel, or an armor shell) decides the
+ * damage or defense and the head trait; the others decide speed, aim or comfort and give their handle trait.
+ * All parts share the durability.
  */
 public enum PartType {
 	KATANA_BLADE("katana_blade", "Katana Blade", true),
@@ -10,7 +11,13 @@ public enum PartType {
 	HILT("hilt", "Hilt", false),
 	BARREL("barrel", "Barrel", true),
 	LOCK("firing_lock", "Firing Lock", false),
-	STOCK("stock", "Stock", false);
+	STOCK("stock", "Stock", false),
+	// Armor shells (one per piece) and the lining that goes inside any of them.
+	CROWN("crown", "Hat Crown", true),
+	COAT_PLATES("coat_plates", "Coat Plates", true),
+	SASH_WEAVE("sash_weave", "Sash Weave", true),
+	BOOT_SOLES("boot_soles", "Boot Soles", true),
+	LINING("lining", "Lining", false);
 
 	private final String id;
 	public final String displayName;

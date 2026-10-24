@@ -9,5 +9,14 @@
   "item.arsenal.firing_lock": "Firing Lock",
   "item.arsenal.stock": "Stock",
   "item.arsenal.flintlock": "Flintlock",
+  "item.arsenal.crown": "Hat Crown",
+  "item.arsenal.coat_plates": "Coat Plates",
+  "item.arsenal.sash_weave": "Sash Weave",
+  "item.arsenal.boot_soles": "Boot Soles",
+  "item.arsenal.lining": "Lining",
+  "item.arsenal.hat": "Hat",
+  "item.arsenal.coat": "Coat",
+  "item.arsenal.sash": "Sash",
+  "item.arsenal.boots": "Boots",
   "block.arsenal.shipwrights_anvil": "Shipwright's Anvil"
 }

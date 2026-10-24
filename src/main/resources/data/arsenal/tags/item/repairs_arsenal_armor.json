@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "arsenal:driftwood",
+    "minecraft:iron_ingot",
+    "arsenal:marine_steel_ingot",
+    "onepiece:seastone_ingot"
+  ]
+}

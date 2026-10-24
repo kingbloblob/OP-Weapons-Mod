@@ -8,10 +8,12 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
+import net.minecraft.world.item.equipment.ArmorType;
 
 import com.onepiecearsenal.ArsenalComponents;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
+import com.onepiecearsenal.tool.ArmorStats;
 import com.onepiecearsenal.tool.GunStats;
 
 /**
@@ -63,6 +65,12 @@ public class PartItem extends Item {
 					.withStyle(ChatFormatting.BLUE));
 			case STOCK -> textConsumer.accept(Component.literal(String.format("Spread: %.2f", GunStats.spread(material)))
 					.withStyle(ChatFormatting.BLUE));
+			case CROWN, COAT_PLATES, SASH_WEAVE, BOOT_SOLES -> {
+				ArmorType armor = ArmorStats.typeOf(this.type);
+				textConsumer.accept(Component.literal("Defense: " + ArmorStats.defense(material, armor)
+						+ (ArmorStats.toughness(material) > 0 ? ", toughness: " + (int) ArmorStats.toughness(material) : "")).withStyle(ChatFormatting.BLUE));
+			}
+			case LINING -> textConsumer.accept(Component.literal("Comfort: " + material.displayName.toLowerCase() + " padding").withStyle(ChatFormatting.BLUE));
 		}
 		textConsumer.accept(Component.literal("Durability: " + material.durability).withStyle(ChatFormatting.BLUE));
 		Trait trait = this.type.head ? material.headTrait : material.handleTrait;
