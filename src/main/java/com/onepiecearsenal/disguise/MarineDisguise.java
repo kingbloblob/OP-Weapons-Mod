@@ -10,6 +10,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
@@ -52,6 +53,8 @@ public class MarineDisguise {
 
 	/** How long hitting a Marine blows your cover. 20 ticks = 1 second. */
 	private static final int BLOWN_TICKS = 1200;
+	/** How far away a Marine that is already chasing you can be and still lose you when the uniform goes on. */
+	private static final double LOSE_TRACK_RANGE = 48.0;
 	private static final EquipmentSlot[] ARMOR_SLOTS = {EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
 
 	/** When each player's cover stops being blown (server game time). */
@@ -83,6 +86,13 @@ public class MarineDisguise {
 					state = "famous";
 				} else {
 					state = "hidden";
+				}
+				if (state.equals("hidden")) {
+					// Marines already chasing you lose you once the uniform goes on.
+					for (Mob marine : level.getEntitiesOfClass(Mob.class, player.getBoundingBox().inflate(LOSE_TRACK_RANGE),
+							mob -> mob.getTarget() == player && OnePieceBridge.isMarine(mob) && fools(mob, player))) {
+						marine.setTarget(null);
+					}
 				}
 				String last = LAST_STATE.put(player.getUUID(), state);
 				if (last == null || last.equals(state)) {
