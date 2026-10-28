@@ -30,7 +30,7 @@ public class FlintlockItem extends GunItem {
 	public static final Stats UNIT = new Stats(0.0f, 100, 1.0, 1.0f, 1, Ammo.Kind.BULLET);
 
 	public FlintlockItem(Properties properties) {
-		super(UNIT, properties);
+		super(UNIT, Hold.PISTOL, properties);
 	}
 
 	@Override
