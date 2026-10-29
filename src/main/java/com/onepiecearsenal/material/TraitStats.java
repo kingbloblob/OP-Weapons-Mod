@@ -45,7 +45,7 @@ public final class TraitStats {
 		}
 		if (traits.contains(Trait.LEGENDARY_HULL)) {
 			modifiers = modifiers.withModifierAdded(Attributes.KNOCKBACK_RESISTANCE,
-					new AttributeModifier(id("legendary_hull", slot), 0.15, AttributeModifier.Operation.ADD_VALUE), slot);
+					new AttributeModifier(id("legendary_hull", slot), 0.1, AttributeModifier.Operation.ADD_VALUE), slot);
 		}
 		if (traits.contains(Trait.WATERPROOF) && slot != EquipmentSlotGroup.MAINHAND) {
 			modifiers = modifiers.withModifierAdded(Attributes.WATER_MOVEMENT_EFFICIENCY,
