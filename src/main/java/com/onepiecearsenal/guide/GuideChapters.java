@@ -19,6 +19,7 @@ import net.minecraft.world.item.ItemStack;
 
 import com.onepiecearsenal.ArsenalItems;
 import com.onepiecearsenal.ArsenalMod;
+import com.onepiecearsenal.loot.BossGear;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Faction;
 import com.onepiecearsenal.material.Trait;
@@ -147,6 +148,7 @@ public final class GuideChapters {
 			case "guns" -> guns();
 			case "navy_casting" -> navyCasting();
 			case "meito" -> meito();
+			case "navy_brass" -> navyBrass();
 			default -> List.of("(Nothing is written here yet: \"" + what + "\" isn't a page the manual knows.)");
 		};
 	}
@@ -260,6 +262,14 @@ public final class GuideChapters {
 		List<String> lines = new ArrayList<>();
 		for (int grade = 1; grade < names.length; grade++) {
 			lines.add("- " + names[grade] + ": " + Meito.wieldRequirement(grade) + ".");
+		}
+		return lines;
+	}
+
+	private static List<String> navyBrass() {
+		List<String> lines = new ArrayList<>();
+		for (BossGear.Signature signature : BossGear.SIGNATURES) {
+			lines.add("- " + signature.name() + " (" + signature.owners() + "): " + signature.description() + ".");
 		}
 		return lines;
 	}
