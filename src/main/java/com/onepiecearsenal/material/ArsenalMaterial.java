@@ -45,6 +45,8 @@ public final class ArsenalMaterial {
 	public final Trait handleTrait;
 	/** Hides and leathers: only armor shells and linings can be made of it. */
 	public final boolean armorOnly;
+	/** False for materials with no part recipes or station (Black Blade Steel). */
+	public final boolean craftable;
 	private final Identifier repairItem;
 
 	private ArsenalMaterial(String id, JsonObject json) {
@@ -59,6 +61,7 @@ public final class ArsenalMaterial {
 		this.headTrait = Trait.valueOf(json.get("head_trait").getAsString().toUpperCase(Locale.ROOT));
 		this.handleTrait = Trait.valueOf(json.get("handle_trait").getAsString().toUpperCase(Locale.ROOT));
 		this.armorOnly = json.has("armor_only") && json.get("armor_only").getAsBoolean();
+		this.craftable = !json.has("craftable") || json.get("craftable").getAsBoolean();
 		this.repairItem = Identifier.parse(json.get("item").getAsString());
 	}
 

@@ -1,8 +1,11 @@
 package com.onepiecearsenal.client;
 
+import net.minecraft.client.Minecraft;
+
 import net.fabricmc.api.ClientModInitializer;
 
 import com.onepiecearsenal.ArsenalMod;
+import com.onepiecearsenal.guide.GuideBook;
 import com.onepiecearsenal.mixin.client.SelectItemModelPropertiesAccessor;
 
 /**
@@ -13,5 +16,6 @@ public class ArsenalClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		SelectItemModelPropertiesAccessor.arsenal$idMapper().put(ArsenalMod.id("part_material"), PartMaterialProperty.TYPE);
+		GuideBook.openBook = () -> Minecraft.getInstance().gui.setScreen(new GuideScreen());
 	}
 }

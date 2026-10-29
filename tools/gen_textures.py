@@ -460,6 +460,26 @@ MARINE_STEEL_INGOT = check('marine_steel_ingot', '''
 ................
 '''.replace(' ', '3'))
 
+# The Shipwright's Manual (the guide book): a leather cover with crossed swords in gold, pages showing at the side.
+MANUAL = check('shipwrights_manual', '''
+..kkkkkkkkkkk...
+..kMMMMMMMMMkk..
+..kMLLLLLLLMkWk.
+..kMLhLLLhLMkWk.
+..kMLLhLhLLMkVk.
+..kMLLLgLLLMkWk.
+..kMLLhLhLLMkWk.
+..kMLhLLLhLMkVk.
+..kMgLLLLLgMkWk.
+..kMLLLLLLLMkWk.
+..kMLLLLLLLMkVk.
+..kMLhhhhhLMkWk.
+..kMLLLLLLLMkWk.
+..kMMMMMMMMMkVk.
+..kkkkkkkkkkkWk.
+...kkkkkkkkkkk..
+''')
+
 # ---- Armor ----
 # What each shell material looks like as clothing. Pirate materials make pirate clothes; Navy materials make
 # Navy uniforms, so a full Navy set looks like the Marine disguise it is.
@@ -1811,6 +1831,7 @@ RAW = {
     'island_whale_leather': (HIDE, 'island_whale_leather'),
     'pacifista_alloy': (ALLOY_PLATE, 'pacifista_alloy'),
     'vegapunk_compound': (VIAL, 'vegapunk_compound'),
+    'shipwrights_manual': (MANUAL, 'driftwood'),  # fixed colours only
 }
 
 if __name__ == '__main__':

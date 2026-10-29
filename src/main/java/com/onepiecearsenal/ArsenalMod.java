@@ -10,6 +10,7 @@ import net.fabricmc.api.ModInitializer;
 import com.onepiecearsenal.disguise.MarineDisguise;
 import com.onepiecearsenal.disguise.PirateGrudge;
 import com.onepiecearsenal.disguise.Suspicion;
+import com.onepiecearsenal.guide.GuideBook;
 import com.onepiecearsenal.loot.MarineGear;
 import com.onepiecearsenal.loot.MarineSteelLoot;
 import com.onepiecearsenal.loot.MaterialLoot;
@@ -42,6 +43,7 @@ public class ArsenalMod implements ModInitializer {
 		PirateGrudge.initialize();
 		Meito.initialize();
 		NavyStations.initialize();
+		GuideBook.initialize();
 	}
 
 	public static Identifier id(String path) {
