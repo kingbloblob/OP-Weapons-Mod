@@ -5,6 +5,9 @@ import java.util.function.Consumer;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -31,6 +34,12 @@ public class ArsenalArmorItem extends Item {
 	public Component getName(ItemStack stack) {
 		List<ArsenalMaterial> parts = ArmorStats.parts(stack);
 		return Component.literal(parts.isEmpty() ? "Unmade " + pieceName : parts.get(0).displayName + " " + pieceName);
+	}
+
+	@Override
+	public void inventoryTick(ItemStack stack, ServerLevel level, Entity owner, EquipmentSlot slot) {
+		// Pieces forged before each slot had its own modifier id only counted once per set; fix them where they are.
+		ArmorStats.fixSharedIds(stack);
 	}
 
 	@Override
