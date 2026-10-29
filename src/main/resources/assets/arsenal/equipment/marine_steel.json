@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "arsenal:marine_steel"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "arsenal:marine_steel"
+      }
+    ]
+  }
+}

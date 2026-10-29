@@ -7,6 +7,7 @@ import java.util.Set;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -14,6 +15,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.equipment.ArmorType;
+import net.minecraft.world.item.equipment.EquipmentAssets;
+import net.minecraft.world.item.equipment.Equippable;
 
 import com.onepiecearsenal.ArsenalComponents;
 import com.onepiecearsenal.ArsenalItems;
@@ -103,6 +106,15 @@ public final class ArmorStats {
 		}
 		piece.set(DataComponents.ATTRIBUTE_MODIFIERS, modifiers);
 		piece.set(DataComponents.MAX_DAMAGE, durability(shell, lining, type));
+
+		// Worn, it looks like its shell: assets/arsenal/equipment/<material>.json (drawn by tools/gen_textures.py).
+		Equippable equippable = piece.get(DataComponents.EQUIPPABLE);
+		if (equippable != null) {
+			piece.set(DataComponents.EQUIPPABLE, Equippable.builder(equippable.slot())
+					.setEquipSound(equippable.equipSound())
+					.setAsset(ResourceKey.create(EquipmentAssets.ROOT_ID, ArsenalMod.id(shell.id())))
+					.build());
+		}
 		return piece;
 	}
 

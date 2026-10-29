@@ -17,7 +17,7 @@ w('fabric.mod.json', {
     "name": "One Piece Arsenal",
     "description": "Build your own weapons and armor from parts, Tinkers' Construct style, for the One Piece Mod.",
     "authors": ["ryan"], "environment": "*",
-    "entrypoints": {"main": ["com.onepiecearsenal.ArsenalMod"]},
+    "entrypoints": {"main": ["com.onepiecearsenal.ArsenalMod"], "client": ["com.onepiecearsenal.client.ArsenalClient"]},
     "mixins": ["arsenal.mixins.json"],
     "depends": {"fabricloader": ">=0.19.5", "minecraft": "~26.3", "java": ">=25", "fabric-api": "*", "onepiece": "*"}
 })
@@ -48,33 +48,46 @@ w(f'{A}/lang/en_us.json', {
     "block.arsenal.quartermasters_desk": "Quartermaster's Desk",
     "block.arsenal.marine_base_smeltery": "Marine Base Smeltery"
 })
-# Placeholder art: vanilla textures until the real ones are drawn.
-items = {
-    "driftwood": ("minecraft:item/generated", "minecraft:item/stick"),
-    "marine_steel_ingot": ("minecraft:item/generated", "minecraft:item/iron_ingot"),
-    "katana_blade": ("minecraft:item/generated", "minecraft:item/iron_sword"),
-    "tsuba": ("minecraft:item/generated", "minecraft:item/iron_nugget"),
-    "hilt": ("minecraft:item/generated", "minecraft:item/stick"),
-    "katana": ("minecraft:item/handheld", "minecraft:item/iron_sword"),
-    "barrel": ("minecraft:item/generated", "minecraft:block/iron_bars"),
-    "firing_lock": ("minecraft:item/generated", "minecraft:item/flint"),
-    "stock": ("minecraft:item/generated", "minecraft:item/stick"),
-    "flintlock": ("minecraft:item/handheld", "onepiece:item/flintlock_pistol"),
-    "crown": ("minecraft:item/generated", "minecraft:item/leather_helmet"),
-    "coat_plates": ("minecraft:item/generated", "minecraft:item/iron_chestplate"),
-    "sash_weave": ("minecraft:item/generated", "minecraft:item/string"),
-    "boot_soles": ("minecraft:item/generated", "minecraft:item/leather_boots"),
-    "lining": ("minecraft:item/generated", "minecraft:item/paper"),
-    "hat": ("minecraft:item/generated", "minecraft:item/iron_helmet"),
-    "coat": ("minecraft:item/generated", "minecraft:item/iron_chestplate"),
-    "sash": ("minecraft:item/generated", "minecraft:item/iron_leggings"),
-    "boots": ("minecraft:item/generated", "minecraft:item/iron_boots"),
-}
-for name, (parent, tex) in items.items():
-    w(f'{A}/items/{name}.json', {"model": {"type": "minecraft:model", "model": f"arsenal:item/{name}"}})
-    w(f'{A}/models/item/{name}.json', {"parent": parent, "textures": {"layer0": tex}})
-# The worn look of Arsenal armor. Placeholder: vanilla iron, until pirate and Navy textures are drawn.
-w(f'{A}/equipment/pirate.json', {"layers": {"humanoid": [{"texture": "minecraft:iron"}], "humanoid_leggings": [{"texture": "minecraft:iron"}]}})
+# Item art is drawn by tools/gen_textures.py, one texture per material for every part and weapon layer.
+# The item model picks the texture from the material saved on the stack (the "arsenal:part_material" property,
+# registered in client/ArsenalClient). Weapons stack one layer per part, so a Kairoseki blade on a Ship Iron
+# hilt looks like one. A new material needs adding to MATERIALS here and to gen_textures.py.
+MATERIALS = ["driftwood", "ship_iron", "marine_steel", "kairoseki"]
+FALLBACK = "ship_iron"  # what a blank part (from the creative menu) looks like
+
+
+def model(path, parent="minecraft:item/generated"):
+    w(f'{A}/models/item/{path}.json', {"parent": parent, "textures": {"layer0": f"arsenal:item/{path}"}})
+    return {"type": "minecraft:model", "model": f"arsenal:item/{path}"}
+
+
+def by_material(folder, index=None, parent="minecraft:item/generated"):
+    """Picks folder/<material> by the material of the part at index (or of the part itself)."""
+    select = {"type": "minecraft:select", "property": "arsenal:part_material"}
+    if index is not None:
+        select["index"] = index
+    select["cases"] = [{"when": m, "model": model(f"{folder}/{m}", parent)} for m in MATERIALS]
+    select["fallback"] = {"type": "minecraft:model", "model": f"arsenal:item/{folder}/{FALLBACK}"}
+    return select
+
+
+for name in ["driftwood", "marine_steel_ingot"]:
+    w(f'{A}/items/{name}.json', {"model": model(name)})
+for part in ["katana_blade", "tsuba", "hilt", "barrel", "firing_lock", "stock",
+             "crown", "coat_plates", "sash_weave", "boot_soles", "lining"]:
+    w(f'{A}/items/{part}.json', {"model": by_material(f"part/{part}")})
+for weapon, layers in {"katana": ["blade", "tsuba", "hilt"], "flintlock": ["barrel", "lock", "stock"]}.items():
+    w(f'{A}/items/{weapon}.json', {"model": {"type": "minecraft:composite", "models": [
+        by_material(f"{weapon}/{layer}", i, "minecraft:item/handheld") for i, layer in enumerate(layers)]}})
+for piece in ["hat", "coat", "sash", "boots"]:
+    w(f'{A}/items/{piece}.json', {"model": by_material(f"armor/{piece}", 0)})
+# The worn look of Arsenal armor, one per shell material (ArmorStats picks it when a piece is forged).
+for m in MATERIALS:
+    w(f'{A}/equipment/{m}.json', {"layers": {"humanoid": [{"texture": f"arsenal:{m}"}],
+                                             "humanoid_leggings": [{"texture": f"arsenal:{m}"}]}})
+# Pieces forged before the per-material looks existed.
+w(f'{A}/equipment/pirate.json', {"layers": {"humanoid": [{"texture": f"arsenal:{FALLBACK}"}],
+                                            "humanoid_leggings": [{"texture": f"arsenal:{FALLBACK}"}]}})
 w(f'{A}/items/shipwrights_anvil.json', {"model": {"type": "minecraft:model", "model": "arsenal:block/shipwrights_anvil"}})
 w(f'{A}/models/block/shipwrights_anvil.json', {"parent": "minecraft:block/anvil", "textures": {
     "particle": "minecraft:block/anvil", "body": "minecraft:block/anvil", "top": "minecraft:block/anvil_top"}})

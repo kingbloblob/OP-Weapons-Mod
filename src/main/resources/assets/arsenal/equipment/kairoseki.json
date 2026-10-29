@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "arsenal:kairoseki"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "arsenal:kairoseki"
+      }
+    ]
+  }
+}

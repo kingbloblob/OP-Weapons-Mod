@@ -81,7 +81,8 @@ public class ArsenalItems {
 
 	/**
 	 * Placeholder numbers (iron's) so the pieces equip and render; ArmorStats replaces them with the parts' numbers
-	 * when a piece is forged. The look comes from assets/arsenal/equipment/pirate.json.
+	 * when a piece is forged, and gives it the look of its shell material (assets/arsenal/equipment/<material>.json).
+	 * equipment/pirate.json is the look of pieces forged before that.
 	 */
 	private static final ArmorMaterial PIRATE_GEAR = new ArmorMaterial(15,
 			Map.of(ArmorType.HELMET, 2, ArmorType.CHESTPLATE, 6, ArmorType.LEGGINGS, 5, ArmorType.BOOTS, 2, ArmorType.BODY, 6),
