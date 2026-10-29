@@ -24,12 +24,15 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.part.PartItem;
 import com.onepiecearsenal.part.PartType;
+import com.onepiecearsenal.station.MarineArmoryBenchBlock;
+import com.onepiecearsenal.station.NavyCastingBlock;
 import com.onepiecearsenal.station.ShipwrightsAnvilBlock;
 import com.onepiecearsenal.tool.ArmorStats;
 import com.onepiecearsenal.tool.ArsenalArmorItem;
@@ -96,6 +99,21 @@ public class ArsenalItems {
 	public static final Block SHIPWRIGHTS_ANVIL = block("shipwrights_anvil", ShipwrightsAnvilBlock::new,
 			BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(5.0f).sound(SoundType.ANVIL).requiresCorrectToolForDrops());
 
+	// Navy stations: no recipes, captured from Marine bases (see NavyStationBlock and NavyStations).
+	// Blast-proof, so a guarded one can't be blown loose with TNT.
+
+	public static final Block MARINE_ARMORY_BENCH = block("marine_armory_bench", MarineArmoryBenchBlock::new,
+			BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(5.0f, 1200.0f).sound(SoundType.ANVIL)
+					.requiresCorrectToolForDrops().pushReaction(PushReaction.IMMOVEABLE));
+	public static final Block QUARTERMASTERS_DESK = block("quartermasters_desk", properties -> new NavyCastingBlock("Quartermaster's Desk",
+			"Copied", SoundEvents.VILLAGER_WORK_CARTOGRAPHER, List.of(ArsenalMaterial.MARINE_STEEL), properties),
+			BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(2.5f, 1200.0f).sound(SoundType.WOOD)
+					.pushReaction(PushReaction.IMMOVEABLE));
+	public static final Block MARINE_BASE_SMELTERY = block("marine_base_smeltery", properties -> new NavyCastingBlock("Marine Base Smeltery",
+			"Cast", SoundEvents.LAVA_EXTINGUISH, List.of(ArsenalMaterial.KAIROSEKI), properties),
+			BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(5.0f, 1200.0f).sound(SoundType.STONE)
+					.requiresCorrectToolForDrops().pushReaction(PushReaction.IMMOVEABLE));
+
 	public static final ResourceKey<CreativeModeTab> TAB_KEY = ResourceKey.create(
 			BuiltInRegistries.CREATIVE_MODE_TAB.key(), ArsenalMod.id("arsenal"));
 
@@ -105,6 +123,9 @@ public class ArsenalItems {
 				.title(Component.literal("One Piece: Arsenal"))
 				.displayItems((params, output) -> {
 					output.accept(SHIPWRIGHTS_ANVIL);
+					output.accept(MARINE_ARMORY_BENCH);
+					output.accept(QUARTERMASTERS_DESK);
+					output.accept(MARINE_BASE_SMELTERY);
 					output.accept(DRIFTWOOD);
 					output.accept(MARINE_STEEL_INGOT);
 					for (Item part : PART_ITEMS) {

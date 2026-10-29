@@ -2,6 +2,7 @@ package com.onepiecearsenal.compat;
 
 import java.util.Set;
 
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
@@ -9,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 
 import com.onepiecemod.bounty.Bounty;
 import com.onepiecemod.bounty.MarineEntity;
+import com.onepiecemod.bounty.MarineHunters;
 import com.onepiecemod.bounty.MarineRank;
 import com.onepiecemod.character.CharacterEntity;
 import com.onepiecemod.haki.HakiAttachments;
@@ -89,6 +91,11 @@ public final class OnePieceBridge {
 	/** True if this Marine was sent to hunt down this player. */
 	public static boolean isHunting(Mob marine, Player player) {
 		return MarineEntity.isHunting(marine, player);
+	}
+
+	/** Sends a Marine squad after the player, sized by their bounty (at least a pair of recruits). False if one is already on its way. */
+	public static boolean sendMarineSquad(ServerPlayer player) {
+		return MarineHunters.forceHunt(player);
 	}
 
 	/** The player's bounty in Berries. */
