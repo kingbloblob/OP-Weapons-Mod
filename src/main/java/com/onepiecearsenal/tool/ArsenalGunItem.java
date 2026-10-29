@@ -5,9 +5,13 @@ import java.util.function.Consumer;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
+import net.minecraft.world.level.Level;
 
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
@@ -28,6 +32,9 @@ public class ArsenalGunItem extends GunItem {
 	/** 100-tick reload: easy to read the upgrades' cooldown change back out of. */
 	private static final int UNIT_COOLDOWN = 100;
 
+	/** The gun that is firing right now, so its traits go on the shot even from the offhand. */
+	private static ItemStack firing = ItemStack.EMPTY;
+
 	private final GunType type;
 
 	public ArsenalGunItem(GunType type, Properties properties) {
@@ -42,6 +49,28 @@ public class ArsenalGunItem extends GunItem {
 
 	public GunType type() {
 		return type;
+	}
+
+	/**
+	 * The One Piece Mod's shots hit the moment the trigger is pulled, inside use(), so remembering the gun
+	 * here tells TraitEffects which gun fired, whichever hand it's in.
+	 */
+	@Override
+	public InteractionResult use(Level level, Player player, InteractionHand hand) {
+		if (level.isClientSide()) {
+			return super.use(level, player, hand);
+		}
+		firing = player.getItemInHand(hand);
+		try {
+			return super.use(level, player, hand);
+		} finally {
+			firing = ItemStack.EMPTY;
+		}
+	}
+
+	/** The gun whose shot is landing right now, or an empty stack outside a shot. */
+	public static ItemStack firing() {
+		return firing;
 	}
 
 	@Override

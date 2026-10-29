@@ -77,11 +77,14 @@ public class TraitEffects {
 			return InteractionResult.PASS; // PASS lets the normal hit happen too.
 		});
 
-		// Gun shots are "thrown" damage from the shooter (see the One Piece Mod's Shot.java).
+		// Gun shots are "thrown" damage from the shooter (see the One Piece Mod's Shot.java). The traits come
+		// from the gun that fired (ArsenalGunItem.firing), so an offhand gun works and a thrown knife
+		// doesn't pick up the traits of a gun you happen to hold.
 		ServerLivingEntityEvents.AFTER_DAMAGE.register((entity, source, baseDamageTaken, damageTaken, blocked) -> {
-			if (!dealingExtra && !blocked && source.is(DamageTypes.THROWN) && source.getEntity() instanceof ServerPlayer shooter
-					&& shooter.level() instanceof ServerLevel serverLevel && shooter.getMainHandItem().getItem() instanceof ArsenalGunItem) {
-				onHit(shooter, serverLevel, entity, GunStats.traits(shooter.getMainHandItem()), baseDamageTaken, false);
+			ItemStack gun = ArsenalGunItem.firing();
+			if (!dealingExtra && !blocked && !gun.isEmpty() && source.is(DamageTypes.THROWN) && source.getEntity() instanceof ServerPlayer shooter
+					&& shooter.level() instanceof ServerLevel serverLevel) {
+				onHit(shooter, serverLevel, entity, GunStats.traits(gun), baseDamageTaken, false);
 			}
 		});
 

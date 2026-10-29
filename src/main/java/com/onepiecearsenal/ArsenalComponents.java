@@ -9,6 +9,8 @@ import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.codec.ByteBufCodecs;
 
+import com.onepiecearsenal.meito.BladeRecord;
+
 /**
  * Data saved on Arsenal items (as "data components"), so a part remembers its material and a katana
  * remembers what it was built from when you drop it, trade it or put it in a chest.
@@ -42,6 +44,11 @@ public class ArsenalComponents {
 			ArsenalMod.id("armor_parts"),
 			DataComponentType.<List<String>>builder().persistent(Codec.STRING.listOf())
 					.networkSynchronized(ByteBufCodecs.STRING_UTF8.apply(ByteBufCodecs.list())).build());
+
+	/** A katana's level and deeds, which decide when a whetstone can raise its grade (see Meito). */
+	public static final DataComponentType<BladeRecord> BLADE_RECORD = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
+			ArsenalMod.id("blade_record"),
+			DataComponentType.<BladeRecord>builder().persistent(BladeRecord.CODEC).networkSynchronized(BladeRecord.STREAM_CODEC).build());
 
 	/** Loads this class, which registers the components above. */
 	static void initialize() {
