@@ -27,7 +27,7 @@ import com.onepiecemod.weapon.WeaponUpgrades;
  */
 public class FlintlockItem extends GunItem {
 	/** 0 damage, 100-tick reload, 1 block range, 1 spread: easy to read the upgrades back out of. */
-	public static final Stats UNIT = new Stats(0.0f, 100, 1.0, 1.0f, 1, Ammo.Kind.BULLET);
+	public static final Stats UNIT = new Stats(0.0f, 100, 1.0, 1.0f, 1, Ammo.Kind.BULLET, 0, 0, 3.0f);
 
 	public FlintlockItem(Properties properties) {
 		super(UNIT, Hold.PISTOL, properties);
@@ -37,14 +37,14 @@ public class FlintlockItem extends GunItem {
 	public Stats effectiveStats(ItemStack gun, Level level) {
 		Stats parts = GunStats.stats(gun);
 		if (parts == null) {
-			parts = new Stats(1.0f, 40, 16.0, 0.1f, 1, Ammo.Kind.BULLET); // An unforged gun barely works.
+			parts = new Stats(1.0f, 40, 16.0, 0.1f, 1, Ammo.Kind.BULLET, 0, 0, 3.0f); // An unforged gun barely works.
 		}
 		Stats upgrades = super.effectiveStats(gun, level);
 		return new Stats(parts.damage() + upgrades.damage(),
 				Math.max(4, Math.round(parts.cooldown() * upgrades.cooldown() / (float) UNIT.cooldown())),
 				parts.range() * upgrades.range(),
 				parts.spread() * upgrades.spread(),
-				1, Ammo.Kind.BULLET);
+				1, Ammo.Kind.BULLET, parts.magazine(), parts.reload(), parts.recoil());
 	}
 
 	@Override

@@ -66,7 +66,8 @@ public final class GunStats {
 		if (parts.isEmpty()) {
 			return null;
 		}
-		return new GunItem.Stats(damage(parts.get(0)), cooldown(parts.get(1)), range(parts.get(0)), spread(parts.get(2)), 1, Ammo.Kind.BULLET);
+		return new GunItem.Stats(damage(parts.get(0)), cooldown(parts.get(1)), range(parts.get(0)), spread(parts.get(2)), 1, Ammo.Kind.BULLET,
+				0, 0, 3.0f); // Single shot: the firing lock's cooldown is the reload, so no magazine.
 	}
 
 	/** The gun's materials as barrel, firing lock, stock. Empty for a gun that wasn't built from parts. */
