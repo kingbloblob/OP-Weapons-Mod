@@ -13,6 +13,9 @@
       "com.onepiecearsenal.ArsenalMod"
     ]
   },
+  "mixins": [
+    "arsenal.mixins.json"
+  ],
   "depends": {
     "fabricloader": ">=0.19.5",
     "minecraft": "~26.3",

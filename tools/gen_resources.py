@@ -18,6 +18,7 @@ w('fabric.mod.json', {
     "description": "Build your own weapons and armor from parts, Tinkers' Construct style, for the One Piece Mod.",
     "authors": ["ryan"], "environment": "*",
     "entrypoints": {"main": ["com.onepiecearsenal.ArsenalMod"]},
+    "mixins": ["arsenal.mixins.json"],
     "depends": {"fabricloader": ">=0.19.5", "minecraft": "~26.3", "java": ">=25", "fabric-api": "*", "onepiece": "*"}
 })
 
