@@ -33,8 +33,11 @@ public class GuideScreen extends Screen {
 	private static int lastChapter = 0;
 	private static int lastPage = 0;
 
-	/** One line of text on a page, already wrapped to fit. */
-	private record Line(FormattedCharSequence text, int color, int indent, int spaceBefore, boolean heading) {}
+	/**
+	 * One line of text on a page, already wrapped to fit. The first line of a paragraph knows how many lines the
+	 * whole paragraph wrapped to (later lines have 0), so a paragraph isn't split across two pages.
+	 */
+	private record Line(FormattedCharSequence text, int color, int indent, int spaceBefore, boolean heading, int paragraphLines) {}
 
 	private final List<GuideChapters.Chapter> chapters = GuideChapters.chapters();
 	private final List<List<Line>> pages = new ArrayList<>();
@@ -132,14 +135,15 @@ public class GuideScreen extends Screen {
 				}
 				space = 0;
 				int indent = font.width(prefix);
+				List<FormattedCharSequence> split = font.split(Component.literal(text), panelWidth - indent);
 				boolean first = true;
-				for (FormattedCharSequence wrapped : font.split(Component.literal(text), panelWidth - indent)) {
+				for (FormattedCharSequence wrapped : split) {
 					if (first) {
 						lines.add(new Line(prefix.isEmpty() ? wrapped
 								: FormattedCharSequence.composite(Component.literal(prefix).getVisualOrderText(), wrapped),
-								color, 0, before, heading));
+								color, 0, before, heading, split.size()));
 					} else {
-						lines.add(new Line(wrapped, color, indent, 0, false));
+						lines.add(new Line(wrapped, color, indent, 0, false, 0));
 					}
 					first = false;
 				}
@@ -153,8 +157,14 @@ public class GuideScreen extends Screen {
 		for (int i = 0; i < lines.size(); i++) {
 			Line line = lines.get(i);
 			int h = (current.isEmpty() ? 0 : line.spaceBefore) + font.lineHeight + 1;
-			// Don't leave a heading alone at the bottom of a page.
-			int need = line.heading && i + 1 < lines.size() ? h + font.lineHeight + 1 : h;
+			int need = h;
+			if (line.heading && i + 1 < lines.size()) {
+				// Don't leave a heading alone at the bottom of a page.
+				need += font.lineHeight + 1;
+			} else if (line.paragraphLines > 1 && line.paragraphLines * (font.lineHeight + 1) <= pageHeight) {
+				// Keep a wrapped paragraph on one page, unless it's longer than a whole page.
+				need += (line.paragraphLines - 1) * (font.lineHeight + 1);
+			}
 			if (!current.isEmpty() && used + need > pageHeight) {
 				pages.add(current);
 				current = new ArrayList<>();
