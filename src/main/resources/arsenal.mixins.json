@@ -6,6 +6,9 @@
 		"FoodDataAccessor",
 		"MobMixin"
 	],
+	"client": [
+		"client.SelectItemModelPropertiesAccessor"
+	],
 	"injectors": {
 		"defaultRequire": 1
 	}

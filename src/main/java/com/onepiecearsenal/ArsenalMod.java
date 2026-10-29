@@ -16,6 +16,7 @@ import com.onepiecearsenal.loot.MaterialLoot;
 import com.onepiecearsenal.material.TraitEffects;
 import com.onepiecearsenal.material.TraitStats;
 import com.onepiecearsenal.meito.Meito;
+import com.onepiecearsenal.station.NavyStations;
 import com.onepiecearsenal.tool.WeaponEffects;
 
 /**
@@ -40,6 +41,7 @@ public class ArsenalMod implements ModInitializer {
 		Suspicion.initialize();
 		PirateGrudge.initialize();
 		Meito.initialize();
+		NavyStations.initialize();
 	}
 
 	public static Identifier id(String path) {

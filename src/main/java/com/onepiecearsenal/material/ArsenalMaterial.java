@@ -25,11 +25,13 @@ import net.minecraft.world.item.Item;
 public final class ArsenalMaterial {
 	private static final Map<String, ArsenalMaterial> BY_ID = load();
 
-	// The materials the code itself needs by name (creative tab icons and examples).
+	// The materials the code itself needs by name (creative tab icons, examples and the Navy stations).
 	public static final ArsenalMaterial DRIFTWOOD = require("driftwood");
 	public static final ArsenalMaterial SHIP_IRON = require("ship_iron");
 	public static final ArsenalMaterial MARINE_STEEL = require("marine_steel");
 	public static final ArsenalMaterial KAIROSEKI = require("kairoseki");
+	public static final ArsenalMaterial PACIFISTA_ALLOY = require("pacifista_alloy");
+	public static final ArsenalMaterial VEGAPUNK_COMPOUND = require("vegapunk_compound");
 
 	private final String id;
 	public final String displayName;

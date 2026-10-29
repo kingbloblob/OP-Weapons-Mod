@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "arsenal:shipwrights_anvil"
+    "arsenal:shipwrights_anvil",
+    "arsenal:marine_armory_bench",
+    "arsenal:marine_base_smeltery"
   ]
 }

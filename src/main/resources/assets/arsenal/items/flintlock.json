@@ -1,6 +1,124 @@
 {
   "model": {
-    "type": "minecraft:model",
-    "model": "arsenal:item/flintlock"
+    "type": "minecraft:composite",
+    "models": [
+      {
+        "type": "minecraft:select",
+        "property": "arsenal:part_material",
+        "index": 0,
+        "cases": [
+          {
+            "when": "driftwood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/flintlock/barrel/driftwood"
+            }
+          },
+          {
+            "when": "ship_iron",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/flintlock/barrel/ship_iron"
+            }
+          },
+          {
+            "when": "marine_steel",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/flintlock/barrel/marine_steel"
+            }
+          },
+          {
+            "when": "kairoseki",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/flintlock/barrel/kairoseki"
+            }
+          }
+        ],
+        "fallback": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/flintlock/barrel/ship_iron"
+        }
+      },
+      {
+        "type": "minecraft:select",
+        "property": "arsenal:part_material",
+        "index": 1,
+        "cases": [
+          {
+            "when": "driftwood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/flintlock/lock/driftwood"
+            }
+          },
+          {
+            "when": "ship_iron",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/flintlock/lock/ship_iron"
+            }
+          },
+          {
+            "when": "marine_steel",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/flintlock/lock/marine_steel"
+            }
+          },
+          {
+            "when": "kairoseki",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/flintlock/lock/kairoseki"
+            }
+          }
+        ],
+        "fallback": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/flintlock/lock/ship_iron"
+        }
+      },
+      {
+        "type": "minecraft:select",
+        "property": "arsenal:part_material",
+        "index": 2,
+        "cases": [
+          {
+            "when": "driftwood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/flintlock/stock/driftwood"
+            }
+          },
+          {
+            "when": "ship_iron",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/flintlock/stock/ship_iron"
+            }
+          },
+          {
+            "when": "marine_steel",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/flintlock/stock/marine_steel"
+            }
+          },
+          {
+            "when": "kairoseki",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/flintlock/stock/kairoseki"
+            }
+          }
+        ],
+        "fallback": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/flintlock/stock/ship_iron"
+        }
+      }
+    ]
   }
 }
