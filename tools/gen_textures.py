@@ -786,13 +786,13 @@ def paint_box(img, box, fn):
 
 
 # 正義 ("Justice") down the back of the officer's coat, one character above the other.
-JUSTICE = [
+JUSTICE = [  # starts a row down, clear of the collar
+    '.......',
     '.#####.',
     '...#...',
     '...###.',
     '...#...',
     '.#####.',
-    '.......',
     '..#.#..',
     '.#####.',
     '...#...',
