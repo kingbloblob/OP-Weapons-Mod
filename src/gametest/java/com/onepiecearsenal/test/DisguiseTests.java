@@ -91,10 +91,12 @@ public class DisguiseTests {
 		ServerPlayer player = helper.makeMockServerPlayerInLevel();
 		dress(player, 1_000_000L, ArsenalMaterial.MARINE_STEEL);
 		Mob marine = marine(helper, "marine");
+		helper.assertTrue(MarineDisguise.fools(marine, player), "a Marine should be fooled before the hit");
 		marine.hurtServer(helper.getLevel(), player.damageSources().playerAttack(player), 1.0f);
 		helper.assertTrue(MarineDisguise.isBlown(player), "hitting a Marine should blow the disguise");
-		marine.setTarget(player);
-		helper.assertTrue(marine.getTarget() == player, "a Marine should fight back once the disguise is blown");
+		// The mock server player is always in creative, and Mob.setTarget drops creative players,
+		// so ask the disguise directly. Same tick as the check above, so this also covers the cover cache.
+		helper.assertFalse(MarineDisguise.fools(marine, player), "a Marine should fight back once the disguise is blown");
 		helper.succeed();
 	}
 
