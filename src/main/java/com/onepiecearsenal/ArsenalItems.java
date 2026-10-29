@@ -1,6 +1,7 @@
 package com.onepiecearsenal;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -16,6 +17,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorType;
@@ -36,10 +38,14 @@ import com.onepiecearsenal.station.NavyCastingBlock;
 import com.onepiecearsenal.station.ShipwrightsAnvilBlock;
 import com.onepiecearsenal.tool.ArmorStats;
 import com.onepiecearsenal.tool.ArsenalArmorItem;
-import com.onepiecearsenal.tool.FlintlockItem;
+import com.onepiecearsenal.tool.ArsenalGunItem;
+import com.onepiecearsenal.tool.ArsenalWeaponItem;
 import com.onepiecearsenal.tool.GunStats;
+import com.onepiecearsenal.tool.GunType;
 import com.onepiecearsenal.tool.KatanaItem;
 import com.onepiecearsenal.tool.KatanaStats;
+import com.onepiecearsenal.tool.WeaponStats;
+import com.onepiecearsenal.tool.WeaponType;
 
 /**
  * Every Arsenal item and block. Parts and weapons are one item each; their materials are saved on the stack.
@@ -53,6 +59,17 @@ public class ArsenalItems {
 	public static final Item DRIFTWOOD = register("driftwood", Item::new, new Item.Properties());
 	/** The Navy's standard-issue steel. Taken from Marines: players can't make it. */
 	public static final Item MARINE_STEEL_INGOT = register("marine_steel_ingot", Item::new, new Item.Properties());
+	/** Copper and the iron of old cannonballs, cast together. */
+	public static final Item CANNON_BRONZE_INGOT = register("cannon_bronze_ingot", Item::new, new Item.Properties());
+	/** Dropped by Sea Kings. */
+	public static final Item SEA_KING_BONE = register("sea_king_bone", Item::new, new Item.Properties());
+	/** Dropped by Island Whales. */
+	public static final Item ISLAND_WHALE_LEATHER = register("island_whale_leather", Item::new, new Item.Properties());
+	/** Salvaged from beaten Pacifistas. Navy science: players can't make it. */
+	public static final Item PACIFISTA_ALLOY = register("pacifista_alloy", Item::new, new Item.Properties());
+	/** Vegapunk's best work, carried by Seraphim and the Navy's top brass. */
+	public static final Item VEGAPUNK_COMPOUND = register("vegapunk_compound", Item::new,
+			new Item.Properties().rarity(Rarity.EPIC).fireResistant());
 
 	// ---- Parts ----
 
@@ -67,15 +84,45 @@ public class ArsenalItems {
 	public static final Item SASH_WEAVE = part(PartType.SASH_WEAVE);
 	public static final Item BOOT_SOLES = part(PartType.BOOT_SOLES);
 	public static final Item LINING = part(PartType.LINING);
+	public static final Item LONG_BARREL = part(PartType.LONG_BARREL);
+	public static final Item CANNON_BORE = part(PartType.CANNON_BORE);
+	public static final Item FUSE = part(PartType.FUSE);
+	public static final Item CUTLASS_BLADE = part(PartType.CUTLASS_BLADE);
+	public static final Item SABRE_BLADE = part(PartType.SABRE_BLADE);
+	public static final Item AXE_HEAD = part(PartType.AXE_HEAD);
+	public static final Item JITTE_ROD = part(PartType.JITTE_ROD);
+	public static final Item CLUB_HEAD = part(PartType.CLUB_HEAD);
+	public static final Item SPEARHEAD = part(PartType.SPEARHEAD);
+	public static final Item HAND_GUARD = part(PartType.HAND_GUARD);
+	public static final Item BINDING = part(PartType.BINDING);
+	public static final Item STUDS = part(PartType.STUDS);
+	public static final Item GRIP = part(PartType.GRIP);
+	public static final Item HAFT = part(PartType.HAFT);
 
 	// ---- Weapons ----
 
 	/** Starts with iron sword numbers; KatanaStats replaces them with the parts' numbers when it is forged. */
 	public static final Item KATANA = register("katana", KatanaItem::new,
 			new Item.Properties().sword(ToolMaterial.IRON, 0.0f, -2.4f));
-	/** A One Piece Mod gun whose stats come from its parts (see FlintlockItem). GunStats sets the durability when forged. */
-	public static final Item FLINTLOCK = register("flintlock", FlintlockItem::new,
-			new Item.Properties().durability(300).enchantable(10));
+	/** One Piece Mod guns whose stats come from their parts (see ArsenalGunItem). GunStats sets the durability when forged. */
+	public static final Map<GunType, Item> GUNS = new EnumMap<>(GunType.class);
+	/** Cutlasses, sabres, axes, jittes, kanabo and spears. Iron numbers until WeaponStats puts the parts' numbers on. */
+	public static final Map<WeaponType, Item> WEAPONS = new EnumMap<>(WeaponType.class);
+
+	static {
+		for (GunType type : GunType.values()) {
+			GUNS.put(type, register(type.id(), properties -> new ArsenalGunItem(type, properties),
+					new Item.Properties().durability(300).enchantable(10)));
+		}
+		for (WeaponType type : WeaponType.values()) {
+			Item.Properties properties = type == WeaponType.BOARDING_AXE
+					? new Item.Properties().axe(ToolMaterial.IRON, 0.0f, type.baseSpeed)
+					: new Item.Properties().sword(ToolMaterial.IRON, 0.0f, type.baseSpeed);
+			WEAPONS.put(type, register(type.id(), itemProperties -> new ArsenalWeaponItem(type, itemProperties), properties));
+		}
+	}
+
+	public static final Item FLINTLOCK = GUNS.get(GunType.FLINTLOCK);
 
 	// ---- Armor ----
 
@@ -111,7 +158,7 @@ public class ArsenalItems {
 			BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(2.5f, 1200.0f).sound(SoundType.WOOD)
 					.pushReaction(PushReaction.IMMOVEABLE));
 	public static final Block MARINE_BASE_SMELTERY = block("marine_base_smeltery", properties -> new NavyCastingBlock("Marine Base Smeltery",
-			"Cast", SoundEvents.LAVA_EXTINGUISH, List.of(ArsenalMaterial.KAIROSEKI), properties),
+			"Cast", SoundEvents.LAVA_EXTINGUISH, List.of(ArsenalMaterial.KAIROSEKI, ArsenalMaterial.PACIFISTA_ALLOY, ArsenalMaterial.VEGAPUNK_COMPOUND), properties),
 			BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(5.0f, 1200.0f).sound(SoundType.STONE)
 					.requiresCorrectToolForDrops().pushReaction(PushReaction.IMMOVEABLE));
 
@@ -129,17 +176,32 @@ public class ArsenalItems {
 					output.accept(MARINE_BASE_SMELTERY);
 					output.accept(DRIFTWOOD);
 					output.accept(MARINE_STEEL_INGOT);
+					output.accept(CANNON_BRONZE_INGOT);
+					output.accept(SEA_KING_BONE);
+					output.accept(ISLAND_WHALE_LEATHER);
+					output.accept(PACIFISTA_ALLOY);
+					output.accept(VEGAPUNK_COMPOUND);
 					for (Item part : PART_ITEMS) {
 						for (ArsenalMaterial material : ArsenalMaterial.values()) {
-							output.accept(PartItem.of(part, material));
+							if (!material.armorOnly || ((PartItem) part).type().isArmor()) {
+								output.accept(PartItem.of(part, material));
+							}
 						}
 					}
-					// One katana and one flintlock of each material, with Ship Iron for the other parts.
-					for (ArsenalMaterial material : ArsenalMaterial.values()) {
+					// One of each weapon per material, with Ship Iron for the other parts. Hides and leathers can't make weapons.
+					List<ArsenalMaterial> metals = ArsenalMaterial.values().stream().filter(material -> !material.armorOnly).toList();
+					for (ArsenalMaterial material : metals) {
 						output.accept(KatanaStats.build(material, ArsenalMaterial.SHIP_IRON, ArsenalMaterial.SHIP_IRON));
 					}
-					for (ArsenalMaterial material : ArsenalMaterial.values()) {
-						output.accept(GunStats.build(material, ArsenalMaterial.SHIP_IRON, ArsenalMaterial.SHIP_IRON));
+					for (WeaponType type : WeaponType.values()) {
+						for (ArsenalMaterial material : metals) {
+							output.accept(WeaponStats.build(type, material, ArsenalMaterial.SHIP_IRON, ArsenalMaterial.SHIP_IRON));
+						}
+					}
+					for (GunType type : GunType.values()) {
+						for (ArsenalMaterial material : metals) {
+							output.accept(GunStats.build(type, material, ArsenalMaterial.SHIP_IRON, ArsenalMaterial.SHIP_IRON));
+						}
 					}
 					// One armor set of each material, with a Driftwood lining.
 					for (ArsenalMaterial material : ArsenalMaterial.values()) {

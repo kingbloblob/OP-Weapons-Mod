@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_spearhead",
+  "key": {
+    "M": "arsenal:cannon_bronze_ingot"
+  },
+  "pattern": [
+    " M ",
+    "MMM"
+  ],
+  "result": {
+    "id": "arsenal:spearhead",
+    "components": {
+      "arsenal:part_material": "cannon_bronze"
+    }
+  }
+}

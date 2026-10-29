@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_hand_guard",
+  "key": {
+    "M": "minecraft:gold_ingot"
+  },
+  "pattern": [
+    "M M",
+    "MMM"
+  ],
+  "result": {
+    "id": "arsenal:hand_guard",
+    "components": {
+      "arsenal:part_material": "treasure_gold"
+    }
+  }
+}

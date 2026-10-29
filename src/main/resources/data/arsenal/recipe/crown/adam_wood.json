@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_crown",
+  "key": {
+    "M": "onepiece:adam_log",
+    "L": "minecraft:leather"
+  },
+  "pattern": [
+    "MMM",
+    "MLM"
+  ],
+  "result": {
+    "id": "arsenal:crown",
+    "components": {
+      "arsenal:part_material": "adam_wood"
+    }
+  }
+}

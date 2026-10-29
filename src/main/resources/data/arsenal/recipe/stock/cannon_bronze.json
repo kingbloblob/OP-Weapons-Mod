@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_stock",
+  "key": {
+    "M": "arsenal:cannon_bronze_ingot"
+  },
+  "pattern": [
+    "MM",
+    " M"
+  ],
+  "result": {
+    "id": "arsenal:stock",
+    "components": {
+      "arsenal:part_material": "cannon_bronze"
+    }
+  }
+}

@@ -12,6 +12,21 @@ public enum PartType {
 	BARREL("barrel", "Barrel", true),
 	LOCK("firing_lock", "Firing Lock", false),
 	STOCK("stock", "Stock", false),
+	LONG_BARREL("long_barrel", "Long Barrel", true),
+	CANNON_BORE("cannon_bore", "Cannon Bore", true),
+	FUSE("fuse", "Fuse", false),
+	// Heads of the other hand weapons (see WeaponType), and the bindings and handles they share.
+	CUTLASS_BLADE("cutlass_blade", "Cutlass Blade", true),
+	SABRE_BLADE("sabre_blade", "Sabre Blade", true),
+	AXE_HEAD("axe_head", "Axe Head", true),
+	JITTE_ROD("jitte_rod", "Jitte Rod", true),
+	CLUB_HEAD("club_head", "Kanabo Head", true),
+	SPEARHEAD("spearhead", "Spearhead", true),
+	HAND_GUARD("hand_guard", "Hand Guard", false),
+	BINDING("binding", "Binding", false),
+	STUDS("studs", "Studs", false),
+	GRIP("grip", "Grip", false),
+	HAFT("haft", "Haft", false),
 	// Armor shells (one per piece) and the lining that goes inside any of them.
 	CROWN("crown", "Hat Crown", true),
 	COAT_PLATES("coat_plates", "Coat Plates", true),
@@ -32,5 +47,10 @@ public enum PartType {
 
 	public String id() {
 		return id;
+	}
+
+	/** Armor shells and linings: the only parts hides and leathers (armor-only materials) can make. */
+	public boolean isArmor() {
+		return this == CROWN || this == COAT_PLATES || this == SASH_WEAVE || this == BOOT_SOLES || this == LINING;
 	}
 }

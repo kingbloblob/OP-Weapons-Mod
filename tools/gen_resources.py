@@ -23,9 +23,20 @@ w('fabric.mod.json', {
 })
 
 A = 'assets/arsenal'
-w(f'{A}/lang/en_us.json', {
+# The material list the mod reads (and the recipes below come from).
+MATERIALS = json.load(open('arsenal/materials.json'))['materials']
+# Weapon and gun items, with the One Piece-style names the code also uses (WeaponType, GunType).
+WEAPONS = {"cutlass": "Cutlass", "marine_sabre": "Marine Sabre", "boarding_axe": "Boarding Axe",
+           "jitte": "Jitte", "kanabo": "Kanabo", "spear": "Spear"}
+GUNS = {"flintlock": "Flintlock", "musket": "Musket", "hand_cannon": "Hand Cannon"}
+lang = {
     "item.arsenal.driftwood": "Driftwood",
     "item.arsenal.marine_steel_ingot": "Marine Standard Steel Ingot",
+    "item.arsenal.cannon_bronze_ingot": "Cannon Bronze Ingot",
+    "item.arsenal.sea_king_bone": "Sea King Bone",
+    "item.arsenal.island_whale_leather": "Island Whale Leather",
+    "item.arsenal.pacifista_alloy": "Pacifista Alloy",
+    "item.arsenal.vegapunk_compound": "Vegapunk Compound",
     "item.arsenal.katana_blade": "Katana Blade",
     "item.arsenal.tsuba": "Tsuba",
     "item.arsenal.hilt": "Hilt",
@@ -33,7 +44,20 @@ w(f'{A}/lang/en_us.json', {
     "item.arsenal.barrel": "Barrel",
     "item.arsenal.firing_lock": "Firing Lock",
     "item.arsenal.stock": "Stock",
-    "item.arsenal.flintlock": "Flintlock",
+    "item.arsenal.long_barrel": "Long Barrel",
+    "item.arsenal.cannon_bore": "Cannon Bore",
+    "item.arsenal.fuse": "Fuse",
+    "item.arsenal.cutlass_blade": "Cutlass Blade",
+    "item.arsenal.sabre_blade": "Sabre Blade",
+    "item.arsenal.axe_head": "Axe Head",
+    "item.arsenal.jitte_rod": "Jitte Rod",
+    "item.arsenal.club_head": "Kanabo Head",
+    "item.arsenal.spearhead": "Spearhead",
+    "item.arsenal.hand_guard": "Hand Guard",
+    "item.arsenal.binding": "Binding",
+    "item.arsenal.studs": "Studs",
+    "item.arsenal.grip": "Grip",
+    "item.arsenal.haft": "Haft",
     "item.arsenal.crown": "Hat Crown",
     "item.arsenal.coat_plates": "Coat Plates",
     "item.arsenal.sash_weave": "Sash Weave",
@@ -47,12 +71,16 @@ w(f'{A}/lang/en_us.json', {
     "block.arsenal.marine_armory_bench": "Marine Armory Bench",
     "block.arsenal.quartermasters_desk": "Quartermaster's Desk",
     "block.arsenal.marine_base_smeltery": "Marine Base Smeltery"
-})
+}
+for name, title in {**WEAPONS, **GUNS}.items():
+    lang[f"item.arsenal.{name}"] = title
+w(f'{A}/lang/en_us.json', lang)
 # Item art is drawn by tools/gen_textures.py, one texture per material for every part and weapon layer.
 # The item model picks the texture from the material saved on the stack (the "arsenal:part_material" property,
 # registered in client/ArsenalClient). Weapons stack one layer per part, so a Kairoseki blade on a Ship Iron
-# hilt looks like one. A new material needs adding to MATERIALS here and to gen_textures.py.
-MATERIALS = ["driftwood", "ship_iron", "marine_steel", "kairoseki"]
+# hilt looks like one. A material is drawn once it's in TEXTURED here and in gen_textures.py; until then it
+# looks like FALLBACK.
+TEXTURED = ["driftwood", "ship_iron", "marine_steel", "kairoseki"]
 FALLBACK = "ship_iron"  # what a blank part (from the creative menu) looks like
 
 
@@ -66,13 +94,46 @@ def by_material(folder, index=None, parent="minecraft:item/generated"):
     select = {"type": "minecraft:select", "property": "arsenal:part_material"}
     if index is not None:
         select["index"] = index
-    select["cases"] = [{"when": m, "model": model(f"{folder}/{m}", parent)} for m in MATERIALS]
+    select["cases"] = [{"when": m, "model": model(f"{folder}/{m}", parent)} for m in TEXTURED]
     select["fallback"] = {"type": "minecraft:model", "model": f"arsenal:item/{folder}/{FALLBACK}"}
     return select
 
 
 for name in ["driftwood", "marine_steel_ingot"]:
     w(f'{A}/items/{name}.json', {"model": model(name)})
+# Not drawn yet: vanilla stand-ins, one look for every material.
+placeholders = {
+    "cannon_bronze_ingot": ("minecraft:item/generated", "minecraft:item/copper_ingot"),
+    "sea_king_bone": ("minecraft:item/generated", "minecraft:item/bone"),
+    "island_whale_leather": ("minecraft:item/generated", "minecraft:item/leather"),
+    "pacifista_alloy": ("minecraft:item/generated", "minecraft:item/netherite_scrap"),
+    "vegapunk_compound": ("minecraft:item/generated", "minecraft:item/echo_shard"),
+    "long_barrel": ("minecraft:item/generated", "minecraft:block/iron_bars"),
+    "cannon_bore": ("minecraft:item/generated", "minecraft:item/bucket"),
+    "fuse": ("minecraft:item/generated", "minecraft:item/string"),
+    "musket": ("minecraft:item/handheld", "onepiece:item/marine_rifle"),
+    "hand_cannon": ("minecraft:item/handheld", "onepiece:item/hand_cannon"),
+    "cutlass_blade": ("minecraft:item/generated", "minecraft:item/iron_sword"),
+    "sabre_blade": ("minecraft:item/generated", "minecraft:item/iron_sword"),
+    "axe_head": ("minecraft:item/generated", "minecraft:item/iron_axe"),
+    "jitte_rod": ("minecraft:item/generated", "minecraft:item/blaze_rod"),
+    "club_head": ("minecraft:item/generated", "minecraft:item/mace"),
+    "spearhead": ("minecraft:item/generated", "minecraft:item/arrow"),
+    "hand_guard": ("minecraft:item/generated", "minecraft:item/iron_nugget"),
+    "binding": ("minecraft:item/generated", "minecraft:item/string"),
+    "studs": ("minecraft:item/generated", "minecraft:item/iron_nugget"),
+    "grip": ("minecraft:item/generated", "minecraft:item/leather"),
+    "haft": ("minecraft:item/generated", "minecraft:item/stick"),
+    "cutlass": ("minecraft:item/handheld", "minecraft:item/golden_sword"),
+    "marine_sabre": ("minecraft:item/handheld", "minecraft:item/iron_sword"),
+    "boarding_axe": ("minecraft:item/handheld", "minecraft:item/iron_axe"),
+    "jitte": ("minecraft:item/handheld", "onepiece:item/seastone_jitte"),
+    "kanabo": ("minecraft:item/handheld", "minecraft:item/mace"),
+    "spear": ("minecraft:item/handheld", "minecraft:item/trident"),
+}
+for name, (parent, tex) in placeholders.items():
+    w(f'{A}/items/{name}.json', {"model": {"type": "minecraft:model", "model": f"arsenal:item/{name}"}})
+    w(f'{A}/models/item/{name}.json', {"parent": parent, "textures": {"layer0": tex}})
 for part in ["katana_blade", "tsuba", "hilt", "barrel", "firing_lock", "stock",
              "crown", "coat_plates", "sash_weave", "boot_soles", "lining"]:
     w(f'{A}/items/{part}.json', {"model": by_material(f"part/{part}")})
@@ -82,9 +143,10 @@ for weapon, layers in {"katana": ["blade", "tsuba", "hilt"], "flintlock": ["barr
 for piece in ["hat", "coat", "sash", "boots"]:
     w(f'{A}/items/{piece}.json', {"model": by_material(f"armor/{piece}", 0)})
 # The worn look of Arsenal armor, one per shell material (ArmorStats picks it when a piece is forged).
-for m in MATERIALS:
-    w(f'{A}/equipment/{m}.json', {"layers": {"humanoid": [{"texture": f"arsenal:{m}"}],
-                                             "humanoid_leggings": [{"texture": f"arsenal:{m}"}]}})
+for mat in MATERIALS:
+    look = mat["id"] if mat["id"] in TEXTURED else FALLBACK
+    w(f'{A}/equipment/{mat["id"]}.json', {"layers": {"humanoid": [{"texture": f"arsenal:{look}"}],
+                                                     "humanoid_leggings": [{"texture": f"arsenal:{look}"}]}})
 # Pieces forged before the per-material looks existed.
 w(f'{A}/equipment/pirate.json', {"layers": {"humanoid": [{"texture": f"arsenal:{FALLBACK}"}],
                                             "humanoid_leggings": [{"texture": f"arsenal:{FALLBACK}"}]}})
@@ -127,13 +189,23 @@ w(f'{D}/tags/worldgen/structure/has_quartermasters_desk.json', {"replace": False
     "onepiece:marine_base", "onepiece:marine_bunker", "onepiece:marineford"]})
 w(f'{D}/tags/worldgen/structure/has_base_smeltery.json', {"replace": False, "values": [
     "onepiece:g5_base", "onepiece:navarone", "onepiece:marineford"]})
-w('data/minecraft/tags/item/swords.json', {"replace": False, "values": ["arsenal:katana"]})
+# Cutlasses and sabres are swords too, so the main mod's sword styles, whetstones and Dials work on them.
+w('data/minecraft/tags/item/swords.json', {"replace": False, "values": ["arsenal:katana", "arsenal:cutlass", "arsenal:marine_sabre"]})
+w('data/minecraft/tags/item/axes.json', {"replace": False, "values": ["arsenal:boarding_axe"]})
+# Sword enchantments (Sharpness, Looting, Fire Aspect...) on the weapons that aren't swords or axes.
+OTHER_WEAPONS = ["arsenal:jitte", "arsenal:kanabo", "arsenal:spear"]
+w('data/minecraft/tags/item/enchantable/sword.json', {"replace": False, "values": OTHER_WEAPONS})
+w('data/minecraft/tags/item/enchantable/sharp_weapon.json', {"replace": False, "values": OTHER_WEAPONS})
 # The One Piece Mod's gun enchantments (Quick Draw, Sniper's Eye) and Unbreaking/Mending work on Arsenal guns.
-w('data/onepiece/tags/item/guns.json', {"replace": False, "values": ["arsenal:flintlock"]})
-w('data/minecraft/tags/item/enchantable/durability.json', {"replace": False, "values": ["arsenal:flintlock"]})
+w('data/onepiece/tags/item/guns.json', {"replace": False, "values": [f"arsenal:{g}" for g in GUNS]})
+w('data/minecraft/tags/item/enchantable/durability.json', {"replace": False,
+    "values": [f"arsenal:{g}" for g in GUNS] + OTHER_WEAPONS})
 # Any part material repairs Arsenal armor at an anvil (the main mod's tags do the same per set).
-w(f'{D}/tags/item/repairs_arsenal_armor.json', {"replace": False, "values": [
-    "arsenal:driftwood", "minecraft:iron_ingot", "arsenal:marine_steel_ingot", "onepiece:seastone_ingot"]})
+w(f'{D}/tags/item/repairs_arsenal_armor.json', {"replace": False,
+    "values": sorted({m["item"] for m in MATERIALS if m.get("craftable", True)})})
+# What Predator hits harder.
+w(f'{D}/tags/entity_type/sea_creatures.json', {"replace": False, "values": [
+    "#minecraft:aquatic", {"id": "onepiece:sea_king", "required": False}, {"id": "onepiece:island_whale", "required": False}]})
 w('data/minecraft/tags/item/enchantable/armor.json', {"replace": False, "values": ["arsenal:hat", "arsenal:coat", "arsenal:sash", "arsenal:boots"]})
 w('data/minecraft/tags/item/head_armor.json', {"replace": False, "values": ["arsenal:hat"]})
 w('data/minecraft/tags/item/chest_armor.json', {"replace": False, "values": ["arsenal:coat"]})
@@ -150,24 +222,55 @@ w(f'{D}/recipe/driftwood.json', {"type": "minecraft:crafting_shapeless", "catego
     "ingredients": ["minecraft:stick", "minecraft:stick", "minecraft:kelp"],
     "result": {"id": "arsenal:driftwood", "count": 2}})
 
-# One recipe per part per material. Navy materials have none: their parts are made at captured Navy stations
-# (Marine Standard Steel at the Quartermaster's Desk, Kairoseki at the Marine Base Smeltery; see NavyCastingBlock).
-materials = {"driftwood": "arsenal:driftwood", "ship_iron": "minecraft:iron_ingot"}
+# Cannon Bronze: copper melted down with an old cannonball (ship battles drop them), or with plain iron.
+w(f'{D}/recipe/cannon_bronze_ingot.json', {"type": "minecraft:crafting_shapeless", "category": "misc",
+    "ingredients": ["minecraft:copper_ingot", "minecraft:copper_ingot", "onepiece:cannonball"],
+    "result": {"id": "arsenal:cannon_bronze_ingot", "count": 2}})
+w(f'{D}/recipe/cannon_bronze_ingot_from_iron.json', {"type": "minecraft:crafting_shapeless", "category": "misc",
+    "ingredients": ["minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:iron_ingot"],
+    "result": {"id": "arsenal:cannon_bronze_ingot", "count": 2}})
+
+# One recipe per part per material, from materials.json. Each part has its own shape, and none of them
+# matches a vanilla recipe for the same ingredient (an iron sword is iron, iron, stick, so no part is).
+# Navy materials have none: their parts are made at captured Navy stations (Marine Standard Steel at the
+# Quartermaster's Desk; Kairoseki, Pacifista Alloy and Vegapunk Compound at the Marine Base Smeltery; see
+# NavyCastingBlock). Hides and leathers only make armor parts, and Black Blade Steel isn't crafted at all.
+L, S, K, N, F, G = "minecraft:leather", "minecraft:string", "minecraft:stick", "minecraft:iron_nugget", "minecraft:flint", "minecraft:gunpowder"
 parts = {
     "katana_blade": (["M", "M", "M"], {}),
     "tsuba": ([" M ", "M M", " M "], {}),
-    "hilt": (["M", "L"], {"L": "minecraft:leather"}),
+    "hilt": (["M", "L"], {"L": L}),
     "barrel": (["M", "M"], {}),
-    "firing_lock": ([" F", "MM"], {"F": "minecraft:flint"}),
+    "firing_lock": ([" F", "MM"], {"F": F}),
     "stock": (["MM", " M"], {}),
-    "crown": (["MMM", "M M"], {}),
-    "coat_plates": (["M M", "MMM", "MMM"], {}),
-    "sash_weave": (["MMM", "M M"], {}),
-    "boot_soles": (["M M", "M M"], {}),
-    "lining": (["LML"], {"L": "minecraft:leather"}),
+    "long_barrel": (["MMM", "  F"], {"F": F}),
+    "cannon_bore": (["MMM", "MGM"], {"G": G}),
+    "fuse": (["S", "G", "M"], {"S": S, "G": G}),
+    "cutlass_blade": (["  M", " M ", "M  "], {}),
+    "sabre_blade": (["M", "M", "N"], {"N": N}),
+    "axe_head": (["MMM", "M  "], {}),
+    "jitte_rod": (["M", "N", "M"], {"N": N}),
+    "club_head": (["MMM", "MMM"], {}),
+    "spearhead": ([" M ", "MMM"], {}),
+    "hand_guard": (["M M", "MMM"], {}),
+    "binding": (["SMS"], {"S": S}),
+    "studs": (["N N", " M ", "N N"], {"N": N}),
+    "grip": (["L", "M", "L"], {"L": L}),
+    "haft": (["K", "M", "K"], {"K": K}),
+    # Armor shells have a leather pad in the middle, so they don't clash with vanilla armor or each other.
+    "crown": (["MMM", "MLM"], {"L": L}),
+    "coat_plates": (["MLM", "MMM", "MMM"], {"L": L}),
+    "sash_weave": (["MMM", "MLM", "M M"], {"L": L}),
+    "boot_soles": (["MLM", "M M"], {"L": L}),
+    "lining": (["LML"], {"L": L}),
 }
-for mat, ingredient in materials.items():
+ARMOR_PARTS = {"crown", "coat_plates", "sash_weave", "boot_soles", "lining"}
+for m in MATERIALS:
+    if not m.get("craftable", True) or m["faction"] == "navy":
+        continue
     for part, (pattern, extra) in parts.items():
-        w(f'{D}/recipe/{part}/{mat}.json', {"type": "minecraft:crafting_shaped", "category": "equipment",
-            "group": f"arsenal_{part}", "key": {"M": ingredient, **extra}, "pattern": pattern,
-            "result": {"id": f"arsenal:{part}", "components": {"arsenal:part_material": mat}}})
+        if m.get("armor_only") and part not in ARMOR_PARTS:
+            continue
+        w(f'{D}/recipe/{part}/{m["id"]}.json', {"type": "minecraft:crafting_shaped", "category": "equipment",
+            "group": f"arsenal_{part}", "key": {"M": m["item"], **extra}, "pattern": pattern,
+            "result": {"id": f"arsenal:{part}", "components": {"arsenal:part_material": m["id"]}}})

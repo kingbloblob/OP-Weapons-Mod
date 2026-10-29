@@ -7,9 +7,11 @@ Requires the One Piece Mod (Fabric, Minecraft 26.3, Java 25).
 ## What's in so far
 
 - **Katana** built from three parts: a **Katana Blade**, a **Tsuba** and a **Hilt**.
-- **Flintlock** built from a **Barrel** (damage and range), a **Firing Lock** (reload) and a **Stock** (aim). It's a One Piece Mod gun, so it fires that mod's Bullets and Seastone Bullets and takes its Scopes, Long Barrels, Hair Triggers, Dials, Quick Draw and Sniper's Eye.
-- **Four materials:** Driftwood, Ship Iron, Marine Standard Steel and Kairoseki (the One Piece Mod's seastone ingot).
-- **Traits:** Seastone (drains Devil Fruit users on hit), Draining (fruit users who hold it feel weak), Rusty (can poison in the rain), Regulation (+1 damage against pirate NPCs), Light and Riveted. Buoyant and Issued are planned.
+- **Six more hand weapons**, each from a head, a binding and a handle: the pirate **Cutlass** (fast; +2 damage on charged hits while falling, for boarding), the Navy **Marine Sabre** (put together at a Marine Armory Bench, like the Jitte; sneak to parry 1 in 3 hits from the front), the pirate **Boarding Axe** (heavy, breaks shields, chops wood), the Navy **Jitte** (light, charged hits drain Devil Fruit users whatever it's made of), the **Kanabo** (slow, huge knockback) and the **Spear** (1.5 blocks more reach). Cutlasses and sabres are swords, so whetstones and sword styles work on them.
+- **Three guns**, each from a barrel, a firing part and a stock: the **Flintlock** pistol, the **Musket** (long barrel: harder, further, steadier, slower) and the **Hand Cannon** (cannon bore and fuse; fires the One Piece Mod's Cannonballs). They're One Piece Mod guns, so they take that mod's ammo, Scopes, Long Barrels, Hair Triggers, Dials, Quick Draw and Sniper's Eye.
+- **Fifteen materials** in five tiers, from Driftwood and Ship Iron up to Wapometal, Adam Wood and Vegapunk Compound. Their numbers and traits are in `src/main/resources/arsenal/materials.json`; edit that file to rebalance or add one. Sea King Hide and Island Whale Leather only make armor. Black Blade Steel can't be crafted (it's for awakened meito).
+- **Where the new materials come from:** Cannon Bronze is copper melted with a cannonball (or iron), Treasure Gold is gold, Wano Tamahagane, Wapometal, Kairoseki and Adam Wood are the One Piece Mod's ingots and logs, Sea King Hide is Sea King Scale. Sea Kings drop Sea King Bone, Island Whales drop Island Whale Leather, Pacifistas drop Pacifista Alloy, and Seraphim (and sometimes Vice Admirals) drop Vegapunk Compound.
+- **Traits:** Seastone, Draining, Rusty, Regulation, Light and Riveted, plus Recoil (knockback), Heavy (+toughness), Serrated (crits bleed), Predator (+2 vs sea creatures), Gilded (Berries from kills), Greed (more bounty from Marines), Keen (15% ignores armor), Laser-etched (scorch), Plated (deflects shots), Waterproof (swim faster), Endurance (slower hunger), Edible-forged (self-repair), Unbreakable Grain (double durability), Legendary Hull (knockback resistance), Frontier Science (burn or freeze) and Ultra-alloy (fireproof). Buoyant, Issued, Folded, Reforged, Inherit and Black Blade are planned.
 - **Armor:** a **Hat**, **Coat**, **Sash** and **Boots**, each built from a shell part (Hat Crown, Coat Plates, Sash Weave or Boot Soles, which sets the defense) and a **Lining** (any material, which adds its trait). Kairoseki plates drain Devil Fruit users who hit you.
 - **Marine disguise:** wear a full set of Arsenal armor whose shells are all Navy materials and Marines stop hunting you. Marine Standard Steel is a recruit's uniform (hides a bounty up to 10M; Captains and CP agents see through it), Kairoseki an officer's (up to 100M; Vice Admirals, CP0, Pacifistas and Seraphim see through it). Hit a Marine and your cover is blown for a minute, even if you log out. Hunters sent after you give up after a minute. Named Marines like Garp are never fooled.
 - **Suspicion:** Marines who stand close and watch you get suspicious, faster in groups, when they're senior, when you carry a pirate-made blade or gun, or when your bounty is near the uniform's limit. Stay too long and one calls you out: your cover is blown and they attack. Walk away and they forget.
@@ -21,18 +23,20 @@ Requires the One Piece Mod (Fabric, Minecraft 26.3, Java 25).
 - **Worthy wielders:** any graded sword, the main mod's famous blades like Wado Ichimonji and Yoru included, refuses a player without Haki level 1 / 3 / 5 (any type) or a 30M / 300M / 1B bounty for Skillful / Great / Supreme. Holding one anyway gives Weakness, the blade gains no levels, and a whetstone won't raise a blade past what you could wield.
 - Arsenal katanas are in the `minecraft:swords` tag, so the One Piece Mod's whetstones (sword grades), Dials and Haki work on them. Traits work on flintlocks too: a Kairoseki barrel drains Devil Fruit users it shoots.
 
-Parts are made at a crafting table: 3 of a material in a column for a blade, 4 in a ring for a tsuba, 1 over leather for a hilt, 2 in a column for a barrel, 2 under a flint for a firing lock, 3 in a hook shape for a stock, armor shells in the shape of the vanilla armor piece, and a lining from a material between two leather. Model and recipe JSON is generated by `tools/gen_resources.py`.
+Pirate and shared materials' parts are made at a crafting table from 1 to 8 of a material (Navy materials' parts come from the captured Navy stations instead), each part in its own shape (the recipe book shows them all). Armor shells have a leather pad in the middle so they don't clash with vanilla armor. Model and recipe JSON is generated by `tools/gen_resources.py` (run it after changing `materials.json`).
 
 ## Art
 
-Every part, weapon and armor piece looks like what it's made of, Tinkers' Construct style: a Kairoseki blade on a Ship Iron hilt shows both. Armor looks like clothes when worn, cut by its shell material: Driftwood is a castaway's straw hat, red vest, shorts and sandals; Ship Iron a pirate captain's tricorn, crimson coat and buckled boots; Marine Standard Steel a Marine recruit's cap and sailor uniform; Kairoseki a Navy officer's peaked cap and "Justice" coat over a dark suit. So a full Navy set looks like the disguise it is.
+Every katana, flintlock, part and armor piece of the first four materials looks like what it's made of, Tinkers' Construct style: a Kairoseki blade on a Ship Iron hilt shows both. Armor looks like clothes when worn, cut by its shell material: Driftwood is a castaway's straw hat, red vest, shorts and sandals; Ship Iron a pirate captain's tricorn, crimson coat and buckled boots; Marine Standard Steel a Marine recruit's cap and sailor uniform; Kairoseki a Navy officer's peaked cap and "Justice" coat over a dark suit. So a full Navy set looks like the disguise it is.
 
-The textures are drawn by `tools/gen_textures.py` (needs Python 3 and Pillow): each shape is drawn once and coloured per material. To give a new material its look, add its colours to `MATERIALS` and an outfit to `OUTFITS` there, add it to `MATERIALS` in `tools/gen_resources.py`, and run both:
+The textures are drawn by `tools/gen_textures.py` (needs Python 3 and Pillow): each shape is drawn once and coloured per material. To give a new material its look, add its colours to `MATERIALS` and an outfit to `OUTFITS` there, and run both (`tools/gen_resources.py` reads the materials from `materials.json`; it gives a material art once it's listed in `TEXTURED` there):
 
 ```
 python3 tools/gen_textures.py src/main/resources
 python3 tools/gen_resources.py src/main/resources
 ```
+
+The newer materials, parts and weapons (cutlass to hand cannon) still use placeholder art: new materials look like Ship Iron until they are drawn.
 
 ## Building
 

@@ -3,10 +3,11 @@
   "category": "equipment",
   "group": "arsenal_coat_plates",
   "key": {
-    "M": "minecraft:iron_ingot"
+    "M": "minecraft:iron_ingot",
+    "L": "minecraft:leather"
   },
   "pattern": [
-    "M M",
+    "MLM",
     "MMM",
     "MMM"
   ],

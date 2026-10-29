@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_tsuba",
+  "key": {
+    "M": "arsenal:sea_king_bone"
+  },
+  "pattern": [
+    " M ",
+    "M M",
+    " M "
+  ],
+  "result": {
+    "id": "arsenal:tsuba",
+    "components": {
+      "arsenal:part_material": "sea_king_bone"
+    }
+  }
+}

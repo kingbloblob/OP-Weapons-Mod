@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "arsenal:flintlock"
+    "arsenal:flintlock",
+    "arsenal:musket",
+    "arsenal:hand_cannon"
   ]
 }

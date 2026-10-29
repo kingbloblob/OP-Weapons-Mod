@@ -3,10 +3,12 @@
   "category": "equipment",
   "group": "arsenal_sash_weave",
   "key": {
-    "M": "arsenal:driftwood"
+    "M": "arsenal:driftwood",
+    "L": "minecraft:leather"
   },
   "pattern": [
     "MMM",
+    "MLM",
     "M M"
   ],
   "result": {

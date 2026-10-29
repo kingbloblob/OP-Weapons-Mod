@@ -1,28 +1,37 @@
 package com.onepiecearsenal.material;
 
-import java.util.function.Supplier;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Locale;
+import java.util.Map;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-
-import com.onepiecearsenal.ArsenalItems;
-import com.onepiecemod.world.WorldBlocks;
 
 /**
- * The materials parts can be made of. Change the numbers here to make a material stronger or weaker.
- * For comparison, a vanilla iron sword does 6 damage and lasts 250 uses.
- *
- * damage = attack damage the blade adds (a katana with a 5-damage blade hits as hard as an iron sword).
- * durability = uses, averaged over all the parts.
- * speed = attack speed the guard and hilt add (0 = a normal sword).
- * armor = how much an armor shell of it protects, as a whole set: 4 = iron armor, 5 = diamond (see ArmorStats).
+ * The materials parts can be made of. The numbers live in src/main/resources/arsenal/materials.json:
+ * change them there to make a material stronger or weaker, or add a new one (and run tools/gen_resources.py
+ * to write its part recipes). That file also explains what each number means.
  */
-public enum ArsenalMaterial {
-	//          id                   name                     tier faction          damage durability speed  armor head trait          handle trait     repaired with
-	DRIFTWOOD("driftwood", "Driftwood", 1, Faction.PIRATE, 3.0f, 80, 0.2f, 2.0f, Trait.BUOYANT, Trait.LIGHT, () -> ArsenalItems.DRIFTWOOD),
-	SHIP_IRON("ship_iron", "Ship Iron", 1, Faction.PIRATE, 5.0f, 220, 0.0f, 4.0f, Trait.RUSTY, Trait.RIVETED, () -> Items.IRON_INGOT),
-	MARINE_STEEL("marine_steel", "Marine Standard Steel", 1, Faction.NAVY, 5.0f, 260, 0.0f, 4.5f, Trait.REGULATION, Trait.ISSUED, () -> ArsenalItems.MARINE_STEEL_INGOT),
-	KAIROSEKI("kairoseki", "Kairoseki", 3, Faction.NAVY, 7.0f, 700, -0.1f, 5.0f, Trait.SEASTONE, Trait.DRAINING, () -> WorldBlocks.SEASTONE_INGOT);
+public final class ArsenalMaterial {
+	private static final Map<String, ArsenalMaterial> BY_ID = load();
+
+	// The materials the code itself needs by name (creative tab icons, examples and the Navy stations).
+	public static final ArsenalMaterial DRIFTWOOD = require("driftwood");
+	public static final ArsenalMaterial SHIP_IRON = require("ship_iron");
+	public static final ArsenalMaterial MARINE_STEEL = require("marine_steel");
+	public static final ArsenalMaterial KAIROSEKI = require("kairoseki");
+	public static final ArsenalMaterial PACIFISTA_ALLOY = require("pacifista_alloy");
+	public static final ArsenalMaterial VEGAPUNK_COMPOUND = require("vegapunk_compound");
 
 	private final String id;
 	public final String displayName;
@@ -34,21 +43,23 @@ public enum ArsenalMaterial {
 	public final float armor;
 	public final Trait headTrait;
 	public final Trait handleTrait;
-	private final Supplier<Item> repairItem;
+	/** Hides and leathers: only armor shells and linings can be made of it. */
+	public final boolean armorOnly;
+	private final Identifier repairItem;
 
-	ArsenalMaterial(String id, String displayName, int tier, Faction faction, float damage, int durability, float speed,
-			float armor, Trait headTrait, Trait handleTrait, Supplier<Item> repairItem) {
+	private ArsenalMaterial(String id, JsonObject json) {
 		this.id = id;
-		this.displayName = displayName;
-		this.tier = tier;
-		this.faction = faction;
-		this.damage = damage;
-		this.durability = durability;
-		this.speed = speed;
-		this.armor = armor;
-		this.headTrait = headTrait;
-		this.handleTrait = handleTrait;
-		this.repairItem = repairItem;
+		this.displayName = json.get("name").getAsString();
+		this.tier = json.get("tier").getAsInt();
+		this.faction = Faction.valueOf(json.get("faction").getAsString().toUpperCase(Locale.ROOT));
+		this.damage = json.get("damage").getAsFloat();
+		this.durability = json.get("durability").getAsInt();
+		this.speed = json.get("speed").getAsFloat();
+		this.armor = json.get("armor").getAsFloat();
+		this.headTrait = Trait.valueOf(json.get("head_trait").getAsString().toUpperCase(Locale.ROOT));
+		this.handleTrait = Trait.valueOf(json.get("handle_trait").getAsString().toUpperCase(Locale.ROOT));
+		this.armorOnly = json.has("armor_only") && json.get("armor_only").getAsBoolean();
+		this.repairItem = Identifier.parse(json.get("item").getAsString());
 	}
 
 	/** The name saved on items, like "ship_iron". Also used in the recipe files. */
@@ -58,16 +69,43 @@ public enum ArsenalMaterial {
 
 	/** The item this material is made from, which also repairs it. */
 	public Item repairItem() {
-		return repairItem.get();
+		return BuiltInRegistries.ITEM.getValue(repairItem);
 	}
 
 	/** Returns null for an unknown id, for example a material removed in an update. */
 	public static ArsenalMaterial byId(String id) {
-		for (ArsenalMaterial material : values()) {
-			if (material.id.equals(id)) {
-				return material;
-			}
+		return BY_ID.get(id);
+	}
+
+	/** Every material, in the order of materials.json (weakest tier first). */
+	public static Collection<ArsenalMaterial> values() {
+		return Collections.unmodifiableCollection(BY_ID.values());
+	}
+
+	private static ArsenalMaterial require(String id) {
+		ArsenalMaterial material = BY_ID.get(id);
+		if (material == null) {
+			throw new IllegalStateException("arsenal/materials.json has no \"" + id + "\" material, and Arsenal needs it");
 		}
-		return null;
+		return material;
+	}
+
+	private static Map<String, ArsenalMaterial> load() {
+		Map<String, ArsenalMaterial> materials = new LinkedHashMap<>();
+		try (InputStream in = ArsenalMaterial.class.getResourceAsStream("/arsenal/materials.json")) {
+			JsonObject root = JsonParser.parseReader(new InputStreamReader(in, StandardCharsets.UTF_8)).getAsJsonObject();
+			for (JsonElement element : root.getAsJsonArray("materials")) {
+				JsonObject json = element.getAsJsonObject();
+				String id = json.get("id").getAsString();
+				try {
+					materials.put(id, new ArsenalMaterial(id, json));
+				} catch (RuntimeException e) {
+					throw new IllegalStateException("Bad material \"" + id + "\" in arsenal/materials.json: " + e.getMessage(), e);
+				}
+			}
+		} catch (Exception e) {
+			throw new RuntimeException("Could not read arsenal/materials.json", e);
+		}
+		return materials;
 	}
 }

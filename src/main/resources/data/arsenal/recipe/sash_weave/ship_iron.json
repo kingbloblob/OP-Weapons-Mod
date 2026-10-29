@@ -3,10 +3,12 @@
   "category": "equipment",
   "group": "arsenal_sash_weave",
   "key": {
-    "M": "minecraft:iron_ingot"
+    "M": "minecraft:iron_ingot",
+    "L": "minecraft:leather"
   },
   "pattern": [
     "MMM",
+    "MLM",
     "M M"
   ],
   "result": {

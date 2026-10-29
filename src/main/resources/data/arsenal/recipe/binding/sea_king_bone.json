@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_binding",
+  "key": {
+    "M": "arsenal:sea_king_bone",
+    "S": "minecraft:string"
+  },
+  "pattern": [
+    "SMS"
+  ],
+  "result": {
+    "id": "arsenal:binding",
+    "components": {
+      "arsenal:part_material": "sea_king_bone"
+    }
+  }
+}

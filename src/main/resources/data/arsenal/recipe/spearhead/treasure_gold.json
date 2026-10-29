@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_spearhead",
+  "key": {
+    "M": "minecraft:gold_ingot"
+  },
+  "pattern": [
+    " M ",
+    "MMM"
+  ],
+  "result": {
+    "id": "arsenal:spearhead",
+    "components": {
+      "arsenal:part_material": "treasure_gold"
+    }
+  }
+}

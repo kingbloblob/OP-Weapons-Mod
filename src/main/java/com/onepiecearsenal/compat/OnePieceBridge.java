@@ -6,6 +6,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 import com.onepiecemod.bounty.Bounty;
@@ -13,6 +14,7 @@ import com.onepiecemod.bounty.MarineEntity;
 import com.onepiecemod.bounty.MarineHunters;
 import com.onepiecemod.bounty.MarineRank;
 import com.onepiecemod.character.CharacterEntity;
+import com.onepiecemod.character.CharacterFeature;
 import com.onepiecemod.haki.HakiAttachments;
 import com.onepiecemod.haki.HakiData;
 import com.onepiecemod.npc.HumanNpc;
@@ -91,6 +93,21 @@ public final class OnePieceBridge {
 	/** True if this Marine was sent to hunt down this player. */
 	public static boolean isHunting(Mob marine, Player player) {
 		return MarineEntity.isHunting(marine, player);
+	}
+
+	/** True for the main mod's people (pirates, Marines, townsfolk, story characters). */
+	public static boolean isNpc(LivingEntity entity) {
+		return entity instanceof HumanNpc;
+	}
+
+	/** The main mod's money. */
+	public static Item berry() {
+		return CharacterFeature.BERRY;
+	}
+
+	/** Raises the player's bounty and tells them why, the way the main mod's own deeds do. */
+	public static void raiseBounty(ServerPlayer player, long amount, String reason) {
+		Bounty.raise(player, amount, reason, false);
 	}
 
 	/** Sends a Marine squad after the player, sized by their bounty (at least a pair of recruits). False if one is already on its way. */
