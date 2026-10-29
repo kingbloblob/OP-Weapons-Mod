@@ -785,9 +785,20 @@ def paint_box(img, box, fn):
                 img.putpixel((fx + x, fy + y), c)
 
 
-GLYPHS = [  # 正義 ("Justice"), as small as it gets, for the back of the officer's coat
-    ['###', '.#.', '.##', '.#.', '###'],
-    ['#.#', '###', '.#.', '###', '#.#'],
+# 正義 ("Justice") down the back of the officer's coat, one character above the other.
+JUSTICE = [
+    '.#####.',
+    '...#...',
+    '...###.',
+    '...#...',
+    '.#####.',
+    '.......',
+    '..#.#..',
+    '.#####.',
+    '...#...',
+    '.#####.',
+    '..###..',
+    '.#.#.#.',
 ]
 
 
@@ -801,7 +812,8 @@ def worn(material):
     layer2 = Image.new('RGBA', (64, 32), (0, 0, 0, 0))
 
     def head(face, x, y, w, h):
-        if face == 'bottom':
+        # The front stops at the brim (row 3) so the eyes (row 4) show; the sides and back come down further.
+        if face == 'bottom' or (face == 'front' and y > 3):
             return None
         if face == 'top':
             if st == 'castaway':
@@ -810,33 +822,39 @@ def worn(material):
                 return (hat2, 2)
             return (hat, 3)
         if st == 'castaway':
+            if face == 'front':
+                return (hat2, 2) if y == 2 else (hat, 2) if y == 3 else (hat, 3 if (x + y) % 2 else 2)
             if y <= 3:
                 return (hat, 3 if (x + y) % 2 else 2)
             return (hat2, 2) if y == 4 else (hat, 2) if y == 5 else None
         if st == 'captain':
-            if face == 'front' and 1 <= y <= 3 and x in (3, 4):
-                return black if y == 2 else white
-            if face == 'front' and y == 3 and x in (2, 5):
-                return FIXED['V']
+            if face == 'front':
+                if y == 3:
+                    return (hat2, 3)
+                if x in (3, 4) and y <= 2:
+                    return black if y == 1 else white
+                return (hat, 2)
             if y == 4:
                 return (hat2, 3)
             return (hat, 2) if y <= 5 else None
         if st == 'recruit':
+            if face == 'front':
+                if y <= 1:
+                    return (hat, 3)
+                return white if y == 2 and x % 2 == 1 and 0 < x < 7 else (hat2, 2)
             if y <= 2:
                 return (hat, 3)
-            if y == 3:
-                return (hat2, 2)
-            if y == 4:
-                return white if face == 'front' and x % 2 == 1 and 0 < x < 7 else (hat2, 2)
-            return None
+            return (hat2, 2) if y <= 4 else None
         if st == 'officer':
+            if face == 'front':
+                if y == 0:
+                    return (hat, 3)
+                if y <= 2:
+                    return GOLD[3] if x in (3, 4) else (hat2, 2)
+                return FIXED['V'] if x == 2 else black  # the visor
             if y <= 2:
                 return (hat, 3)
-            if y <= 4:
-                return GOLD[3] if face == 'front' and x in (3, 4) else (hat2, 2)
-            if y == 5 and face == 'front':
-                return black if x not in (2,) else FIXED['V']
-            return None
+            return (hat2, 2) if y <= 4 else None
 
     def body(face, x, y, w, h):
         if face == 'bottom':
@@ -876,11 +894,8 @@ def worn(material):
                 if x in (3, 4):
                     return white if y == 0 else FIXED['T'] if y <= 6 else (coat2, 2)
                 return (coat2, 2)
-            if face == 'back' and 3 <= y <= 7:
-                g = GLYPHS[0] if x < 4 else GLYPHS[1]
-                gx = x if x < 4 else x - 4
-                if 0 <= gx - (0 if x < 4 else 1) < 3 and g[y - 3][gx - (0 if x < 4 else 1)] == '#':
-                    return black
+            if face == 'back' and x < 7 and JUSTICE[y][x] == '#':
+                return black
             return (coat, 3)
 
     def arm(face, x, y, w, h):
