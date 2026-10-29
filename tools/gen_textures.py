@@ -840,10 +840,10 @@ def boots_cell(style, r, x, y):
         if r == 'U':
             return 'c'
         if r == 'S':
-            return 'L'
+            return 'M'  # a straw sandal
         if y >= 10:
-            return 'W' if y == 10 or x in (3, 4, 10, 11) else 'V'
-        if y == 7:
+            return 'c' if y == 11 and x in (4, 12) else 'W' if y == 10 or x in (3, 4, 10, 11) else 'V'
+        if y in (5, 8):
             return 'b'
         return '4' if x in (3, 11) else '3' if x in (4, 12) else '2'
     if r == 'U':
@@ -1113,7 +1113,7 @@ def worn(material):
             return (coat2, 2) if y >= 10 else (coat, 3)
         if st == 'samurai':
             if face == 'top':
-                return (coat, 3)
+                return (coat, 2)
             if y <= 5:  # the sode, a laced shoulder board
                 return (coat2, 2 if x % 2 else 1) if y % 2 else (coat, 3 if y == 0 else 2)
             if y <= 8:
@@ -1193,7 +1193,7 @@ def worn(material):
         if st == 'samurai':
             if face == 'front' and y <= 3:  # the haidate, a laced apron over the thighs
                 return (metal, 3) if y % 2 == 0 else (legs2, 3 if x % 2 else 2)
-            return (legs, 2 if x == 1 else 3)  # a hakama pleat
+            return (legs, 2 if x % 2 else 3)  # hakama pleats
         return (legs, 3)
 
     paint_box(layer1, HEAD, head)
