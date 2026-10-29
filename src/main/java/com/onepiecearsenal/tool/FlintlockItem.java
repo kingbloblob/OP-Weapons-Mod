@@ -8,7 +8,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
-import net.minecraft.world.level.Level;
 
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
@@ -34,12 +33,12 @@ public class FlintlockItem extends GunItem {
 	}
 
 	@Override
-	public Stats effectiveStats(ItemStack gun, Level level) {
+	public Stats effectiveStats(ItemStack gun) {
 		Stats parts = GunStats.stats(gun);
 		if (parts == null) {
 			parts = new Stats(1.0f, 40, 16.0, 0.1f, 1, Ammo.Kind.BULLET, 0, 0, 3.0f); // An unforged gun barely works.
 		}
-		Stats upgrades = super.effectiveStats(gun, level);
+		Stats upgrades = super.effectiveStats(gun);
 		return new Stats(parts.damage() + upgrades.damage(),
 				Math.max(4, Math.round(parts.cooldown() * upgrades.cooldown() / (float) UNIT.cooldown())),
 				parts.range() * upgrades.range(),
