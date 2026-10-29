@@ -11,6 +11,9 @@
   "entrypoints": {
     "main": [
       "com.onepiecearsenal.ArsenalMod"
+    ],
+    "client": [
+      "com.onepiecearsenal.client.ArsenalClient"
     ]
   },
   "mixins": [

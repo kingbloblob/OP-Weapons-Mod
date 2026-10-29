@@ -11,6 +11,7 @@ import net.minecraft.world.item.ItemStack;
 
 import com.onepiecemod.bounty.Bounty;
 import com.onepiecemod.bounty.MarineEntity;
+import com.onepiecemod.bounty.MarineHunters;
 import com.onepiecemod.bounty.MarineRank;
 import com.onepiecemod.character.CharacterEntity;
 import com.onepiecemod.character.CharacterFeature;
@@ -109,7 +110,12 @@ public final class OnePieceBridge {
 		Bounty.raise(player, amount, reason, false);
 	}
 
-		/** The player's bounty in Berries. */
+	/** Sends a Marine squad after the player, sized by their bounty (at least a pair of recruits). False if one is already on its way. */
+	public static boolean sendMarineSquad(ServerPlayer player) {
+		return MarineHunters.forceHunt(player);
+	}
+
+	/** The player's bounty in Berries. */
 	public static long bounty(Player player) {
 		return Bounty.get(player);
 	}

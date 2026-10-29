@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.BlockHitResult;
 
 import com.onepiecearsenal.material.ArsenalMaterial;
+import com.onepiecearsenal.material.Faction;
 import com.onepiecearsenal.part.PartItem;
 import com.onepiecearsenal.part.PartType;
 import com.onepiecearsenal.tool.ArmorStats;
@@ -35,10 +36,13 @@ import com.onepiecearsenal.tool.WeaponType;
 /**
  * The pirate assembly station. Right-click it with an empty hand while you carry a full set of parts
  * anywhere in your inventory, and it joins them: a katana blade, tsuba and hilt make a katana; a barrel, firing
- * part and stock make a gun (see GunType); a head, binding and handle make a cutlass, sabre, axe, jitte, kanabo
- * or spear (see WeaponType); an armor shell (hat crown, coat plates, sash weave or boot soles) and a lining
+ * part and stock make a gun (see GunType); a head, binding and handle make a cutlass, axe, kanabo or spear
+ * (see WeaponType); an armor shell (hat crown, coat plates, sash weave or boot soles) and a lining
  * make that piece of armor. Like the One Piece Mod's stations, the parts don't need to be in a grid. If you carry
  * several sets, they are forged in that order, one per click.
+ *
+ * Navy gear (a blade, barrel or armor shell of a Navy material, or a Marine Sabre or Jitte) can't be put together
+ * here: that takes a Marine Armory Bench captured from a Marine base, which runs the same forge with navy = true.
  */
 public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 	public ShipwrightsAnvilBlock(Properties properties) {
@@ -61,33 +65,26 @@ public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 		if (!(player instanceof ServerPlayer smith)) {
 			return InteractionResult.SUCCESS;
 		}
+		return forge(level, pos, smith, false);
+	}
+
+	/** Forges the first full set of parts the smith carries. Navy-material head parts and Navy weapon types only count when navy is true. */
+	public static InteractionResult forge(Level level, BlockPos pos, ServerPlayer smith, boolean navy) {
 		Inventory inventory = smith.getInventory();
-		ItemStack weapon = null;
-		int[] used = findParts(inventory, PartType.KATANA_BLADE, PartType.TSUBA, PartType.HILT);
-		if (used != null) {
-			weapon = KatanaStats.build(material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2]));
+		Forged forged = findSet(inventory, navy);
+		if (forged == null && !navy && findSet(inventory, true) != null) {
+			smith.sendOverlayMessage(Component.literal("Navy gear can only be put together at a Marine Armory Bench. Capture one from a Marine base.")
+					.withStyle(ChatFormatting.RED));
+			return InteractionResult.FAIL;
 		}
-		for (GunType type : GunType.values()) {
-			if (weapon == null && (used = findParts(inventory, type.parts())) != null) {
-				weapon = GunStats.build(type, material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2]));
-			}
-		}
-		for (WeaponType type : WeaponType.values()) {
-			if (weapon == null && (used = findParts(inventory, type.parts())) != null) {
-				weapon = WeaponStats.build(type, material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2]));
-			}
-		}
-		if (weapon == null && (used = findArmor(inventory)) != null) {
-			PartType shell = ((PartItem) inventory.getItem(used[0]).getItem()).type();
-			weapon = ArmorStats.build(shell, material(inventory, used[0]), material(inventory, used[1]));
-		}
-		if (weapon == null) {
+		if (forged == null) {
 			smith.sendOverlayMessage(Component.literal("You need a full set of parts, like a blade, tsuba and hilt, or an armor shell and a lining.")
 					.withStyle(ChatFormatting.RED));
 			return InteractionResult.FAIL;
 		}
 
-		for (int slot : used) {
+		ItemStack weapon = forged.item();
+		for (int slot : forged.slots()) {
 			inventory.removeItem(slot, 1);
 		}
 		String name = weapon.getHoverName().getString(); // inventory.add empties the stack, so read the name first.
@@ -99,11 +96,39 @@ public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 		return InteractionResult.SUCCESS;
 	}
 
+	/** What a full set of parts makes, and the slots it uses up. */
+	private record Forged(ItemStack item, int[] slots) {
+	}
+
+	/** The first full set the smith carries, in this order: katana, guns, other hand weapons, armor. Null if none. */
+	private static Forged findSet(Inventory inventory, boolean navy) {
+		int[] used = findParts(inventory, navy, PartType.KATANA_BLADE, PartType.TSUBA, PartType.HILT);
+		if (used != null) {
+			return new Forged(KatanaStats.build(material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2])), used);
+		}
+		for (GunType type : GunType.values()) {
+			if ((used = findParts(inventory, navy, type.parts())) != null) {
+				return new Forged(GunStats.build(type, material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2])), used);
+			}
+		}
+		for (WeaponType type : WeaponType.values()) {
+			// Marine Sabres and Jittes are Navy designs: only the Marine Armory Bench puts them together.
+			if ((navy || type.faction != Faction.NAVY) && (used = findParts(inventory, navy, type.parts())) != null) {
+				return new Forged(WeaponStats.build(type, material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2])), used);
+			}
+		}
+		if ((used = findArmor(inventory, navy)) != null) {
+			PartType shell = ((PartItem) inventory.getItem(used[0]).getItem()).type();
+			return new Forged(ArmorStats.build(shell, material(inventory, used[0]), material(inventory, used[1])), used);
+		}
+		return null;
+	}
+
 	/** The slots holding one of each of these parts, in the same order, or null if one is missing. */
-	private static int[] findParts(Inventory inventory, PartType... types) {
+	private static int[] findParts(Inventory inventory, boolean navy, PartType... types) {
 		int[] slots = new int[types.length];
 		for (int i = 0; i < types.length; i++) {
-			slots[i] = findPart(inventory, types[i]);
+			slots[i] = findPart(inventory, types[i], navy);
 			if (slots[i] < 0) {
 				return null;
 			}
@@ -112,9 +137,9 @@ public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 	}
 
 	/** The slots of the first armor shell found (hat, coat, sash, boots order) and a lining, or null. */
-	private static int[] findArmor(Inventory inventory) {
+	private static int[] findArmor(Inventory inventory, boolean navy) {
 		for (PartType shell : List.of(PartType.CROWN, PartType.COAT_PLATES, PartType.SASH_WEAVE, PartType.BOOT_SOLES)) {
-			int[] slots = findParts(inventory, shell, PartType.LINING);
+			int[] slots = findParts(inventory, navy, shell, PartType.LINING);
 			if (slots != null) {
 				return slots;
 			}
@@ -126,12 +151,16 @@ public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 		return PartItem.material(inventory.getItem(slot));
 	}
 
-	/** The first inventory slot holding this kind of part with a known material that can make it, or -1. */
-	private static int findPart(Inventory inventory, PartType type) {
+	/**
+	 * The first inventory slot holding this kind of part with a known material that can make it, or -1.
+	 * Skips Navy head parts unless navy, and hides and leathers for anything but armor.
+	 */
+	private static int findPart(Inventory inventory, PartType type, boolean navy) {
 		for (int i = 0; i < inventory.getContainerSize(); i++) {
 			ItemStack stack = inventory.getItem(i);
 			ArsenalMaterial material = PartItem.material(stack);
-			if (stack.getItem() instanceof PartItem part && part.type() == type && material != null && (!material.armorOnly || type.isArmor())) {
+			if (stack.getItem() instanceof PartItem part && part.type() == type && material != null
+					&& (navy || !type.head || material.faction != Faction.NAVY) && (!material.armorOnly || type.isArmor())) {
 				return i;
 			}
 		}
