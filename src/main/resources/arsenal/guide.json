@@ -1,5 +1,5 @@
 {
-	"_help": "The Shipwright's Manual (GuideChapters.java). Each chapter is a button on the left of the book. Lines in 'text': '# ' = heading, '- ' = bullet point, '> ' = tip, '' = empty line, anything else = normal text. Pages are split up by themselves. 'icon' is any item id; Arsenal gear in it is shown made of 'icon_material'. 'color' is a hex colour. 'generated' adds lines written from the mod's own data after the text: materials, traits, weapons, guns, navy_casting or meito.",
+	"_help": "The Shipwright's Manual (GuideChapters.java). Each chapter is a button on the left of the book. Lines in 'text': '# ' = heading, '- ' = bullet point, '> ' = tip, '' = empty line, anything else = normal text. Pages are split up by themselves. 'icon' is any item id; Arsenal gear in it is shown made of 'icon_material'. 'color' is a hex colour. 'generated' adds lines written from the mod's own data after the text: materials, traits, weapons, guns, navy_casting or meito. 'after' is more text that goes after the generated lines.",
 	"chapters": [
 		{
 			"id": "welcome",
@@ -129,7 +129,7 @@
 				"- A Lining, of any material, which adds its handle trait.",
 				"",
 				"# Looks",
-				"Armor looks like clothes when you wear it, cut by its shell material: Driftwood is a castaway's straw hat and sandals, Ship Iron a pirate captain's tricorn and crimson coat, Marine Standard Steel a recruit's sailor uniform, Kairoseki a Navy officer's coat.",
+				"Armor looks like clothes when you wear it, cut by its shell material: Driftwood is a castaway's straw hat and sandals, Ship Iron a pirate captain's tricorn and crimson coat, Marine Standard Steel a recruit's sailor uniform, Kairoseki a Navy officer's coat, Wano Tamahagane a samurai's armor and hakama.",
 				"",
 				"# Armor traits",
 				"Some traits only matter on armor: Waterproof swims faster, Endurance keeps you from getting hungry, Plated deflects bullets and arrows, and a Kairoseki shell drains Devil Fruit users who hit you.",
@@ -180,7 +180,13 @@
 				"# Worthy wielders",
 				"Any graded sword refuses a player who isn't strong enough, the One Piece Mod's famous blades like Wado Ichimonji and Yoru included. Holding one anyway makes you weak, the blade learns nothing, and a whetstone won't raise a blade past what you could wield. You need:"
 			],
-			"generated": "meito"
+			"generated": "meito",
+			"after": [
+				"# Black Blade awakening",
+				"A Supreme Grade katana can turn black for good. Fight with it for 2 hours with your Armament Haki (level 4 or higher) switched on. Only real fighting counts: a hit on a foe in the last 5 seconds.",
+				"When it awakens, its blade becomes Black Blade Steel (10 damage, 2000 uses, the Black Blade trait) and it's fully mended. It keeps its tsuba, hilt, grade, level and enchantments, and the whole server hears about it.",
+				"> The katana's tooltip shows how many minutes it has so far."
+			]
 		},
 		{
 			"id": "disguise",
@@ -241,7 +247,7 @@
 				"",
 				"# Navy-issue weapons",
 				"Some Marines carry Arsenal katanas or flintlocks instead of their usual gear (Kairoseki blades for senior officers), and drop them now and then.",
-				"> Black Blade Steel can't be crafted or looted. It's what a meito becomes when it awakens."
+				"> Black Blade Steel can't be crafted or looted. It's what a Supreme Grade katana's blade becomes when it awakens (see Meito)."
 			]
 		}
 	]

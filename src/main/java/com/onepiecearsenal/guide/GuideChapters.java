@@ -51,6 +51,8 @@ public final class GuideChapters {
 		public List<String> text = new ArrayList<>();
 		/** Lines written from the mod's data after the text: materials, traits, weapons, guns, navy_casting or meito. */
 		public String generated;
+		/** More lines, shown after the generated ones. */
+		public List<String> after = new ArrayList<>();
 
 		public int colorArgb() {
 			try {
@@ -68,6 +70,10 @@ public final class GuideChapters {
 					lines.add("");
 				}
 				lines.addAll(generate(generated));
+			}
+			if (!after.isEmpty()) {
+				lines.add("");
+				lines.addAll(after);
 			}
 			return lines;
 		}

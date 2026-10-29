@@ -8,7 +8,8 @@
   "entrypoints": {
     "fabric-gametest": [
       "com.onepiecearsenal.test.DisguiseTests",
-      "com.onepiecearsenal.test.GuideTests"
+      "com.onepiecearsenal.test.GuideTests",
+      "com.onepiecearsenal.test.MeitoTests"
     ]
   },
   "depends": {
