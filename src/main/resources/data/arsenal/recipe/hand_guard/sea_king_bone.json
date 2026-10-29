@@ -3,10 +3,11 @@
   "category": "equipment",
   "group": "arsenal_hand_guard",
   "key": {
-    "M": "arsenal:sea_king_bone"
+    "M": "arsenal:sea_king_bone",
+    "N": "minecraft:iron_nugget"
   },
   "pattern": [
-    "M M",
+    "MNM",
     "MMM"
   ],
   "result": {

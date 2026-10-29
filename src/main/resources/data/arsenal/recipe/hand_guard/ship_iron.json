@@ -3,10 +3,11 @@
   "category": "equipment",
   "group": "arsenal_hand_guard",
   "key": {
-    "M": "minecraft:iron_ingot"
+    "M": "minecraft:iron_ingot",
+    "N": "minecraft:iron_nugget"
   },
   "pattern": [
-    "M M",
+    "MNM",
     "MMM"
   ],
   "result": {

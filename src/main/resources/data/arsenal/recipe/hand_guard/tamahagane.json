@@ -3,10 +3,11 @@
   "category": "equipment",
   "group": "arsenal_hand_guard",
   "key": {
-    "M": "onepiece:tamahagane_ingot"
+    "M": "onepiece:tamahagane_ingot",
+    "N": "minecraft:iron_nugget"
   },
   "pattern": [
-    "M M",
+    "MNM",
     "MMM"
   ],
   "result": {

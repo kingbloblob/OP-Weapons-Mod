@@ -266,7 +266,7 @@ parts = {
     "jitte_rod": (["M", "N", "M"], {"N": N}),
     "club_head": (["MMM", "MMM"], {}),
     "spearhead": ([" M ", "MMM"], {}),
-    "hand_guard": (["M M", "MMM"], {}),
+    "hand_guard": (["MNM", "MMM"], {"N": N}),  # a nugget in the gap, or iron would make a Minecart
     "binding": (["SMS"], {"S": S}),
     "studs": (["N N", " M ", "N N"], {"N": N}),
     "grip": (["L", "M", "L"], {"L": L}),
