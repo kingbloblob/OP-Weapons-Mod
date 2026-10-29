@@ -38,7 +38,7 @@ public class CannonTests {
 
 	@GameTest
 	public void placedCannonFiresWithItsParts(GameTestHelper helper) {
-		ItemStack item = CannonStats.build(ArsenalMaterial.CANNON_BRONZE, ArsenalMaterial.DRIFTWOOD, ArsenalMaterial.KAIROSEKI);
+		ItemStack item = CannonStats.build(ArsenalMaterial.byId("cannon_bronze"), ArsenalMaterial.DRIFTWOOD, ArsenalMaterial.KAIROSEKI);
 		BlockState state = ArsenalItems.SHIP_CANNON_BLOCK.defaultBlockState();
 		helper.setBlock(POS, state);
 		BlockPos at = helper.absolutePos(POS);
