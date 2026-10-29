@@ -2,12 +2,12 @@
   "layers": {
     "humanoid": [
       {
-        "texture": "arsenal:ship_iron"
+        "texture": "arsenal:wapometal"
       }
     ],
     "humanoid_leggings": [
       {
-        "texture": "arsenal:ship_iron"
+        "texture": "arsenal:wapometal"
       }
     ]
   }

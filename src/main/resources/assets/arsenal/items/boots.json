@@ -26,10 +26,87 @@
         }
       },
       {
+        "when": "cannon_bronze",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/armor/boots/cannon_bronze"
+        }
+      },
+      {
+        "when": "sea_king_bone",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/armor/boots/sea_king_bone"
+        }
+      },
+      {
+        "when": "sea_king_hide",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/armor/boots/sea_king_hide"
+        }
+      },
+      {
+        "when": "treasure_gold",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/armor/boots/treasure_gold"
+        }
+      },
+      {
+        "when": "tamahagane",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/armor/boots/tamahagane"
+        }
+      },
+      {
         "when": "kairoseki",
         "model": {
           "type": "minecraft:model",
           "model": "arsenal:item/armor/boots/kairoseki"
+        }
+      },
+      {
+        "when": "pacifista_alloy",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/armor/boots/pacifista_alloy"
+        }
+      },
+      {
+        "when": "island_whale_leather",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/armor/boots/island_whale_leather"
+        }
+      },
+      {
+        "when": "wapometal",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/armor/boots/wapometal"
+        }
+      },
+      {
+        "when": "adam_wood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/armor/boots/adam_wood"
+        }
+      },
+      {
+        "when": "black_blade",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/armor/boots/black_blade"
+        }
+      },
+      {
+        "when": "vegapunk_compound",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/armor/boots/vegapunk_compound"
         }
       }
     ],

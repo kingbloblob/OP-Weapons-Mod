@@ -78,9 +78,9 @@ w(f'{A}/lang/en_us.json', lang)
 # Item art is drawn by tools/gen_textures.py, one texture per material for every part and weapon layer.
 # The item model picks the texture from the material saved on the stack (the "arsenal:part_material" property,
 # registered in client/ArsenalClient). Weapons stack one layer per part, so a Kairoseki blade on a Ship Iron
-# hilt looks like one. A material is drawn once it's in TEXTURED here and in gen_textures.py; until then it
-# looks like FALLBACK.
-TEXTURED = ["driftwood", "ship_iron", "marine_steel", "kairoseki"]
+# hilt looks like one. gen_textures.py draws every material in materials.json (it stops if one has no colours).
+TEXTURED = [m["id"] for m in MATERIALS]
+WEAPON_TEXTURED = [m["id"] for m in MATERIALS if not m.get("armor_only")]
 FALLBACK = "ship_iron"  # what a blank part (from the creative menu) looks like
 
 
@@ -89,57 +89,37 @@ def model(path, parent="minecraft:item/generated"):
     return {"type": "minecraft:model", "model": f"arsenal:item/{path}"}
 
 
-def by_material(folder, index=None, parent="minecraft:item/generated"):
+def by_material(folder, index=None, parent="minecraft:item/generated", materials=None):
     """Picks folder/<material> by the material of the part at index (or of the part itself)."""
     select = {"type": "minecraft:select", "property": "arsenal:part_material"}
     if index is not None:
         select["index"] = index
-    select["cases"] = [{"when": m, "model": model(f"{folder}/{m}", parent)} for m in TEXTURED]
+    select["cases"] = [{"when": m, "model": model(f"{folder}/{m}", parent)} for m in (materials or TEXTURED)]
     select["fallback"] = {"type": "minecraft:model", "model": f"arsenal:item/{folder}/{FALLBACK}"}
     return select
 
 
-for name in ["driftwood", "marine_steel_ingot"]:
+for name in ["driftwood", "marine_steel_ingot", "cannon_bronze_ingot", "sea_king_bone", "island_whale_leather",
+             "pacifista_alloy", "vegapunk_compound"]:
     w(f'{A}/items/{name}.json', {"model": model(name)})
-# Not drawn yet: vanilla stand-ins, one look for every material.
-placeholders = {
-    "cannon_bronze_ingot": ("minecraft:item/generated", "minecraft:item/copper_ingot"),
-    "sea_king_bone": ("minecraft:item/generated", "minecraft:item/bone"),
-    "island_whale_leather": ("minecraft:item/generated", "minecraft:item/leather"),
-    "pacifista_alloy": ("minecraft:item/generated", "minecraft:item/netherite_scrap"),
-    "vegapunk_compound": ("minecraft:item/generated", "minecraft:item/echo_shard"),
-    "long_barrel": ("minecraft:item/generated", "minecraft:block/iron_bars"),
-    "cannon_bore": ("minecraft:item/generated", "minecraft:item/bucket"),
-    "fuse": ("minecraft:item/generated", "minecraft:item/string"),
-    "musket": ("minecraft:item/handheld", "onepiece:item/marine_rifle"),
-    "hand_cannon": ("minecraft:item/handheld", "onepiece:item/hand_cannon"),
-    "cutlass_blade": ("minecraft:item/generated", "minecraft:item/iron_sword"),
-    "sabre_blade": ("minecraft:item/generated", "minecraft:item/iron_sword"),
-    "axe_head": ("minecraft:item/generated", "minecraft:item/iron_axe"),
-    "jitte_rod": ("minecraft:item/generated", "minecraft:item/blaze_rod"),
-    "club_head": ("minecraft:item/generated", "minecraft:item/mace"),
-    "spearhead": ("minecraft:item/generated", "minecraft:item/arrow"),
-    "hand_guard": ("minecraft:item/generated", "minecraft:item/iron_nugget"),
-    "binding": ("minecraft:item/generated", "minecraft:item/string"),
-    "studs": ("minecraft:item/generated", "minecraft:item/iron_nugget"),
-    "grip": ("minecraft:item/generated", "minecraft:item/leather"),
-    "haft": ("minecraft:item/generated", "minecraft:item/stick"),
-    "cutlass": ("minecraft:item/handheld", "minecraft:item/golden_sword"),
-    "marine_sabre": ("minecraft:item/handheld", "minecraft:item/iron_sword"),
-    "boarding_axe": ("minecraft:item/handheld", "minecraft:item/iron_axe"),
-    "jitte": ("minecraft:item/handheld", "onepiece:item/seastone_jitte"),
-    "kanabo": ("minecraft:item/handheld", "minecraft:item/mace"),
-    "spear": ("minecraft:item/handheld", "minecraft:item/trident"),
-}
-for name, (parent, tex) in placeholders.items():
-    w(f'{A}/items/{name}.json', {"model": {"type": "minecraft:model", "model": f"arsenal:item/{name}"}})
-    w(f'{A}/models/item/{name}.json', {"parent": parent, "textures": {"layer0": tex}})
-for part in ["katana_blade", "tsuba", "hilt", "barrel", "firing_lock", "stock",
-             "crown", "coat_plates", "sash_weave", "boot_soles", "lining"]:
+for part in ["katana_blade", "tsuba", "hilt", "barrel", "firing_lock", "stock", "long_barrel", "cannon_bore", "fuse",
+             "cutlass_blade", "sabre_blade", "axe_head", "jitte_rod", "club_head", "spearhead", "hand_guard",
+             "binding", "studs", "grip", "haft"]:
+    w(f'{A}/items/{part}.json', {"model": by_material(f"part/{part}", materials=WEAPON_TEXTURED)})
+for part in ["crown", "coat_plates", "sash_weave", "boot_soles", "lining"]:
     w(f'{A}/items/{part}.json', {"model": by_material(f"part/{part}")})
-for weapon, layers in {"katana": ["blade", "tsuba", "hilt"], "flintlock": ["barrel", "lock", "stock"]}.items():
+# Each weapon's layers, in the order its parts are saved (katana_parts, gun_parts or weapon_parts).
+weapon_layers = {
+    "katana": ["blade", "tsuba", "hilt"],
+    "flintlock": ["barrel", "lock", "stock"], "musket": ["barrel", "lock", "stock"],
+    "hand_cannon": ["bore", "fuse", "stock"],
+    "cutlass": ["blade", "guard", "grip"], "marine_sabre": ["blade", "guard", "grip"],
+    "boarding_axe": ["head", "binding", "haft"], "jitte": ["rod", "binding", "grip"],
+    "kanabo": ["head", "studs", "haft"], "spear": ["head", "binding", "haft"],
+}
+for weapon, layers in weapon_layers.items():
     w(f'{A}/items/{weapon}.json', {"model": {"type": "minecraft:composite", "models": [
-        by_material(f"{weapon}/{layer}", i, "minecraft:item/handheld") for i, layer in enumerate(layers)]}})
+        by_material(f"{weapon}/{layer}", i, "minecraft:item/handheld", WEAPON_TEXTURED) for i, layer in enumerate(layers)]}})
 for piece in ["hat", "coat", "sash", "boots"]:
     w(f'{A}/items/{piece}.json', {"model": by_material(f"armor/{piece}", 0)})
 # The worn look of Arsenal armor, one per shell material (ArmorStats picks it when a piece is forged).
@@ -157,19 +137,25 @@ variants = {}
 for d, y in [("north", 0), ("east", 90), ("south", 180), ("west", 270)]:
     variants[f"facing={d}"] = {"model": "arsenal:block/shipwrights_anvil", "y": y} if y else {"model": "arsenal:block/shipwrights_anvil"}
 w(f'{A}/blockstates/shipwrights_anvil.json', {"variants": variants})
-# Navy stations (captured from Marine bases). Placeholder look: vanilla blocks until the real ones are drawn.
+# Navy stations (captured from Marine bases). Drawn by tools/gen_textures.py; a captured one has a Jolly Roger on it.
 navy_stations = {
-    "marine_armory_bench": {"parent": "minecraft:block/smithing_table"},
-    "quartermasters_desk": {"parent": "minecraft:block/cartography_table"},
-    "marine_base_smeltery": {"parent": "minecraft:block/blast_furnace"},
+    # front (north), sides, top
+    "marine_armory_bench": ("front", "side", "top"),
+    "quartermasters_desk": ("front", "side", "top"),
+    "marine_base_smeltery": ("front", "side", "top"),
 }
-for name, model in navy_stations.items():
-    w(f'{A}/models/block/{name}.json', model)
+for name, (front, side, top) in navy_stations.items():
+    for tag in ["", "_captured"]:
+        t = lambda face: f"arsenal:block/{name}_{face}{tag}"
+        w(f'{A}/models/block/{name}{tag}.json', {"parent": "minecraft:block/cube", "textures": {
+            "particle": t(side), "north": t(front), "south": t(side), "east": t(side), "west": t(side),
+            "up": t(top), "down": "arsenal:block/navy_station_bottom"}})
     w(f'{A}/items/{name}.json', {"model": {"type": "minecraft:model", "model": f"arsenal:block/{name}"}})
     variants = {}
     for captured in ["false", "true"]:
+        m = f"arsenal:block/{name}" + ("_captured" if captured == "true" else "")
         for d, y in [("north", 0), ("east", 90), ("south", 180), ("west", 270)]:
-            variants[f"captured={captured},facing={d}"] = {"model": f"arsenal:block/{name}", "y": y} if y else {"model": f"arsenal:block/{name}"}
+            variants[f"captured={captured},facing={d}"] = {"model": m, "y": y} if y else {"model": m}
     w(f'{A}/blockstates/{name}.json', {"variants": variants})
 
 D = 'data/arsenal'

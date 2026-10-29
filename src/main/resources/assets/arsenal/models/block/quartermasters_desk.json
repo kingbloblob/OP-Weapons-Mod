@@ -1,3 +1,12 @@
 {
-  "parent": "minecraft:block/cartography_table"
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "arsenal:block/quartermasters_desk_side",
+    "north": "arsenal:block/quartermasters_desk_front",
+    "south": "arsenal:block/quartermasters_desk_side",
+    "east": "arsenal:block/quartermasters_desk_side",
+    "west": "arsenal:block/quartermasters_desk_side",
+    "up": "arsenal:block/quartermasters_desk_top",
+    "down": "arsenal:block/navy_station_bottom"
+  }
 }

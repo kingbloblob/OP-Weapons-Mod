@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "arsenal:block/marine_armory_bench_side_captured",
+    "north": "arsenal:block/marine_armory_bench_front_captured",
+    "south": "arsenal:block/marine_armory_bench_side_captured",
+    "east": "arsenal:block/marine_armory_bench_side_captured",
+    "west": "arsenal:block/marine_armory_bench_side_captured",
+    "up": "arsenal:block/marine_armory_bench_top_captured",
+    "down": "arsenal:block/navy_station_bottom"
+  }
+}

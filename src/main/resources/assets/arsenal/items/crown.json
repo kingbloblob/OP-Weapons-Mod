@@ -25,10 +25,87 @@
         }
       },
       {
+        "when": "cannon_bronze",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/cannon_bronze"
+        }
+      },
+      {
+        "when": "sea_king_bone",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/sea_king_bone"
+        }
+      },
+      {
+        "when": "sea_king_hide",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/sea_king_hide"
+        }
+      },
+      {
+        "when": "treasure_gold",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/treasure_gold"
+        }
+      },
+      {
+        "when": "tamahagane",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/tamahagane"
+        }
+      },
+      {
         "when": "kairoseki",
         "model": {
           "type": "minecraft:model",
           "model": "arsenal:item/part/crown/kairoseki"
+        }
+      },
+      {
+        "when": "pacifista_alloy",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/pacifista_alloy"
+        }
+      },
+      {
+        "when": "island_whale_leather",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/island_whale_leather"
+        }
+      },
+      {
+        "when": "wapometal",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/wapometal"
+        }
+      },
+      {
+        "when": "adam_wood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/adam_wood"
+        }
+      },
+      {
+        "when": "black_blade",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/black_blade"
+        }
+      },
+      {
+        "when": "vegapunk_compound",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/vegapunk_compound"
         }
       }
     ],
