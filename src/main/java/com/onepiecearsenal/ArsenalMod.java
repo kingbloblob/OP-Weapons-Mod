@@ -8,6 +8,9 @@ import org.slf4j.LoggerFactory;
 import net.fabricmc.api.ModInitializer;
 
 import com.onepiecearsenal.disguise.MarineDisguise;
+import com.onepiecearsenal.disguise.PirateGrudge;
+import com.onepiecearsenal.disguise.Suspicion;
+import com.onepiecearsenal.loot.MarineGear;
 import com.onepiecearsenal.loot.MarineSteelLoot;
 import com.onepiecearsenal.material.TraitEffects;
 
@@ -26,6 +29,9 @@ public class ArsenalMod implements ModInitializer {
 		TraitEffects.initialize();
 		MarineDisguise.initialize();
 		MarineSteelLoot.initialize();
+		MarineGear.initialize();
+		Suspicion.initialize();
+		PirateGrudge.initialize();
 	}
 
 	public static Identifier id(String path) {
