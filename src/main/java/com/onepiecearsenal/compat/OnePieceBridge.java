@@ -14,6 +14,7 @@ import com.onepiecemod.bounty.Bounty;
 import com.onepiecemod.bounty.MarineEntity;
 import com.onepiecemod.bounty.MarineHunters;
 import com.onepiecemod.bounty.MarineRank;
+import com.onepiecemod.character.BossStrikes;
 import com.onepiecemod.character.CharacterEntity;
 import com.onepiecemod.character.CharacterFeature;
 import com.onepiecemod.haki.HakiAttachments;
@@ -155,6 +156,29 @@ public final class OnePieceBridge {
 				? Math.max(1, character.getData().tier) : 0;
 	}
 
+	/** The main mod character id of a boss, like "akainu". Empty for anything that isn't a boss character. */
+	public static String bossId(LivingEntity entity) {
+		return entity instanceof CharacterEntity character && character.isBoss() ? character.getCharacterId() : "";
+	}
+
+	/** The boss fight's difficulty: 0 Normal, 1 Hard, 2 Expert. */
+	public static int bossDifficulty(LivingEntity entity) {
+		return entity instanceof CharacterEntity character ? character.getDifficulty() : 0;
+	}
+
+	/**
+	 * False when everyone who beat this boss had already won at this difficulty. The main mod only hands out its
+	 * prizes on a first win, so rematches can't farm them. Set as the boss dies.
+	 */
+	public static boolean isFirstBossWin(LivingEntity entity) {
+		return entity instanceof CharacterEntity character && character.isFirstWin();
+	}
+
+	/** True for the crew a boss calls in mid-fight. They come back every fight, so they drop nothing rare. */
+	public static boolean isBossMinion(LivingEntity entity) {
+		return entity.entityTags().contains(BossStrikes.MINION_TAG);
+	}
+
 	/** True for anything in the minecraft:swords tag, Arsenal katanas included. */
 	public static boolean isSword(ItemStack stack) {
 		return WeaponUpgrades.isSword(stack);
@@ -163,6 +187,11 @@ public final class OnePieceBridge {
 	/** The sword's grade: 0 ungraded, 1 Skillful, 2 Great, 3 Supreme. Famous blades like Yoru start graded. */
 	public static int swordGrade(ItemStack stack) {
 		return WeaponUpgrades.grade(stack);
+	}
+
+	/** Sets the sword's grade (0 to 3) and its grade damage bonus, as a whetstone would. */
+	public static void setSwordGrade(ItemStack stack, int grade) {
+		WeaponUpgrades.setGrade(stack, grade);
 	}
 
 	/** "Great Grade (O Wazamono)" and so on. */

@@ -12,6 +12,7 @@ import com.onepiecearsenal.disguise.MarineDisguise;
 import com.onepiecearsenal.disguise.PirateGrudge;
 import com.onepiecearsenal.disguise.Suspicion;
 import com.onepiecearsenal.guide.GuideBook;
+import com.onepiecearsenal.loot.BossGear;
 import com.onepiecearsenal.loot.MarineGear;
 import com.onepiecearsenal.loot.MarineSteelLoot;
 import com.onepiecearsenal.loot.MaterialLoot;
@@ -40,6 +41,7 @@ public class ArsenalMod implements ModInitializer {
 		MarineDisguise.initialize();
 		MarineSteelLoot.initialize();
 		MarineGear.initialize();
+		BossGear.initialize();
 		Suspicion.initialize();
 		PirateGrudge.initialize();
 		Meito.initialize();

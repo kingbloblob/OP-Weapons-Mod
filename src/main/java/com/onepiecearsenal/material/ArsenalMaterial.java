@@ -33,6 +33,11 @@ public final class ArsenalMaterial {
 	public static final ArsenalMaterial PACIFISTA_ALLOY = require("pacifista_alloy");
 	public static final ArsenalMaterial VEGAPUNK_COMPOUND = require("vegapunk_compound");
 	public static final ArsenalMaterial BLACK_BLADE = require("black_blade");
+	// Used by the famous Marines' named gear (loot/BossGear).
+	public static final ArsenalMaterial TAMAHAGANE = require("tamahagane");
+	public static final ArsenalMaterial ADAM_WOOD = require("adam_wood");
+	public static final ArsenalMaterial SEA_KING_HIDE = require("sea_king_hide");
+	public static final ArsenalMaterial ISLAND_WHALE_LEATHER = require("island_whale_leather");
 
 	private final String id;
 	public final String displayName;
