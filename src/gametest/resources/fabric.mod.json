@@ -11,7 +11,8 @@
       "com.onepiecearsenal.test.BossGearTests",
       "com.onepiecearsenal.test.DisguiseTests",
       "com.onepiecearsenal.test.GuideTests",
-      "com.onepiecearsenal.test.MeitoTests"
+      "com.onepiecearsenal.test.MeitoTests",
+      "com.onepiecearsenal.test.UpgradeTests"
     ]
   },
   "depends": {

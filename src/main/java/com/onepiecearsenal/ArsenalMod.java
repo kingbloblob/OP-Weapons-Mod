@@ -21,6 +21,7 @@ import com.onepiecearsenal.material.TraitStats;
 import com.onepiecearsenal.meito.Meito;
 import com.onepiecearsenal.station.NavyStations;
 import com.onepiecearsenal.tool.WeaponEffects;
+import com.onepiecearsenal.upgrade.Upgrades;
 
 /**
  * The starting point of One Piece Arsenal. Minecraft calls onInitialize() once while the game is loading,
@@ -47,6 +48,7 @@ public class ArsenalMod implements ModInitializer {
 		Meito.initialize();
 		MainModLinks.initialize(); // After Meito, so whetstones its gates refuse don't count.
 		NavyStations.initialize();
+		Upgrades.initialize();
 		GuideBook.initialize();
 	}
 

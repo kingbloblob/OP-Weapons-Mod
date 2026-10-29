@@ -15,6 +15,7 @@ import net.minecraft.world.level.Level;
 
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
+import com.onepiecearsenal.upgrade.Upgrades;
 import com.onepiecemod.weapon.Ammo;
 import com.onepiecemod.weapon.GunItem;
 import com.onepiecemod.weapon.WeaponUpgrades;
@@ -110,6 +111,7 @@ public class ArsenalGunItem extends GunItem {
 			textConsumer.accept(Component.literal(trait.displayName + ": " + trait.description + (trait.active ? "" : " (coming soon)"))
 					.withStyle(ChatFormatting.GOLD));
 		}
+		Upgrades.describe(stack, textConsumer);
 		textConsumer.accept(Component.literal(type.ammo == Ammo.Kind.CANNONBALL ? "Needs Cannonballs." : "Needs Bullets or Seastone Bullets.")
 				.withStyle(ChatFormatting.DARK_GRAY));
 		WeaponUpgrades.describe(stack).forEach(textConsumer);

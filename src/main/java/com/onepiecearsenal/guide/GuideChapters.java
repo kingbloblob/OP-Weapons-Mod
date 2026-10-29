@@ -33,11 +33,12 @@ import com.onepiecearsenal.tool.GunType;
 import com.onepiecearsenal.tool.KatanaStats;
 import com.onepiecearsenal.tool.WeaponStats;
 import com.onepiecearsenal.tool.WeaponType;
+import com.onepiecearsenal.upgrade.Upgrade;
 
 /**
  * The chapters of the Shipwright's Manual. The words are in src/main/resources/arsenal/guide.json: edit that file
  * to change what the book says. A chapter with "generated" also gets lines written here from the mod's own data
- * (materials.json, the traits, weapon and gun types), so those pages stay right when the numbers change.
+ * (materials.json, upgrades.json, the traits, weapon and gun types), so those pages stay right when the numbers change.
  */
 public final class GuideChapters {
 	public static class Chapter {
@@ -50,7 +51,7 @@ public final class GuideChapters {
 		public String color = "FFD75E";
 		/** One entry per line. "# " = heading, "- " = bullet, "> " = tip, "" = empty line. */
 		public List<String> text = new ArrayList<>();
-		/** Lines written from the mod's data after the text: materials, traits, weapons, guns, navy_casting or meito. */
+		/** Lines written from the mod's data after the text: materials, traits, weapons, guns, navy_casting, meito, navy_brass or upgrades. */
 		public String generated;
 		/** More lines, shown after the generated ones. */
 		public List<String> after = new ArrayList<>();
@@ -149,6 +150,7 @@ public final class GuideChapters {
 			case "navy_casting" -> navyCasting();
 			case "meito" -> meito();
 			case "navy_brass" -> navyBrass();
+			case "upgrades" -> upgrades();
 			default -> List.of("(Nothing is written here yet: \"" + what + "\" isn't a page the manual knows.)");
 		};
 	}
@@ -270,6 +272,21 @@ public final class GuideChapters {
 		List<String> lines = new ArrayList<>();
 		for (BossGear.Signature signature : BossGear.SIGNATURES) {
 			lines.add("- " + signature.name() + " (" + signature.owners() + "): " + signature.description() + ".");
+		}
+		return lines;
+	}
+
+	private static List<String> upgrades() {
+		List<String> lines = new ArrayList<>();
+		lines.add("- Upgrade slots: " + Upgrade.slots(Upgrade.Gear.KATANA) + " on a katana, " + Upgrade.slots(Upgrade.Gear.WEAPON)
+				+ " on a hand weapon, " + Upgrade.slots(Upgrade.Gear.GUN) + " on a gun, " + Upgrade.slots(Upgrade.Gear.COAT) + " on each armor piece.");
+		lines.add("");
+		for (Upgrade upgrade : Upgrade.values()) {
+			lines.add(upgrade.displayName + " (up to " + Upgrade.numeral(upgrade.maxLevel) + ")");
+			lines.add("- Fits: " + upgrade.fitsName() + ".");
+			lines.add("- Each level: " + upgrade.count + " " + upgrade.itemName() + " in your offhand.");
+			lines.add("- " + upgrade.description);
+			lines.add("");
 		}
 		return lines;
 	}

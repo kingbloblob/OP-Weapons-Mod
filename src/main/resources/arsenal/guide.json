@@ -1,5 +1,5 @@
 {
-	"_help": "The Shipwright's Manual (GuideChapters.java). Each chapter is a button on the left of the book. Lines in 'text': '# ' = heading, '- ' = bullet point, '> ' = tip, '' = empty line, anything else = normal text. Pages are split up by themselves. 'icon' is any item id; Arsenal gear in it is shown made of 'icon_material'. 'color' is a hex colour. 'generated' adds lines written from the mod's own data after the text: materials, traits, weapons, guns, navy_casting or meito. 'after' is more text that goes after the generated lines.",
+	"_help": "The Shipwright's Manual (GuideChapters.java). Each chapter is a button on the left of the book. Lines in 'text': '# ' = heading, '- ' = bullet point, '> ' = tip, '' = empty line, anything else = normal text. Pages are split up by themselves. 'icon' is any item id; Arsenal gear in it is shown made of 'icon_material'. 'color' is a hex colour. 'generated' adds lines written from the mod's own data after the text: materials, traits, weapons, guns, navy_casting, meito, navy_brass or upgrades. 'after' is more text that goes after the generated lines.",
 	"chapters": [
 		{
 			"id": "welcome",
@@ -136,6 +136,30 @@
 				"> Armor shells have a leather pad in the middle of the recipe, so they don't clash with vanilla armor.",
 				"> A full set with Navy shells is a Marine uniform. See Marine Disguise."
 			]
+		},
+		{
+			"id": "upgrades",
+			"title": "Repairs and Upgrades",
+			"icon": "arsenal:shipwrights_anvil",
+			"color": "C890FF",
+			"text": [
+				"Forged gear isn't finished when it leaves the anvil. Bring it back to mend it, and to fit it with upgrades as you find the materials.",
+				"",
+				"# Mending",
+				"Hold the damaged weapon, gun or armor piece and right-click a Shipwright's Anvil. It's mended with the material of its blade, head, barrel or shell, taken from anywhere in your inventory: Iron Ingots for Ship Iron, Seastone Ingots for Kairoseki, and so on. Each piece mends a quarter of it.",
+				"> Navy gear can be mended and upgraded at a Shipwright's Anvil too. Only putting it together takes a Marine Armory Bench.",
+				"",
+				"# Upgrading",
+				"Hold the gear in your main hand and the upgrade's item in your offhand, then right-click the anvil. Each click adds one level.",
+				"- Each kind of gear has a few upgrade slots (listed below). Every level takes a slot, so choose what you want most.",
+				"- Each upgrade has a highest level, and only fits some kinds of gear.",
+				"- Hover over the gear to see its upgrades and how many slots are left.",
+				"> Upgrades stack with the One Piece Mod's whetstones, gun parts, Dials and enchantments, and a katana keeps them when it awakens into a Black Blade.",
+				"> If the upgrade's item is also what mends the gear, the offhand wins: empty your offhand to mend it instead.",
+				"",
+				"# Every upgrade"
+			],
+			"generated": "upgrades"
 		},
 		{
 			"id": "stations",

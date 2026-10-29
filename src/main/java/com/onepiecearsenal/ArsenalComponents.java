@@ -1,8 +1,12 @@
 package com.onepiecearsenal;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.mojang.serialization.Codec;
+
+import io.netty.buffer.ByteBuf;
 
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponentType;
@@ -57,6 +61,12 @@ public class ArsenalComponents {
 	public static final DataComponentType<Integer> HAKI_SOAK = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
 			ArsenalMod.id("haki_soak"),
 			DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT).ignoreSwapAnimation().build());
+
+	/** The upgrades added to a piece of gear at the Shipwright's Anvil and their levels, like {"honed_edge": 2} (see Upgrades). */
+	public static final DataComponentType<Map<String, Integer>> UPGRADES = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
+			ArsenalMod.id("upgrades"),
+			DataComponentType.<Map<String, Integer>>builder().persistent(Codec.unboundedMap(Codec.STRING, Codec.INT))
+					.networkSynchronized(ByteBufCodecs.<ByteBuf, String, Integer, Map<String, Integer>>map(HashMap::new, ByteBufCodecs.STRING_UTF8, ByteBufCodecs.VAR_INT)).build());
 
 	/** Loads this class, which registers the components above. */
 	static void initialize() {

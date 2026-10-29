@@ -15,6 +15,7 @@ import net.minecraft.world.item.component.TooltipDisplay;
 
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
+import com.onepiecearsenal.upgrade.Upgrades;
 
 /**
  * A hat, coat, sash or pair of boots built from a shell and a lining at the Shipwright's Anvil.
@@ -54,5 +55,6 @@ public class ArsenalArmorItem extends Item {
 			textConsumer.accept(Component.literal(trait.displayName + ": " + trait.description + (trait.active ? "" : " (coming soon)"))
 					.withStyle(ChatFormatting.GOLD));
 		}
+		Upgrades.describe(stack, textConsumer);
 	}
 }
