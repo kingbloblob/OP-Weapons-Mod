@@ -11,7 +11,8 @@ Requires the One Piece Mod (Fabric, Minecraft 26.3, Java 25).
 - **Four materials:** Driftwood, Ship Iron, Marine Standard Steel and Kairoseki (the One Piece Mod's seastone ingot).
 - **Traits:** Seastone (drains Devil Fruit users on hit), Draining (fruit users who hold it feel weak), Rusty (can poison in the rain), Regulation (+1 damage against pirate NPCs), Light and Riveted. Buoyant and Issued are planned.
 - **Armor:** a **Hat**, **Coat**, **Sash** and **Boots**, each built from a shell part (Hat Crown, Coat Plates, Sash Weave or Boot Soles, which sets the defense) and a **Lining** (any material, which adds its trait). Kairoseki plates drain Devil Fruit users who hit you.
-- **Marine disguise:** wear a full set of Arsenal armor whose shells are all Navy materials and Marines stop hunting you. Marine Standard Steel is a recruit's uniform (hides a bounty up to 10M; Captains see through it), Kairoseki an officer's (up to 100M). Hit a Marine and your cover is blown for a minute.
+- **Marine disguise:** wear a full set of Arsenal armor whose shells are all Navy materials and Marines stop hunting you. Marine Standard Steel is a recruit's uniform (hides a bounty up to 10M; Captains and CP agents see through it), Kairoseki an officer's (up to 100M; Vice Admirals, CP0, Pacifistas and Seraphim see through it). Hit a Marine and your cover is blown for a minute, even if you log out. Hunters sent after you give up after a minute. Named Marines like Garp are never fooled.
+- **Marine Standard Steel** can't be crafted: beaten Marines drop it (officers more often), and Marine base and bunker chests hold some.
 - **Shipwright's Anvil:** right-click it with an empty hand while carrying a full set of parts to forge the weapon.
 - Arsenal katanas are in the `minecraft:swords` tag, so the One Piece Mod's whetstones (sword grades), Dials and Haki work on them. Traits work on flintlocks too: a Kairoseki barrel drains Devil Fruit users it shoots.
 

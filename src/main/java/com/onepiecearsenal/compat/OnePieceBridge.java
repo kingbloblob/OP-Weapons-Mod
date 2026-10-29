@@ -1,6 +1,9 @@
 package com.onepiecearsenal.compat;
 
+import java.util.Set;
+
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 
 import com.onepiecemod.bounty.Bounty;
@@ -37,9 +40,35 @@ public final class OnePieceBridge {
 		return entity instanceof MarineEntity;
 	}
 
-	/** True for a Marine of Captain rank, the highest the main mod has. Captains see through a basic disguise. */
-	public static boolean isMarineCaptain(LivingEntity entity) {
-		return entity instanceof MarineEntity marine && marine.getRank() == MarineRank.CAPTAIN;
+	/** Main mod NPC kits (npc_kits.json) of Commanders and Captains, and of CP agents. */
+	private static final Set<String> SENIOR_KITS = Set.of("elite_marine", "cp_agent");
+	/** Kits of Rear and Vice Admirals, CP0, and the Pacifista and Seraphim who scan you against Vegapunk's records. */
+	private static final Set<String> TOP_KITS = Set.of("vice_admiral", "cp0_agent", "pacifista", "seraphim");
+
+	/**
+	 * How hard a Marine is to fool: 0 for the rank and file, 1 for Captains and CP agents, 2 for admirals, CP0
+	 * and Vegapunk's weapons. Read from the Marine's kit, since most Marines are spawned from one (guards, patrols,
+	 * Buster Calls) and only hunters, raiders and boarders get a MarineRank.
+	 */
+	public static int marineInsight(LivingEntity entity) {
+		if (!(entity instanceof MarineEntity marine)) {
+			return 0;
+		}
+		String kit = marine.getKitId();
+		if (TOP_KITS.contains(kit)) {
+			return 2;
+		}
+		return SENIOR_KITS.contains(kit) || marine.getRank() == MarineRank.CAPTAIN ? 1 : 0;
+	}
+
+	/** The Marine's main mod NPC kit, like "marine_recruit" or "vice_admiral". Empty for anything else. */
+	public static String marineKit(LivingEntity entity) {
+		return entity instanceof MarineEntity marine ? marine.getKitId() : "";
+	}
+
+	/** True if this Marine was sent to hunt down this player. */
+	public static boolean isHunting(Mob marine, Player player) {
+		return MarineEntity.isHunting(marine, player);
 	}
 
 	/** The player's bounty in Berries. */

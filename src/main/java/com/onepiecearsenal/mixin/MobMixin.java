@@ -19,7 +19,7 @@ import com.onepiecearsenal.disguise.MarineDisguise;
  * MarineEntity doesn't override setTarget, so this hooks Mob's and checks that the mob is a Marine.
  */
 @Mixin(Mob.class)
-public abstract class MarineEntityMixin {
+public abstract class MobMixin {
 	@Inject(method = "setTarget(Lnet/minecraft/world/entity/LivingEntity;)V", at = @At("HEAD"), cancellable = true)
 	private void arsenal$ignoreDisguisedPlayers(LivingEntity target, CallbackInfo ci) {
 		LivingEntity self = (LivingEntity) (Object) this;

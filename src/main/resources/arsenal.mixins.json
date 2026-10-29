@@ -3,7 +3,7 @@
 	"package": "com.onepiecearsenal.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"MarineEntityMixin"
+		"MobMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
