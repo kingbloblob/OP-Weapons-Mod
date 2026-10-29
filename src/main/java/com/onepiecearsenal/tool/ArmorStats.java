@@ -35,6 +35,10 @@ import com.onepiecearsenal.part.PartType;
  * A material's "armor" number is its whole-set strength: 4 = iron, 5 = diamond.
  */
 public final class ArmorStats {
+	/** The ids every piece shared before each slot got its own; see fixSharedIds. */
+	private static final Identifier OLD_ARMOR_MODIFIER = ArsenalMod.id("armor_plates");
+	private static final Identifier OLD_TOUGHNESS_MODIFIER = ArsenalMod.id("armor_toughness");
+
 	private ArmorStats() {
 	}
 
@@ -74,6 +78,10 @@ public final class ArmorStats {
 		return Math.max(0, shell.tier - 2);
 	}
 
+	/**
+	 * A coat lasts 16 x the square root of its materials' durability: Ship Iron (250) gives 253 like an iron chestplate,
+	 * Kairoseki (1100) 531 like diamond. A straight copy of the weapon number would make tier 3 coats outlast netherite.
+	 */
 	public static int durability(ArsenalMaterial shell, ArsenalMaterial lining, ArmorType type) {
 		float share = switch (type) {
 			case HELMET -> 0.69f;
@@ -81,7 +89,7 @@ public final class ArmorStats {
 			case LEGGINGS -> 0.94f;
 			default -> 0.81f;
 		};
-		int durability = Math.round((shell.durability + lining.durability) / 2.0f * share);
+		int durability = Math.round(16.0f * (float) Math.sqrt((shell.durability + lining.durability) / 2.0f) * share);
 		return TraitStats.durability(durability, EnumSet.of(shell.headTrait, lining.handleTrait));
 	}
 
@@ -121,6 +129,32 @@ public final class ArmorStats {
 	 */
 	private static Identifier id(String name, EquipmentSlotGroup slot) {
 		return ArsenalMod.id(name + "." + slot.getSerializedName());
+	}
+
+	/**
+	 * Gives a piece forged before each slot had its own id its slot's ids, so it adds to the rest of the set
+	 * instead of replacing it. Keeps the amounts, damage, enchantments and name. Called while the piece is in a
+	 * player's inventory (ArsenalArmorItem.inventoryTick). Returns true if the piece needed it.
+	 */
+	public static boolean fixSharedIds(ItemStack piece) {
+		ItemAttributeModifiers old = piece.get(DataComponents.ATTRIBUTE_MODIFIERS);
+		if (old == null || old.modifiers().stream().noneMatch(entry -> isOld(entry.modifier()))) {
+			return false;
+		}
+		ItemAttributeModifiers fixed = ItemAttributeModifiers.EMPTY;
+		for (ItemAttributeModifiers.Entry entry : old.modifiers()) {
+			AttributeModifier modifier = entry.modifier();
+			if (isOld(modifier)) {
+				modifier = new AttributeModifier(id(modifier.id().getPath(), entry.slot()), modifier.amount(), modifier.operation());
+			}
+			fixed = fixed.withModifierAdded(entry.attribute(), modifier, entry.slot());
+		}
+		piece.set(DataComponents.ATTRIBUTE_MODIFIERS, fixed);
+		return true;
+	}
+
+	private static boolean isOld(AttributeModifier modifier) {
+		return modifier.is(OLD_ARMOR_MODIFIER) || modifier.is(OLD_TOUGHNESS_MODIFIER);
 	}
 
 	/** The piece's materials as shell, lining. Empty for a piece that wasn't built from parts. */

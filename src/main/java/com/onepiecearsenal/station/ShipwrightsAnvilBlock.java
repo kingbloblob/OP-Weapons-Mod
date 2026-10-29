@@ -10,6 +10,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Prediction;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -33,6 +34,7 @@ import com.onepiecearsenal.tool.GunType;
 import com.onepiecearsenal.tool.KatanaStats;
 import com.onepiecearsenal.tool.WeaponStats;
 import com.onepiecearsenal.tool.WeaponType;
+import com.onepiecearsenal.upgrade.Upgrades;
 
 /**
  * The pirate assembly station. Right-click it with an empty hand while you carry a full set of parts
@@ -44,6 +46,8 @@ import com.onepiecearsenal.tool.WeaponType;
  *
  * Navy gear (a blade, barrel or armor shell of a Navy material, or a Marine Sabre or Jitte) can't be put together
  * here: that takes a Marine Armory Bench captured from a Marine base, which runs the same forge with navy = true.
+ *
+ * Right-click it holding forged gear (any gear, Navy too) to mend or upgrade it instead: see Upgrades.
  */
 public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 	public ShipwrightsAnvilBlock(Properties properties) {
@@ -67,6 +71,30 @@ public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 			return InteractionResult.SUCCESS;
 		}
 		return forge(level, pos, smith, false);
+	}
+
+	/**
+	 * Holding forged gear: the anvil upgrades it with what's in your offhand, or mends it (see Upgrades). With nothing
+	 * to do to it, it forges as usual if you carry a full set of parts.
+	 */
+	@Override
+	public InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
+			BlockHitResult hit) {
+		if (hand != InteractionHand.MAIN_HAND || Upgrades.gearOf(stack) == null) {
+			return super.useItemOn(stack, state, level, pos, player, hand, hit);
+		}
+		if (!(player instanceof ServerPlayer smith)) {
+			return InteractionResult.SUCCESS;
+		}
+		InteractionResult result = Upgrades.work(level, pos, smith, stack);
+		if (result != null) {
+			return result;
+		}
+		if (findSet(smith.getInventory(), false) != null) {
+			return forge(level, pos, smith, false);
+		}
+		smith.sendOverlayMessage(Upgrades.help(stack));
+		return InteractionResult.FAIL;
 	}
 
 	/** Forges the first full set of parts the smith carries. Navy-material head parts and Navy weapon types only count when navy is true. */

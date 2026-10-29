@@ -13,6 +13,7 @@ import com.onepiecearsenal.disguise.MarineDisguise;
 import com.onepiecearsenal.disguise.PirateGrudge;
 import com.onepiecearsenal.disguise.Suspicion;
 import com.onepiecearsenal.guide.GuideBook;
+import com.onepiecearsenal.loot.BossGear;
 import com.onepiecearsenal.loot.MarineGear;
 import com.onepiecearsenal.loot.MarineSteelLoot;
 import com.onepiecearsenal.loot.MaterialLoot;
@@ -21,6 +22,7 @@ import com.onepiecearsenal.material.TraitStats;
 import com.onepiecearsenal.meito.Meito;
 import com.onepiecearsenal.station.NavyStations;
 import com.onepiecearsenal.tool.WeaponEffects;
+import com.onepiecearsenal.upgrade.Upgrades;
 
 /**
  * The starting point of One Piece Arsenal. Minecraft calls onInitialize() once while the game is loading,
@@ -41,11 +43,13 @@ public class ArsenalMod implements ModInitializer {
 		MarineDisguise.initialize();
 		MarineSteelLoot.initialize();
 		MarineGear.initialize();
+		BossGear.initialize();
 		Suspicion.initialize();
 		PirateGrudge.initialize();
 		Meito.initialize();
 		MainModLinks.initialize(); // After Meito, so whetstones its gates refuse don't count.
 		NavyStations.initialize();
+		Upgrades.initialize();
 		GuideBook.initialize();
 		CannonShells.initialize();
 	}

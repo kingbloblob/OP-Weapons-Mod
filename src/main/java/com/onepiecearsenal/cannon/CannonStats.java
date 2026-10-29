@@ -16,7 +16,7 @@ import com.onepiecemod.shipcombat.CannonAddons;
  * (1 = the same; its cannonballs knock 24 hull points off a ship, and its crew reloads in 2.5 seconds).
  * A Ship Iron cannon shoots exactly like a plain one.
  *
- * damage = 0.6 + 0.08 x the bore material's damage (Driftwood 0.84, Ship Iron 1.0, Vegapunk Compound 1.36).
+ * damage = 0.6 + 0.08 x the bore material's damage (Driftwood 0.84, Ship Iron 1.0, Vegapunk Compound 1.2).
  * range = 0.92 + 0.08 x the bore's tier (muzzle speed: tier 1 = 1.0, tier 5 = 1.32).
  * reload = 1 - the fuse material's speed, 0.05 less if it's Light (Driftwood 0.75, Ship Iron 1.0, Cannon Bronze 1.1).
  * spread = 1.15 - 0.15 x the carriage's tier (tier 1 = 1.0, tier 5 = 0.4).

@@ -5,6 +5,9 @@ import java.util.function.Consumer;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -12,6 +15,7 @@ import net.minecraft.world.item.component.TooltipDisplay;
 
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
+import com.onepiecearsenal.upgrade.Upgrades;
 
 /**
  * A hat, coat, sash or pair of boots built from a shell and a lining at the Shipwright's Anvil.
@@ -33,6 +37,12 @@ public class ArsenalArmorItem extends Item {
 	}
 
 	@Override
+	public void inventoryTick(ItemStack stack, ServerLevel level, Entity owner, EquipmentSlot slot) {
+		// Pieces forged before each slot had its own modifier id only counted once per set; fix them where they are.
+		ArmorStats.fixSharedIds(stack);
+	}
+
+	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay displayComponent, Consumer<Component> textConsumer, TooltipFlag type) {
 		List<ArsenalMaterial> parts = ArmorStats.parts(stack);
 		if (parts.isEmpty()) {
@@ -45,5 +55,6 @@ public class ArsenalArmorItem extends Item {
 			textConsumer.accept(Component.literal(trait.displayName + ": " + trait.description + (trait.active ? "" : " (coming soon)"))
 					.withStyle(ChatFormatting.GOLD));
 		}
+		Upgrades.describe(stack, textConsumer);
 	}
 }

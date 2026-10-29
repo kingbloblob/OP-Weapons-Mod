@@ -14,6 +14,7 @@ import com.onepiecearsenal.compat.OnePieceBridge;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
 import com.onepiecearsenal.meito.Meito;
+import com.onepiecearsenal.upgrade.Upgrades;
 
 /**
  * A katana built from a blade, a tsuba and a hilt at the Shipwright's Anvil. Its name, numbers and traits
@@ -48,6 +49,7 @@ public class KatanaItem extends Item {
 			textConsumer.accept(Component.literal(trait.displayName + ": " + trait.description + (trait.active ? "" : " (coming soon)"))
 					.withStyle(ChatFormatting.GOLD));
 		}
+		Upgrades.describe(stack, textConsumer);
 
 		int level = Meito.level(stack);
 		int maxLevel = Meito.maxLevel(stack);

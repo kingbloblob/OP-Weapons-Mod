@@ -13,6 +13,7 @@ import com.onepiecearsenal.ArsenalItems;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
 import com.onepiecearsenal.material.TraitStats;
+import com.onepiecearsenal.upgrade.Upgrades;
 import com.onepiecemod.weapon.GunItem;
 
 /**
@@ -56,15 +57,19 @@ public final class GunStats {
 		return gun;
 	}
 
-	/** The gun's stats before upgrades and enchantments, or null for a gun that wasn't built from parts. */
+	/** The gun's stats with its anvil upgrades but before the main mod's upgrades and enchantments, or null for a gun that wasn't built from parts. */
 	public static GunItem.Stats stats(ItemStack gun) {
 		List<ArsenalMaterial> parts = parts(gun);
 		if (parts.isEmpty() || !(gun.getItem() instanceof ArsenalGunItem item)) {
 			return null;
 		}
 		GunType type = item.type();
-		return new GunItem.Stats(damage(type, parts.get(0)), cooldown(type, parts.get(1)), range(type, parts.get(0)),
-				spread(type, parts.get(2)), 1, type.ammo,
+		// Anvil upgrades (Powder Chamber, Waxed Lock, Rifled Bore) go on top of the parts, before the main mod's own.
+		float damage = damage(type, parts.get(0)) + (float) Upgrades.total(gun, "gun_damage");
+		int cooldown = Math.max(4, Math.round(cooldown(type, parts.get(1)) * (1.0f - (float) Upgrades.total(gun, "gun_reload"))));
+		double range = range(type, parts.get(0)) * (1.0 + Upgrades.total(gun, "gun_range"));
+		float spread = spread(type, parts.get(2)) * Math.max(0.0f, 1.0f - (float) Upgrades.total(gun, "gun_spread"));
+		return new GunItem.Stats(damage, cooldown, range, spread, 1, type.ammo,
 				0, 0, type.recoil); // Single shot: the firing part's cooldown is the reload, so no magazine.
 	}
 

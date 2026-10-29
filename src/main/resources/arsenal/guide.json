@@ -1,5 +1,5 @@
 {
-	"_help": "The Shipwright's Manual (GuideChapters.java). Each chapter is a button on the left of the book. Lines in 'text': '# ' = heading, '- ' = bullet point, '> ' = tip, '' = empty line, anything else = normal text. Pages are split up by themselves. 'icon' is any item id; Arsenal gear in it is shown made of 'icon_material'. 'color' is a hex colour. 'generated' adds lines written from the mod's own data after the text: materials, traits, weapons, guns, cannons, navy_casting or meito. 'after' is more text that goes after the generated lines.",
+	"_help": "The Shipwright's Manual (GuideChapters.java). Each chapter is a button on the left of the book. Lines in 'text': '# ' = heading, '- ' = bullet point, '> ' = tip, '' = empty line, anything else = normal text. Pages are split up by themselves. 'icon' is any item id; Arsenal gear in it is shown made of 'icon_material'. 'color' is a hex colour. 'generated' adds lines written from the mod's own data after the text: materials, traits, weapons, guns, cannons, navy_casting, meito, navy_brass or upgrades. 'after' is more text that goes after the generated lines.",
 	"chapters": [
 		{
 			"id": "welcome",
@@ -169,6 +169,30 @@
 			]
 		},
 		{
+			"id": "upgrades",
+			"title": "Repairs and Upgrades",
+			"icon": "arsenal:shipwrights_anvil",
+			"color": "C890FF",
+			"text": [
+				"Forged gear isn't finished when it leaves the anvil. Bring it back to mend it, and to fit it with upgrades as you find the materials.",
+				"",
+				"# Mending",
+				"Hold the damaged weapon, gun or armor piece and right-click a Shipwright's Anvil. It's mended with the material of its blade, head, barrel or shell, taken from anywhere in your inventory: Iron Ingots for Ship Iron, Seastone Ingots for Kairoseki, and so on. Each piece mends a quarter of it.",
+				"> Navy gear can be mended and upgraded at a Shipwright's Anvil too. Only putting it together takes a Marine Armory Bench.",
+				"",
+				"# Upgrading",
+				"Hold the gear in your main hand and the upgrade's item in your offhand, then right-click the anvil. Each click adds one level.",
+				"- Each kind of gear has a few upgrade slots (listed below). Every level takes a slot, so choose what you want most.",
+				"- Each upgrade has a highest level, and only fits some kinds of gear.",
+				"- Hover over the gear to see its upgrades and how many slots are left.",
+				"> Upgrades stack with the One Piece Mod's whetstones, gun parts, Dials and enchantments, and a katana keeps them when it awakens into a Black Blade.",
+				"> If the upgrade's item is also what mends the gear, the offhand wins: empty your offhand to mend it instead.",
+				"",
+				"# Every upgrade"
+			],
+			"generated": "upgrades"
+		},
+		{
 			"id": "stations",
 			"title": "Navy Stations",
 			"icon": "arsenal:marine_armory_bench",
@@ -215,7 +239,7 @@
 			"after": [
 				"# Black Blade awakening",
 				"A Supreme Grade katana can turn black for good. Fight with it for 2 hours with your Armament Haki (level 4 or higher) switched on. Only real fighting counts: a hit on a foe in the last 5 seconds.",
-				"When it awakens, its blade becomes Black Blade Steel (10 damage, 2000 uses, the Black Blade trait) and it's fully mended. It keeps its tsuba, hilt, grade, level and enchantments, and the whole server hears about it.",
+				"When it awakens, its blade becomes Black Blade Steel (8 damage, 2000 uses, the Black Blade trait) and it's fully mended. It keeps its tsuba, hilt, grade, level and enchantments, and the whole server hears about it.",
 				"> The katana's tooltip shows how many minutes it has so far."
 			]
 		},
@@ -278,7 +302,30 @@
 				"",
 				"# Navy-issue weapons",
 				"Some Marines carry Arsenal katanas or flintlocks instead of their usual gear (Kairoseki blades for senior officers), and drop them now and then.",
+				"Vice Admirals, Commanders and famous Marines carry rarer gear still (see Navy Brass).",
 				"> Black Blade Steel can't be crafted or looted. It's what a Supreme Grade katana's blade becomes when it awakens (see Meito)."
+			]
+		},
+		{
+			"id": "navy_brass",
+			"title": "Navy Brass",
+			"icon": "arsenal:coat",
+			"icon_material": "vegapunk_compound",
+			"color": "FFD75E",
+			"text": [
+				"The Navy's top brass carry gear you can't forge anywhere else. Beat them yourself and they sometimes drop it. The crew a boss calls in to help never drops any of it.",
+				"",
+				"# Vice Admirals and Commanders",
+				"- Vice Admirals: about 1 in 8 drop a Kairoseki or Pacifista Alloy part (a blade, jitte rod, barrel, hat crown or coat plates). About 1 in 50 drop their Vice Admiral's Blade instead, a Skillful Grade Kairoseki katana.",
+				"- Commanders and Captains: about 1 in 25 drop a Marine Steel or Kairoseki part.",
+				"",
+				"# Famous Marines",
+				"Beat a famous Marine and they may drop their own named gear: 1 in 5 on Normal, 2 in 5 on Hard, 3 in 4 on Expert. Like the main mod's boss prizes, it only drops the first time you win at that difficulty, so you get one try per difficulty."
+			],
+			"generated": "navy_brass",
+			"after": [
+				"",
+				"> Named gear is ordinary Arsenal gear with a name: it repairs, levels and takes whetstones like any other. Graded blades still refuse a wielder who isn't worthy (see Meito)."
 			]
 		}
 	]

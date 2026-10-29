@@ -19,6 +19,7 @@ import com.onepiecearsenal.ArsenalMod;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
 import com.onepiecearsenal.material.TraitStats;
+import com.onepiecearsenal.upgrade.Upgrades;
 
 /**
  * Works out a katana's numbers from its three parts and saves them on the item.
@@ -58,7 +59,7 @@ public final class KatanaStats {
 
 	/**
 	 * A Black Blade awakening: the katana's blade turns to Black Blade Steel where it is, so it keeps its tsuba, hilt,
-	 * grade, blade level, enchantments and name. Its damage and durability become the new blade's, and it's fully mended.
+	 * grade, blade level, enchantments, anvil upgrades and name. Its damage and durability become the new blade's, and it's fully mended.
 	 */
 	public static void awaken(ItemStack katana) {
 		List<ArsenalMaterial> parts = parts(katana);
@@ -81,7 +82,9 @@ public final class KatanaStats {
 				new AttributeModifier(DAMAGE_MODIFIER, blade.damage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND));
 
 		Set<Trait> traits = traits(blade, tsuba, hilt);
-		katana.set(DataComponents.MAX_DAMAGE, TraitStats.durability((blade.durability + tsuba.durability + hilt.durability) / 3, traits));
+		// Its anvil upgrades stay: their attribute modifiers were kept above, and Reinforced still adds its share.
+		katana.set(DataComponents.MAX_DAMAGE, Upgrades.durability(katana,
+				TraitStats.durability((blade.durability + tsuba.durability + hilt.durability) / 3, traits)));
 		katana.setDamageValue(0);
 		TraitStats.finish(katana, traits);
 	}
