@@ -1,13 +1,20 @@
 package com.onepiecearsenal.meito;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -23,6 +30,8 @@ import net.minecraft.world.item.component.ItemAttributeModifiers;
 
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 
 import com.onepiecearsenal.ArsenalComponents;
@@ -42,6 +51,10 @@ import com.onepiecearsenal.tool.KatanaStats;
  * The wielder's gate: any graded sword, the main mod's famous blades like Yoru included, refuses a player without
  * enough Haki or a big enough bounty. Holding one anyway makes you weak, and a whetstone won't raise a blade past
  * what you could wield.
+ *
+ * Black Blade awakening: a Supreme Grade katana that fights long enough coated in its wielder's Armament Haki turns
+ * black for good. Its blade becomes Black Blade Steel (KatanaStats.awaken), which carries the Black Blade trait.
+ * Only seconds of real fighting count: Armament on at a high enough level, and a hit landed on a foe in the last few seconds.
  *
  * Change the numbers here to tune it.
  */
@@ -67,6 +80,15 @@ public final class Meito {
 	private static final int KILL_XP = 1;
 	private static final int ARMED_XP = 2;
 	private static final int BOSS_XP_PER_TIER = 5;
+
+	/** Seconds of Haki-coated fighting a Supreme Grade katana needs to awaken: 2 hours. */
+	public static final int AWAKEN_SECONDS = 2 * 60 * 60;
+	/** The Armament Haki level the wielder needs switched on for the blade to soak it up. */
+	public static final int AWAKEN_ARMAMENT = 4;
+	/** A second counts as fighting if the wielder landed a coated hit this many ticks ago or less. */
+	private static final int FIGHT_WINDOW_TICKS = 5 * 20;
+	/** When each player last landed a Haki-coated katana hit on a foe, in game ticks. */
+	private static final Map<UUID, Long> LAST_COATED_HIT = new HashMap<>();
 
 	private Meito() {
 	}
@@ -102,7 +124,18 @@ public final class Meito {
 			}
 		});
 
-		// Once a second: a graded blade weighs down a player it refuses.
+		// A Haki-coated katana hit on a foe keeps the fight going for awakening.
+		AttackEntityCallback.EVENT.register((player, level, hand, target, hitResult) -> {
+			if (player instanceof ServerPlayer fighter && target instanceof LivingEntity foe && isFoe(foe)
+					&& fighter.getMainHandItem().getItem() instanceof KatanaItem
+					&& OnePieceBridge.activeArmamentLevel(fighter) >= AWAKEN_ARMAMENT) {
+				LAST_COATED_HIT.put(fighter.getUUID(), level.getGameTime());
+			}
+			return InteractionResult.PASS;
+		});
+		ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> LAST_COATED_HIT.remove(handler.getPlayer().getUUID()));
+
+		// Once a second: a graded blade weighs down a player it refuses, and soaks up the Haki of one it accepts.
 		ServerTickEvents.END_LEVEL_TICK.register(level -> {
 			if (level.getGameTime() % 20 != 0) {
 				return;
@@ -114,7 +147,9 @@ public final class Meito {
 					continue;
 				}
 				int grade = OnePieceBridge.swordGrade(sword);
-				if (grade > 0 && !worthy(player, grade)) {
+				if (worthy(player, grade)) {
+					soak(player, level, sword);
+				} else if (grade > 0) {
 					player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 40, grade - 1, false, false, true));
 					if (remind) {
 						player.sendOverlayMessage(Component.literal(sword.getHoverName().getString() + " refuses you. It needs "
@@ -140,6 +175,50 @@ public final class Meito {
 	}
 
 	// ---- The blade ----
+
+	/** True for things worth a blade's attention: monsters, people, players and bosses. No XP or Haki for cows. */
+	private static boolean isFoe(LivingEntity entity) {
+		return entity instanceof Enemy || entity instanceof Player || OnePieceBridge.isNpc(entity) || OnePieceBridge.bossTier(entity) > 0;
+	}
+
+	/** True for a Supreme Grade Arsenal katana that hasn't awakened yet. */
+	public static boolean canAwaken(ItemStack katana) {
+		return katana.getItem() instanceof KatanaItem && OnePieceBridge.swordGrade(katana) >= 3
+				&& !KatanaStats.parts(katana).isEmpty() && !KatanaStats.isBlackBlade(katana);
+	}
+
+	/** Seconds of Haki-coated fighting this katana has done toward awakening. */
+	public static int hakiSeconds(ItemStack katana) {
+		return katana.getOrDefault(ArsenalComponents.HAKI_SOAK, 0);
+	}
+
+	/** One more second of the wielder's Haki, if they're mid-fight with it on. Awakens the blade when it's soaked enough. */
+	private static void soak(ServerPlayer player, ServerLevel level, ItemStack katana) {
+		if (!canAwaken(katana) || OnePieceBridge.activeArmamentLevel(player) < AWAKEN_ARMAMENT) {
+			return;
+		}
+		Long lastHit = LAST_COATED_HIT.get(player.getUUID());
+		if (lastHit == null || level.getGameTime() - lastHit > FIGHT_WINDOW_TICKS) {
+			return;
+		}
+		int seconds = hakiSeconds(katana) + 1;
+		if (seconds < AWAKEN_SECONDS) {
+			katana.set(ArsenalComponents.HAKI_SOAK, seconds);
+			if (seconds % (AWAKEN_SECONDS / 4) == 0) {
+				player.sendSystemMessage(Component.literal("Your Haki is sinking into " + katana.getHoverName().getString() + ". It's darkening ("
+						+ seconds * 100 / AWAKEN_SECONDS + "%).").withStyle(ChatFormatting.DARK_PURPLE));
+			}
+			return;
+		}
+		String before = katana.getHoverName().getString();
+		katana.remove(ArsenalComponents.HAKI_SOAK);
+		KatanaStats.awaken(katana);
+		level.playSound(null, player.blockPosition(), SoundEvents.WITHER_SPAWN, SoundSource.PLAYERS, 0.6f, 1.4f);
+		level.sendParticles(ParticleTypes.SQUID_INK, player.getX(), player.getY() + 1, player.getZ(), 40, 0.6, 0.8, 0.6, 0.1);
+		level.sendParticles(ParticleTypes.ELECTRIC_SPARK, player.getX(), player.getY() + 1, player.getZ(), 30, 0.6, 0.8, 0.6, 0.3);
+		level.getServer().getPlayerList().broadcastSystemMessage(Component.literal(player.getName().getString() + "'s " + before
+				+ " has turned black. A new Black Blade is born!").withStyle(ChatFormatting.DARK_PURPLE, ChatFormatting.BOLD), false);
+	}
 
 	public static BladeRecord record(ItemStack katana) {
 		return katana.getOrDefault(ArsenalComponents.BLADE_RECORD, BladeRecord.EMPTY);
