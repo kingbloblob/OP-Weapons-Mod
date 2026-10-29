@@ -137,7 +137,8 @@ variants = {}
 for d, y in [("north", 0), ("east", 90), ("south", 180), ("west", 270)]:
     variants[f"facing={d}"] = {"model": "arsenal:block/shipwrights_anvil", "y": y} if y else {"model": "arsenal:block/shipwrights_anvil"}
 w(f'{A}/blockstates/shipwrights_anvil.json', {"variants": variants})
-# Navy stations (captured from Marine bases). Drawn by tools/gen_textures.py; a captured one has a Jolly Roger on it.
+# Navy stations (captured from Marine bases). Drawn by tools/gen_textures.py; a captured one has a Jolly Roger
+# on its front and top.
 navy_stations = {
     # front (north), sides, top
     "marine_armory_bench": ("front", "side", "top"),
@@ -147,8 +148,9 @@ navy_stations = {
 for name, (front, side, top) in navy_stations.items():
     for tag in ["", "_captured"]:
         t = lambda face: f"arsenal:block/{name}_{face}{tag}"
+        s = f"arsenal:block/{name}_{side}"  # the flag only goes on the front and top
         w(f'{A}/models/block/{name}{tag}.json', {"parent": "minecraft:block/cube", "textures": {
-            "particle": t(side), "north": t(front), "south": t(side), "east": t(side), "west": t(side),
+            "particle": t(side), "north": t(front), "south": s, "east": s, "west": s,
             "up": t(top), "down": "arsenal:block/navy_station_bottom"}})
     w(f'{A}/items/{name}.json', {"model": {"type": "minecraft:model", "model": f"arsenal:block/{name}"}})
     variants = {}

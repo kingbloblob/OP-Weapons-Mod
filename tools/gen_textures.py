@@ -578,7 +578,7 @@ OUTFITS.update({
     # An Egghead scientist's white coat over a cyan suit.
     'vegapunk_compound': outfit('officer', WHITE, cloth_of('vegapunk_compound'), WHITE, main_of('vegapunk_compound'),
                                 ramp('0e1a20', '1d3540', '2c5060', '3f6e80', '5a90a4'), BLACK, BLACK,
-                                main_of('vegapunk_compound')),
+                                main_of('vegapunk_compound')) | {'mark': False},  # a lab coat, not a Justice coat
 })
 
 GOLD = ramp('5a400c', '8a6418', 'c99a32', 'e2b84a', 'f5d77a')
@@ -1003,7 +1003,7 @@ def worn(material):
                 if x in (3, 4):
                     return white if y == 0 else FIXED['T'] if y <= 6 else (coat2, 2)
                 return (coat2, 2)
-            if face == 'back' and x < 7 and JUSTICE[y][x] == '#':
+            if face == 'back' and o.get('mark', True) and x < 7 and JUSTICE[y][x] == '#':
                 return black
             return (coat, 3)
 

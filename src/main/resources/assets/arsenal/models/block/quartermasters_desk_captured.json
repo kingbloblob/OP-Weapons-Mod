@@ -3,9 +3,9 @@
   "textures": {
     "particle": "arsenal:block/quartermasters_desk_side_captured",
     "north": "arsenal:block/quartermasters_desk_front_captured",
-    "south": "arsenal:block/quartermasters_desk_side_captured",
-    "east": "arsenal:block/quartermasters_desk_side_captured",
-    "west": "arsenal:block/quartermasters_desk_side_captured",
+    "south": "arsenal:block/quartermasters_desk_side",
+    "east": "arsenal:block/quartermasters_desk_side",
+    "west": "arsenal:block/quartermasters_desk_side",
     "up": "arsenal:block/quartermasters_desk_top_captured",
     "down": "arsenal:block/navy_station_bottom"
   }

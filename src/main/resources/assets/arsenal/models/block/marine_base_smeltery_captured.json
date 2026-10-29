@@ -3,9 +3,9 @@
   "textures": {
     "particle": "arsenal:block/marine_base_smeltery_side_captured",
     "north": "arsenal:block/marine_base_smeltery_front_captured",
-    "south": "arsenal:block/marine_base_smeltery_side_captured",
-    "east": "arsenal:block/marine_base_smeltery_side_captured",
-    "west": "arsenal:block/marine_base_smeltery_side_captured",
+    "south": "arsenal:block/marine_base_smeltery_side",
+    "east": "arsenal:block/marine_base_smeltery_side",
+    "west": "arsenal:block/marine_base_smeltery_side",
     "up": "arsenal:block/marine_base_smeltery_top_captured",
     "down": "arsenal:block/navy_station_bottom"
   }
