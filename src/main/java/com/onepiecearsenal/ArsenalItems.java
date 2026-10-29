@@ -104,15 +104,15 @@ public class ArsenalItems {
 
 	public static final Block MARINE_ARMORY_BENCH = block("marine_armory_bench", MarineArmoryBenchBlock::new,
 			BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(5.0f, 1200.0f).sound(SoundType.ANVIL)
-					.requiresCorrectToolForDrops().pushReaction(PushReaction.BLOCK));
+					.requiresCorrectToolForDrops().pushReaction(PushReaction.IMMOVEABLE));
 	public static final Block QUARTERMASTERS_DESK = block("quartermasters_desk", properties -> new NavyCastingBlock("Quartermaster's Desk",
 			"Copied", SoundEvents.VILLAGER_WORK_CARTOGRAPHER, List.of(ArsenalMaterial.MARINE_STEEL), properties),
 			BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(2.5f, 1200.0f).sound(SoundType.WOOD)
-					.pushReaction(PushReaction.BLOCK));
+					.pushReaction(PushReaction.IMMOVEABLE));
 	public static final Block MARINE_BASE_SMELTERY = block("marine_base_smeltery", properties -> new NavyCastingBlock("Marine Base Smeltery",
 			"Cast", SoundEvents.LAVA_EXTINGUISH, List.of(ArsenalMaterial.KAIROSEKI), properties),
 			BlockBehaviour.Properties.of().mapColor(MapColor.STONE).strength(5.0f, 1200.0f).sound(SoundType.STONE)
-					.requiresCorrectToolForDrops().pushReaction(PushReaction.BLOCK));
+					.requiresCorrectToolForDrops().pushReaction(PushReaction.IMMOVEABLE));
 
 	public static final ResourceKey<CreativeModeTab> TAB_KEY = ResourceKey.create(
 			BuiltInRegistries.CREATIVE_MODE_TAB.key(), ArsenalMod.id("arsenal"));
