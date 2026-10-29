@@ -132,9 +132,11 @@ public final class Meito {
 		return OnePieceBridge.hakiLevel(player) >= WIELD_HAKI[grade] || OnePieceBridge.bounty(player) >= WIELD_BOUNTY[grade];
 	}
 
-	/** "Haki level 3 or a 300,000,000 Berry bounty". */
+	/** "Haki 3 or a 300M bounty". Kept short so it fits on the action bar. */
 	public static String wieldRequirement(int grade) {
-		return String.format("Haki level %d or a %,d Berry bounty", WIELD_HAKI[grade], WIELD_BOUNTY[grade]);
+		long bounty = WIELD_BOUNTY[grade];
+		String berries = bounty >= 1_000_000_000L ? bounty / 1_000_000_000L + "B" : bounty / 1_000_000L + "M";
+		return "Haki " + WIELD_HAKI[grade] + " or a " + berries + " bounty";
 	}
 
 	// ---- The blade ----
@@ -186,7 +188,7 @@ public final class Meito {
 	/** Why a whetstone can't raise this sword to the target grade for this player, or null if it can. */
 	private static String promotionProblem(Player player, ItemStack sword, int target) {
 		if (!worthy(player, target)) {
-			return "You can't hone a blade you couldn't wield. " + OnePieceBridge.gradeName(target) + " needs " + wieldRequirement(target) + ".";
+			return "You couldn't wield it at that grade. Needs " + wieldRequirement(target) + ".";
 		}
 		if (sword.getItem() instanceof KatanaItem) {
 			for (Need need : promotionNeeds(sword)) {
