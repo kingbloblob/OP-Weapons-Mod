@@ -9,6 +9,7 @@
     "fabric-gametest": [
       "com.onepiecearsenal.test.ArmorTests",
       "com.onepiecearsenal.test.BossGearTests",
+      "com.onepiecearsenal.test.CannonTests",
       "com.onepiecearsenal.test.DisguiseTests",
       "com.onepiecearsenal.test.GuideTests",
       "com.onepiecearsenal.test.MeitoTests",

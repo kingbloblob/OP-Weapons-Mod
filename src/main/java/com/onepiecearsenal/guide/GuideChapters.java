@@ -19,6 +19,8 @@ import net.minecraft.world.item.ItemStack;
 
 import com.onepiecearsenal.ArsenalItems;
 import com.onepiecearsenal.ArsenalMod;
+import com.onepiecearsenal.cannon.CannonShells;
+import com.onepiecearsenal.cannon.CannonStats;
 import com.onepiecearsenal.loot.BossGear;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Faction;
@@ -133,6 +135,9 @@ public final class GuideChapters {
 		if (shell != null) {
 			return ArmorStats.build(shell, material, ArsenalMaterial.DRIFTWOOD);
 		}
+		if (item == ArsenalItems.SHIP_CANNON) {
+			return CannonStats.build(material, iron, iron);
+		}
 		if (item instanceof PartItem) {
 			return PartItem.of(item, material);
 		}
@@ -149,6 +154,7 @@ public final class GuideChapters {
 			case "guns" -> guns();
 			case "navy_casting" -> navyCasting();
 			case "meito" -> meito();
+			case "cannons" -> cannons();
 			case "navy_brass" -> navyBrass();
 			case "upgrades" -> upgrades();
 			default -> List.of("(Nothing is written here yet: \"" + what + "\" isn't a page the manual knows.)");
@@ -247,6 +253,34 @@ public final class GuideChapters {
 					+ " seconds to reload, before its parts.");
 		}
 		return lines;
+	}
+
+	private static List<String> cannons() {
+		List<String> lines = new ArrayList<>();
+		lines.add("# Bores and shells by material");
+		lines.add("Bore: damage and range of a Ship Cannon with that bore, compared to a plain Cannon. Shell: hull damage compared to a cannonball, and what its burst does.");
+		for (ArsenalMaterial material : ArsenalMaterial.values()) {
+			if (material.armorOnly) {
+				continue;
+			}
+			lines.add(material.displayName);
+			lines.add("- Bore: " + percent(CannonStats.damage(material)) + " damage, " + percent(CannonStats.range(material)) + " range. As a fuse: "
+					+ percent(CannonStats.reload(material)) + " reload time. As a carriage: " + percent(CannonStats.spread(material)) + " spread.");
+			StringBuilder shell = new StringBuilder("- Shell: " + percent(CannonShells.hullDamage(material)) + " hull damage.");
+			if (CannonShells.burstTrait(material)) {
+				shell.append(" Burst: ").append(material.headTrait.displayName).append('.');
+			}
+			String onShip = CannonShells.shipEffect(material);
+			if (onShip != null) {
+				shell.append(" On a ship: ").append(onShip);
+			}
+			lines.add(shell.toString());
+		}
+		return lines;
+	}
+
+	private static String percent(float multiplier) {
+		return Math.round(multiplier * 100) + "%";
 	}
 
 	private static List<String> navyCasting() {

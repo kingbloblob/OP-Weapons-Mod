@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "arsenal:item/ship_cannon/carriage/sea_king_bone"
+  }
+}

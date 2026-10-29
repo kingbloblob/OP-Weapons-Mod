@@ -24,12 +24,18 @@ import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.item.equipment.EquipmentAssets;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 
+import com.onepiecearsenal.cannon.CannonStats;
+import com.onepiecearsenal.cannon.ShipCannonBlock;
+import com.onepiecearsenal.cannon.ShipCannonBlockEntity;
+import com.onepiecearsenal.cannon.ShipCannonItem;
 import com.onepiecearsenal.guide.GuideBook;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.part.PartItem;
@@ -102,6 +108,9 @@ public class ArsenalItems {
 	public static final Item STUDS = part(PartType.STUDS);
 	public static final Item GRIP = part(PartType.GRIP);
 	public static final Item HAFT = part(PartType.HAFT);
+	public static final Item GUN_CARRIAGE = part(PartType.GUN_CARRIAGE);
+	/** Cannon ammo, one per material (see CannonShells). A part, so the Navy stations can cast it too. */
+	public static final Item CANNON_SHELL = part(PartType.CANNON_SHELL);
 
 	// ---- Weapons ----
 
@@ -145,6 +154,17 @@ public class ArsenalItems {
 	public static final Item COAT = armor("coat", "Coat", ArmorType.CHESTPLATE);
 	public static final Item SASH = armor("sash", "Sash", ArmorType.LEGGINGS);
 	public static final Item BOOTS = armor("boots", "Boots", ArmorType.BOOTS);
+
+	// ---- Ship cannons (see the cannon package) ----
+
+	/** Forged at the Shipwright's Anvil from a Cannon Bore, a Fuse and a Gun Carriage. The parts are saved on its block entity. */
+	public static final Block SHIP_CANNON_BLOCK = Registry.register(BuiltInRegistries.BLOCK, ArsenalMod.id("ship_cannon"),
+			new ShipCannonBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(3.0f).sound(SoundType.METAL).noOcclusion()
+					.setId(ResourceKey.create(Registries.BLOCK, ArsenalMod.id("ship_cannon")))));
+	public static final Item SHIP_CANNON = register("ship_cannon", properties -> new ShipCannonItem(SHIP_CANNON_BLOCK, properties),
+			new Item.Properties().stacksTo(16).useBlockDescriptionPrefix());
+	public static final BlockEntityType<ShipCannonBlockEntity> SHIP_CANNON_ENTITY = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,
+			ArsenalMod.id("ship_cannon"), FabricBlockEntityTypeBuilder.create(ShipCannonBlockEntity::new, SHIP_CANNON_BLOCK).build());
 
 	// ---- Stations ----
 
@@ -207,6 +227,10 @@ public class ArsenalItems {
 						for (ArsenalMaterial material : metals) {
 							output.accept(GunStats.build(type, material, ArsenalMaterial.SHIP_IRON, ArsenalMaterial.SHIP_IRON));
 						}
+					}
+					// One Ship Cannon per bore material, with a Ship Iron fuse and carriage.
+					for (ArsenalMaterial material : metals) {
+						output.accept(CannonStats.build(material, ArsenalMaterial.SHIP_IRON, ArsenalMaterial.SHIP_IRON));
 					}
 					// One armor set of each material, with a Driftwood lining.
 					for (ArsenalMaterial material : ArsenalMaterial.values()) {

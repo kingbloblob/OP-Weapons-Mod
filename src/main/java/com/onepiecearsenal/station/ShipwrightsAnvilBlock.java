@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.BlockHitResult;
 
+import com.onepiecearsenal.cannon.CannonStats;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Faction;
 import com.onepiecearsenal.part.PartItem;
@@ -38,7 +39,7 @@ import com.onepiecearsenal.upgrade.Upgrades;
 /**
  * The pirate assembly station. Right-click it with an empty hand while you carry a full set of parts
  * anywhere in your inventory, and it joins them: a katana blade, tsuba and hilt make a katana; a barrel, firing
- * part and stock make a gun (see GunType); a head, binding and handle make a cutlass, axe, kanabo or spear
+ * part and stock make a gun (see GunType); a cannon bore, fuse and gun carriage make a Ship Cannon; a head, binding and handle make a cutlass, axe, kanabo or spear
  * (see WeaponType); an armor shell (hat crown, coat plates, sash weave or boot soles) and a lining
  * make that piece of armor. Like the One Piece Mod's stations, the parts don't need to be in a grid. If you carry
  * several sets, they are forged in that order, one per click.
@@ -128,7 +129,7 @@ public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 	private record Forged(ItemStack item, int[] slots) {
 	}
 
-	/** The first full set the smith carries, in this order: katana, guns, other hand weapons, armor. Null if none. */
+	/** The first full set the smith carries, in this order: katana, guns, ship cannon, other hand weapons, armor. Null if none. */
 	private static Forged findSet(Inventory inventory, boolean navy) {
 		int[] used = findParts(inventory, navy, PartType.KATANA_BLADE, PartType.TSUBA, PartType.HILT);
 		if (used != null) {
@@ -138,6 +139,9 @@ public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 			if ((used = findParts(inventory, navy, type.parts())) != null) {
 				return new Forged(GunStats.build(type, material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2])), used);
 			}
+		}
+		if ((used = findParts(inventory, navy, PartType.CANNON_BORE, PartType.FUSE, PartType.GUN_CARRIAGE)) != null) {
+			return new Forged(CannonStats.build(material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2])), used);
 		}
 		for (WeaponType type : WeaponType.values()) {
 			// Marine Sabres and Jittes are Navy designs: only the Marine Armory Bench puts them together.

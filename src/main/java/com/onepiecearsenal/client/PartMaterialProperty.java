@@ -17,7 +17,7 @@ import com.onepiecearsenal.ArsenalComponents;
  * Lets an item model pick a texture by material, Tinkers' Construct style. In assets/arsenal/items:
  * <pre>{"type": "minecraft:select", "property": "arsenal:part_material", "index": 0, "cases": [...]}</pre>
  * Without an index it reads a part's own material. With one it reads that part of a forged weapon or armor piece
- * (0 = blade, barrel, head or shell, in the order KatanaStats, GunStats, WeaponStats and ArmorStats save them).
+ * (0 = blade, barrel, head, shell or bore, in the order KatanaStats, GunStats, WeaponStats, ArmorStats and CannonStats save them).
  */
 public record PartMaterialProperty(int index) implements SelectItemModelProperty<String> {
 	public static final SelectItemModelProperty.Type<PartMaterialProperty, String> TYPE = SelectItemModelProperty.Type.create(
@@ -40,6 +40,9 @@ public record PartMaterialProperty(int index) implements SelectItemModelProperty
 		}
 		if (parts == null) {
 			parts = stack.get(ArsenalComponents.ARMOR_PARTS);
+		}
+		if (parts == null) {
+			parts = stack.get(ArsenalComponents.CANNON_PARTS);
 		}
 		return parts != null && index < parts.size() ? parts.get(index) : null;
 	}

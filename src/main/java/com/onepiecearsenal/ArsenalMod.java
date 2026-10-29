@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import net.fabricmc.api.ModInitializer;
 
+import com.onepiecearsenal.cannon.CannonShells;
 import com.onepiecearsenal.compat.MainModLinks;
 import com.onepiecearsenal.disguise.MarineDisguise;
 import com.onepiecearsenal.disguise.PirateGrudge;
@@ -50,6 +51,7 @@ public class ArsenalMod implements ModInitializer {
 		NavyStations.initialize();
 		Upgrades.initialize();
 		GuideBook.initialize();
+		CannonShells.initialize();
 	}
 
 	public static Identifier id(String path) {

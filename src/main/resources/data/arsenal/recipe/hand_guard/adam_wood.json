@@ -3,10 +3,11 @@
   "category": "equipment",
   "group": "arsenal_hand_guard",
   "key": {
-    "M": "onepiece:adam_log"
+    "M": "onepiece:adam_log",
+    "N": "minecraft:iron_nugget"
   },
   "pattern": [
-    "M M",
+    "MNM",
     "MMM"
   ],
   "result": {

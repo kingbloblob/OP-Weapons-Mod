@@ -11,6 +11,8 @@ import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.equipment.ArmorType;
 
 import com.onepiecearsenal.ArsenalComponents;
+import com.onepiecearsenal.cannon.CannonShells;
+import com.onepiecearsenal.cannon.CannonStats;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
 import com.onepiecearsenal.tool.ArmorStats;
@@ -52,6 +54,21 @@ public class PartItem extends Item {
 		return Component.literal(material == null ? "Blank " + type.displayName : material.displayName + " " + type.displayName);
 	}
 
+	/** Cannon Shells aren't built into anything: say what they do when fired. */
+	private static void shellTooltip(ArsenalMaterial material, Consumer<Component> textConsumer) {
+		textConsumer.accept(Component.literal(String.format("Hull damage: %d%% of a cannonball's", Math.round(CannonShells.hullDamage(material) * 100)))
+				.withStyle(ChatFormatting.BLUE));
+		if (CannonShells.burstTrait(material)) {
+			Trait trait = material.headTrait;
+			textConsumer.accept(Component.literal("Burst: " + trait.displayName + ". " + trait.description).withStyle(ChatFormatting.GOLD));
+		}
+		String onShip = CannonShells.shipEffect(material);
+		if (onShip != null) {
+			textConsumer.accept(Component.literal("On a ship: " + onShip).withStyle(ChatFormatting.GOLD));
+		}
+		textConsumer.accept(Component.literal("Hold it when you fire your cannons to load it.").withStyle(ChatFormatting.DARK_GRAY));
+	}
+
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay displayComponent, Consumer<Component> textConsumer, TooltipFlag type) {
 		ArsenalMaterial material = material(stack);
@@ -62,6 +79,10 @@ public class PartItem extends Item {
 		if (material.armorOnly && !this.type.isArmor()) {
 			// Only from the creative menu: hides and leathers have no weapon part recipes.
 			textConsumer.accept(Component.literal("Too soft for weapons: the anvil won't take it.").withStyle(ChatFormatting.RED));
+		}
+		if (this.type == PartType.CANNON_SHELL) {
+			shellTooltip(material, textConsumer);
+			return;
 		}
 		GunType gun = GunType.using(this.type);
 		WeaponType weapon = WeaponType.withHead(this.type);
@@ -75,6 +96,8 @@ public class PartItem extends Item {
 					GunStats.damage(gun, material), GunStats.range(gun, material))).withStyle(ChatFormatting.BLUE));
 			case LOCK, FUSE -> textConsumer.accept(Component.literal(String.format("%s reload: %.2fs", gun.displayName, GunStats.cooldown(gun, material) / 20.0))
 					.withStyle(ChatFormatting.BLUE));
+			case GUN_CARRIAGE -> textConsumer.accept(Component.literal(String.format("Ship Cannon spread: %d%% of a plain Cannon's",
+					Math.round(CannonStats.spread(material) * 100))).withStyle(ChatFormatting.BLUE));
 			case STOCK -> textConsumer.accept(Component.literal(String.format("Spread: %.2f", GunStats.spread(gun, material)))
 					.withStyle(ChatFormatting.BLUE));
 			case CROWN, COAT_PLATES, SASH_WEAVE, BOOT_SOLES -> {
@@ -83,6 +106,15 @@ public class PartItem extends Item {
 						+ (ArmorStats.toughness(material) > 0 ? ", toughness: " + (int) ArmorStats.toughness(material) : "")).withStyle(ChatFormatting.BLUE));
 			}
 			case LINING -> textConsumer.accept(Component.literal("Comfort: " + material.displayName.toLowerCase() + " padding").withStyle(ChatFormatting.BLUE));
+			default -> {
+			}
+		}
+		if (this.type == PartType.CANNON_BORE) {
+			textConsumer.accept(Component.literal(String.format("Ship Cannon: %d%% damage, %d%% range", Math.round(CannonStats.damage(material) * 100),
+					Math.round(CannonStats.range(material) * 100))).withStyle(ChatFormatting.BLUE));
+		} else if (this.type == PartType.FUSE) {
+			textConsumer.accept(Component.literal(String.format("Ship Cannon reload: %d%% of a plain Cannon's",
+					Math.round(CannonStats.reload(material) * 100))).withStyle(ChatFormatting.BLUE));
 		}
 		textConsumer.accept(Component.literal("Durability: " + material.durability).withStyle(ChatFormatting.BLUE));
 		Trait trait = this.type.head ? material.headTrait : material.handleTrait;

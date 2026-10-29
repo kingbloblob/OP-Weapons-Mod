@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_cannon_shell",
+  "key": {
+    "M": "arsenal:driftwood",
+    "G": "minecraft:gunpowder"
+  },
+  "pattern": [
+    " M ",
+    "MGM",
+    " M "
+  ],
+  "result": {
+    "id": "arsenal:cannon_shell",
+    "count": 4,
+    "components": {
+      "arsenal:part_material": "driftwood"
+    }
+  }
+}
