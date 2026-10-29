@@ -84,6 +84,7 @@ public class TraitEffects {
 			ItemStack gun = ArsenalGunItem.firing();
 			if (!dealingExtra && !blocked && !gun.isEmpty() && source.is(DamageTypes.THROWN) && source.getEntity() instanceof ServerPlayer shooter
 					&& shooter.level() instanceof ServerLevel serverLevel) {
+				entity.damageCooldownTime = 0; // The shot just hit, so without this its extra trait hits would bounce off.
 				onHit(shooter, serverLevel, entity, GunStats.traits(gun), baseDamageTaken, false);
 			}
 		});
@@ -248,6 +249,6 @@ public class TraitEffects {
 		} finally {
 			dealingExtra = false;
 		}
-		target.setInvulnerableTime(0);
+		target.damageCooldownTime = 0; // 26.3: the hit-immunity timer (setInvulnerableTime no longer resets it).
 	}
 }
