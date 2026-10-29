@@ -3,6 +3,7 @@ package com.onepiecearsenal.material;
 import java.util.EnumSet;
 import java.util.Set;
 
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -53,6 +54,8 @@ public class TraitEffects {
 	private static final float PLATED_CHANCE = 0.15f;
 	/** Share of a Keen weapon's hit that ignores armor. */
 	private static final float KEEN_SHARE = 0.15f;
+	/** Share of a Black Blade's hit that its Haki coat drives through armor. */
+	private static final float BLACK_BLADE_SHARE = 0.25f;
 	/** Berries of bounty a Greed weapon adds for each Marine you beat, on top of the main mod's own. */
 	private static final long GREED_BOUNTY = 50_000L;
 	/** Hunger exhaustion Endurance armor takes away each second (4 exhaustion = 1 hunger point). */
@@ -177,6 +180,12 @@ public class TraitEffects {
 			// Magic damage skips armor, so this part of the hit goes straight through.
 			extraHit(player, level, target, hitDamage * KEEN_SHARE, player.damageSources().indirectMagic(player, player));
 		}
+		if (traits.contains(Trait.BLACK_BLADE) && !wears(target, Trait.SEASTONE)) {
+			// The Haki coat hits past armor, the same way Keen does. Seastone armor stops it.
+			extraHit(player, level, target, hitDamage * BLACK_BLADE_SHARE, player.damageSources().indirectMagic(player, player));
+			level.sendParticles(ParticleTypes.SQUID_INK, target.getX(), target.getY() + target.getBbHeight() / 2, target.getZ(),
+					6, 0.3, 0.4, 0.3, 0.05);
+		}
 		if (traits.contains(Trait.RECOIL)) {
 			target.knockback(0.6, player.getX() - target.getX(), player.getZ() - target.getZ(), player.damageSources().playerAttack(player), 0.0f);
 		}
@@ -210,6 +219,15 @@ public class TraitEffects {
 		}
 		for (EquipmentSlot slot : ARMOR_SLOTS) {
 			if (hasTrait(player.getItemBySlot(slot), trait)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private static boolean wears(LivingEntity entity, Trait trait) {
+		for (EquipmentSlot slot : ARMOR_SLOTS) {
+			if (hasTrait(entity.getItemBySlot(slot), trait)) {
 				return true;
 			}
 		}

@@ -28,7 +28,10 @@ public class KatanaItem extends Item {
 	@Override
 	public Component getName(ItemStack stack) {
 		List<ArsenalMaterial> parts = KatanaStats.parts(stack);
-		return Component.literal(parts.isEmpty() ? "Unforged Katana" : parts.get(0).displayName + " Katana");
+		if (parts.isEmpty()) {
+			return Component.literal("Unforged Katana");
+		}
+		return Component.literal(KatanaStats.isBlackBlade(stack) ? "Black Blade" : parts.get(0).displayName + " Katana");
 	}
 
 	@Override
@@ -54,6 +57,12 @@ public class KatanaItem extends Item {
 		int grade = OnePieceBridge.swordGrade(stack);
 		if (grade > 0) {
 			textConsumer.accept(Component.literal("Wielder needs " + Meito.wieldRequirement(grade)).withStyle(ChatFormatting.DARK_AQUA));
+		}
+		if (Meito.canAwaken(stack)) {
+			int minutes = Meito.hakiSeconds(stack) / 60;
+			textConsumer.accept(Component.literal("Black Blade awakening: " + minutes + "/" + Meito.AWAKEN_SECONDS / 60 + " min of Haki fighting")
+					.withStyle(ChatFormatting.DARK_PURPLE));
+			textConsumer.accept(Component.literal(" Fight with Armament Haki " + Meito.AWAKEN_ARMAMENT + "+ switched on").withStyle(ChatFormatting.DARK_GRAY));
 		}
 		List<Meito.Need> needs = Meito.promotionNeeds(stack);
 		if (!needs.isEmpty()) {

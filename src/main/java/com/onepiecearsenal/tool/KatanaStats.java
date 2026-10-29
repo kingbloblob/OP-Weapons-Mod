@@ -56,6 +56,42 @@ public final class KatanaStats {
 		return katana;
 	}
 
+	/**
+	 * A Black Blade awakening: the katana's blade turns to Black Blade Steel where it is, so it keeps its tsuba, hilt,
+	 * grade, blade level, enchantments and name. Its damage and durability become the new blade's, and it's fully mended.
+	 */
+	public static void awaken(ItemStack katana) {
+		List<ArsenalMaterial> parts = parts(katana);
+		if (parts.isEmpty()) {
+			return;
+		}
+		ArsenalMaterial blade = ArsenalMaterial.BLACK_BLADE;
+		ArsenalMaterial tsuba = parts.get(1);
+		ArsenalMaterial hilt = parts.get(2);
+		katana.set(ArsenalComponents.KATANA_PARTS, List.of(blade.id(), tsuba.id(), hilt.id()));
+
+		ItemAttributeModifiers old = katana.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
+		List<ItemAttributeModifiers.Entry> entries = new ArrayList<>();
+		for (ItemAttributeModifiers.Entry entry : old.modifiers()) {
+			if (!entry.modifier().is(DAMAGE_MODIFIER)) {
+				entries.add(entry);
+			}
+		}
+		katana.set(DataComponents.ATTRIBUTE_MODIFIERS, new ItemAttributeModifiers(entries).withModifierAdded(Attributes.ATTACK_DAMAGE,
+				new AttributeModifier(DAMAGE_MODIFIER, blade.damage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND));
+
+		Set<Trait> traits = traits(blade, tsuba, hilt);
+		katana.set(DataComponents.MAX_DAMAGE, TraitStats.durability((blade.durability + tsuba.durability + hilt.durability) / 3, traits));
+		katana.setDamageValue(0);
+		TraitStats.finish(katana, traits);
+	}
+
+	/** True once a katana's blade has awakened into a Black Blade. */
+	public static boolean isBlackBlade(ItemStack katana) {
+		List<ArsenalMaterial> parts = parts(katana);
+		return !parts.isEmpty() && parts.get(0) == ArsenalMaterial.BLACK_BLADE;
+	}
+
 	/** The katana's materials as blade, tsuba, hilt. Empty for a katana that wasn't built from parts. */
 	public static List<ArsenalMaterial> parts(ItemStack katana) {
 		List<ArsenalMaterial> parts = new ArrayList<>();

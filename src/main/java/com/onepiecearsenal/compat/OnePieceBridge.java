@@ -143,6 +143,12 @@ public final class OnePieceBridge {
 		return Math.max(haki.armamentLevel(), Math.max(haki.observationLevel(), haki.conquerorLevel()));
 	}
 
+	/** The player's Armament Haki level if they have it switched on, 0 if it's off or not awakened. */
+	public static int activeArmamentLevel(Player player) {
+		HakiData haki = HakiAttachments.get(player);
+		return haki.armamentOn() ? haki.armamentLevel() : 0;
+	}
+
 	/** The tier (1 to 5) of a main mod boss, like 5 for an Emperor or Admiral. 0 if it isn't a boss. */
 	public static int bossTier(LivingEntity entity) {
 		return entity instanceof CharacterEntity character && character.isBoss() && character.getData() != null

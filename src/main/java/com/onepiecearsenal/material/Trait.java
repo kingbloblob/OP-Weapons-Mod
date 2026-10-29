@@ -18,7 +18,7 @@ public enum Trait {
 	LASER_ETCHED("Laser-etched", "Charged hits scorch the target.", true),
 	EDIBLE_FORGED("Edible-forged", "Slowly mends itself while you hold or wear it.", true),
 	UNBREAKABLE_GRAIN("Unbreakable Grain", "Lasts twice as long.", true),
-	BLACK_BLADE("Black Blade", "A permanent coat of Armament Haki.", false),
+	BLACK_BLADE("Black Blade", "A permanent coat of Armament Haki: 25% of each hit goes through armor, unless it's seastone.", true),
 	FRONTIER_SCIENCE("Frontier Science", "Charged hits burn or freeze the target.", true),
 	WATERPROOF("Waterproof", "As armor: swim faster.", true),
 	ENDURANCE("Endurance", "As armor: you get hungry more slowly.", true),

@@ -50,6 +50,14 @@ public class ArsenalComponents {
 			ArsenalMod.id("blade_record"),
 			DataComponentType.<BladeRecord>builder().persistent(BladeRecord.CODEC).networkSynchronized(BladeRecord.STREAM_CODEC).build());
 
+	/**
+	 * Seconds a Supreme Grade katana has spent in Haki-coated fights, toward its Black Blade awakening (see Meito).
+	 * It ticks up every second of a fight, so it skips the "pull out" animation.
+	 */
+	public static final DataComponentType<Integer> HAKI_SOAK = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
+			ArsenalMod.id("haki_soak"),
+			DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT).ignoreSwapAnimation().build());
+
 	/** Loads this class, which registers the components above. */
 	static void initialize() {
 	}
