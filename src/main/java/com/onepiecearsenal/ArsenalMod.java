@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import net.fabricmc.api.ModInitializer;
 
+import com.onepiecearsenal.cannon.CannonShells;
 import com.onepiecearsenal.compat.MainModLinks;
 import com.onepiecearsenal.disguise.MarineDisguise;
 import com.onepiecearsenal.disguise.PirateGrudge;
@@ -46,6 +47,7 @@ public class ArsenalMod implements ModInitializer {
 		MainModLinks.initialize(); // After Meito, so whetstones its gates refuse don't count.
 		NavyStations.initialize();
 		GuideBook.initialize();
+		CannonShells.initialize();
 	}
 
 	public static Identifier id(String path) {

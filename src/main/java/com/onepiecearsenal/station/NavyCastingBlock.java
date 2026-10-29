@@ -82,9 +82,9 @@ public class NavyCastingBlock extends NavyStationBlock {
 	/** Ingots per part, the same as the crafting table recipes for the other materials. */
 	public static int cost(PartType type) {
 		return switch (type) {
-			case HILT, LINING, FUSE, BINDING, STUDS, GRIP, HAFT -> 1;
+			case HILT, LINING, FUSE, BINDING, STUDS, GRIP, HAFT, CANNON_SHELL -> 1;
 			case BARREL, LOCK, SABRE_BLADE, JITTE_ROD -> 2;
-			case KATANA_BLADE, STOCK, LONG_BARREL, CUTLASS_BLADE -> 3;
+			case KATANA_BLADE, STOCK, LONG_BARREL, CUTLASS_BLADE, GUN_CARRIAGE -> 3;
 			case TSUBA, BOOT_SOLES, AXE_HEAD, SPEARHEAD -> 4;
 			case CROWN, CANNON_BORE, HAND_GUARD -> 5;
 			case CLUB_HEAD -> 6;

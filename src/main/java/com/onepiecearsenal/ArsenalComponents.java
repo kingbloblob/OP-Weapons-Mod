@@ -33,6 +33,12 @@ public class ArsenalComponents {
 			DataComponentType.<List<String>>builder().persistent(Codec.STRING.listOf())
 					.networkSynchronized(ByteBufCodecs.STRING_UTF8.apply(ByteBufCodecs.list())).build());
 
+	/** The material ids of a Ship Cannon's bore, fuse and gun carriage, in that order (on the item and its block entity). */
+	public static final DataComponentType<List<String>> CANNON_PARTS = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
+			ArsenalMod.id("cannon_parts"),
+			DataComponentType.<List<String>>builder().persistent(Codec.STRING.listOf())
+					.networkSynchronized(ByteBufCodecs.STRING_UTF8.apply(ByteBufCodecs.list())).build());
+
 	/** The material ids of a cutlass, sabre, axe, jitte, kanabo or spear's head, binding and handle, in that order. */
 	public static final DataComponentType<List<String>> WEAPON_PARTS = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
 			ArsenalMod.id("weapon_parts"),

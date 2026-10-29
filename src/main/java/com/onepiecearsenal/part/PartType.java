@@ -15,6 +15,9 @@ public enum PartType {
 	LONG_BARREL("long_barrel", "Long Barrel", true),
 	CANNON_BORE("cannon_bore", "Cannon Bore", true),
 	FUSE("fuse", "Fuse", false),
+	// The ship cannon's carriage (its bore and fuse are the hand cannon's), and cannon ammo (see cannon/).
+	GUN_CARRIAGE("gun_carriage", "Gun Carriage", false),
+	CANNON_SHELL("cannon_shell", "Cannon Shell", true),
 	// Heads of the other hand weapons (see WeaponType), and the bindings and handles they share.
 	CUTLASS_BLADE("cutlass_blade", "Cutlass Blade", true),
 	SABRE_BLADE("sabre_blade", "Sabre Blade", true),

@@ -1,5 +1,5 @@
 {
-	"_help": "The Shipwright's Manual (GuideChapters.java). Each chapter is a button on the left of the book. Lines in 'text': '# ' = heading, '- ' = bullet point, '> ' = tip, '' = empty line, anything else = normal text. Pages are split up by themselves. 'icon' is any item id; Arsenal gear in it is shown made of 'icon_material'. 'color' is a hex colour. 'generated' adds lines written from the mod's own data after the text: materials, traits, weapons, guns, navy_casting or meito. 'after' is more text that goes after the generated lines.",
+	"_help": "The Shipwright's Manual (GuideChapters.java). Each chapter is a button on the left of the book. Lines in 'text': '# ' = heading, '- ' = bullet point, '> ' = tip, '' = empty line, anything else = normal text. Pages are split up by themselves. 'icon' is any item id; Arsenal gear in it is shown made of 'icon_material'. 'color' is a hex colour. 'generated' adds lines written from the mod's own data after the text: materials, traits, weapons, guns, cannons, navy_casting or meito. 'after' is more text that goes after the generated lines.",
 	"chapters": [
 		{
 			"id": "welcome",
@@ -116,6 +116,37 @@
 				"- Stock: the aim. A higher tier stock spreads less."
 			],
 			"generated": "guns"
+		},
+		{
+			"id": "cannons",
+			"title": "Ship Cannons",
+			"icon": "arsenal:ship_cannon",
+			"icon_material": "cannon_bronze",
+			"color": "8C8C9C",
+			"text": [
+				"Out at sea, your ship is only as strong as her guns. A Ship Cannon is a One Piece Mod Cannon you build yourself, and its parts decide how it shoots.",
+				"",
+				"# Forging one",
+				"Carry a Cannon Bore, a Fuse and a Gun Carriage to a Shipwright's Anvil and right-click it with an empty hand. The bore and fuse are the same parts the Hand Cannon uses. A Navy bore (like Kairoseki) has to be put together at a Marine Armory Bench.",
+				"",
+				"# What each part does",
+				"- Cannon Bore: how hard its cannonballs hit ships and how far they fly.",
+				"- Fuse: how fast your crew reloads. A light material reloads faster.",
+				"- Gun Carriage: how true it aims. A higher tier carriage spreads less.",
+				"A Ship Iron cannon shoots exactly like a plain Cannon. Hover over a cannon to see how it compares.",
+				"",
+				"# Firing it",
+				"Place it on deck facing out over the rail, like a plain Cannon. Aboard, press the fire cannons key (M) while looking over that side. On land, right-click it holding a cannonball or shell. When a broadside mixes cannons, the crew reloads as fast as those cannons take on average.",
+				"> A ship keeps each cannon's parts while she sails, and a broken cannon drops with its parts still on it.",
+				"",
+				"# Cannon Shells",
+				"Shells are cannon ammo made of any material: four from a crafting table (the material around gunpowder, in a plus shape). Navy shells are cast at a Navy station: hold any shell as the pattern, and each one takes one Navy ingot. Hold a stack when you fire and every cannon loads it instead of cannonballs.",
+				"- A shell's material sets its hull damage.",
+				"- Everyone caught in its burst gets the material's blade trait, as if your gun hit them. Your own crew is safe.",
+				"- Kairoseki shells drain every Devil Fruit user aboard the ship they hit. Pacifista Alloy sets her burning, and Vegapunk Compound burns her or freezes her rigging.",
+				"> The One Piece Mod's Chain Shot, Fire Shot and Grapeshot still work the same way."
+			],
+			"generated": "cannons"
 		},
 		{
 			"id": "armor",

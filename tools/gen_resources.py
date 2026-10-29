@@ -48,6 +48,9 @@ lang = {
     "item.arsenal.long_barrel": "Long Barrel",
     "item.arsenal.cannon_bore": "Cannon Bore",
     "item.arsenal.fuse": "Fuse",
+    "item.arsenal.gun_carriage": "Gun Carriage",
+    "item.arsenal.cannon_shell": "Cannon Shell",
+    "block.arsenal.ship_cannon": "Ship Cannon",
     "item.arsenal.cutlass_blade": "Cutlass Blade",
     "item.arsenal.sabre_blade": "Sabre Blade",
     "item.arsenal.axe_head": "Axe Head",
@@ -104,7 +107,7 @@ for name in ["driftwood", "marine_steel_ingot", "cannon_bronze_ingot", "sea_king
              "pacifista_alloy", "vegapunk_compound", "shipwrights_manual"]:
     w(f'{A}/items/{name}.json', {"model": model(name)})
 for part in ["katana_blade", "tsuba", "hilt", "barrel", "firing_lock", "stock", "long_barrel", "cannon_bore", "fuse",
-             "cutlass_blade", "sabre_blade", "axe_head", "jitte_rod", "club_head", "spearhead", "hand_guard",
+             "gun_carriage", "cannon_shell", "cutlass_blade", "sabre_blade", "axe_head", "jitte_rod", "club_head", "spearhead", "hand_guard",
              "binding", "studs", "grip", "haft"]:
     w(f'{A}/items/{part}.json', {"model": by_material(f"part/{part}", materials=WEAPON_TEXTURED)})
 for part in ["crown", "coat_plates", "sash_weave", "boot_soles", "lining"]:
@@ -114,6 +117,7 @@ weapon_layers = {
     "katana": ["blade", "tsuba", "hilt"],
     "flintlock": ["barrel", "lock", "stock"], "musket": ["barrel", "lock", "stock"],
     "hand_cannon": ["bore", "fuse", "stock"],
+    "ship_cannon": ["bore", "fuse", "carriage"],  # cannon_parts; placed, it looks like the One Piece Mod's Cannon
     "cutlass": ["blade", "guard", "grip"], "marine_sabre": ["blade", "guard", "grip"],
     "boarding_axe": ["head", "binding", "haft"], "jitte": ["rod", "binding", "grip"],
     "kanabo": ["head", "studs", "haft"], "spear": ["head", "binding", "haft"],
@@ -161,11 +165,25 @@ for name, (front, side, top) in navy_stations.items():
             variants[f"captured={captured},facing={d}"] = {"model": m, "y": y} if y else {"model": m}
     w(f'{A}/blockstates/{name}.json', {"variants": variants})
 
+# The Ship Cannon block wears the One Piece Mod's Cannon model, so it looks like the cannons it fires with.
+variants = {}
+for d, y in [("north", 0), ("east", 90), ("south", 180), ("west", 270)]:
+    variants[f"facing={d}"] = {"model": "onepiece:block/cannon", "y": y} if y else {"model": "onepiece:block/cannon"}
+w(f'{A}/blockstates/ship_cannon.json', {"variants": variants})
+
 D = 'data/arsenal'
 w(f'{D}/loot_table/blocks/shipwrights_anvil.json', {"type": "minecraft:block", "pools": [{
     "rolls": 1, "condition": {"type": "minecraft:survives_explosion"},
     "entries": [{"type": "minecraft:item", "name": "arsenal:shipwrights_anvil"}]}],
     "random_sequence": "arsenal:blocks/shipwrights_anvil"})
+# A broken Ship Cannon keeps its parts (copied back from its block entity).
+w(f'{D}/loot_table/blocks/ship_cannon.json', {"type": "minecraft:block", "pools": [{
+    "rolls": 1, "condition": {"type": "minecraft:survives_explosion"},
+    "entries": [{"type": "minecraft:item", "name": "arsenal:ship_cannon", "modifier": {
+        "type": "minecraft:copy_components", "source": "block_entity", "include": ["arsenal:cannon_parts"]}}]}],
+    "random_sequence": "arsenal:blocks/ship_cannon"})
+# The One Piece Mod fires every block in this tag (see its CannonAddons).
+w('data/onepiece/tags/block/cannons.json', {"replace": False, "values": ["arsenal:ship_cannon"]})
 for name in navy_stations:
     w(f'{D}/loot_table/blocks/{name}.json', {"type": "minecraft:block", "pools": [{
         "rolls": 1, "condition": {"type": "minecraft:survives_explosion"},
@@ -201,7 +219,7 @@ w('data/minecraft/tags/item/chest_armor.json', {"replace": False, "values": ["ar
 w('data/minecraft/tags/item/leg_armor.json', {"replace": False, "values": ["arsenal:sash"]})
 w('data/minecraft/tags/item/foot_armor.json', {"replace": False, "values": ["arsenal:boots"]})
 w('data/minecraft/tags/block/mineable/pickaxe.json', {"replace": False, "values": [
-    "arsenal:shipwrights_anvil", "arsenal:marine_armory_bench", "arsenal:marine_base_smeltery"]})
+    "arsenal:shipwrights_anvil", "arsenal:marine_armory_bench", "arsenal:marine_base_smeltery", "arsenal:ship_cannon"]})
 w('data/minecraft/tags/block/mineable/axe.json', {"replace": False, "values": ["arsenal:quartermasters_desk"]})
 
 w(f'{D}/recipe/shipwrights_anvil.json', {"type": "minecraft:crafting_shaped", "category": "misc",
@@ -240,6 +258,8 @@ parts = {
     "long_barrel": (["MMM", "  F"], {"F": F}),
     "cannon_bore": (["MMM", "MGM"], {"G": G}),
     "fuse": (["S", "G", "M"], {"S": S, "G": G}),
+    "gun_carriage": (["MMM", "K K"], {"K": K}),
+    "cannon_shell": ([" M ", "MGM", " M "], {"G": G}),
     "cutlass_blade": (["  M", " M ", "M  "], {}),
     "sabre_blade": (["M", "M", "N"], {"N": N}),
     "axe_head": (["MMM", "M  "], {}),
@@ -259,6 +279,7 @@ parts = {
     "lining": (["LML"], {"L": L}),
 }
 ARMOR_PARTS = {"crown", "coat_plates", "sash_weave", "boot_soles", "lining"}
+COUNTS = {"cannon_shell": 4}  # parts that come more than one to a craft
 for m in MATERIALS:
     if not m.get("craftable", True) or m["faction"] == "navy":
         continue
@@ -267,4 +288,5 @@ for m in MATERIALS:
             continue
         w(f'{D}/recipe/{part}/{m["id"]}.json', {"type": "minecraft:crafting_shaped", "category": "equipment",
             "group": f"arsenal_{part}", "key": {"M": m["item"], **extra}, "pattern": pattern,
-            "result": {"id": f"arsenal:{part}", "components": {"arsenal:part_material": m["id"]}}})
+            "result": {"id": f"arsenal:{part}", **({"count": COUNTS[part]} if part in COUNTS else {}),
+                       "components": {"arsenal:part_material": m["id"]}}})
