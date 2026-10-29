@@ -12,6 +12,9 @@ Requires the One Piece Mod (Fabric, Minecraft 26.3, Java 25).
 - **Traits:** Seastone (drains Devil Fruit users on hit), Draining (fruit users who hold it feel weak), Rusty (can poison in the rain), Regulation (+1 damage against pirate NPCs), Light and Riveted. Buoyant and Issued are planned.
 - **Armor:** a **Hat**, **Coat**, **Sash** and **Boots**, each built from a shell part (Hat Crown, Coat Plates, Sash Weave or Boot Soles, which sets the defense) and a **Lining** (any material, which adds its trait). Kairoseki plates drain Devil Fruit users who hit you.
 - **Marine disguise:** wear a full set of Arsenal armor whose shells are all Navy materials and Marines stop hunting you. Marine Standard Steel is a recruit's uniform (hides a bounty up to 10M; Captains and CP agents see through it), Kairoseki an officer's (up to 100M; Vice Admirals, CP0, Pacifistas and Seraphim see through it). Hit a Marine and your cover is blown for a minute, even if you log out. Hunters sent after you give up after a minute. Named Marines like Garp are never fooled.
+- **Suspicion:** Marines who stand close and watch you get suspicious, faster in groups, when they're senior, when you carry a pirate-made blade or gun, or when your bounty is near the uniform's limit. Stay too long and one calls you out: your cover is blown and they attack. Walk away and they forget.
+- **Pirates see a Marine:** enemy pirates who spot you in a full Navy uniform drop whatever they're fighting and come for you, blown cover or not. Emperor crews still follow their Emperor's mood.
+- **Navy-issue weapons:** some Marines carry Arsenal katanas (Kairoseki blades for senior officers) or flintlocks instead of their usual sword or pistol, and drop them now and then.
 - **Marine Standard Steel** can't be crafted: beaten Marines drop it (officers more often), and Marine base and bunker chests hold some.
 - **Shipwright's Anvil:** right-click it with an empty hand while carrying a full set of parts to forge the weapon.
 - **Meito (graded blades):** katanas gain blade levels from kills (+0.1 damage a level), and their grade caps the level: 5 ungraded, 10 Skillful, 15 Great, 20 Supreme. A One Piece Mod whetstone only raises an Arsenal katana's grade once it is at that cap, has a strong enough blade (tier 2+ for Skillful, tier 3+ after) and has done its deed: 25 armed enemies for Skillful, a named boss for Great, an Emperor, Admiral or other tier 5 boss for Supreme. The katana's tooltip shows its progress.
@@ -27,6 +30,7 @@ The One Piece Mod isn't on a maven, so build against its jar:
 1. In the One Piece Mod, run `./gradlew build`.
 2. Copy `build/libs/onepiece-0.1.0.jar` into this repo's `libs/` folder (change `onepiece_jar` in `gradle.properties` if the name differs).
 3. Run `./gradlew build` here. The jar lands in `build/libs/`; put it in your `mods/` folder next to the One Piece Mod.
+4. `./gradlew runGameTest` runs the in-world tests in `src/gametest` (the Marine disguise, suspicion gear and Navy-issue weapons). They live in their own test mod and never ship in the jar.
 
 ## Design
 

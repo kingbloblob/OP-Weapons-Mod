@@ -17,6 +17,7 @@ import com.onepiecemod.npc.HumanNpc;
 import com.onepiecemod.weapon.WeaponItems;
 import com.onepiecemod.weapon.WeaponUpgrades;
 import com.onepiecemod.world.SeastoneEffects;
+import com.onepiecemod.worldevent.EmperorTerritories;
 
 /**
  * Every place Arsenal reads or changes the One Piece Mod goes through here. If the main mod
@@ -39,6 +40,19 @@ public final class OnePieceBridge {
 	/** True for the main mod's pirate NPCs (not Marines, not townsfolk). */
 	public static boolean isPirateNpc(LivingEntity entity) {
 		return entity instanceof HumanNpc npc && !npc.isMarineSide();
+	}
+
+	/**
+	 * True for pirates of one of the Four Emperors' crews, spawned in their territory. Their Emperor decides whether
+	 * they fight you (EmperorTerritories), so Arsenal leaves them alone.
+	 */
+	public static boolean isEmperorCrew(LivingEntity entity) {
+		for (String tag : entity.entityTags()) {
+			if (tag.startsWith(EmperorTerritories.CREW_TAG)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/** True for the main mod's Marines and World Government agents. */

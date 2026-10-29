@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "arsenal-gametest",
+  "version": "${version}",
+  "name": "One Piece Arsenal Game Tests",
+  "description": "In-world tests for One Piece Arsenal. Not part of the release jar.",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-gametest": [
+      "com.onepiecearsenal.test.DisguiseTests"
+    ]
+  },
+  "depends": {
+    "arsenal": "*",
+    "fabric-gametest-api-v1": "*"
+  }
+}

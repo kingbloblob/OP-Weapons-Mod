@@ -22,8 +22,10 @@ import com.onepiecearsenal.disguise.MarineDisguise;
 public abstract class MobMixin {
 	@Inject(method = "setTarget(Lnet/minecraft/world/entity/LivingEntity;)V", at = @At("HEAD"), cancellable = true)
 	private void arsenal$ignoreDisguisedPlayers(LivingEntity target, CallbackInfo ci) {
+		// Runs for every mob in the world, so the cheap checks go first. Targets are only picked on the server.
 		LivingEntity self = (LivingEntity) (Object) this;
-		if (target instanceof Player player && OnePieceBridge.isMarine(self) && MarineDisguise.fools(self, player)) {
+		if (target instanceof Player player && OnePieceBridge.isMarine(self) && !self.level().isClientSide()
+				&& MarineDisguise.fools(self, player)) {
 			ci.cancel();
 		}
 	}

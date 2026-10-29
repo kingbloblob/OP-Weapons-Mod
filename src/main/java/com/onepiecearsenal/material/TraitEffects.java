@@ -50,11 +50,14 @@ public class TraitEffects {
 			return InteractionResult.PASS; // PASS lets the normal hit happen too.
 		});
 
-		// Flintlock shots are "thrown" damage from the shooter (see the One Piece Mod's Shot.java).
+		// Flintlock shots are "thrown" damage from the shooter (see the One Piece Mod's Shot.java). The traits come
+		// from the flintlock that fired (FlintlockItem.firing), so an offhand flintlock works and a thrown knife
+		// doesn't pick up the traits of a flintlock you happen to hold.
 		ServerLivingEntityEvents.AFTER_DAMAGE.register((entity, source, baseDamageTaken, damageTaken, blocked) -> {
-			if (!dealingExtra && !blocked && source.is(DamageTypes.THROWN) && source.getEntity() instanceof ServerPlayer shooter
-					&& shooter.level() instanceof ServerLevel serverLevel && shooter.getMainHandItem().getItem() instanceof FlintlockItem) {
-				onHit(shooter, serverLevel, entity, GunStats.traits(shooter.getMainHandItem()));
+			ItemStack gun = FlintlockItem.firing();
+			if (!dealingExtra && !blocked && !gun.isEmpty() && source.is(DamageTypes.THROWN) && source.getEntity() instanceof ServerPlayer shooter
+					&& shooter.level() instanceof ServerLevel serverLevel) {
+				onHit(shooter, serverLevel, entity, GunStats.traits(gun));
 			}
 		});
 
