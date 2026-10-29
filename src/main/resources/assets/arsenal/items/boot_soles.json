@@ -25,10 +25,87 @@
         }
       },
       {
+        "when": "cannon_bronze",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/boot_soles/cannon_bronze"
+        }
+      },
+      {
+        "when": "sea_king_bone",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/boot_soles/sea_king_bone"
+        }
+      },
+      {
+        "when": "sea_king_hide",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/boot_soles/sea_king_hide"
+        }
+      },
+      {
+        "when": "treasure_gold",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/boot_soles/treasure_gold"
+        }
+      },
+      {
+        "when": "tamahagane",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/boot_soles/tamahagane"
+        }
+      },
+      {
         "when": "kairoseki",
         "model": {
           "type": "minecraft:model",
           "model": "arsenal:item/part/boot_soles/kairoseki"
+        }
+      },
+      {
+        "when": "pacifista_alloy",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/boot_soles/pacifista_alloy"
+        }
+      },
+      {
+        "when": "island_whale_leather",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/boot_soles/island_whale_leather"
+        }
+      },
+      {
+        "when": "wapometal",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/boot_soles/wapometal"
+        }
+      },
+      {
+        "when": "adam_wood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/boot_soles/adam_wood"
+        }
+      },
+      {
+        "when": "black_blade",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/boot_soles/black_blade"
+        }
+      },
+      {
+        "when": "vegapunk_compound",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/boot_soles/vegapunk_compound"
         }
       }
     ],

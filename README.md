@@ -27,16 +27,18 @@ Pirate and shared materials' parts are made at a crafting table from 1 to 8 of a
 
 ## Art
 
-Every katana, flintlock, part and armor piece of the first four materials looks like what it's made of, Tinkers' Construct style: a Kairoseki blade on a Ship Iron hilt shows both. Armor looks like clothes when worn, cut by its shell material: Driftwood is a castaway's straw hat, red vest, shorts and sandals; Ship Iron a pirate captain's tricorn, crimson coat and buckled boots; Marine Standard Steel a Marine recruit's cap and sailor uniform; Kairoseki a Navy officer's peaked cap and "Justice" coat over a dark suit. So a full Navy set looks like the disguise it is.
+Every weapon, part and armor piece looks like what it's made of, Tinkers' Construct style: a Kairoseki blade on a Ship Iron hilt shows both. Armor looks like clothes when worn, cut by its shell material: Driftwood is a castaway's straw hat, red vest, shorts and sandals; Ship Iron a pirate captain's tricorn, crimson coat and buckled boots; Marine Standard Steel a Marine recruit's cap and sailor uniform; Kairoseki a Navy officer's peaked cap and "Justice" coat over a dark suit. The newer materials get their own outfits too (a Wano ronin's kasa and hakama for Tamahagane, a gunner's olive coat for Cannon Bronze, purple velvet for Treasure Gold, Pacifista plating, Vegapunk's lab coat and so on). So a full Navy set looks like the disguise it is.
 
-The textures are drawn by `tools/gen_textures.py` (needs Python 3 and Pillow): each shape is drawn once and coloured per material. To give a new material its look, add its colours to `MATERIALS` and an outfit to `OUTFITS` there, and run both (`tools/gen_resources.py` reads the materials from `materials.json`; it gives a material art once it's listed in `TEXTURED` there):
+The Navy stations are Marine white and blue, and get a Jolly Roger daubed on once a pirate captures one.
+
+The textures are drawn by `tools/gen_textures.py` (needs Python 3 and Pillow): each shape is drawn once and coloured per material. To give a new material its look, add its colours to `MATERIALS` and an outfit to `OUTFITS` there, and run both (both read the materials from `materials.json`, and `gen_textures.py` stops if one has no colours yet):
 
 ```
 python3 tools/gen_textures.py src/main/resources
 python3 tools/gen_resources.py src/main/resources
 ```
 
-The newer materials, parts and weapons (cutlass to hand cannon) still use placeholder art: new materials look like Ship Iron until they are drawn.
+A new part or weapon is a 16x16 mask in `gen_textures.py` (added to `PARTS` or `WEAPONS`) and an entry in `gen_resources.py`.
 
 ## Building
 

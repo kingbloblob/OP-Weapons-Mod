@@ -16,18 +16,18 @@
       "y": 270
     },
     "captured=true,facing=north": {
-      "model": "arsenal:block/quartermasters_desk"
+      "model": "arsenal:block/quartermasters_desk_captured"
     },
     "captured=true,facing=east": {
-      "model": "arsenal:block/quartermasters_desk",
+      "model": "arsenal:block/quartermasters_desk_captured",
       "y": 90
     },
     "captured=true,facing=south": {
-      "model": "arsenal:block/quartermasters_desk",
+      "model": "arsenal:block/quartermasters_desk_captured",
       "y": 180
     },
     "captured=true,facing=west": {
-      "model": "arsenal:block/quartermasters_desk",
+      "model": "arsenal:block/quartermasters_desk_captured",
       "y": 270
     }
   }

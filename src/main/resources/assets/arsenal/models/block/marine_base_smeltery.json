@@ -1,3 +1,12 @@
 {
-  "parent": "minecraft:block/blast_furnace"
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "arsenal:block/marine_base_smeltery_side",
+    "north": "arsenal:block/marine_base_smeltery_front",
+    "south": "arsenal:block/marine_base_smeltery_side",
+    "east": "arsenal:block/marine_base_smeltery_side",
+    "west": "arsenal:block/marine_base_smeltery_side",
+    "up": "arsenal:block/marine_base_smeltery_top",
+    "down": "arsenal:block/navy_station_bottom"
+  }
 }

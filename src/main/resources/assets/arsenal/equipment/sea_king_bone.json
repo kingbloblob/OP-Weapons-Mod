@@ -2,12 +2,12 @@
   "layers": {
     "humanoid": [
       {
-        "texture": "arsenal:ship_iron"
+        "texture": "arsenal:sea_king_bone"
       }
     ],
     "humanoid_leggings": [
       {
-        "texture": "arsenal:ship_iron"
+        "texture": "arsenal:sea_king_bone"
       }
     ]
   }

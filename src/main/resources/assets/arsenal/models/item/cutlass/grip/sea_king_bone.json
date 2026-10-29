@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "arsenal:item/cutlass/grip/sea_king_bone"
+  }
+}

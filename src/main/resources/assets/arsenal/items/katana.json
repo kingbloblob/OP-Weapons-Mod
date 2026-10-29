@@ -29,10 +29,73 @@
             }
           },
           {
+            "when": "cannon_bronze",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/blade/cannon_bronze"
+            }
+          },
+          {
+            "when": "sea_king_bone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/blade/sea_king_bone"
+            }
+          },
+          {
+            "when": "treasure_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/blade/treasure_gold"
+            }
+          },
+          {
+            "when": "tamahagane",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/blade/tamahagane"
+            }
+          },
+          {
             "when": "kairoseki",
             "model": {
               "type": "minecraft:model",
               "model": "arsenal:item/katana/blade/kairoseki"
+            }
+          },
+          {
+            "when": "pacifista_alloy",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/blade/pacifista_alloy"
+            }
+          },
+          {
+            "when": "wapometal",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/blade/wapometal"
+            }
+          },
+          {
+            "when": "adam_wood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/blade/adam_wood"
+            }
+          },
+          {
+            "when": "black_blade",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/blade/black_blade"
+            }
+          },
+          {
+            "when": "vegapunk_compound",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/blade/vegapunk_compound"
             }
           }
         ],
@@ -68,10 +131,73 @@
             }
           },
           {
+            "when": "cannon_bronze",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/tsuba/cannon_bronze"
+            }
+          },
+          {
+            "when": "sea_king_bone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/tsuba/sea_king_bone"
+            }
+          },
+          {
+            "when": "treasure_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/tsuba/treasure_gold"
+            }
+          },
+          {
+            "when": "tamahagane",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/tsuba/tamahagane"
+            }
+          },
+          {
             "when": "kairoseki",
             "model": {
               "type": "minecraft:model",
               "model": "arsenal:item/katana/tsuba/kairoseki"
+            }
+          },
+          {
+            "when": "pacifista_alloy",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/tsuba/pacifista_alloy"
+            }
+          },
+          {
+            "when": "wapometal",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/tsuba/wapometal"
+            }
+          },
+          {
+            "when": "adam_wood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/tsuba/adam_wood"
+            }
+          },
+          {
+            "when": "black_blade",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/tsuba/black_blade"
+            }
+          },
+          {
+            "when": "vegapunk_compound",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/tsuba/vegapunk_compound"
             }
           }
         ],
@@ -107,10 +233,73 @@
             }
           },
           {
+            "when": "cannon_bronze",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/hilt/cannon_bronze"
+            }
+          },
+          {
+            "when": "sea_king_bone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/hilt/sea_king_bone"
+            }
+          },
+          {
+            "when": "treasure_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/hilt/treasure_gold"
+            }
+          },
+          {
+            "when": "tamahagane",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/hilt/tamahagane"
+            }
+          },
+          {
             "when": "kairoseki",
             "model": {
               "type": "minecraft:model",
               "model": "arsenal:item/katana/hilt/kairoseki"
+            }
+          },
+          {
+            "when": "pacifista_alloy",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/hilt/pacifista_alloy"
+            }
+          },
+          {
+            "when": "wapometal",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/hilt/wapometal"
+            }
+          },
+          {
+            "when": "adam_wood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/hilt/adam_wood"
+            }
+          },
+          {
+            "when": "black_blade",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/hilt/black_blade"
+            }
+          },
+          {
+            "when": "vegapunk_compound",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/hilt/vegapunk_compound"
             }
           }
         ],

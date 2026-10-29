@@ -25,10 +25,87 @@
         }
       },
       {
+        "when": "cannon_bronze",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/coat_plates/cannon_bronze"
+        }
+      },
+      {
+        "when": "sea_king_bone",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/coat_plates/sea_king_bone"
+        }
+      },
+      {
+        "when": "sea_king_hide",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/coat_plates/sea_king_hide"
+        }
+      },
+      {
+        "when": "treasure_gold",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/coat_plates/treasure_gold"
+        }
+      },
+      {
+        "when": "tamahagane",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/coat_plates/tamahagane"
+        }
+      },
+      {
         "when": "kairoseki",
         "model": {
           "type": "minecraft:model",
           "model": "arsenal:item/part/coat_plates/kairoseki"
+        }
+      },
+      {
+        "when": "pacifista_alloy",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/coat_plates/pacifista_alloy"
+        }
+      },
+      {
+        "when": "island_whale_leather",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/coat_plates/island_whale_leather"
+        }
+      },
+      {
+        "when": "wapometal",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/coat_plates/wapometal"
+        }
+      },
+      {
+        "when": "adam_wood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/coat_plates/adam_wood"
+        }
+      },
+      {
+        "when": "black_blade",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/coat_plates/black_blade"
+        }
+      },
+      {
+        "when": "vegapunk_compound",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/coat_plates/vegapunk_compound"
         }
       }
     ],

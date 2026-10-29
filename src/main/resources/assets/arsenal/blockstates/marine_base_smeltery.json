@@ -16,18 +16,18 @@
       "y": 270
     },
     "captured=true,facing=north": {
-      "model": "arsenal:block/marine_base_smeltery"
+      "model": "arsenal:block/marine_base_smeltery_captured"
     },
     "captured=true,facing=east": {
-      "model": "arsenal:block/marine_base_smeltery",
+      "model": "arsenal:block/marine_base_smeltery_captured",
       "y": 90
     },
     "captured=true,facing=south": {
-      "model": "arsenal:block/marine_base_smeltery",
+      "model": "arsenal:block/marine_base_smeltery_captured",
       "y": 180
     },
     "captured=true,facing=west": {
-      "model": "arsenal:block/marine_base_smeltery",
+      "model": "arsenal:block/marine_base_smeltery_captured",
       "y": 270
     }
   }

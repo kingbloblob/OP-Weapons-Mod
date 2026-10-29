@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "arsenal:item/kanabo/haft/cannon_bronze"
+  }
+}
