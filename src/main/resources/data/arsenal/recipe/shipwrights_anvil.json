@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": "minecraft:anvil",
+    "P": "#minecraft:planks"
+  },
+  "pattern": [
+    "A",
+    "P"
+  ],
+  "result": {
+    "id": "arsenal:shipwrights_anvil"
+  }
+}
