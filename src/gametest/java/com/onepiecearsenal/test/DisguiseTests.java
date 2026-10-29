@@ -21,6 +21,8 @@ import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.part.PartType;
 import com.onepiecearsenal.tool.ArmorStats;
 import com.onepiecearsenal.tool.KatanaStats;
+import com.onepiecearsenal.tool.WeaponStats;
+import com.onepiecearsenal.tool.WeaponType;
 import com.onepiecemod.bounty.Bounty;
 import com.onepiecemod.npc.NpcFeature;
 
@@ -107,6 +109,10 @@ public class DisguiseTests {
 		helper.assertTrue(Suspicion.carriesPirateGear(player), "a driftwood katana is pirate gear");
 		player.setItemSlot(EquipmentSlot.MAINHAND, KatanaStats.build(ArsenalMaterial.MARINE_STEEL, ArsenalMaterial.DRIFTWOOD, ArsenalMaterial.DRIFTWOOD));
 		helper.assertFalse(Suspicion.carriesPirateGear(player), "a Marine Steel blade is Navy gear, whatever the handle");
+		player.setItemSlot(EquipmentSlot.MAINHAND, WeaponStats.build(WeaponType.CUTLASS, ArsenalMaterial.SHIP_IRON, ArsenalMaterial.SHIP_IRON, ArsenalMaterial.DRIFTWOOD));
+		helper.assertTrue(Suspicion.carriesPirateGear(player), "a Ship Iron cutlass is pirate gear");
+		player.setItemSlot(EquipmentSlot.MAINHAND, WeaponStats.build(WeaponType.KANABO, ArsenalMaterial.MARINE_STEEL, ArsenalMaterial.SHIP_IRON, ArsenalMaterial.DRIFTWOOD));
+		helper.assertFalse(Suspicion.carriesPirateGear(player), "a Marine Steel kanabo head is Navy gear");
 		helper.succeed();
 	}
 

@@ -20,6 +20,7 @@ import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Faction;
 import com.onepiecearsenal.tool.GunStats;
 import com.onepiecearsenal.tool.KatanaStats;
+import com.onepiecearsenal.tool.WeaponStats;
 
 /**
  * A uniform doesn't fool Marines forever. Marines close by who can see you slowly get suspicious, faster when
@@ -107,13 +108,16 @@ public class Suspicion {
 		}
 	}
 
-	/** True if the player holds an Arsenal katana or flintlock forged with a pirate blade or barrel. */
+	/** True if the player holds an Arsenal weapon or gun forged with a pirate blade, head or barrel. */
 	public static boolean carriesPirateGear(Player player) {
 		return isPirateMade(player.getMainHandItem()) || isPirateMade(player.getOffhandItem());
 	}
 
 	private static boolean isPirateMade(ItemStack stack) {
 		List<ArsenalMaterial> parts = KatanaStats.parts(stack);
+		if (parts.isEmpty()) {
+			parts = WeaponStats.parts(stack); // Cutlass, Boarding Axe, Kanabo and the rest.
+		}
 		if (parts.isEmpty()) {
 			parts = GunStats.parts(stack);
 		}
