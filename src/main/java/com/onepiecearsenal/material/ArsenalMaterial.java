@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -74,6 +75,11 @@ public final class ArsenalMaterial {
 	/** The name saved on items, like "ship_iron". Also used in the recipe files. */
 	public String id() {
 		return id;
+	}
+
+	/** A fingerprint of the numbers and traits gear is built from. When it changes, Restat brings old gear up to date. */
+	public int statsHash() {
+		return Objects.hash(id, tier, damage, durability, speed, armor, headTrait, handleTrait);
 	}
 
 	/** The item this material is made from, which also repairs it. */

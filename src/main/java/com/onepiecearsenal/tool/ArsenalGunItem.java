@@ -5,8 +5,11 @@ import java.util.function.Consumer;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -86,6 +89,13 @@ public class ArsenalGunItem extends GunItem {
 				parts.range() * upgrades.range(),
 				parts.spread() * upgrades.spread(),
 				1, type.ammo, parts.magazine(), parts.reload(), parts.recoil());
+	}
+
+	/** Gear forged before a balance change catches up with the new numbers (see Restat). */
+	@Override
+	public void inventoryTick(ItemStack stack, ServerLevel level, Entity owner, EquipmentSlot slot) {
+		super.inventoryTick(stack, level, owner, slot);
+		Restat.refresh(stack);
 	}
 
 	@Override

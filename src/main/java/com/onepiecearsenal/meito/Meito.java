@@ -75,7 +75,8 @@ public final class Meito {
 
 	/** Extra attack damage per blade level, so a level 20 Supreme blade gets +2. */
 	private static final double DAMAGE_PER_LEVEL = 0.1;
-	private static final Identifier LEVEL_MODIFIER = ArsenalMod.id("blade_level");
+	/** The blade level's damage bonus. Public so Restat keeps it when it re-works a katana's stats. */
+	public static final Identifier LEVEL_MODIFIER = ArsenalMod.id("blade_level");
 	/** Blade XP for any enemy, and the extra for one holding a weapon or for each boss tier. */
 	private static final int KILL_XP = 1;
 	private static final int ARMED_XP = 2;
