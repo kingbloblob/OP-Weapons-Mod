@@ -148,7 +148,7 @@ public class ArsenalItems {
 
 	static void initialize() {
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, TAB_KEY, FabricCreativeModeTab.builder()
-				.icon(() -> KatanaStats.build(ArsenalMaterial.KAIROSEKI, ArsenalMaterial.SHIP_IRON, ArsenalMaterial.SHIP_IRON, null))
+				.icon(() -> KatanaStats.build(ArsenalMaterial.KAIROSEKI, ArsenalMaterial.SHIP_IRON, ArsenalMaterial.SHIP_IRON))
 				.title(Component.literal("One Piece: Arsenal"))
 				.displayItems((params, output) -> {
 					output.accept(SHIPWRIGHTS_ANVIL);
@@ -169,22 +169,22 @@ public class ArsenalItems {
 					// One of each weapon per material, with Ship Iron for the other parts. Hides and leathers can't make weapons.
 					List<ArsenalMaterial> metals = ArsenalMaterial.values().stream().filter(material -> !material.armorOnly).toList();
 					for (ArsenalMaterial material : metals) {
-						output.accept(KatanaStats.build(material, ArsenalMaterial.SHIP_IRON, ArsenalMaterial.SHIP_IRON, params.holders()));
+						output.accept(KatanaStats.build(material, ArsenalMaterial.SHIP_IRON, ArsenalMaterial.SHIP_IRON));
 					}
 					for (WeaponType type : WeaponType.values()) {
 						for (ArsenalMaterial material : metals) {
-							output.accept(WeaponStats.build(type, material, ArsenalMaterial.SHIP_IRON, ArsenalMaterial.SHIP_IRON, params.holders()));
+							output.accept(WeaponStats.build(type, material, ArsenalMaterial.SHIP_IRON, ArsenalMaterial.SHIP_IRON));
 						}
 					}
 					for (GunType type : GunType.values()) {
 						for (ArsenalMaterial material : metals) {
-							output.accept(GunStats.build(type, material, ArsenalMaterial.SHIP_IRON, ArsenalMaterial.SHIP_IRON, params.holders()));
+							output.accept(GunStats.build(type, material, ArsenalMaterial.SHIP_IRON, ArsenalMaterial.SHIP_IRON));
 						}
 					}
 					// One armor set of each material, with a Driftwood lining.
 					for (ArsenalMaterial material : ArsenalMaterial.values()) {
 						for (PartType shell : List.of(PartType.CROWN, PartType.COAT_PLATES, PartType.SASH_WEAVE, PartType.BOOT_SOLES)) {
-							output.accept(ArmorStats.build(shell, material, ArsenalMaterial.DRIFTWOOD, params.holders()));
+							output.accept(ArmorStats.build(shell, material, ArsenalMaterial.DRIFTWOOD));
 						}
 					}
 				})

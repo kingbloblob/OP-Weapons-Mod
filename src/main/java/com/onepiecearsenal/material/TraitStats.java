@@ -13,6 +13,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.DamageResistant;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+
 import com.onepiecearsenal.ArsenalMod;
 
 /**
@@ -59,11 +61,21 @@ public final class TraitStats {
 
 	/**
 	 * The traits saved straight onto the item: Ultra-alloy makes it fireproof, like netherite.
-	 * registries is null only for the creative tab icon, which has no Ultra-alloy.
+	 * Damage type tags live in the world's registries, so this only applies while a world is running
+	 * (always true at the anvil; the creative tab's examples may skip it on a server's clients).
 	 */
-	public static void finish(ItemStack stack, Set<Trait> traits, HolderLookup.Provider registries) {
-		if (traits.contains(Trait.ULTRA_ALLOY) && registries != null) {
-			stack.set(DataComponents.DAMAGE_RESISTANT, new DamageResistant(registries.getOrThrow(DamageTypeTags.IS_FIRE)));
+	public static void finish(ItemStack stack, Set<Trait> traits) {
+		HolderLookup.Provider lookup = registries;
+		if (traits.contains(Trait.ULTRA_ALLOY) && lookup != null) {
+			stack.set(DataComponents.DAMAGE_RESISTANT, new DamageResistant(lookup.getOrThrow(DamageTypeTags.IS_FIRE)));
 		}
+	}
+
+	/** The running world's registries, kept for finish() so the build methods don't each need them passed in. */
+	private static volatile HolderLookup.Provider registries;
+
+	public static void initialize() {
+		ServerLifecycleEvents.SERVER_STARTING.register(server -> registries = server.registryAccess());
+		ServerLifecycleEvents.SERVER_STOPPED.register(server -> registries = null);
 	}
 }

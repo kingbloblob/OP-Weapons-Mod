@@ -5,7 +5,6 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -40,7 +39,7 @@ public final class WeaponStats {
 	}
 
 	/** Builds a finished weapon. */
-	public static ItemStack build(WeaponType type, ArsenalMaterial head, ArsenalMaterial binding, ArsenalMaterial handle, HolderLookup.Provider registries) {
+	public static ItemStack build(WeaponType type, ArsenalMaterial head, ArsenalMaterial binding, ArsenalMaterial handle) {
 		ItemStack weapon = new ItemStack(ArsenalItems.WEAPONS.get(type));
 		weapon.set(ArsenalComponents.WEAPON_PARTS, List.of(head.id(), binding.id(), handle.id()));
 
@@ -66,7 +65,7 @@ public final class WeaponStats {
 		}
 		weapon.set(DataComponents.ATTRIBUTE_MODIFIERS, TraitStats.modifiers(modifiers, traits, EquipmentSlotGroup.MAINHAND));
 		weapon.set(DataComponents.MAX_DAMAGE, TraitStats.durability(durability, traits));
-		TraitStats.finish(weapon, traits, registries);
+		TraitStats.finish(weapon, traits);
 		return weapon;
 	}
 

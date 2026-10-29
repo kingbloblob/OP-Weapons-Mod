@@ -11,6 +11,7 @@ import com.onepiecearsenal.disguise.MarineDisguise;
 import com.onepiecearsenal.loot.MarineSteelLoot;
 import com.onepiecearsenal.loot.MaterialLoot;
 import com.onepiecearsenal.material.TraitEffects;
+import com.onepiecearsenal.material.TraitStats;
 import com.onepiecearsenal.tool.WeaponEffects;
 
 /**
@@ -25,6 +26,7 @@ public class ArsenalMod implements ModInitializer {
 	public void onInitialize() {
 		ArsenalComponents.initialize();
 		ArsenalItems.initialize();
+		TraitStats.initialize();
 		TraitEffects.initialize();
 		WeaponEffects.initialize();
 		MaterialLoot.initialize();

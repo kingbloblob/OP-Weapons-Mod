@@ -65,21 +65,21 @@ public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 		ItemStack weapon = null;
 		int[] used = findParts(inventory, PartType.KATANA_BLADE, PartType.TSUBA, PartType.HILT);
 		if (used != null) {
-			weapon = KatanaStats.build(material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2]), level.registryAccess());
+			weapon = KatanaStats.build(material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2]));
 		}
 		for (GunType type : GunType.values()) {
 			if (weapon == null && (used = findParts(inventory, type.parts())) != null) {
-				weapon = GunStats.build(type, material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2]), level.registryAccess());
+				weapon = GunStats.build(type, material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2]));
 			}
 		}
 		for (WeaponType type : WeaponType.values()) {
 			if (weapon == null && (used = findParts(inventory, type.parts())) != null) {
-				weapon = WeaponStats.build(type, material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2]), level.registryAccess());
+				weapon = WeaponStats.build(type, material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2]));
 			}
 		}
 		if (weapon == null && (used = findArmor(inventory)) != null) {
 			PartType shell = ((PartItem) inventory.getItem(used[0]).getItem()).type();
-			weapon = ArmorStats.build(shell, material(inventory, used[0]), material(inventory, used[1]), level.registryAccess());
+			weapon = ArmorStats.build(shell, material(inventory, used[0]), material(inventory, used[1]));
 		}
 		if (weapon == null) {
 			smith.sendOverlayMessage(Component.literal("You need a full set of parts, like a blade, tsuba and hilt, or an armor shell and a lining.")

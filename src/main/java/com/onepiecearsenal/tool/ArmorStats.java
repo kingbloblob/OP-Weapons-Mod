@@ -5,7 +5,6 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -87,7 +86,7 @@ public final class ArmorStats {
 	}
 
 	/** Builds a finished armor piece. */
-	public static ItemStack build(PartType shellType, ArsenalMaterial shell, ArsenalMaterial lining, HolderLookup.Provider registries) {
+	public static ItemStack build(PartType shellType, ArsenalMaterial shell, ArsenalMaterial lining) {
 		ArmorType type = typeOf(shellType);
 		ItemStack piece = new ItemStack(itemOf(type));
 		piece.set(ArsenalComponents.ARMOR_PARTS, List.of(shell.id(), lining.id()));
@@ -103,7 +102,7 @@ public final class ArmorStats {
 		Set<Trait> traits = EnumSet.of(shell.headTrait, lining.handleTrait);
 		piece.set(DataComponents.ATTRIBUTE_MODIFIERS, TraitStats.modifiers(modifiers, traits, slot));
 		piece.set(DataComponents.MAX_DAMAGE, durability(shell, lining, type));
-		TraitStats.finish(piece, traits, registries);
+		TraitStats.finish(piece, traits);
 		return piece;
 	}
 
