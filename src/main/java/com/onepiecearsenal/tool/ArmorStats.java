@@ -78,6 +78,10 @@ public final class ArmorStats {
 		return Math.max(0, shell.tier - 2);
 	}
 
+	/**
+	 * A coat lasts 16 x the square root of its materials' durability: Ship Iron (250) gives 253 like an iron chestplate,
+	 * Kairoseki (1100) 531 like diamond. A straight copy of the weapon number would make tier 3 coats outlast netherite.
+	 */
 	public static int durability(ArsenalMaterial shell, ArsenalMaterial lining, ArmorType type) {
 		float share = switch (type) {
 			case HELMET -> 0.69f;
@@ -85,7 +89,7 @@ public final class ArmorStats {
 			case LEGGINGS -> 0.94f;
 			default -> 0.81f;
 		};
-		int durability = Math.round((shell.durability + lining.durability) / 2.0f * share);
+		int durability = Math.round(16.0f * (float) Math.sqrt((shell.durability + lining.durability) / 2.0f) * share);
 		return TraitStats.durability(durability, EnumSet.of(shell.headTrait, lining.handleTrait));
 	}
 

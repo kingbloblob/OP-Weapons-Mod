@@ -50,8 +50,8 @@ public class TraitEffects {
 	private static final int SEASTONE_DRAIN_TICKS = 60;
 	/** Chance a Rusty blade poisons, when it's raining. */
 	private static final float RUSTY_CHANCE = 0.1f;
-	/** Chance each Plated armor piece deflects a projectile. */
-	private static final float PLATED_CHANCE = 0.15f;
+	/** Chance each Plated armor piece deflects a projectile. A full set of four turns aside about a third. */
+	private static final float PLATED_CHANCE = 0.10f;
 	/** Share of a Keen weapon's hit that ignores armor. */
 	private static final float KEEN_SHARE = 0.15f;
 	/** Share of a Black Blade's hit that its Haki coat drives through armor. */

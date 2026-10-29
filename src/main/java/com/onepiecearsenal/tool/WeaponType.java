@@ -27,7 +27,7 @@ public enum WeaponType {
 			1.0f, 2.5f, -3.0f, 1.0f,
 			"Breaks through shields and chops wood like an axe."),
 	JITTE("jitte", "Jitte", Faction.NAVY, PartType.JITTE_ROD, PartType.BINDING, PartType.GRIP,
-			0.6f, 0.0f, -2.0f, 1.3f,
+			0.75f, 0.0f, -2.0f, 1.3f,
 			"Arrest: charged hits briefly drain a Devil Fruit user's power, whatever it's made of."),
 	KANABO("kanabo", "Kanabo", Faction.SHARED, PartType.CLUB_HEAD, PartType.STUDS, PartType.HAFT,
 			1.1f, 3.0f, -3.2f, 1.2f,

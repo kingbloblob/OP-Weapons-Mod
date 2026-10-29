@@ -32,7 +32,7 @@ public enum Trait {
 	PREDATOR("Predator", "+2 damage against sea creatures and Sea Kings.", true),
 	GREED("Greed", "Defeating Marines raises your bounty more.", true),
 	FOLDED("Folded", "Levels up 25% faster.", false),
-	PLATED("Plated", "As armor: each piece has a 15% chance to deflect a bullet or arrow.", true),
+	PLATED("Plated", "As armor: each piece has a 10% chance to deflect a bullet or arrow.", true),
 	REFORGED("Reforged", "Survives breaking once.", false),
 	LEGENDARY_HULL("Legendary Hull", "Hard to knock back while you hold or wear it.", true),
 	INHERIT("Inherit", "Keeps its levels when reforged.", false),
