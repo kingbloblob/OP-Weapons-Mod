@@ -2,6 +2,7 @@ package com.onepiecearsenal.compat;
 
 import java.util.Set;
 
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -17,7 +18,10 @@ import com.onepiecemod.character.CharacterEntity;
 import com.onepiecemod.character.CharacterFeature;
 import com.onepiecemod.haki.HakiAttachments;
 import com.onepiecemod.haki.HakiData;
+import com.onepiecemod.news.NewsLog;
 import com.onepiecemod.npc.HumanNpc;
+import com.onepiecemod.style.FightingStyle;
+import com.onepiecemod.style.StyleAttachments;
 import com.onepiecemod.weapon.WeaponItems;
 import com.onepiecemod.weapon.WeaponUpgrades;
 import com.onepiecemod.world.SeastoneEffects;
@@ -118,6 +122,19 @@ public final class OnePieceBridge {
 	/** The player's bounty in Berries. */
 	public static long bounty(Player player) {
 		return Bounty.get(player);
+	}
+
+	/**
+	 * Prints a story in the News Coo's next paper, the one world events and other players' deeds go in.
+	 * announce = also tell everyone in chat right now.
+	 */
+	public static void reportNews(MinecraftServer server, String headline, String story, boolean announce) {
+		NewsLog.report(server, headline, story, announce);
+	}
+
+	/** True while the player fights in Black Leg Style with empty hands, so their hits are kicks. */
+	public static boolean isKicking(Player player) {
+		return StyleAttachments.isUsing(player, FightingStyle.BLACK_LEG) && player.getMainHandItem().isEmpty();
 	}
 
 	/** The player's best Haki level of any type, 0 (not awakened) to 5 (master). */
