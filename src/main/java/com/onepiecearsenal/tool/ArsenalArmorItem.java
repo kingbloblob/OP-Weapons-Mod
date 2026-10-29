@@ -40,6 +40,8 @@ public class ArsenalArmorItem extends Item {
 	public void inventoryTick(ItemStack stack, ServerLevel level, Entity owner, EquipmentSlot slot) {
 		// Pieces forged before each slot had its own modifier id only counted once per set; fix them where they are.
 		ArmorStats.fixSharedIds(stack);
+		// Then, if the materials have been rebalanced since it was forged, bring its numbers up to date.
+		Restat.refresh(stack);
 	}
 
 	@Override

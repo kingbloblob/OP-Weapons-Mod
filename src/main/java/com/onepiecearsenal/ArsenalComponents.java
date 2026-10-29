@@ -68,6 +68,14 @@ public class ArsenalComponents {
 			DataComponentType.<Map<String, Integer>>builder().persistent(Codec.unboundedMap(Codec.STRING, Codec.INT))
 					.networkSynchronized(ByteBufCodecs.<ByteBuf, String, Integer, Map<String, Integer>>map(HashMap::new, ByteBufCodecs.STRING_UTF8, ByteBufCodecs.VAR_INT)).build());
 
+	/**
+	 * A fingerprint of the numbers a piece of gear was last forged with (see Restat). When the materials or formulas
+	 * change, it no longer matches and the piece's stats are worked out again. It skips the "pull out" animation.
+	 */
+	public static final DataComponentType<Integer> STATS_STAMP = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
+			ArsenalMod.id("stats_stamp"),
+			DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT).ignoreSwapAnimation().build());
+
 	/** Loads this class, which registers the components above. */
 	static void initialize() {
 	}
