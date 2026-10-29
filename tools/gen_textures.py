@@ -553,9 +553,11 @@ OUTFITS.update({
     'treasure_gold': outfit('captain', cloth_of('treasure_gold'), main_of('treasure_gold'),
                             cloth_of('treasure_gold'), main_of('treasure_gold'), BLACK, main_of('treasure_gold'),
                             BLACK, main_of('treasure_gold')),
-    # A Wano ronin: a straw kasa, an indigo kimono vest, grey hakama and straw sandals.
-    'tamahagane': outfit('castaway', STRAW, cloth_of('tamahagane'), cloth_of('tamahagane'), SKIN,
-                         ramp('1a1a1f', '35353d', '4e4e58', '6a6a76', '8c8c99'), cloth_of('tamahagane'), STRAW, SKIN),
+    # A Wano samurai: a horned kabuto, a laced steel do with sode on the shoulders, kusazuri over grey hakama,
+    # and suneate shin guards over white tabi. The plates are the steel itself, the lacing is the indigo silk.
+    'tamahagane': outfit('samurai', main_of('tamahagane'), cloth_of('tamahagane'), main_of('tamahagane'),
+                         cloth_of('tamahagane'), ramp('1a1a1f', '35353d', '4e4e58', '6a6a76', '8c8c99'),
+                         cloth_of('tamahagane'), main_of('tamahagane'), cloth_of('tamahagane')),
     # Pacifista plating: gunmetal with hazard yellow, cut like a Marine uniform.
     'pacifista_alloy': outfit('recruit', main_of('pacifista_alloy'), cloth_of('pacifista_alloy'),
                               main_of('pacifista_alloy'), cloth_of('pacifista_alloy'),
@@ -584,7 +586,8 @@ OUTFITS.update({
 GOLD = ramp('5a400c', '8a6418', 'c99a32', 'e2b84a', 'f5d77a')
 TEAL = ramp('10181a', '27393b', '3b5856', '5b857d', '9bd1c0')
 
-# Armor icons: 1-5 = the piece's first ramp, a-e = its second ramp, p-t = gold, plus FIXED colours.
+# Armor icons: 1-5 = the piece's first ramp, a-e = its second ramp, p-t = gold, v-z = the shell's own metal,
+# plus FIXED colours.
 HATS = {
     'castaway': check('straw_hat', '''
 ................
@@ -655,6 +658,24 @@ r33q133333331q3r
 ....kkVkkkkk....
 ................
 ................
+................
+................
+'''),
+    'samurai': check('kabuto', '''
+................
+..p..........p..
+..q..........q..
+..rq..1111..qr..
+...rq145541qr...
+....1rq44qr1....
+...144rssr331...
+..133333333331..
+.1cb1......1bc1.
+.134b......b431.
+1cbcb......bcbc1
+13441......14431
+1bcbc......cbcb1
+.1111......1111.
 ................
 ................
 '''),
@@ -759,6 +780,22 @@ def coat_cell(style, r, x, y):
         if r in 'LR' and x in (6, 9):
             return 'c' if x < 8 else 'b'
         return lit(x, y, '5', '4', '3')
+    if style == 'samurai':  # a do of laced steel plates, sode on the shoulders, kusazuri at the hem
+        if r == 'C':
+            return 'c'
+        if r == 'U':
+            return 'b'
+        if r == 'S':
+            if y >= 8:
+                return 'c' if x < 8 else 'b'  # the kimono sleeve below the sode
+            return ('c' if x % 2 else 'b') if y % 2 == 0 else lit(x, y)
+        if r == 'H':
+            return '1' if x % 3 == 0 else 'c' if y == 13 else '3'
+        if y % 3 == 0:
+            return 'c' if x % 2 else 'b'  # a row of lacing between plates
+        if r == 'P' and y in (4, 5):
+            return 'q'  # the clan crest
+        return lit(x, y, '5' if y % 3 == 1 else '4', '4' if y % 3 == 1 else '3', '3' if y % 3 == 1 else '2')
     raise ValueError(style)
 
 
@@ -769,6 +806,16 @@ def legs_cell(style, r, x, y):
         if r == 'B':
             return 'd' if x % 2 else 'c'
         return lit(x, y) if y < 8 else '4'
+    if style == 'samurai':  # kusazuri plates over the hips, then wide grey hakama
+        if r == 'B':
+            return 'b' if x % 2 else 'c'  # the obi
+        if y <= 5 and r != '.':
+            if x % 3 == 2:
+                return 'v'
+            return 'c' if y == 4 else 'y' if y == 2 else 'x'
+        if r == 'K':
+            return '2'
+        return '2' if x in (5, 10) else lit(x, y)  # the pleats
     if r == 'B':
         if style == 'officer' and x in (7, 8):
             return 's'
@@ -789,6 +836,16 @@ def boots_cell(style, r, x, y):
         if r == 'S':
             return '2'
         return '3' if y in (9, 11) else 'd' if x < 8 else 'c'
+    if style == 'samurai':  # suneate splints tied over the shin, white tabi
+        if r == 'U':
+            return 'c'
+        if r == 'S':
+            return 'M'  # a straw sandal
+        if y >= 10:
+            return 'c' if y == 11 and x in (4, 12) else 'W' if y == 10 or x in (3, 4, 10, 11) else 'V'
+        if y in (5, 8):
+            return 'b'
+        return '4' if x in (3, 11) else '3' if x in (4, 12) else '2'
     if r == 'U':
         return '5' if style == 'captain' else '4'
     if r == 'S':
@@ -818,6 +875,8 @@ def shape_mask(shape, cell, style):
 def outline_of(ch):
     if ch in '12345':
         return '1'
+    if ch in 'vwxyz':
+        return 'v'
     if ch in 'abcde':
         return 'a'
     if ch in 'pqrst':
@@ -825,7 +884,7 @@ def outline_of(ch):
     return 'k'
 
 
-def paint_outfit(rows, first, second):
+def paint_outfit(rows, first, second, metal=None):
     img = blank()
     for y, row in enumerate(rows):
         for x, ch in enumerate(row):
@@ -837,6 +896,8 @@ def paint_outfit(rows, first, second):
                 c = second['abcde'.index(ch)]
             elif ch in 'pqrst':
                 c = GOLD['pqrst'.index(ch)]
+            elif ch in 'vwxyz':
+                c = metal['vwxyz'.index(ch)]
             else:
                 c = FIXED[ch]
             img.putpixel((x, y), c)
@@ -849,7 +910,7 @@ def armor_icons(material):
     return {
         'hat': paint_outfit(HATS[st], o['hat'], o['hat2']),
         'coat': paint_outfit(shape_mask(COAT_SHAPE, coat_cell, st), o['coat'], o['coat2']),
-        'sash': paint_outfit(shape_mask(LEGS_SHAPE, legs_cell, st), o['legs'], o['legs2']),
+        'sash': paint_outfit(shape_mask(LEGS_SHAPE, legs_cell, st), o['legs'], o['legs2'], main_of(material)),
         'boots': paint_outfit(shape_mask(BOOTS_SHAPE, boots_cell, st), o['boots'], o['boots2']),
     }
 
@@ -916,6 +977,7 @@ def worn(material):
     st = o['style']
     hat, hat2, coat, coat2 = o['hat'], o['hat2'], o['coat'], o['coat2']
     legs, legs2, boots, boots2 = o['legs'], o['legs2'], o['boots'], o['boots2']
+    metal = MATERIALS[material]['main']
     white, black = FIXED['W'], FIXED['k']
     layer1 = Image.new('RGBA', (64, 32), (0, 0, 0, 0))
     layer2 = Image.new('RGBA', (64, 32), (0, 0, 0, 0))
@@ -929,6 +991,8 @@ def worn(material):
                 return (hat, 3 if (x + y) % 3 else 2)
             if st == 'recruit' and x in (3, 4) and y in (3, 4):
                 return (hat2, 2)
+            if st == 'samurai':  # a ridged bowl round a gilt ring
+                return GOLD[2] if x in (3, 4) and y in (3, 4) else (hat, 3 if x % 2 else 2)
             return (hat, 3)
         if st == 'castaway':
             if face == 'front':
@@ -954,6 +1018,19 @@ def worn(material):
             if y <= 2:
                 return (hat, 3)
             return (hat2, 2) if y <= 4 else None
+        if st == 'samurai':
+            if face == 'front':  # the crescent crest rises from the brim
+                if (y, x) in ((0, 0), (0, 7), (1, 1), (1, 6)) or (y == 2 and 2 <= x <= 5):
+                    return GOLD[4] if y < 2 or x in (3, 4) else GOLD[3]
+                if y == 3:
+                    return (hat, 1)  # the brim
+                return (hat, 3 if x % 2 else 2)
+            if y <= 2:
+                return (hat, 3 if x % 2 else 2)
+            if y == 3:
+                return (hat, 1)
+            # the shikoro: plates and lacing hanging down over the neck
+            return (hat2, 2 if x % 2 else 1) if y % 2 else (hat, 2)
         if st == 'officer':
             if face == 'front':
                 if y == 0:
@@ -1006,6 +1083,22 @@ def worn(material):
             if face == 'back' and o.get('mark', True) and x < 7 and JUSTICE[y][x] == '#':
                 return black
             return (coat, 3)
+        if st == 'samurai':
+            if face == 'top':
+                return (coat2, 2) if x in (2, 5) else (coat, 3)  # the shoulder cords
+            if y == 0:
+                return (coat2, 2)
+            if y == 9:
+                return (coat2, 1)  # the obi
+            if y >= 10:  # the kusazuri, split into hanging plates
+                return (coat, 1) if face in ('front', 'back') and x % 3 == 2 else (coat, 3 if y == 10 else 2)
+            if face == 'back' and x in (3, 4) and y in (4, 5):
+                return (coat2, 4)  # the agemaki knot
+            if y % 3 == 0:
+                return (coat2, 2 if x % 2 else 1)
+            if face == 'front' and x in (3, 4) and y == 4:
+                return GOLD[3]  # the clan crest
+            return (coat, 3 if y % 3 == 1 else 2)
 
     def arm(face, x, y, w, h):
         if face == 'bottom' or st == 'castaway':
@@ -1018,6 +1111,14 @@ def worn(material):
             return (coat, 3)
         if st == 'recruit':
             return (coat2, 2) if y >= 10 else (coat, 3)
+        if st == 'samurai':
+            if face == 'top':
+                return (coat, 2)
+            if y <= 5:  # the sode, a laced shoulder board
+                return (coat2, 2 if x % 2 else 1) if y % 2 else (coat, 3 if y == 0 else 2)
+            if y <= 8:
+                return (coat2, 2)  # the sleeve
+            return (coat2, 1) if y == 9 else (coat, 3 if x % 2 else 2)  # the kote
         if st == 'officer':
             if face == 'top' or y == 0:
                 return GOLD[3] if (x + y) % 2 == 0 else GOLD[2]
@@ -1046,6 +1147,14 @@ def worn(material):
             return (boots, 2)
         if st == 'recruit':
             return None if y < 8 else (boots, 3 if y == 8 else 2)
+        if st == 'samurai':
+            if y < 5:
+                return None
+            if y >= 10:
+                return FIXED['W'] if y == 10 else FIXED['V']  # tabi
+            if y in (5, 8):
+                return (boots2, 2)  # the ties
+            return (boots, 4 if face == 'front' and x in (1, 2) else 3 if x % 2 else 2)
         if st == 'officer':
             if y < 7:
                 return None
@@ -1062,6 +1171,10 @@ def worn(material):
             if st == 'officer' and face == 'front' and x in (3, 4):
                 return GOLD[3]
             return (legs2, 3 if st == 'castaway' and x % 2 else 2)
+        if st == 'samurai' and y >= 9:  # the kusazuri, split into hanging plates
+            if face in ('front', 'back') and x % 3 == 2:
+                return (metal, 1)
+            return (legs2, 3 if x % 2 else 2) if y == 10 else (metal, 3 if y == 9 else 2)
         if st == 'captain' and y == 9:
             return (legs2, 2)
         if st == 'captain' and face == 'front' and x == 6:
@@ -1077,6 +1190,10 @@ def worn(material):
             return None if y > 5 else (legs, 4 if y == 5 else 3)
         if st == 'officer' and face == 'front' and x == 1:
             return (legs, 4)  # pressed crease
+        if st == 'samurai':
+            if face == 'front' and y <= 3:  # the haidate, a laced apron over the thighs
+                return (metal, 3) if y % 2 == 0 else (legs2, 3 if x % 2 else 2)
+            return (legs, 2 if x % 2 else 3)  # hakama pleats
         return (legs, 3)
 
     paint_box(layer1, HEAD, head)
