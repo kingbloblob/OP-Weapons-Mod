@@ -13,6 +13,7 @@ import com.onepiecearsenal.disguise.Suspicion;
 import com.onepiecearsenal.loot.MarineGear;
 import com.onepiecearsenal.loot.MarineSteelLoot;
 import com.onepiecearsenal.material.TraitEffects;
+import com.onepiecearsenal.meito.Meito;
 
 /**
  * The starting point of One Piece Arsenal. Minecraft calls onInitialize() once while the game is loading,
@@ -32,6 +33,7 @@ public class ArsenalMod implements ModInitializer {
 		MarineGear.initialize();
 		Suspicion.initialize();
 		PirateGrudge.initialize();
+		Meito.initialize();
 	}
 
 	public static Identifier id(String path) {
