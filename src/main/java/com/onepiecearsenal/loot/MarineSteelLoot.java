@@ -1,5 +1,6 @@
 package com.onepiecearsenal.loot;
 
+import net.minecraft.core.Holder;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -9,7 +10,8 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
-import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.ints.UniformGenerator;
 
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
@@ -58,6 +60,7 @@ public class MarineSteelLoot {
 		return LootPool.lootPool()
 				.when(LootItemRandomChanceCondition.randomChance(chance))
 				.add(LootItem.lootTableItem(ArsenalItems.MARINE_STEEL_INGOT)
-						.apply(SetItemCountFunction.setCount(UniformGenerator.between(min, max))));
+						.apply(SetItemCountFunction.setCount(Holder.direct(new UniformGenerator(
+								Holder.direct(new ConstantValue(min)), Holder.direct(new ConstantValue(max)))))));
 	}
 }
