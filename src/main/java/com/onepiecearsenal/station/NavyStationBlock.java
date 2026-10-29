@@ -32,6 +32,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
+import com.onepiecearsenal.compat.MainModLinks;
 import com.onepiecearsenal.compat.OnePieceBridge;
 import com.onepiecearsenal.disguise.MarineDisguise;
 
@@ -117,6 +118,7 @@ public abstract class NavyStationBlock extends HorizontalDirectionalBlock {
 			level.playSound(null, pos, SoundEvents.PLAYER_LEVELUP, SoundSource.BLOCKS, 0.8f, 1.2f);
 			pirate.sendSystemMessage(Component.literal("You captured the " + title + "! Mine it to take it with you, but don't let the Marines see it.")
 					.withStyle(ChatFormatting.GOLD));
+			MainModLinks.capturedStation(pirate, title);
 			return work(state.setValue(CAPTURED, true), level, pos, pirate);
 		}
 		if (guards.stream().allMatch(guard -> MarineDisguise.fools(guard, pirate))) {
@@ -141,6 +143,7 @@ public abstract class NavyStationBlock extends HorizontalDirectionalBlock {
 		}
 		List<Mob> guards = guards(level, pos);
 		if (guards.isEmpty()) {
+			MainModLinks.capturedStation(player, title);
 			return true;
 		}
 		warn(player, guards);

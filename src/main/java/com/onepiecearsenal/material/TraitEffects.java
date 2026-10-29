@@ -113,7 +113,7 @@ public class TraitEffects {
 					entity.spawnAtLocation(level, new ItemStack(OnePieceBridge.berry(), 1 + level.getRandom().nextInt(3)));
 				}
 				if (traits.contains(Trait.GREED) && OnePieceBridge.isMarine(entity)) {
-					OnePieceBridge.raiseBounty(killer, GREED_BOUNTY, "Greed");
+					OnePieceBridge.raiseBounty(killer, GREED_BOUNTY, "The Navy noticed your Greed weapon.");
 				}
 			}
 		});
@@ -159,10 +159,10 @@ public class TraitEffects {
 	}
 
 	/**
-	 * A hit by an Arsenal weapon. hitDamage is the weapon's attack damage (melee) or the shot's damage (guns);
-	 * melee is false for gun shots, which can't crit.
+	 * A hit by an Arsenal weapon, or a Black Leg kick in Arsenal boots (MainModLinks). hitDamage is the weapon's
+	 * attack damage (melee) or the shot's damage (guns); melee is false for gun shots, which can't crit.
 	 */
-	private static void onHit(ServerPlayer player, ServerLevel level, LivingEntity target, Set<Trait> traits, float hitDamage, boolean melee) {
+	public static void onHit(ServerPlayer player, ServerLevel level, LivingEntity target, Set<Trait> traits, float hitDamage, boolean melee) {
 		RandomSource random = level.getRandom();
 		if (traits.contains(Trait.SEASTONE) && OnePieceBridge.isFruitUser(target)) {
 			OnePieceBridge.drainFruitPower(target, SEASTONE_DRAIN_TICKS);
