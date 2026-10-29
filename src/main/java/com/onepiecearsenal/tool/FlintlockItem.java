@@ -5,9 +5,13 @@ import java.util.function.Consumer;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
+import net.minecraft.world.level.Level;
 
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
@@ -28,8 +32,33 @@ public class FlintlockItem extends GunItem {
 	/** 0 damage, 100-tick reload, 1 block range, 1 spread: easy to read the upgrades back out of. */
 	public static final Stats UNIT = new Stats(0.0f, 100, 1.0, 1.0f, 1, Ammo.Kind.BULLET, 0, 0, 3.0f);
 
+	/** The flintlock that is firing right now, so its traits go on the shot even from the offhand. */
+	private static ItemStack firing = ItemStack.EMPTY;
+
 	public FlintlockItem(Properties properties) {
 		super(UNIT, Hold.PISTOL, properties);
+	}
+
+	/**
+	 * The One Piece Mod's shots hit the moment the trigger is pulled, inside use(), so remembering the gun
+	 * here tells TraitEffects which flintlock fired, whichever hand it's in.
+	 */
+	@Override
+	public InteractionResult use(Level level, Player player, InteractionHand hand) {
+		if (level.isClientSide()) {
+			return super.use(level, player, hand);
+		}
+		firing = player.getItemInHand(hand);
+		try {
+			return super.use(level, player, hand);
+		} finally {
+			firing = ItemStack.EMPTY;
+		}
+	}
+
+	/** The flintlock whose shot is landing right now, or an empty stack outside a shot. */
+	public static ItemStack firing() {
+		return firing;
 	}
 
 	@Override

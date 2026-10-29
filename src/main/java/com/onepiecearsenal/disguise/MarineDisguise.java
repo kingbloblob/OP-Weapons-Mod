@@ -90,12 +90,17 @@ public class MarineDisguise {
 	/** How long each hunter has been fooled by the pirate it was sent for. Forgets Marines that unload. */
 	private static final Map<Mob, Integer> FOOLED_HUNTERS = new WeakHashMap<>();
 
+	/** A player's working uniform, as worked out on one game tick. */
+	private record Cover(long tick, Quality quality) {}
+	/** Each player's cover this tick: every Marine looking for a target asks, so it's worked out once per tick. */
+	private static final Map<Player, Cover> COVER = new WeakHashMap<>();
+
 	public static void initialize() {
 		// Hitting a Marine blows your cover, with a sword, a gun or a fist, even if it blocks the hit.
 		// Checked before the hit lands, so the Marine is free to hit back.
 		ServerLivingEntityEvents.ALLOW_DAMAGE.register((entity, source, amount) -> {
 			if (OnePieceBridge.isMarine(entity) && source.getEntity() instanceof ServerPlayer attacker && quality(attacker) != Quality.NONE) {
-				attacker.setAttached(BLOWN_UNTIL, attacker.level().getGameTime() + BLOWN_TICKS);
+				blow(attacker);
 			}
 			return true;
 		});
@@ -178,6 +183,30 @@ public class MarineDisguise {
 		return lowestTier >= 3 ? Quality.OFFICER : Quality.BASIC;
 	}
 
+	/** Blows the player's cover for a minute: Marines see them for who they are again. */
+	public static void blow(Player player) {
+		player.setAttached(BLOWN_UNTIL, player.level().getGameTime() + BLOWN_TICKS);
+		COVER.remove(player); // So Marines react this tick, not next.
+	}
+
+	/**
+	 * The uniform that's working right now: NONE if the player wears none, their cover is blown, or their bounty is
+	 * too famous for it. Worked out at most once a tick per player.
+	 */
+	public static Quality cover(Player player) {
+		long now = player.level().getGameTime();
+		Cover cached = COVER.get(player);
+		if (cached != null && cached.tick() == now) {
+			return cached.quality();
+		}
+		Quality quality = quality(player);
+		if (quality != Quality.NONE && (isBlown(player) || OnePieceBridge.bounty(player) > quality.hidesBountyUpTo)) {
+			quality = Quality.NONE;
+		}
+		COVER.put(player, new Cover(now, quality));
+		return quality;
+	}
+
 	public static boolean isBlown(Player player) {
 		Long until = player.getAttached(BLOWN_UNTIL);
 		return until != null && player.level().getGameTime() < until;
@@ -185,11 +214,8 @@ public class MarineDisguise {
 
 	/** Whether this Marine is fooled by the player's uniform right now. */
 	public static boolean fools(LivingEntity marine, Player player) {
-		Quality quality = quality(player);
-		if (quality == Quality.NONE || isBlown(player) || OnePieceBridge.bounty(player) > quality.hidesBountyUpTo) {
-			return false;
-		}
 		// Captains have seen too many recruits to be fooled by a borrowed uniform, and admirals know their officers.
-		return quality.fools(OnePieceBridge.marineInsight(marine));
+		// NONE fools nobody.
+		return cover(player).fools(OnePieceBridge.marineInsight(marine));
 	}
 }

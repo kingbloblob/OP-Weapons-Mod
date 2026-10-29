@@ -10,8 +10,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 
+import com.onepiecearsenal.compat.OnePieceBridge;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
+import com.onepiecearsenal.meito.Meito;
 
 /**
  * A katana built from a blade, a tsuba and a hilt at the Shipwright's Anvil. Its name, numbers and traits
@@ -42,6 +44,25 @@ public class KatanaItem extends Item {
 		for (Trait trait : KatanaStats.traits(stack)) {
 			textConsumer.accept(Component.literal(trait.displayName + ": " + trait.description + (trait.active ? "" : " (coming soon)"))
 					.withStyle(ChatFormatting.GOLD));
+		}
+
+		int level = Meito.level(stack);
+		int maxLevel = Meito.maxLevel(stack);
+		String progress = level >= maxLevel ? " (grade limit)"
+				: " (" + Meito.record(stack).xp() + "/" + Meito.xpForLevel(level + 1) + " XP)";
+		textConsumer.accept(Component.literal("Blade level " + level + "/" + maxLevel + progress).withStyle(ChatFormatting.AQUA));
+		int grade = OnePieceBridge.swordGrade(stack);
+		if (grade > 0) {
+			textConsumer.accept(Component.literal("Wielder needs " + Meito.wieldRequirement(grade)).withStyle(ChatFormatting.DARK_AQUA));
+		}
+		List<Meito.Need> needs = Meito.promotionNeeds(stack);
+		if (!needs.isEmpty()) {
+			textConsumer.accept(Component.literal("To reach " + OnePieceBridge.gradeName(grade + 1) + ":").withStyle(ChatFormatting.GRAY));
+			for (Meito.Need need : needs) {
+				textConsumer.accept(Component.literal((need.met() ? " \u2714 " : " \u2718 ") + need.text())
+						.withStyle(need.met() ? ChatFormatting.GREEN : ChatFormatting.DARK_GRAY));
+			}
+			textConsumer.accept(Component.literal(" and a wielder with " + Meito.wieldRequirement(grade + 1)).withStyle(ChatFormatting.DARK_GRAY));
 		}
 	}
 }
