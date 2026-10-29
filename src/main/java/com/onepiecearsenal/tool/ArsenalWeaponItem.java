@@ -12,6 +12,7 @@ import net.minecraft.world.item.component.TooltipDisplay;
 
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
+import com.onepiecearsenal.upgrade.Upgrades;
 
 /**
  * A cutlass, sabre, boarding axe, jitte, kanabo or spear built from a head, a binding and a handle at the
@@ -51,5 +52,6 @@ public class ArsenalWeaponItem extends Item {
 			textConsumer.accept(Component.literal(trait.displayName + ": " + trait.description + (trait.active ? "" : " (coming soon)"))
 					.withStyle(ChatFormatting.GOLD));
 		}
+		Upgrades.describe(stack, textConsumer);
 	}
 }

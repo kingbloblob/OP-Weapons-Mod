@@ -260,7 +260,8 @@ public class TraitEffects {
 		extraHit(player, level, target, damage, player.damageSources().thrown(player, player));
 	}
 
-	private static void extraHit(ServerPlayer player, ServerLevel level, LivingEntity target, float damage, DamageSource source) {
+	/** The same, with a damage source of the caller's choosing: indirect magic goes through armor. */
+	public static void extraHit(ServerPlayer player, ServerLevel level, LivingEntity target, float damage, DamageSource source) {
 		dealingExtra = true;
 		try {
 			target.hurtServer(level, source, damage);
