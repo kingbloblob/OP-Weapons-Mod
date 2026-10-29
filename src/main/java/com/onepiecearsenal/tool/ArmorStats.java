@@ -35,9 +35,6 @@ import com.onepiecearsenal.part.PartType;
  * A material's "armor" number is its whole-set strength: 4 = iron, 5 = diamond.
  */
 public final class ArmorStats {
-	private static final Identifier ARMOR_MODIFIER = ArsenalMod.id("armor_plates");
-	private static final Identifier TOUGHNESS_MODIFIER = ArsenalMod.id("armor_toughness");
-
 	private ArmorStats() {
 	}
 
@@ -97,10 +94,10 @@ public final class ArmorStats {
 		EquipmentSlotGroup slot = EquipmentSlotGroup.bySlot(type.getSlot());
 		ItemAttributeModifiers modifiers = ItemAttributeModifiers.EMPTY
 				.withModifierAdded(Attributes.ARMOR,
-						new AttributeModifier(ARMOR_MODIFIER, defense(shell, type), AttributeModifier.Operation.ADD_VALUE), slot);
+						new AttributeModifier(id("armor_plates", slot), defense(shell, type), AttributeModifier.Operation.ADD_VALUE), slot);
 		if (toughness(shell) > 0) {
 			modifiers = modifiers.withModifierAdded(Attributes.ARMOR_TOUGHNESS,
-					new AttributeModifier(TOUGHNESS_MODIFIER, toughness(shell), AttributeModifier.Operation.ADD_VALUE), slot);
+					new AttributeModifier(id("armor_toughness", slot), toughness(shell), AttributeModifier.Operation.ADD_VALUE), slot);
 		}
 		Set<Trait> traits = EnumSet.of(shell.headTrait, lining.handleTrait);
 		piece.set(DataComponents.ATTRIBUTE_MODIFIERS, TraitStats.modifiers(modifiers, traits, slot));
@@ -116,6 +113,14 @@ public final class ArmorStats {
 					.build());
 		}
 		return piece;
+	}
+
+	/**
+	 * One id per slot. Modifiers with the same id replace each other when worn, so with a shared id a full set
+	 * only counted one piece's defense.
+	 */
+	private static Identifier id(String name, EquipmentSlotGroup slot) {
+		return ArsenalMod.id(name + "." + slot.getSerializedName());
 	}
 
 	/** The piece's materials as shell, lining. Empty for a piece that wasn't built from parts. */
