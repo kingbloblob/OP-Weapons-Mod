@@ -5,6 +5,7 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.ItemStack;
 
@@ -41,18 +42,18 @@ public final class GunStats {
 	}
 
 	/** Builds a finished flintlock. */
-	public static ItemStack build(ArsenalMaterial barrel, ArsenalMaterial lock, ArsenalMaterial stock) {
-		return build(GunType.FLINTLOCK, barrel, lock, stock);
+	public static ItemStack build(ArsenalMaterial barrel, ArsenalMaterial lock, ArsenalMaterial stock, HolderLookup.Provider registries) {
+		return build(GunType.FLINTLOCK, barrel, lock, stock, registries);
 	}
 
 	/** Builds a finished gun. */
-	public static ItemStack build(GunType type, ArsenalMaterial barrel, ArsenalMaterial lock, ArsenalMaterial stock) {
+	public static ItemStack build(GunType type, ArsenalMaterial barrel, ArsenalMaterial lock, ArsenalMaterial stock, HolderLookup.Provider registries) {
 		ItemStack gun = new ItemStack(ArsenalItems.GUNS.get(type));
 		gun.set(ArsenalComponents.GUN_PARTS, List.of(barrel.id(), lock.id(), stock.id()));
 		Set<Trait> traits = traits(barrel, lock, stock);
 		int durability = Math.round((barrel.durability + lock.durability + stock.durability) / 3.0f * type.durabilityScale);
 		gun.set(DataComponents.MAX_DAMAGE, TraitStats.durability(durability, traits));
-		TraitStats.finish(gun, traits);
+		TraitStats.finish(gun, traits, registries);
 		return gun;
 	}
 

@@ -5,6 +5,7 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -34,7 +35,7 @@ public final class KatanaStats {
 	}
 
 	/** Builds a finished katana. */
-	public static ItemStack build(ArsenalMaterial blade, ArsenalMaterial tsuba, ArsenalMaterial hilt) {
+	public static ItemStack build(ArsenalMaterial blade, ArsenalMaterial tsuba, ArsenalMaterial hilt, HolderLookup.Provider registries) {
 		ItemStack katana = new ItemStack(ArsenalItems.KATANA);
 		katana.set(ArsenalComponents.KATANA_PARTS, List.of(blade.id(), tsuba.id(), hilt.id()));
 
@@ -52,7 +53,7 @@ public final class KatanaStats {
 						new AttributeModifier(SPEED_MODIFIER, speed, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);
 		katana.set(DataComponents.ATTRIBUTE_MODIFIERS, TraitStats.modifiers(modifiers, traits, EquipmentSlotGroup.MAINHAND));
 		katana.set(DataComponents.MAX_DAMAGE, durability);
-		TraitStats.finish(katana, traits);
+		TraitStats.finish(katana, traits, registries);
 		return katana;
 	}
 

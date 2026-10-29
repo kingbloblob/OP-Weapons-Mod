@@ -2,6 +2,7 @@ package com.onepiecearsenal.material;
 
 import java.util.Set;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.DamageTypeTags;
@@ -56,10 +57,13 @@ public final class TraitStats {
 		return ArsenalMod.id(name + "." + slot.getSerializedName());
 	}
 
-	/** The traits saved straight onto the item: Ultra-alloy makes it fireproof, like netherite. */
-	public static void finish(ItemStack stack, Set<Trait> traits) {
-		if (traits.contains(Trait.ULTRA_ALLOY)) {
-			stack.set(DataComponents.DAMAGE_RESISTANT, new DamageResistant(DamageTypeTags.IS_FIRE));
+	/**
+	 * The traits saved straight onto the item: Ultra-alloy makes it fireproof, like netherite.
+	 * registries is null only for the creative tab icon, which has no Ultra-alloy.
+	 */
+	public static void finish(ItemStack stack, Set<Trait> traits, HolderLookup.Provider registries) {
+		if (traits.contains(Trait.ULTRA_ALLOY) && registries != null) {
+			stack.set(DataComponents.DAMAGE_RESISTANT, new DamageResistant(registries.getOrThrow(DamageTypeTags.IS_FIRE)));
 		}
 	}
 }
