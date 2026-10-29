@@ -3,6 +3,7 @@
 	"package": "com.onepiecearsenal.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
+		"FoodDataAccessor",
 		"MobMixin"
 	],
 	"injectors": {

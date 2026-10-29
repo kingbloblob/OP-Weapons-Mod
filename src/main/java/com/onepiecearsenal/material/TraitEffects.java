@@ -21,7 +21,6 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Enemy;
-import net.minecraft.world.food.FoodData;
 import net.minecraft.world.item.ItemStack;
 
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
@@ -30,6 +29,7 @@ import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 
 import com.onepiecearsenal.ArsenalMod;
 import com.onepiecearsenal.compat.OnePieceBridge;
+import com.onepiecearsenal.mixin.FoodDataAccessor;
 import com.onepiecearsenal.tool.ArmorStats;
 import com.onepiecearsenal.tool.ArsenalArmorItem;
 import com.onepiecearsenal.tool.ArsenalGunItem;
@@ -136,8 +136,8 @@ public class TraitEffects {
 					player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 40, 1, false, false, true));
 				}
 				if (wearsOrHolds(player, Trait.ENDURANCE)) {
-					FoodData food = player.getFoodData();
-					food.setExhaustion(Math.max(0.0f, food.getExhaustionLevel() - ENDURANCE_PER_SECOND));
+					FoodDataAccessor exhaustion = (FoodDataAccessor) player.getFoodData();
+					exhaustion.arsenal$setExhaustionLevel(Math.max(0.0f, exhaustion.arsenal$getExhaustionLevel() - ENDURANCE_PER_SECOND));
 				}
 				if (mend) {
 					for (EquipmentSlot slot : EquipmentSlot.values()) {
@@ -166,7 +166,7 @@ public class TraitEffects {
 		if (traits.contains(Trait.REGULATION) && OnePieceBridge.isPirateNpc(target)) {
 			extraHit(player, level, target, 1.0f);
 		}
-		if (traits.contains(Trait.PREDATOR) && target.getType().is(SEA_CREATURES)) {
+		if (traits.contains(Trait.PREDATOR) && target.getType().builtInRegistryHolder().is(SEA_CREATURES)) {
 			extraHit(player, level, target, 2.0f);
 		}
 		if (traits.contains(Trait.KEEN)) {
@@ -174,7 +174,7 @@ public class TraitEffects {
 			extraHit(player, level, target, hitDamage * KEEN_SHARE, player.damageSources().indirectMagic(player, player));
 		}
 		if (traits.contains(Trait.RECOIL)) {
-			target.knockback(0.6, player.getX() - target.getX(), player.getZ() - target.getZ());
+			target.knockback(0.6, player.getX() - target.getX(), player.getZ() - target.getZ(), player.damageSources().playerAttack(player), 0.0f);
 		}
 		if (traits.contains(Trait.SERRATED) && melee && isCritical(player)) {
 			target.addEffect(new MobEffectInstance(MobEffects.WITHER, 60, 0), player); // Bleeding.
