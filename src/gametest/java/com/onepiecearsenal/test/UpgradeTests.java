@@ -36,7 +36,7 @@ public class UpgradeTests {
 
 	@GameTest
 	public void upgradesAddUpAndFillTheSlots(GameTestHelper helper) {
-		ItemStack katana = KatanaStats.build(ArsenalMaterial.TAMAHAGANE, IRON, IRON);
+		ItemStack katana = KatanaStats.build(ArsenalMaterial.byId("tamahagane"), IRON, IRON);
 		double before = total(katana, Attributes.ATTACK_DAMAGE);
 		Upgrade honed = Upgrade.byId("honed_edge");
 		for (int i = 0; i < 3; i++) {
