@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_firing_lock",
+  "key": {
+    "M": "onepiece:seastone_ingot",
+    "F": "minecraft:flint"
+  },
+  "pattern": [
+    " F",
+    "MM"
+  ],
+  "result": {
+    "id": "arsenal:firing_lock",
+    "components": {
+      "arsenal:part_material": "kairoseki"
+    }
+  }
+}

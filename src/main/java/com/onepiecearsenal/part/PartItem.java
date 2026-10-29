@@ -12,6 +12,7 @@ import net.minecraft.world.item.component.TooltipDisplay;
 import com.onepiecearsenal.ArsenalComponents;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
+import com.onepiecearsenal.tool.GunStats;
 
 /**
  * One part, like a Ship Iron Katana Blade. There is one item per part type; the material is saved on the stack.
@@ -53,10 +54,15 @@ public class PartItem extends Item {
 			return;
 		}
 		textConsumer.accept(Component.literal("Tier " + material.tier + " · " + material.faction.displayName).withStyle(ChatFormatting.GRAY));
-		if (this.type.head) {
-			textConsumer.accept(Component.literal("Damage: " + material.damage).withStyle(ChatFormatting.BLUE));
-		} else {
-			textConsumer.accept(Component.literal("Speed: " + (material.speed >= 0 ? "+" : "") + material.speed).withStyle(ChatFormatting.BLUE));
+		switch (this.type) {
+			case KATANA_BLADE -> textConsumer.accept(Component.literal("Damage: " + material.damage).withStyle(ChatFormatting.BLUE));
+			case TSUBA, HILT -> textConsumer.accept(Component.literal("Speed: " + (material.speed >= 0 ? "+" : "") + material.speed).withStyle(ChatFormatting.BLUE));
+			case BARREL -> textConsumer.accept(Component.literal(String.format("Shot damage: %.0f, range: %.0f blocks",
+					GunStats.damage(material), GunStats.range(material))).withStyle(ChatFormatting.BLUE));
+			case LOCK -> textConsumer.accept(Component.literal(String.format("Reload: %.2fs", GunStats.cooldown(material) / 20.0))
+					.withStyle(ChatFormatting.BLUE));
+			case STOCK -> textConsumer.accept(Component.literal(String.format("Spread: %.2f", GunStats.spread(material)))
+					.withStyle(ChatFormatting.BLUE));
 		}
 		textConsumer.accept(Component.literal("Durability: " + material.durability).withStyle(ChatFormatting.BLUE));
 		Trait trait = this.type.head ? material.headTrait : material.handleTrait;
