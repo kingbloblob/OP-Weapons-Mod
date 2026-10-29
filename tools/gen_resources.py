@@ -33,6 +33,15 @@ w(f'{A}/lang/en_us.json', {
     "item.arsenal.firing_lock": "Firing Lock",
     "item.arsenal.stock": "Stock",
     "item.arsenal.flintlock": "Flintlock",
+    "item.arsenal.crown": "Hat Crown",
+    "item.arsenal.coat_plates": "Coat Plates",
+    "item.arsenal.sash_weave": "Sash Weave",
+    "item.arsenal.boot_soles": "Boot Soles",
+    "item.arsenal.lining": "Lining",
+    "item.arsenal.hat": "Hat",
+    "item.arsenal.coat": "Coat",
+    "item.arsenal.sash": "Sash",
+    "item.arsenal.boots": "Boots",
     "block.arsenal.shipwrights_anvil": "Shipwright's Anvil"
 })
 # Placeholder art: vanilla textures until the real ones are drawn.
@@ -47,10 +56,21 @@ items = {
     "firing_lock": ("minecraft:item/generated", "minecraft:item/flint"),
     "stock": ("minecraft:item/generated", "minecraft:item/stick"),
     "flintlock": ("minecraft:item/handheld", "onepiece:item/flintlock_pistol"),
+    "crown": ("minecraft:item/generated", "minecraft:item/leather_helmet"),
+    "coat_plates": ("minecraft:item/generated", "minecraft:item/iron_chestplate"),
+    "sash_weave": ("minecraft:item/generated", "minecraft:item/string"),
+    "boot_soles": ("minecraft:item/generated", "minecraft:item/leather_boots"),
+    "lining": ("minecraft:item/generated", "minecraft:item/paper"),
+    "hat": ("minecraft:item/generated", "minecraft:item/iron_helmet"),
+    "coat": ("minecraft:item/generated", "minecraft:item/iron_chestplate"),
+    "sash": ("minecraft:item/generated", "minecraft:item/iron_leggings"),
+    "boots": ("minecraft:item/generated", "minecraft:item/iron_boots"),
 }
 for name, (parent, tex) in items.items():
     w(f'{A}/items/{name}.json', {"model": {"type": "minecraft:model", "model": f"arsenal:item/{name}"}})
     w(f'{A}/models/item/{name}.json', {"parent": parent, "textures": {"layer0": tex}})
+# The worn look of Arsenal armor. Placeholder: vanilla iron, until pirate and Navy textures are drawn.
+w(f'{A}/equipment/pirate.json', {"layers": {"humanoid": [{"texture": "minecraft:iron"}], "humanoid_leggings": [{"texture": "minecraft:iron"}]}})
 w(f'{A}/items/shipwrights_anvil.json', {"model": {"type": "minecraft:model", "model": "arsenal:block/shipwrights_anvil"}})
 w(f'{A}/models/block/shipwrights_anvil.json', {"parent": "minecraft:block/anvil", "textures": {
     "particle": "minecraft:block/anvil", "body": "minecraft:block/anvil", "top": "minecraft:block/anvil_top"}})
@@ -68,6 +88,14 @@ w('data/minecraft/tags/item/swords.json', {"replace": False, "values": ["arsenal
 # The One Piece Mod's gun enchantments (Quick Draw, Sniper's Eye) and Unbreaking/Mending work on Arsenal guns.
 w('data/onepiece/tags/item/guns.json', {"replace": False, "values": ["arsenal:flintlock"]})
 w('data/minecraft/tags/item/enchantable/durability.json', {"replace": False, "values": ["arsenal:flintlock"]})
+# Any part material repairs Arsenal armor at an anvil (the main mod's tags do the same per set).
+w(f'{D}/tags/item/repairs_arsenal_armor.json', {"replace": False, "values": [
+    "arsenal:driftwood", "minecraft:iron_ingot", "arsenal:marine_steel_ingot", "onepiece:seastone_ingot"]})
+w('data/minecraft/tags/item/enchantable/armor.json', {"replace": False, "values": ["arsenal:hat", "arsenal:coat", "arsenal:sash", "arsenal:boots"]})
+w('data/minecraft/tags/item/head_armor.json', {"replace": False, "values": ["arsenal:hat"]})
+w('data/minecraft/tags/item/chest_armor.json', {"replace": False, "values": ["arsenal:coat"]})
+w('data/minecraft/tags/item/leg_armor.json', {"replace": False, "values": ["arsenal:sash"]})
+w('data/minecraft/tags/item/foot_armor.json', {"replace": False, "values": ["arsenal:boots"]})
 w('data/minecraft/tags/block/mineable/pickaxe.json', {"replace": False, "values": ["arsenal:shipwrights_anvil"]})
 
 w(f'{D}/recipe/shipwrights_anvil.json', {"type": "minecraft:crafting_shaped", "category": "misc",
@@ -87,6 +115,11 @@ parts = {
     "barrel": (["M", "M"], {}),
     "firing_lock": ([" F", "MM"], {"F": "minecraft:flint"}),
     "stock": (["MM", " M"], {}),
+    "crown": (["MMM", "M M"], {}),
+    "coat_plates": (["M M", "MMM", "MMM"], {}),
+    "sash_weave": (["MMM", "M M"], {}),
+    "boot_soles": (["M M", "M M"], {}),
+    "lining": (["LML"], {"L": "minecraft:leather"}),
 }
 for mat, ingredient in materials.items():
     for part, (pattern, extra) in parts.items():

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_coat_plates",
+  "key": {
+    "M": "onepiece:seastone_ingot"
+  },
+  "pattern": [
+    "M M",
+    "MMM",
+    "MMM"
+  ],
+  "result": {
+    "id": "arsenal:coat_plates",
+    "components": {
+      "arsenal:part_material": "kairoseki"
+    }
+  }
+}

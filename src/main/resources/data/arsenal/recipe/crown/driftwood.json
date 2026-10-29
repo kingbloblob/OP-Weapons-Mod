@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_crown",
+  "key": {
+    "M": "arsenal:driftwood"
+  },
+  "pattern": [
+    "MMM",
+    "M M"
+  ],
+  "result": {
+    "id": "arsenal:crown",
+    "components": {
+      "arsenal:part_material": "driftwood"
+    }
+  }
+}

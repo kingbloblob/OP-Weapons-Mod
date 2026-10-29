@@ -1,5 +1,7 @@
 package com.onepiecearsenal.station;
 
+import java.util.List;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -23,14 +25,16 @@ import net.minecraft.world.phys.BlockHitResult;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.part.PartItem;
 import com.onepiecearsenal.part.PartType;
+import com.onepiecearsenal.tool.ArmorStats;
 import com.onepiecearsenal.tool.GunStats;
 import com.onepiecearsenal.tool.KatanaStats;
 
 /**
  * The pirate assembly station. Right-click it with an empty hand while you carry a full set of parts
- * anywhere in your inventory, and it joins them into a weapon: a katana blade, tsuba and hilt make a katana;
- * a barrel, firing lock and stock make a flintlock. Like the One Piece Mod's stations, the parts don't need
- * to be in a grid. If you carry both sets, the katana is forged first.
+ * anywhere in your inventory, and it joins them: a katana blade, tsuba and hilt make a katana; a barrel, firing
+ * lock and stock make a flintlock; an armor shell (hat crown, coat plates, sash weave or boot soles) and a lining
+ * make that piece of armor. Like the One Piece Mod's stations, the parts don't need to be in a grid. If you carry
+ * several sets, they are forged in that order, one per click.
  */
 public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 	public ShipwrightsAnvilBlock(Properties properties) {
@@ -65,19 +69,26 @@ public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 			weapon = GunStats.build(material(inventory, gun[0]), material(inventory, gun[1]), material(inventory, gun[2]));
 			used = gun;
 		} else {
-			smith.sendOverlayMessage(Component.literal("You need a katana blade, tsuba and hilt, or a barrel, firing lock and stock.")
-					.withStyle(ChatFormatting.RED));
-			return InteractionResult.FAIL;
+			int[] armor = findArmor(inventory);
+			if (armor == null) {
+				smith.sendOverlayMessage(Component.literal("You need a full set of parts: blade, tsuba and hilt; barrel, firing lock and stock; or an armor shell and a lining.")
+						.withStyle(ChatFormatting.RED));
+				return InteractionResult.FAIL;
+			}
+			PartType shell = ((PartItem) inventory.getItem(armor[0]).getItem()).type();
+			weapon = ArmorStats.build(shell, material(inventory, armor[0]), material(inventory, armor[1]));
+			used = armor;
 		}
 
 		for (int slot : used) {
 			inventory.removeItem(slot, 1);
 		}
+		String name = weapon.getHoverName().getString(); // inventory.add empties the stack, so read the name first.
 		if (!inventory.add(weapon)) {
 			smith.drop(weapon, false, Prediction.SERVER_ONLY); // Inventory full: drop it at their feet.
 		}
 		level.playSound(null, pos, SoundEvents.ANVIL_USE, SoundSource.BLOCKS, 1.0f, 1.0f);
-		smith.sendOverlayMessage(Component.literal("Forged a " + weapon.getHoverName().getString() + "!").withStyle(ChatFormatting.GREEN));
+		smith.sendOverlayMessage(Component.literal("Forged a " + name + "!").withStyle(ChatFormatting.GREEN));
 		return InteractionResult.SUCCESS;
 	}
 
@@ -91,6 +102,17 @@ public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 			}
 		}
 		return slots;
+	}
+
+	/** The slots of the first armor shell found (hat, coat, sash, boots order) and a lining, or null. */
+	private static int[] findArmor(Inventory inventory) {
+		for (PartType shell : List.of(PartType.CROWN, PartType.COAT_PLATES, PartType.SASH_WEAVE, PartType.BOOT_SOLES)) {
+			int[] slots = findParts(inventory, shell, PartType.LINING);
+			if (slots != null) {
+				return slots;
+			}
+		}
+		return null;
 	}
 
 	private static ArsenalMaterial material(Inventory inventory, int slot) {

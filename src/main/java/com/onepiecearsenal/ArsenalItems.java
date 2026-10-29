@@ -2,6 +2,7 @@ package com.onepiecearsenal;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 
 import net.minecraft.core.Registry;
@@ -9,11 +10,16 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ToolMaterial;
+import net.minecraft.world.item.equipment.ArmorMaterial;
+import net.minecraft.world.item.equipment.ArmorType;
+import net.minecraft.world.item.equipment.EquipmentAssets;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -25,6 +31,8 @@ import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.part.PartItem;
 import com.onepiecearsenal.part.PartType;
 import com.onepiecearsenal.station.ShipwrightsAnvilBlock;
+import com.onepiecearsenal.tool.ArmorStats;
+import com.onepiecearsenal.tool.ArsenalArmorItem;
 import com.onepiecearsenal.tool.FlintlockItem;
 import com.onepiecearsenal.tool.GunStats;
 import com.onepiecearsenal.tool.KatanaItem;
@@ -51,6 +59,11 @@ public class ArsenalItems {
 	public static final Item BARREL = part(PartType.BARREL);
 	public static final Item FIRING_LOCK = part(PartType.LOCK);
 	public static final Item STOCK = part(PartType.STOCK);
+	public static final Item CROWN = part(PartType.CROWN);
+	public static final Item COAT_PLATES = part(PartType.COAT_PLATES);
+	public static final Item SASH_WEAVE = part(PartType.SASH_WEAVE);
+	public static final Item BOOT_SOLES = part(PartType.BOOT_SOLES);
+	public static final Item LINING = part(PartType.LINING);
 
 	// ---- Weapons ----
 
@@ -60,6 +73,23 @@ public class ArsenalItems {
 	/** A One Piece Mod gun whose stats come from its parts (see FlintlockItem). GunStats sets the durability when forged. */
 	public static final Item FLINTLOCK = register("flintlock", FlintlockItem::new,
 			new Item.Properties().durability(300).enchantable(10));
+
+	// ---- Armor ----
+
+	/**
+	 * Placeholder numbers (iron's) so the pieces equip and render; ArmorStats replaces them with the parts' numbers
+	 * when a piece is forged. The look comes from assets/arsenal/equipment/pirate.json.
+	 */
+	private static final ArmorMaterial PIRATE_GEAR = new ArmorMaterial(15,
+			Map.of(ArmorType.HELMET, 2, ArmorType.CHESTPLATE, 6, ArmorType.LEGGINGS, 5, ArmorType.BOOTS, 2, ArmorType.BODY, 6),
+			10, SoundEvents.ARMOR_EQUIP_IRON, 0.0f, 0.0f,
+			TagKey.create(Registries.ITEM, ArsenalMod.id("repairs_arsenal_armor")),
+			ResourceKey.create(EquipmentAssets.ROOT_ID, ArsenalMod.id("pirate")));
+
+	public static final Item HAT = armor("hat", "Hat", ArmorType.HELMET);
+	public static final Item COAT = armor("coat", "Coat", ArmorType.CHESTPLATE);
+	public static final Item SASH = armor("sash", "Sash", ArmorType.LEGGINGS);
+	public static final Item BOOTS = armor("boots", "Boots", ArmorType.BOOTS);
 
 	// ---- Stations ----
 
@@ -89,6 +119,12 @@ public class ArsenalItems {
 					for (ArsenalMaterial material : ArsenalMaterial.values()) {
 						output.accept(GunStats.build(material, ArsenalMaterial.SHIP_IRON, ArsenalMaterial.SHIP_IRON));
 					}
+					// One armor set of each material, with a Driftwood lining.
+					for (ArsenalMaterial material : ArsenalMaterial.values()) {
+						for (PartType shell : List.of(PartType.CROWN, PartType.COAT_PLATES, PartType.SASH_WEAVE, PartType.BOOT_SOLES)) {
+							output.accept(ArmorStats.build(shell, material, ArsenalMaterial.DRIFTWOOD));
+						}
+					}
 				})
 				.build());
 	}
@@ -99,6 +135,10 @@ public class ArsenalItems {
 		Item item = register(type.id(), properties -> new PartItem(type, properties), new Item.Properties());
 		PART_ITEMS.add(item);
 		return item;
+	}
+
+	private static Item armor(String name, String pieceName, ArmorType type) {
+		return register(name, properties -> new ArsenalArmorItem(pieceName, properties), new Item.Properties().humanoidArmor(PIRATE_GEAR, type));
 	}
 
 	private static Item register(String name, Function<Item.Properties, Item> factory, Item.Properties properties) {

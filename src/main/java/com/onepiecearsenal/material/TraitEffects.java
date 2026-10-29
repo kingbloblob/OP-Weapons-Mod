@@ -6,6 +6,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -16,6 +17,8 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 
 import com.onepiecearsenal.compat.OnePieceBridge;
+import com.onepiecearsenal.tool.ArmorStats;
+import com.onepiecearsenal.tool.ArsenalArmorItem;
 import com.onepiecearsenal.tool.FlintlockItem;
 import com.onepiecearsenal.tool.GunStats;
 import com.onepiecearsenal.tool.KatanaItem;
@@ -55,14 +58,26 @@ public class TraitEffects {
 			}
 		});
 
-		// Once a second: fruit users holding a weapon with seastone in its handle feel weak.
+		// Seastone armor: a fruit user who hits the wearer up close is drained.
+		ServerLivingEntityEvents.AFTER_DAMAGE.register((entity, source, baseDamageTaken, damageTaken, blocked) -> {
+			if (!dealingExtra && entity instanceof ServerPlayer wearer && source.getDirectEntity() instanceof LivingEntity attacker
+					&& attacker == source.getEntity() && OnePieceBridge.isFruitUser(attacker)) {
+				for (EquipmentSlot slot : ARMOR_SLOTS) {
+					if (hasTrait(wearer.getItemBySlot(slot), Trait.SEASTONE)) {
+						OnePieceBridge.drainFruitPower(attacker, SEASTONE_DRAIN_TICKS);
+						return;
+					}
+				}
+			}
+		});
+
+		// Once a second: fruit users holding or wearing something with seastone in its lining feel weak.
 		ServerTickEvents.END_LEVEL_TICK.register(level -> {
 			if (level.getGameTime() % 20 != 0) {
 				return;
 			}
 			for (ServerPlayer player : level.getPlayers(p -> true)) {
-				if (OnePieceBridge.isFruitUser(player)
-						&& (hasTrait(player.getMainHandItem(), Trait.DRAINING) || hasTrait(player.getOffhandItem(), Trait.DRAINING))) {
+				if (OnePieceBridge.isFruitUser(player) && wearsOrHolds(player, Trait.DRAINING)) {
 					player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 40, 1, false, false, true));
 				}
 			}
@@ -81,11 +96,28 @@ public class TraitEffects {
 		}
 	}
 
+	private static final EquipmentSlot[] ARMOR_SLOTS = {EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
+
+	private static boolean wearsOrHolds(ServerPlayer player, Trait trait) {
+		if (hasTrait(player.getMainHandItem(), trait) || hasTrait(player.getOffhandItem(), trait)) {
+			return true;
+		}
+		for (EquipmentSlot slot : ARMOR_SLOTS) {
+			if (hasTrait(player.getItemBySlot(slot), trait)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	private static boolean hasTrait(ItemStack stack, Trait trait) {
 		if (stack.getItem() instanceof KatanaItem) {
 			return KatanaStats.traits(stack).contains(trait);
 		}
-		return stack.getItem() instanceof FlintlockItem && GunStats.traits(stack).contains(trait);
+		if (stack.getItem() instanceof FlintlockItem) {
+			return GunStats.traits(stack).contains(trait);
+		}
+		return stack.getItem() instanceof ArsenalArmorItem && ArmorStats.traits(stack).contains(trait);
 	}
 
 	/**
