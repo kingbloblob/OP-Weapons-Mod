@@ -5,11 +5,17 @@ import java.util.Set;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 
 import com.onepiecemod.bounty.Bounty;
 import com.onepiecemod.bounty.MarineEntity;
 import com.onepiecemod.bounty.MarineRank;
+import com.onepiecemod.character.CharacterEntity;
+import com.onepiecemod.haki.HakiAttachments;
+import com.onepiecemod.haki.HakiData;
 import com.onepiecemod.npc.HumanNpc;
+import com.onepiecemod.weapon.WeaponItems;
+import com.onepiecemod.weapon.WeaponUpgrades;
 import com.onepiecemod.world.SeastoneEffects;
 
 /**
@@ -74,5 +80,43 @@ public final class OnePieceBridge {
 	/** The player's bounty in Berries. */
 	public static long bounty(Player player) {
 		return Bounty.get(player);
+	}
+
+	/** The player's best Haki level of any type, 0 (not awakened) to 5 (master). */
+	public static int hakiLevel(Player player) {
+		HakiData haki = HakiAttachments.get(player);
+		return Math.max(haki.armamentLevel(), Math.max(haki.observationLevel(), haki.conquerorLevel()));
+	}
+
+	/** The tier (1 to 5) of a main mod boss, like 5 for an Emperor or Admiral. 0 if it isn't a boss. */
+	public static int bossTier(LivingEntity entity) {
+		return entity instanceof CharacterEntity character && character.isBoss() && character.getData() != null
+				? Math.max(1, character.getData().tier) : 0;
+	}
+
+	/** True for anything in the minecraft:swords tag, Arsenal katanas included. */
+	public static boolean isSword(ItemStack stack) {
+		return WeaponUpgrades.isSword(stack);
+	}
+
+	/** The sword's grade: 0 ungraded, 1 Skillful, 2 Great, 3 Supreme. Famous blades like Yoru start graded. */
+	public static int swordGrade(ItemStack stack) {
+		return WeaponUpgrades.grade(stack);
+	}
+
+	/** "Great Grade (O Wazamono)" and so on. */
+	public static String gradeName(int grade) {
+		return WeaponUpgrades.GRADE_NAMES[grade];
+	}
+
+	/** The grade this whetstone raises a sword to (1 to 3), or 0 if it isn't a whetstone. */
+	public static int whetstoneGrade(ItemStack stack) {
+		if (stack.is(WeaponItems.SKILLFUL_WHETSTONE)) {
+			return 1;
+		}
+		if (stack.is(WeaponItems.GREAT_WHETSTONE)) {
+			return 2;
+		}
+		return stack.is(WeaponItems.SUPREME_WHETSTONE) ? 3 : 0;
 	}
 }
