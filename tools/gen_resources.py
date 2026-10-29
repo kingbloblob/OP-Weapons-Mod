@@ -37,6 +37,7 @@ lang = {
     "item.arsenal.island_whale_leather": "Island Whale Leather",
     "item.arsenal.pacifista_alloy": "Pacifista Alloy",
     "item.arsenal.vegapunk_compound": "Vegapunk Compound",
+    "item.arsenal.shipwrights_manual": "Shipwright's Manual",
     "item.arsenal.katana_blade": "Katana Blade",
     "item.arsenal.tsuba": "Tsuba",
     "item.arsenal.hilt": "Hilt",
@@ -100,7 +101,7 @@ def by_material(folder, index=None, parent="minecraft:item/generated", materials
 
 
 for name in ["driftwood", "marine_steel_ingot", "cannon_bronze_ingot", "sea_king_bone", "island_whale_leather",
-             "pacifista_alloy", "vegapunk_compound"]:
+             "pacifista_alloy", "vegapunk_compound", "shipwrights_manual"]:
     w(f'{A}/items/{name}.json', {"model": model(name)})
 for part in ["katana_blade", "tsuba", "hilt", "barrel", "firing_lock", "stock", "long_barrel", "cannon_bore", "fuse",
              "cutlass_blade", "sabre_blade", "axe_head", "jitte_rod", "club_head", "spearhead", "hand_guard",
@@ -209,6 +210,11 @@ w(f'{D}/recipe/shipwrights_anvil.json', {"type": "minecraft:crafting_shaped", "c
 w(f'{D}/recipe/driftwood.json', {"type": "minecraft:crafting_shapeless", "category": "misc",
     "ingredients": ["minecraft:stick", "minecraft:stick", "minecraft:kelp"],
     "result": {"id": "arsenal:driftwood", "count": 2}})
+
+# The guide book (GuideBook), for players who lost theirs.
+w(f'{D}/recipe/shipwrights_manual.json', {"type": "minecraft:crafting_shapeless", "category": "misc",
+    "ingredients": ["minecraft:book", "arsenal:driftwood"],
+    "result": {"id": "arsenal:shipwrights_manual"}})
 
 # Cannon Bronze: copper melted down with an old cannonball (ship battles drop them), or with plain iron.
 w(f'{D}/recipe/cannon_bronze_ingot.json', {"type": "minecraft:crafting_shapeless", "category": "misc",

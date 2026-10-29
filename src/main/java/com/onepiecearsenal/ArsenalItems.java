@@ -30,6 +30,7 @@ import net.minecraft.world.level.material.PushReaction;
 
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 
+import com.onepiecearsenal.guide.GuideBook;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.part.PartItem;
 import com.onepiecearsenal.part.PartType;
@@ -70,6 +71,9 @@ public class ArsenalItems {
 	/** Vegapunk's best work, carried by Seraphim and the Navy's top brass. */
 	public static final Item VEGAPUNK_COMPOUND = register("vegapunk_compound", Item::new,
 			new Item.Properties().rarity(Rarity.EPIC).fireResistant());
+
+	/** The in-game guide (see GuideBook). */
+	public static final Item GUIDE = register("shipwrights_manual", GuideBook::new, new Item.Properties().stacksTo(1));
 
 	// ---- Parts ----
 
@@ -170,6 +174,7 @@ public class ArsenalItems {
 				.icon(() -> KatanaStats.build(ArsenalMaterial.KAIROSEKI, ArsenalMaterial.SHIP_IRON, ArsenalMaterial.SHIP_IRON))
 				.title(Component.literal("One Piece: Arsenal"))
 				.displayItems((params, output) -> {
+					output.accept(GUIDE);
 					output.accept(SHIPWRIGHTS_ANVIL);
 					output.accept(MARINE_ARMORY_BENCH);
 					output.accept(QUARTERMASTERS_DESK);

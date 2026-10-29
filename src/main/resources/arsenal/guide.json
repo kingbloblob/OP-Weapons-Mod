@@ -1,0 +1,254 @@
+{
+	"_help": "The Shipwright's Manual (GuideChapters.java). Each chapter is a button on the left of the book. Lines in 'text': '# ' = heading, '- ' = bullet point, '> ' = tip, '' = empty line, anything else = normal text. Pages are split up by themselves. 'icon' is any item id; Arsenal gear in it is shown made of 'icon_material'. 'color' is a hex colour. 'generated' adds lines written from the mod's own data after the text: materials, traits, weapons, guns, navy_casting or meito. 'after' is more text that goes after the generated lines.",
+	"chapters": [
+		{
+			"id": "welcome",
+			"title": "Welcome Aboard",
+			"icon": "arsenal:shipwrights_manual",
+			"color": "FFD75E",
+			"text": [
+				"Every pirate needs a blade they trust. In One Piece Arsenal you don't find your weapons, you build them: every sword, gun and piece of armor is put together from parts, and the material of each part decides how strong it is and what it can do.",
+				"",
+				"# How it works",
+				"- Make parts from a material at a crafting table, like a Katana Blade of Ship Iron.",
+				"- Carry a full set of parts to a Shipwright's Anvil and forge them into a weapon.",
+				"- Each material gives its part a trait. Mix materials to get the traits you want.",
+				"- Navy materials and Navy designs have to be taken from the Marines.",
+				"",
+				"# Reading this book",
+				"Click a chapter on the left, and use the arrows (or your mouse wheel) to turn pages. The Materials and Traits chapters are written from the mod's own numbers, so they're always up to date.",
+				"> Lost this book? Type /arsenalguide for a new one, or craft one from a Book and Driftwood."
+			]
+		},
+		{
+			"id": "first_weapon",
+			"title": "Your First Weapon",
+			"icon": "arsenal:katana",
+			"icon_material": "ship_iron",
+			"color": "FFD75E",
+			"text": [
+				"Here's how to forge a Ship Iron katana from scratch.",
+				"",
+				"# 1. Build a Shipwright's Anvil",
+				"Put an Anvil on top of any planks in a crafting table.",
+				"",
+				"# 2. Make the parts",
+				"A katana needs a Katana Blade, a Tsuba and a Hilt. Make each one from Iron Ingots at a crafting table. Every part has its own shape: open the recipe book and search for the part to see it.",
+				"",
+				"# 3. Forge it",
+				"Carry all three parts anywhere in your inventory, then right-click the anvil with an empty hand. The parts don't need to be in a grid. If you carry several sets, the anvil forges them one per click.",
+				"",
+				"# 4. Look it over",
+				"Hover over your new katana to see its damage, speed, durability and both its traits. Every forged weapon and armor piece lists what it's made of.",
+				"> Driftwood is the cheapest material: two sticks and a kelp make two pieces. Good for practice."
+			]
+		},
+		{
+			"id": "parts",
+			"title": "Parts",
+			"icon": "arsenal:katana_blade",
+			"icon_material": "kairoseki",
+			"color": "E8B860",
+			"text": [
+				"Every piece of gear is made of parts. One part is the head: it does the cutting, shooting or protecting. The others hold it together.",
+				"",
+				"# The head",
+				"The blade, axe head, barrel or armor shell. Its material decides the damage (or the armor) and gives the head's blade trait.",
+				"",
+				"# The other parts",
+				"Guards, hilts, bindings, handles, firing parts, stocks and linings. Their material decides the speed (or the reload) and gives their handle trait.",
+				"",
+				"# Durability",
+				"All the parts share it: the item lasts as long as its parts' durability, averaged.",
+				"",
+				"# Mixing materials",
+				"A Kairoseki blade on a Ship Iron hilt hits like Kairoseki, swings like Ship Iron, and has both traits: Seastone from the blade and Riveted from the hilt. That's the whole idea: pick each part for what it gives you.",
+				"> Hides and leathers (Sea King Hide, Island Whale Leather) only make armor shells and linings."
+			]
+		},
+		{
+			"id": "materials",
+			"title": "Materials",
+			"icon": "arsenal:cannon_bronze_ingot",
+			"color": "C8A060",
+			"text": [
+				"Every material, weakest tier first. For comparison, an iron sword does 6 damage and lasts 250 uses, and an armor shell of 4 is as strong as iron armor (5 is diamond).",
+				"Blade damage is added to the weapon's own damage, so a katana with a 5-damage blade hits like an iron sword. Handle speed is added to its attack speed."
+			],
+			"generated": "materials"
+		},
+		{
+			"id": "traits",
+			"title": "Traits",
+			"icon": "arsenal:katana",
+			"icon_material": "sea_king_bone",
+			"color": "B080E0",
+			"text": [
+				"Each material gives one trait when it's the head and one when it's any other part. Your gear's tooltip lists the traits it has. Traits marked coming soon are planned but don't do anything yet."
+			],
+			"generated": "traits"
+		},
+		{
+			"id": "weapons",
+			"title": "Hand Weapons",
+			"icon": "arsenal:cutlass",
+			"icon_material": "ship_iron",
+			"color": "E06060",
+			"text": [
+				"Seven blades and clubs, each built from a head, a binding and a handle (the katana from a blade, tsuba and hilt). Each kind has something only it does.",
+				"Pirate and common weapons are forged at a Shipwright's Anvil. Navy designs, and any weapon whose head is a Navy material, need a Marine Armory Bench.",
+				"> Katanas, cutlasses and sabres are swords, so the One Piece Mod's whetstones, sword styles, Dials and Haki work on them."
+			],
+			"generated": "weapons"
+		},
+		{
+			"id": "guns",
+			"title": "Guns",
+			"icon": "arsenal:flintlock",
+			"icon_material": "cannon_bronze",
+			"color": "A0A0A0",
+			"text": [
+				"Each gun is built from a barrel, a firing part and a stock. They're One Piece Mod guns, so they take that mod's ammo and its Scopes, Long Barrels, Hair Triggers, Dials, Quick Draw and Sniper's Eye.",
+				"",
+				"# What each part does",
+				"- Barrel: the damage, the range, and the blade trait. A Kairoseki barrel drains Devil Fruit users it shoots.",
+				"- Firing part: the reload. A light material reloads faster.",
+				"- Stock: the aim. A higher tier stock spreads less."
+			],
+			"generated": "guns"
+		},
+		{
+			"id": "armor",
+			"title": "Armor",
+			"icon": "arsenal:coat",
+			"icon_material": "ship_iron",
+			"color": "60B0E0",
+			"text": [
+				"A Hat, Coat, Sash and Boots. Each piece is built from two parts at a Shipwright's Anvil:",
+				"- A shell: Hat Crown, Coat Plates, Sash Weave or Boot Soles. Its material sets the defense and gives the blade trait.",
+				"- A Lining, of any material, which adds its handle trait.",
+				"",
+				"# Looks",
+				"Armor looks like clothes when you wear it, cut by its shell material: Driftwood is a castaway's straw hat and sandals, Ship Iron a pirate captain's tricorn and crimson coat, Marine Standard Steel a recruit's sailor uniform, Kairoseki a Navy officer's coat, Wano Tamahagane a samurai's armor and hakama.",
+				"",
+				"# Armor traits",
+				"Some traits only matter on armor: Waterproof swims faster, Endurance keeps you from getting hungry, Plated deflects bullets and arrows, and a Kairoseki shell drains Devil Fruit users who hit you.",
+				"> Armor shells have a leather pad in the middle of the recipe, so they don't clash with vanilla armor.",
+				"> A full set with Navy shells is a Marine uniform. See Marine Disguise."
+			]
+		},
+		{
+			"id": "stations",
+			"title": "Navy Stations",
+			"icon": "arsenal:marine_armory_bench",
+			"color": "6FA8FF",
+			"text": [
+				"You're a pirate, so the Navy won't sell you its gear. Navy materials have no crafting table recipes, and Navy designs can't be forged at a Shipwright's Anvil. For those you need the Navy's own stations, and the only way to get one is to take it.",
+				"",
+				"# The three stations",
+				"- Marine Armory Bench: works like the Shipwright's Anvil, but also puts together Navy gear: the Marine Sabre, the Jitte, and anything whose blade, barrel or shell is a Navy material.",
+				"- Quartermaster's Desk and Marine Base Smeltery: right-click with any part as a pattern. You keep it and get a copy made of the station's material, paid for with that material from your inventory.",
+				"",
+				"# Capturing one",
+				"Each Marine base has its stations set down inside the first time a player walks in. While any Marine is within 24 blocks the station is guarded: touching it brings the base down on you. An officer's uniform lets you use it without a fight, but not carry it off.",
+				"Clear the Marines out, then right-click it to capture it, or mine it and take it home. A captured station gets a Jolly Roger daubed on and works anywhere.",
+				"> Keep captured stations out of sight. A Marine who spots one sends a squad after whoever is nearby, and a Marine who reaches it takes it back.",
+				"",
+				"# What each casting station makes"
+			],
+			"generated": "navy_casting"
+		},
+		{
+			"id": "meito",
+			"title": "Meito",
+			"icon": "arsenal:katana",
+			"icon_material": "tamahagane",
+			"color": "FF9040",
+			"text": [
+				"A katana that cuts down enough enemies can become a famous blade. Two gates keep meito rare: the blade has to earn its grade, and you have to be worthy of it.",
+				"",
+				"# Blade levels",
+				"Katanas gain levels from kills, more for armed enemies and bosses. Each level adds 0.1 damage. A blade's grade caps its level: 5 ungraded, 10 Skillful, 15 Great, 20 Supreme.",
+				"",
+				"# Raising the grade",
+				"Use a One Piece Mod whetstone on it. It only works once the blade is at its level cap, made of a strong enough material, and has done its deed:",
+				"- Skillful: a tier 2 or better blade that has cut down 25 armed enemies.",
+				"- Great: a tier 3 or better blade that has beaten a named boss.",
+				"- Supreme: a tier 3 or better blade that has beaten an Emperor, an Admiral or another top-tier boss.",
+				"The katana's tooltip shows how far along it is.",
+				"",
+				"# Worthy wielders",
+				"Any graded sword refuses a player who isn't strong enough, the One Piece Mod's famous blades like Wado Ichimonji and Yoru included. Holding one anyway makes you weak, the blade learns nothing, and a whetstone won't raise a blade past what you could wield. You need:"
+			],
+			"generated": "meito",
+			"after": [
+				"# Black Blade awakening",
+				"A Supreme Grade katana can turn black for good. Fight with it for 2 hours with your Armament Haki (level 4 or higher) switched on. Only real fighting counts: a hit on a foe in the last 5 seconds.",
+				"When it awakens, its blade becomes Black Blade Steel (10 damage, 2000 uses, the Black Blade trait) and it's fully mended. It keeps its tsuba, hilt, grade, level and enchantments, and the whole server hears about it.",
+				"> The katana's tooltip shows how many minutes it has so far."
+			]
+		},
+		{
+			"id": "disguise",
+			"title": "Marine Disguise",
+			"icon": "arsenal:hat",
+			"icon_material": "marine_steel",
+			"color": "6FA8FF",
+			"text": [
+				"Wear a full set of Arsenal armor (hat, coat, sash and boots) whose shells are all Navy materials, and Marines stop hunting you. How good the uniform is depends on its weakest shell:",
+				"- Recruit's uniform (Marine Standard Steel): hides a bounty up to 10M. Captains and CP agents see through it.",
+				"- Officer's uniform (Kairoseki or Pacifista Alloy): hides up to 100M. Vice Admirals, CP0, Pacifistas and Seraphim see through it.",
+				"- Admiral's uniform (Vegapunk Compound): hides up to 500M and fools every Marine.",
+				"",
+				"# Blowing your cover",
+				"Hit a Marine and your cover is blown for a minute, even if you log out. Marines sent to hunt you give up after a minute too.",
+				"Named Marines like Garp and Smoker know who you are. No uniform fools them.",
+				"> Linings can be any material: a Kairoseki uniform with Driftwood linings is still a uniform."
+			]
+		},
+		{
+			"id": "suspicion",
+			"title": "Suspicion",
+			"icon": "arsenal:coat",
+			"icon_material": "kairoseki",
+			"color": "E0C040",
+			"text": [
+				"A uniform doesn't fool Marines forever. Marines who stand close and watch you get suspicious. They get suspicious faster:",
+				"- when there are several of them,",
+				"- when they're senior officers,",
+				"- when you hold a katana or gun with a pirate-material blade or barrel (twice as fast),",
+				"- when your bounty is close to what the uniform can hide.",
+				"Stay too long and one of them calls you out: your cover is blown and the Marines who were watching attack. Walk away and they forget.",
+				"",
+				"# Pirates see a Marine",
+				"Enemy pirates who spot you in a full Navy uniform drop whatever they're fighting and come for you, blown cover or not. Emperor crews still follow their Emperor's mood.",
+				"> In uniform, hold a katana or gun with a Navy or common blade or barrel, like Marine Standard Steel or Cannon Bronze."
+			]
+		},
+		{
+			"id": "sources",
+			"title": "Finding Materials",
+			"icon": "arsenal:sea_king_bone",
+			"color": "50C0A0",
+			"text": [
+				"# Crafted",
+				"- Driftwood: two sticks and a kelp.",
+				"- Cannon Bronze: copper melted with a cannonball, or with plain iron.",
+				"- Ship Iron and Treasure Gold: iron and gold ingots.",
+				"- Wano Tamahagane, Wapometal, Kairoseki and Adam Wood: the One Piece Mod's ingots and logs.",
+				"- Sea King Hide: its parts are made straight from the One Piece Mod's Sea King Scale.",
+				"",
+				"# Taken in battle",
+				"- Sea King Bone: Sea Kings.",
+				"- Island Whale Leather: Island Whales.",
+				"- Pacifista Alloy: Pacifistas.",
+				"- Vegapunk Compound: Seraphim, and sometimes Vice Admirals.",
+				"- Marine Standard Steel: beaten Marines (officers more often), and chests in Marine bases and bunkers.",
+				"",
+				"# Navy-issue weapons",
+				"Some Marines carry Arsenal katanas or flintlocks instead of their usual gear (Kairoseki blades for senior officers), and drop them now and then.",
+				"> Black Blade Steel can't be crafted or looted. It's what a Supreme Grade katana's blade becomes when it awakens (see Meito)."
+			]
+		}
+	]
+}
