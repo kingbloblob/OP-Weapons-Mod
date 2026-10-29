@@ -15,6 +15,9 @@ import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
 import com.onepiecearsenal.tool.ArmorStats;
 import com.onepiecearsenal.tool.GunStats;
+import com.onepiecearsenal.tool.GunType;
+import com.onepiecearsenal.tool.WeaponStats;
+import com.onepiecearsenal.tool.WeaponType;
 
 /**
  * One part, like a Ship Iron Katana Blade. There is one item per part type; the material is saved on the stack.
@@ -56,14 +59,23 @@ public class PartItem extends Item {
 			return;
 		}
 		textConsumer.accept(Component.literal("Tier " + material.tier + " · " + material.faction.displayName).withStyle(ChatFormatting.GRAY));
+		if (material.armorOnly && !this.type.isArmor()) {
+			// Only from the creative menu: hides and leathers have no weapon part recipes.
+			textConsumer.accept(Component.literal("Too soft for weapons: the anvil won't take it.").withStyle(ChatFormatting.RED));
+		}
+		GunType gun = GunType.using(this.type);
+		WeaponType weapon = WeaponType.withHead(this.type);
 		switch (this.type) {
 			case KATANA_BLADE -> textConsumer.accept(Component.literal("Damage: " + material.damage).withStyle(ChatFormatting.BLUE));
-			case TSUBA, HILT -> textConsumer.accept(Component.literal("Speed: " + (material.speed >= 0 ? "+" : "") + material.speed).withStyle(ChatFormatting.BLUE));
-			case BARREL -> textConsumer.accept(Component.literal(String.format("Shot damage: %.0f, range: %.0f blocks",
-					GunStats.damage(material), GunStats.range(material))).withStyle(ChatFormatting.BLUE));
-			case LOCK -> textConsumer.accept(Component.literal(String.format("Reload: %.2fs", GunStats.cooldown(material) / 20.0))
+			case TSUBA, HILT, HAND_GUARD, BINDING, STUDS, GRIP, HAFT -> textConsumer.accept(
+					Component.literal("Speed: " + (material.speed >= 0 ? "+" : "") + material.speed).withStyle(ChatFormatting.BLUE));
+			case CUTLASS_BLADE, SABRE_BLADE, AXE_HEAD, JITTE_ROD, CLUB_HEAD, SPEARHEAD -> textConsumer.accept(Component.literal(
+					String.format("%s damage: %.1f", weapon.displayName, WeaponStats.damage(weapon, material))).withStyle(ChatFormatting.BLUE));
+			case BARREL, LONG_BARREL, CANNON_BORE -> textConsumer.accept(Component.literal(String.format("Shot damage: %.0f, range: %.0f blocks",
+					GunStats.damage(gun, material), GunStats.range(gun, material))).withStyle(ChatFormatting.BLUE));
+			case LOCK, FUSE -> textConsumer.accept(Component.literal(String.format("%s reload: %.2fs", gun.displayName, GunStats.cooldown(gun, material) / 20.0))
 					.withStyle(ChatFormatting.BLUE));
-			case STOCK -> textConsumer.accept(Component.literal(String.format("Spread: %.2f", GunStats.spread(material)))
+			case STOCK -> textConsumer.accept(Component.literal(String.format("Spread: %.2f", GunStats.spread(gun, material)))
 					.withStyle(ChatFormatting.BLUE));
 			case CROWN, COAT_PLATES, SASH_WEAVE, BOOT_SOLES -> {
 				ArmorType armor = ArmorStats.typeOf(this.type);

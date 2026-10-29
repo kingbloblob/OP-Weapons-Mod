@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_cutlass_blade",
+  "key": {
+    "M": "onepiece:seastone_ingot"
+  },
+  "pattern": [
+    "  M",
+    " M ",
+    "M  "
+  ],
+  "result": {
+    "id": "arsenal:cutlass_blade",
+    "components": {
+      "arsenal:part_material": "kairoseki"
+    }
+  }
+}

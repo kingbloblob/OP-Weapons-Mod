@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_crown",
+  "key": {
+    "M": "onepiece:sea_king_scale",
+    "L": "minecraft:leather"
+  },
+  "pattern": [
+    "MMM",
+    "MLM"
+  ],
+  "result": {
+    "id": "arsenal:crown",
+    "components": {
+      "arsenal:part_material": "sea_king_hide"
+    }
+  }
+}

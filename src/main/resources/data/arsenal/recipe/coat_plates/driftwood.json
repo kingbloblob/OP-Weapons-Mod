@@ -3,10 +3,11 @@
   "category": "equipment",
   "group": "arsenal_coat_plates",
   "key": {
-    "M": "arsenal:driftwood"
+    "M": "arsenal:driftwood",
+    "L": "minecraft:leather"
   },
   "pattern": [
-    "M M",
+    "MLM",
     "MMM",
     "MMM"
   ],

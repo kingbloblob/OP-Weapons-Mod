@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_tsuba",
+  "key": {
+    "M": "arsenal:pacifista_alloy"
+  },
+  "pattern": [
+    " M ",
+    "M M",
+    " M "
+  ],
+  "result": {
+    "id": "arsenal:tsuba",
+    "components": {
+      "arsenal:part_material": "pacifista_alloy"
+    }
+  }
+}

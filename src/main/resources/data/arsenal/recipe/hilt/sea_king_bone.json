@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_hilt",
+  "key": {
+    "M": "arsenal:sea_king_bone",
+    "L": "minecraft:leather"
+  },
+  "pattern": [
+    "M",
+    "L"
+  ],
+  "result": {
+    "id": "arsenal:hilt",
+    "components": {
+      "arsenal:part_material": "sea_king_bone"
+    }
+  }
+}

@@ -2,13 +2,16 @@ package com.onepiecearsenal.compat;
 
 import java.util.Set;
 
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 
 import com.onepiecemod.bounty.Bounty;
 import com.onepiecemod.bounty.MarineEntity;
 import com.onepiecemod.bounty.MarineRank;
+import com.onepiecemod.character.CharacterFeature;
 import com.onepiecemod.npc.HumanNpc;
 import com.onepiecemod.world.SeastoneEffects;
 
@@ -71,7 +74,22 @@ public final class OnePieceBridge {
 		return MarineEntity.isHunting(marine, player);
 	}
 
-	/** The player's bounty in Berries. */
+	/** True for the main mod's people (pirates, Marines, townsfolk, story characters). */
+	public static boolean isNpc(LivingEntity entity) {
+		return entity instanceof HumanNpc;
+	}
+
+	/** The main mod's money. */
+	public static Item berry() {
+		return CharacterFeature.BERRY;
+	}
+
+	/** Raises the player's bounty and tells them why, the way the main mod's own deeds do. */
+	public static void raiseBounty(ServerPlayer player, long amount, String reason) {
+		Bounty.raise(player, amount, reason, false);
+	}
+
+		/** The player's bounty in Berries. */
 	public static long bounty(Player player) {
 		return Bounty.get(player);
 	}

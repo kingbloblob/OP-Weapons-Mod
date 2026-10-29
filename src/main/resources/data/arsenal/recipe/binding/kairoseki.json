@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_binding",
+  "key": {
+    "M": "onepiece:seastone_ingot",
+    "S": "minecraft:string"
+  },
+  "pattern": [
+    "SMS"
+  ],
+  "result": {
+    "id": "arsenal:binding",
+    "components": {
+      "arsenal:part_material": "kairoseki"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_coat_plates",
+  "key": {
+    "M": "onepiece:tamahagane_ingot",
+    "L": "minecraft:leather"
+  },
+  "pattern": [
+    "MLM",
+    "MMM",
+    "MMM"
+  ],
+  "result": {
+    "id": "arsenal:coat_plates",
+    "components": {
+      "arsenal:part_material": "tamahagane"
+    }
+  }
+}

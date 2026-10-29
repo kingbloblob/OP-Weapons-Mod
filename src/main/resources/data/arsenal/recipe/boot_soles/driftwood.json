@@ -3,10 +3,11 @@
   "category": "equipment",
   "group": "arsenal_boot_soles",
   "key": {
-    "M": "arsenal:driftwood"
+    "M": "arsenal:driftwood",
+    "L": "minecraft:leather"
   },
   "pattern": [
-    "M M",
+    "MLM",
     "M M"
   ],
   "result": {

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_jitte_rod",
+  "key": {
+    "M": "arsenal:marine_steel_ingot",
+    "N": "minecraft:iron_nugget"
+  },
+  "pattern": [
+    "M",
+    "N",
+    "M"
+  ],
+  "result": {
+    "id": "arsenal:jitte_rod",
+    "components": {
+      "arsenal:part_material": "marine_steel"
+    }
+  }
+}

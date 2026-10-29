@@ -1,9 +1,19 @@
 {
   "replace": false,
   "values": [
+    "arsenal:cannon_bronze_ingot",
     "arsenal:driftwood",
-    "minecraft:iron_ingot",
+    "arsenal:island_whale_leather",
     "arsenal:marine_steel_ingot",
-    "onepiece:seastone_ingot"
+    "arsenal:pacifista_alloy",
+    "arsenal:sea_king_bone",
+    "arsenal:vegapunk_compound",
+    "minecraft:gold_ingot",
+    "minecraft:iron_ingot",
+    "onepiece:adam_log",
+    "onepiece:sea_king_scale",
+    "onepiece:seastone_ingot",
+    "onepiece:tamahagane_ingot",
+    "onepiece:wapometal_ingot"
   ]
 }

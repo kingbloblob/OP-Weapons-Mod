@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_grip",
+  "key": {
+    "M": "arsenal:vegapunk_compound",
+    "L": "minecraft:leather"
+  },
+  "pattern": [
+    "L",
+    "M",
+    "L"
+  ],
+  "result": {
+    "id": "arsenal:grip",
+    "components": {
+      "arsenal:part_material": "vegapunk_compound"
+    }
+  }
+}

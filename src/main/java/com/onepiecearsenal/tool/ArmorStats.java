@@ -20,6 +20,7 @@ import com.onepiecearsenal.ArsenalItems;
 import com.onepiecearsenal.ArsenalMod;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
+import com.onepiecearsenal.material.TraitStats;
 import com.onepiecearsenal.part.PartType;
 
 /**
@@ -81,10 +82,7 @@ public final class ArmorStats {
 			default -> 0.81f;
 		};
 		int durability = Math.round((shell.durability + lining.durability) / 2.0f * share);
-		if (lining.handleTrait == Trait.RIVETED || shell.headTrait == Trait.RIVETED) {
-			durability = Math.round(durability * 1.1f);
-		}
-		return durability;
+		return TraitStats.durability(durability, EnumSet.of(shell.headTrait, lining.handleTrait));
 	}
 
 	/** Builds a finished armor piece. */
@@ -101,8 +99,10 @@ public final class ArmorStats {
 			modifiers = modifiers.withModifierAdded(Attributes.ARMOR_TOUGHNESS,
 					new AttributeModifier(TOUGHNESS_MODIFIER, toughness(shell), AttributeModifier.Operation.ADD_VALUE), slot);
 		}
-		piece.set(DataComponents.ATTRIBUTE_MODIFIERS, modifiers);
+		Set<Trait> traits = EnumSet.of(shell.headTrait, lining.handleTrait);
+		piece.set(DataComponents.ATTRIBUTE_MODIFIERS, TraitStats.modifiers(modifiers, traits, slot));
 		piece.set(DataComponents.MAX_DAMAGE, durability(shell, lining, type));
+		TraitStats.finish(piece, traits);
 		return piece;
 	}
 

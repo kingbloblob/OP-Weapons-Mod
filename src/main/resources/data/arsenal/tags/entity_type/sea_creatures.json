@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:aquatic",
+    {
+      "id": "onepiece:sea_king",
+      "required": false
+    },
+    {
+      "id": "onepiece:island_whale",
+      "required": false
+    }
+  ]
+}

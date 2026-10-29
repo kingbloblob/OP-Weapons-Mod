@@ -1,0 +1,55 @@
+package com.onepiecearsenal.tool;
+
+import java.util.List;
+import java.util.function.Consumer;
+
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
+
+import com.onepiecearsenal.material.ArsenalMaterial;
+import com.onepiecearsenal.material.Trait;
+
+/**
+ * A cutlass, sabre, boarding axe, jitte, kanabo or spear built from a head, a binding and a handle at the
+ * Shipwright's Anvil. Its name, numbers and traits all come from the parts (see WeaponStats), and what makes
+ * each type different is in WeaponType and WeaponEffects.
+ */
+public class ArsenalWeaponItem extends Item {
+	private final WeaponType type;
+
+	public ArsenalWeaponItem(WeaponType type, Properties properties) {
+		super(properties);
+		this.type = type;
+	}
+
+	public WeaponType type() {
+		return type;
+	}
+
+	@Override
+	public Component getName(ItemStack stack) {
+		List<ArsenalMaterial> parts = WeaponStats.parts(stack);
+		return Component.literal(parts.isEmpty() ? "Unforged " + type.displayName : parts.get(0).displayName + " " + type.displayName);
+	}
+
+	@Override
+	public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay displayComponent, Consumer<Component> textConsumer, TooltipFlag flag) {
+		List<ArsenalMaterial> parts = WeaponStats.parts(stack);
+		if (parts.isEmpty()) {
+			textConsumer.accept(Component.literal("Build one at a Shipwright's Anvil.").withStyle(ChatFormatting.GRAY));
+			return;
+		}
+		textConsumer.accept(Component.literal(type.head.displayName + ": " + parts.get(0).displayName).withStyle(ChatFormatting.GRAY));
+		textConsumer.accept(Component.literal(type.binding.displayName + ": " + parts.get(1).displayName).withStyle(ChatFormatting.GRAY));
+		textConsumer.accept(Component.literal(type.handle.displayName + ": " + parts.get(2).displayName).withStyle(ChatFormatting.GRAY));
+		textConsumer.accept(Component.literal(type.ability).withStyle(ChatFormatting.AQUA));
+		for (Trait trait : WeaponStats.traits(stack)) {
+			textConsumer.accept(Component.literal(trait.displayName + ": " + trait.description + (trait.active ? "" : " (coming soon)"))
+					.withStyle(ChatFormatting.GOLD));
+		}
+	}
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_long_barrel",
+  "key": {
+    "M": "arsenal:pacifista_alloy",
+    "F": "minecraft:flint"
+  },
+  "pattern": [
+    "MMM",
+    "  F"
+  ],
+  "result": {
+    "id": "arsenal:long_barrel",
+    "components": {
+      "arsenal:part_material": "pacifista_alloy"
+    }
+  }
+}

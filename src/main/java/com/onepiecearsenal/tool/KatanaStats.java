@@ -18,6 +18,7 @@ import com.onepiecearsenal.ArsenalItems;
 import com.onepiecearsenal.ArsenalMod;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
+import com.onepiecearsenal.material.TraitStats;
 
 /**
  * Works out a katana's numbers from its three parts and saves them on the item.
@@ -42,18 +43,16 @@ public final class KatanaStats {
 		if (traits.contains(Trait.LIGHT)) {
 			speed += 0.1f;
 		}
-		int durability = (blade.durability + tsuba.durability + hilt.durability) / 3;
-		if (traits.contains(Trait.RIVETED)) {
-			durability = Math.round(durability * 1.1f);
-		}
+		int durability = TraitStats.durability((blade.durability + tsuba.durability + hilt.durability) / 3, traits);
 
 		ItemAttributeModifiers modifiers = ItemAttributeModifiers.EMPTY
 				.withModifierAdded(Attributes.ATTACK_DAMAGE,
 						new AttributeModifier(DAMAGE_MODIFIER, blade.damage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
 				.withModifierAdded(Attributes.ATTACK_SPEED,
 						new AttributeModifier(SPEED_MODIFIER, speed, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);
-		katana.set(DataComponents.ATTRIBUTE_MODIFIERS, modifiers);
+		katana.set(DataComponents.ATTRIBUTE_MODIFIERS, TraitStats.modifiers(modifiers, traits, EquipmentSlotGroup.MAINHAND));
 		katana.set(DataComponents.MAX_DAMAGE, durability);
+		TraitStats.finish(katana, traits);
 		return katana;
 	}
 

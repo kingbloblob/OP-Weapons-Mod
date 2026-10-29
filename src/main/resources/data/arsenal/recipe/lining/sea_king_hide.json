@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_lining",
+  "key": {
+    "M": "onepiece:sea_king_scale",
+    "L": "minecraft:leather"
+  },
+  "pattern": [
+    "LML"
+  ],
+  "result": {
+    "id": "arsenal:lining",
+    "components": {
+      "arsenal:part_material": "sea_king_hide"
+    }
+  }
+}

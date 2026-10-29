@@ -3,11 +3,12 @@
   "category": "equipment",
   "group": "arsenal_crown",
   "key": {
-    "M": "onepiece:seastone_ingot"
+    "M": "onepiece:seastone_ingot",
+    "L": "minecraft:leather"
   },
   "pattern": [
     "MMM",
-    "M M"
+    "MLM"
   ],
   "result": {
     "id": "arsenal:crown",

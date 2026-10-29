@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_barrel",
+  "key": {
+    "M": "arsenal:pacifista_alloy"
+  },
+  "pattern": [
+    "M",
+    "M"
+  ],
+  "result": {
+    "id": "arsenal:barrel",
+    "components": {
+      "arsenal:part_material": "pacifista_alloy"
+    }
+  }
+}

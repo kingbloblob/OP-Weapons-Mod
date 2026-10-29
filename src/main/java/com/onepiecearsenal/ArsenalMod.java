@@ -9,7 +9,9 @@ import net.fabricmc.api.ModInitializer;
 
 import com.onepiecearsenal.disguise.MarineDisguise;
 import com.onepiecearsenal.loot.MarineSteelLoot;
+import com.onepiecearsenal.loot.MaterialLoot;
 import com.onepiecearsenal.material.TraitEffects;
+import com.onepiecearsenal.tool.WeaponEffects;
 
 /**
  * The starting point of One Piece Arsenal. Minecraft calls onInitialize() once while the game is loading,
@@ -24,6 +26,8 @@ public class ArsenalMod implements ModInitializer {
 		ArsenalComponents.initialize();
 		ArsenalItems.initialize();
 		TraitEffects.initialize();
+		WeaponEffects.initialize();
+		MaterialLoot.initialize();
 		MarineDisguise.initialize();
 		MarineSteelLoot.initialize();
 	}

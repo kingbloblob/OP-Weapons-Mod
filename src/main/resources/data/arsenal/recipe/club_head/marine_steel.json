@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_club_head",
+  "key": {
+    "M": "arsenal:marine_steel_ingot"
+  },
+  "pattern": [
+    "MMM",
+    "MMM"
+  ],
+  "result": {
+    "id": "arsenal:club_head",
+    "components": {
+      "arsenal:part_material": "marine_steel"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_long_barrel",
+  "key": {
+    "M": "onepiece:seastone_ingot",
+    "F": "minecraft:flint"
+  },
+  "pattern": [
+    "MMM",
+    "  F"
+  ],
+  "result": {
+    "id": "arsenal:long_barrel",
+    "components": {
+      "arsenal:part_material": "kairoseki"
+    }
+  }
+}

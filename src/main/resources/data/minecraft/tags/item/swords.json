@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "arsenal:katana"
+    "arsenal:katana",
+    "arsenal:cutlass",
+    "arsenal:marine_sabre"
   ]
 }

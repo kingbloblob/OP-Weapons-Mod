@@ -27,12 +27,16 @@ import com.onepiecearsenal.part.PartItem;
 import com.onepiecearsenal.part.PartType;
 import com.onepiecearsenal.tool.ArmorStats;
 import com.onepiecearsenal.tool.GunStats;
+import com.onepiecearsenal.tool.GunType;
 import com.onepiecearsenal.tool.KatanaStats;
+import com.onepiecearsenal.tool.WeaponStats;
+import com.onepiecearsenal.tool.WeaponType;
 
 /**
  * The pirate assembly station. Right-click it with an empty hand while you carry a full set of parts
  * anywhere in your inventory, and it joins them: a katana blade, tsuba and hilt make a katana; a barrel, firing
- * lock and stock make a flintlock; an armor shell (hat crown, coat plates, sash weave or boot soles) and a lining
+ * part and stock make a gun (see GunType); a head, binding and handle make a cutlass, sabre, axe, jitte, kanabo
+ * or spear (see WeaponType); an armor shell (hat crown, coat plates, sash weave or boot soles) and a lining
  * make that piece of armor. Like the One Piece Mod's stations, the parts don't need to be in a grid. If you carry
  * several sets, they are forged in that order, one per click.
  */
@@ -58,26 +62,29 @@ public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 			return InteractionResult.SUCCESS;
 		}
 		Inventory inventory = smith.getInventory();
-		int[] katana = findParts(inventory, PartType.KATANA_BLADE, PartType.TSUBA, PartType.HILT);
-		int[] gun = findParts(inventory, PartType.BARREL, PartType.LOCK, PartType.STOCK);
-		ItemStack weapon;
-		int[] used;
-		if (katana != null) {
-			weapon = KatanaStats.build(material(inventory, katana[0]), material(inventory, katana[1]), material(inventory, katana[2]));
-			used = katana;
-		} else if (gun != null) {
-			weapon = GunStats.build(material(inventory, gun[0]), material(inventory, gun[1]), material(inventory, gun[2]));
-			used = gun;
-		} else {
-			int[] armor = findArmor(inventory);
-			if (armor == null) {
-				smith.sendOverlayMessage(Component.literal("You need a full set of parts: blade, tsuba and hilt; barrel, firing lock and stock; or an armor shell and a lining.")
-						.withStyle(ChatFormatting.RED));
-				return InteractionResult.FAIL;
+		ItemStack weapon = null;
+		int[] used = findParts(inventory, PartType.KATANA_BLADE, PartType.TSUBA, PartType.HILT);
+		if (used != null) {
+			weapon = KatanaStats.build(material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2]));
+		}
+		for (GunType type : GunType.values()) {
+			if (weapon == null && (used = findParts(inventory, type.parts())) != null) {
+				weapon = GunStats.build(type, material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2]));
 			}
-			PartType shell = ((PartItem) inventory.getItem(armor[0]).getItem()).type();
-			weapon = ArmorStats.build(shell, material(inventory, armor[0]), material(inventory, armor[1]));
-			used = armor;
+		}
+		for (WeaponType type : WeaponType.values()) {
+			if (weapon == null && (used = findParts(inventory, type.parts())) != null) {
+				weapon = WeaponStats.build(type, material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2]));
+			}
+		}
+		if (weapon == null && (used = findArmor(inventory)) != null) {
+			PartType shell = ((PartItem) inventory.getItem(used[0]).getItem()).type();
+			weapon = ArmorStats.build(shell, material(inventory, used[0]), material(inventory, used[1]));
+		}
+		if (weapon == null) {
+			smith.sendOverlayMessage(Component.literal("You need a full set of parts, like a blade, tsuba and hilt, or an armor shell and a lining.")
+					.withStyle(ChatFormatting.RED));
+			return InteractionResult.FAIL;
 		}
 
 		for (int slot : used) {
@@ -119,11 +126,12 @@ public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 		return PartItem.material(inventory.getItem(slot));
 	}
 
-	/** The first inventory slot holding this kind of part with a known material, or -1. */
+	/** The first inventory slot holding this kind of part with a known material that can make it, or -1. */
 	private static int findPart(Inventory inventory, PartType type) {
 		for (int i = 0; i < inventory.getContainerSize(); i++) {
 			ItemStack stack = inventory.getItem(i);
-			if (stack.getItem() instanceof PartItem part && part.type() == type && PartItem.material(stack) != null) {
+			ArsenalMaterial material = PartItem.material(stack);
+			if (stack.getItem() instanceof PartItem part && part.type() == type && material != null && (!material.armorOnly || type.isArmor())) {
 				return i;
 			}
 		}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_cannon_bore",
+  "key": {
+    "M": "arsenal:sea_king_bone",
+    "G": "minecraft:gunpowder"
+  },
+  "pattern": [
+    "MMM",
+    "MGM"
+  ],
+  "result": {
+    "id": "arsenal:cannon_bore",
+    "components": {
+      "arsenal:part_material": "sea_king_bone"
+    }
+  }
+}

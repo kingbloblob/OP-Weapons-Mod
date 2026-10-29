@@ -3,11 +3,12 @@
   "category": "equipment",
   "group": "arsenal_crown",
   "key": {
-    "M": "arsenal:driftwood"
+    "M": "arsenal:driftwood",
+    "L": "minecraft:leather"
   },
   "pattern": [
     "MMM",
-    "M M"
+    "MLM"
   ],
   "result": {
     "id": "arsenal:crown",

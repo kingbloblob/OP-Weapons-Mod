@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_stock",
+  "key": {
+    "M": "arsenal:vegapunk_compound"
+  },
+  "pattern": [
+    "MM",
+    " M"
+  ],
+  "result": {
+    "id": "arsenal:stock",
+    "components": {
+      "arsenal:part_material": "vegapunk_compound"
+    }
+  }
+}
