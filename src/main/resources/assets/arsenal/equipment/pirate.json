@@ -2,12 +2,12 @@
   "layers": {
     "humanoid": [
       {
-        "texture": "minecraft:iron"
+        "texture": "arsenal:ship_iron"
       }
     ],
     "humanoid_leggings": [
       {
-        "texture": "minecraft:iron"
+        "texture": "arsenal:ship_iron"
       }
     ]
   }
