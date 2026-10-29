@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "captured=false,facing=north": {
+      "model": "arsenal:block/marine_base_smeltery"
+    },
+    "captured=false,facing=east": {
+      "model": "arsenal:block/marine_base_smeltery",
+      "y": 90
+    },
+    "captured=false,facing=south": {
+      "model": "arsenal:block/marine_base_smeltery",
+      "y": 180
+    },
+    "captured=false,facing=west": {
+      "model": "arsenal:block/marine_base_smeltery",
+      "y": 270
+    },
+    "captured=true,facing=north": {
+      "model": "arsenal:block/marine_base_smeltery"
+    },
+    "captured=true,facing=east": {
+      "model": "arsenal:block/marine_base_smeltery",
+      "y": 90
+    },
+    "captured=true,facing=south": {
+      "model": "arsenal:block/marine_base_smeltery",
+      "y": 180
+    },
+    "captured=true,facing=west": {
+      "model": "arsenal:block/marine_base_smeltery",
+      "y": 270
+    }
+  }
+}

@@ -43,7 +43,10 @@ w(f'{A}/lang/en_us.json', {
     "item.arsenal.coat": "Coat",
     "item.arsenal.sash": "Sash",
     "item.arsenal.boots": "Boots",
-    "block.arsenal.shipwrights_anvil": "Shipwright's Anvil"
+    "block.arsenal.shipwrights_anvil": "Shipwright's Anvil",
+    "block.arsenal.marine_armory_bench": "Marine Armory Bench",
+    "block.arsenal.quartermasters_desk": "Quartermaster's Desk",
+    "block.arsenal.marine_base_smeltery": "Marine Base Smeltery"
 })
 # Placeholder art: vanilla textures until the real ones are drawn.
 items = {
@@ -79,12 +82,38 @@ variants = {}
 for d, y in [("north", 0), ("east", 90), ("south", 180), ("west", 270)]:
     variants[f"facing={d}"] = {"model": "arsenal:block/shipwrights_anvil", "y": y} if y else {"model": "arsenal:block/shipwrights_anvil"}
 w(f'{A}/blockstates/shipwrights_anvil.json', {"variants": variants})
+# Navy stations (captured from Marine bases). Placeholder look: vanilla blocks until the real ones are drawn.
+navy_stations = {
+    "marine_armory_bench": {"parent": "minecraft:block/smithing_table"},
+    "quartermasters_desk": {"parent": "minecraft:block/cartography_table"},
+    "marine_base_smeltery": {"parent": "minecraft:block/blast_furnace"},
+}
+for name, model in navy_stations.items():
+    w(f'{A}/models/block/{name}.json', model)
+    w(f'{A}/items/{name}.json', {"model": {"type": "minecraft:model", "model": f"arsenal:block/{name}"}})
+    variants = {}
+    for captured in ["false", "true"]:
+        for d, y in [("north", 0), ("east", 90), ("south", 180), ("west", 270)]:
+            variants[f"captured={captured},facing={d}"] = {"model": f"arsenal:block/{name}", "y": y} if y else {"model": f"arsenal:block/{name}"}
+    w(f'{A}/blockstates/{name}.json', {"variants": variants})
 
 D = 'data/arsenal'
 w(f'{D}/loot_table/blocks/shipwrights_anvil.json', {"type": "minecraft:block", "pools": [{
     "rolls": 1, "condition": {"type": "minecraft:survives_explosion"},
     "entries": [{"type": "minecraft:item", "name": "arsenal:shipwrights_anvil"}]}],
     "random_sequence": "arsenal:blocks/shipwrights_anvil"})
+for name in navy_stations:
+    w(f'{D}/loot_table/blocks/{name}.json', {"type": "minecraft:block", "pools": [{
+        "rolls": 1, "condition": {"type": "minecraft:survives_explosion"},
+        "entries": [{"type": "minecraft:item", "name": f"arsenal:{name}"}]}],
+        "random_sequence": f"arsenal:blocks/{name}"})
+# Which of the One Piece Mod's Marine bases have which Navy station (see NavyStations).
+w(f'{D}/tags/worldgen/structure/has_armory_bench.json', {"replace": False, "values": [
+    "onepiece:marine_base", "onepiece:g5_base", "onepiece:navarone", "onepiece:marineford"]})
+w(f'{D}/tags/worldgen/structure/has_quartermasters_desk.json', {"replace": False, "values": [
+    "onepiece:marine_base", "onepiece:marine_bunker", "onepiece:marineford"]})
+w(f'{D}/tags/worldgen/structure/has_base_smeltery.json', {"replace": False, "values": [
+    "onepiece:g5_base", "onepiece:navarone", "onepiece:marineford"]})
 w('data/minecraft/tags/item/swords.json', {"replace": False, "values": ["arsenal:katana"]})
 # The One Piece Mod's gun enchantments (Quick Draw, Sniper's Eye) and Unbreaking/Mending work on Arsenal guns.
 w('data/onepiece/tags/item/guns.json', {"replace": False, "values": ["arsenal:flintlock"]})
@@ -97,7 +126,9 @@ w('data/minecraft/tags/item/head_armor.json', {"replace": False, "values": ["ars
 w('data/minecraft/tags/item/chest_armor.json', {"replace": False, "values": ["arsenal:coat"]})
 w('data/minecraft/tags/item/leg_armor.json', {"replace": False, "values": ["arsenal:sash"]})
 w('data/minecraft/tags/item/foot_armor.json', {"replace": False, "values": ["arsenal:boots"]})
-w('data/minecraft/tags/block/mineable/pickaxe.json', {"replace": False, "values": ["arsenal:shipwrights_anvil"]})
+w('data/minecraft/tags/block/mineable/pickaxe.json', {"replace": False, "values": [
+    "arsenal:shipwrights_anvil", "arsenal:marine_armory_bench", "arsenal:marine_base_smeltery"]})
+w('data/minecraft/tags/block/mineable/axe.json', {"replace": False, "values": ["arsenal:quartermasters_desk"]})
 
 w(f'{D}/recipe/shipwrights_anvil.json', {"type": "minecraft:crafting_shaped", "category": "misc",
     "key": {"A": "minecraft:anvil", "P": "#minecraft:planks"}, "pattern": ["A", "P"],
@@ -106,9 +137,9 @@ w(f'{D}/recipe/driftwood.json', {"type": "minecraft:crafting_shapeless", "catego
     "ingredients": ["minecraft:stick", "minecraft:stick", "minecraft:kelp"],
     "result": {"id": "arsenal:driftwood", "count": 2}})
 
-# One recipe per part per material. Marine Standard Steel has no recipe for its ingot: it's taken from Marines.
-materials = {"driftwood": "arsenal:driftwood", "ship_iron": "minecraft:iron_ingot",
-             "marine_steel": "arsenal:marine_steel_ingot", "kairoseki": "onepiece:seastone_ingot"}
+# One recipe per part per material. Navy materials have none: their parts are made at captured Navy stations
+# (Marine Standard Steel at the Quartermaster's Desk, Kairoseki at the Marine Base Smeltery; see NavyCastingBlock).
+materials = {"driftwood": "arsenal:driftwood", "ship_iron": "minecraft:iron_ingot"}
 parts = {
     "katana_blade": (["M", "M", "M"], {}),
     "tsuba": ([" M ", "M M", " M "], {}),
