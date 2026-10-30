@@ -281,6 +281,7 @@ parts = {
 # Shapes that would clash with a vanilla recipe for one material get their own (GameTests check none clash).
 CLASHES = {
     ("katana_blade", "minecraft:copper_ingot"): (["M ", "M ", "MN"], {"N": N}),  # three copper is a Lightning Rod
+    ("long_barrel", "minecraft:flint"): (["MMM", "  N"], {"N": N}),  # a flint lock on flint is the Axe Head mirrored
 }
 ARMOR_PARTS = {"crown", "coat_plates", "sash_weave", "boot_soles", "lining"}
 COUNTS = {"cannon_shell": 4}  # parts that come more than one to a craft

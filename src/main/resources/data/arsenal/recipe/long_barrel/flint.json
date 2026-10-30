@@ -4,11 +4,11 @@
   "group": "arsenal_long_barrel",
   "key": {
     "M": "minecraft:flint",
-    "F": "minecraft:flint"
+    "N": "minecraft:iron_nugget"
   },
   "pattern": [
     "MMM",
-    "  F"
+    "  N"
   ],
   "result": {
     "id": "arsenal:long_barrel",
