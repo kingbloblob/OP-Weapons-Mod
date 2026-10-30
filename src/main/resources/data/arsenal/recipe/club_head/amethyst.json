@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_club_head",
+  "key": {
+    "M": "minecraft:amethyst_shard",
+    "K": "minecraft:stick"
+  },
+  "pattern": [
+    "MMM",
+    "MKM"
+  ],
+  "result": {
+    "id": "arsenal:club_head",
+    "components": {
+      "arsenal:part_material": "amethyst"
+    }
+  }
+}

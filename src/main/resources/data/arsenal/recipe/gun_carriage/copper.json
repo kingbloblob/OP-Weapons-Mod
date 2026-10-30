@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_gun_carriage",
+  "key": {
+    "M": "minecraft:copper_ingot",
+    "K": "minecraft:stick"
+  },
+  "pattern": [
+    "MMM",
+    "K K"
+  ],
+  "result": {
+    "id": "arsenal:gun_carriage",
+    "components": {
+      "arsenal:part_material": "copper"
+    }
+  }
+}

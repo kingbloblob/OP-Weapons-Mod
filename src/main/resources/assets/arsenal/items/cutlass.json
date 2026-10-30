@@ -29,6 +29,27 @@
             }
           },
           {
+            "when": "flint",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/blade/flint"
+            }
+          },
+          {
+            "when": "stone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/blade/stone"
+            }
+          },
+          {
+            "when": "copper",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/blade/copper"
+            }
+          },
+          {
             "when": "cannon_bronze",
             "model": {
               "type": "minecraft:model",
@@ -64,6 +85,27 @@
             }
           },
           {
+            "when": "amethyst",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/blade/amethyst"
+            }
+          },
+          {
+            "when": "emerald",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/blade/emerald"
+            }
+          },
+          {
+            "when": "prismarine",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/blade/prismarine"
+            }
+          },
+          {
             "when": "tamahagane",
             "model": {
               "type": "minecraft:model",
@@ -92,6 +134,20 @@
             }
           },
           {
+            "when": "obsidian",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/blade/obsidian"
+            }
+          },
+          {
+            "when": "diamond",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/blade/diamond"
+            }
+          },
+          {
             "when": "wapometal",
             "model": {
               "type": "minecraft:model",
@@ -110,6 +166,13 @@
             "model": {
               "type": "minecraft:model",
               "model": "arsenal:item/cutlass/blade/kokuto"
+            }
+          },
+          {
+            "when": "netherite",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/blade/netherite"
             }
           },
           {
@@ -159,6 +222,27 @@
             }
           },
           {
+            "when": "flint",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/guard/flint"
+            }
+          },
+          {
+            "when": "stone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/guard/stone"
+            }
+          },
+          {
+            "when": "copper",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/guard/copper"
+            }
+          },
+          {
             "when": "cannon_bronze",
             "model": {
               "type": "minecraft:model",
@@ -194,6 +278,27 @@
             }
           },
           {
+            "when": "amethyst",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/guard/amethyst"
+            }
+          },
+          {
+            "when": "emerald",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/guard/emerald"
+            }
+          },
+          {
+            "when": "prismarine",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/guard/prismarine"
+            }
+          },
+          {
             "when": "tamahagane",
             "model": {
               "type": "minecraft:model",
@@ -222,6 +327,20 @@
             }
           },
           {
+            "when": "obsidian",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/guard/obsidian"
+            }
+          },
+          {
+            "when": "diamond",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/guard/diamond"
+            }
+          },
+          {
             "when": "wapometal",
             "model": {
               "type": "minecraft:model",
@@ -240,6 +359,13 @@
             "model": {
               "type": "minecraft:model",
               "model": "arsenal:item/cutlass/guard/kokuto"
+            }
+          },
+          {
+            "when": "netherite",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/guard/netherite"
             }
           },
           {
@@ -289,6 +415,27 @@
             }
           },
           {
+            "when": "flint",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/grip/flint"
+            }
+          },
+          {
+            "when": "stone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/grip/stone"
+            }
+          },
+          {
+            "when": "copper",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/grip/copper"
+            }
+          },
+          {
             "when": "cannon_bronze",
             "model": {
               "type": "minecraft:model",
@@ -324,6 +471,27 @@
             }
           },
           {
+            "when": "amethyst",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/grip/amethyst"
+            }
+          },
+          {
+            "when": "emerald",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/grip/emerald"
+            }
+          },
+          {
+            "when": "prismarine",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/grip/prismarine"
+            }
+          },
+          {
             "when": "tamahagane",
             "model": {
               "type": "minecraft:model",
@@ -352,6 +520,20 @@
             }
           },
           {
+            "when": "obsidian",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/grip/obsidian"
+            }
+          },
+          {
+            "when": "diamond",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/grip/diamond"
+            }
+          },
+          {
             "when": "wapometal",
             "model": {
               "type": "minecraft:model",
@@ -370,6 +552,13 @@
             "model": {
               "type": "minecraft:model",
               "model": "arsenal:item/cutlass/grip/kokuto"
+            }
+          },
+          {
+            "when": "netherite",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/cutlass/grip/netherite"
             }
           },
           {

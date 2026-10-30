@@ -25,6 +25,27 @@
         }
       },
       {
+        "when": "flint",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/flint"
+        }
+      },
+      {
+        "when": "stone",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/stone"
+        }
+      },
+      {
+        "when": "copper",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/copper"
+        }
+      },
+      {
         "when": "cannon_bronze",
         "model": {
           "type": "minecraft:model",
@@ -74,6 +95,27 @@
         }
       },
       {
+        "when": "amethyst",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/amethyst"
+        }
+      },
+      {
+        "when": "emerald",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/emerald"
+        }
+      },
+      {
+        "when": "prismarine",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/prismarine"
+        }
+      },
+      {
         "when": "tamahagane",
         "model": {
           "type": "minecraft:model",
@@ -109,6 +151,20 @@
         }
       },
       {
+        "when": "obsidian",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/obsidian"
+        }
+      },
+      {
+        "when": "diamond",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/diamond"
+        }
+      },
+      {
         "when": "wapometal",
         "model": {
           "type": "minecraft:model",
@@ -134,6 +190,13 @@
         "model": {
           "type": "minecraft:model",
           "model": "arsenal:item/part/crown/dragon_scale"
+        }
+      },
+      {
+        "when": "netherite",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/netherite"
         }
       },
       {

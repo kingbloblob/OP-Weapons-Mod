@@ -37,7 +37,10 @@ public final class TraitStats {
 		return durability;
 	}
 
-	/** Adds the attribute traits (Heavy, Legendary Hull, Waterproof, Tidal, Dragonhide, Bubbly) for the slot the item works in. */
+	/**
+	 * Adds the attribute traits (Heavy, Legendary Hull, Waterproof, Tidal, Dragonhide, Bubbly,
+	 * Brilliant, Netherforged, Volcanic Glass) for the slot the item works in.
+	 */
 	public static ItemAttributeModifiers modifiers(ItemAttributeModifiers modifiers, Set<Trait> traits, EquipmentSlotGroup slot) {
 		if (traits.contains(Trait.HEAVY)) {
 			modifiers = modifiers.withModifierAdded(Attributes.ARMOR_TOUGHNESS,
@@ -64,6 +67,19 @@ public final class TraitStats {
 			if (traits.contains(Trait.BUBBLY)) {
 				modifiers = modifiers.withModifierAdded(Attributes.FALL_DAMAGE_MULTIPLIER,
 						new AttributeModifier(id("bubbly", slot), -0.2, AttributeModifier.Operation.ADD_MULTIPLIED_BASE), slot);
+			}
+			// Diamond and netherite shells get the rest of their vanilla toughness (tier toughness is in ArmorStats).
+			if (traits.contains(Trait.BRILLIANT) || traits.contains(Trait.NETHERFORGED)) {
+				modifiers = modifiers.withModifierAdded(Attributes.ARMOR_TOUGHNESS,
+						new AttributeModifier(id("gem_hard", slot), 1.0, AttributeModifier.Operation.ADD_VALUE), slot);
+			}
+			if (traits.contains(Trait.NETHERFORGED)) {
+				modifiers = modifiers.withModifierAdded(Attributes.KNOCKBACK_RESISTANCE,
+						new AttributeModifier(id("netherforged", slot), 0.1, AttributeModifier.Operation.ADD_VALUE), slot);
+			}
+			if (traits.contains(Trait.VOLCANIC_GLASS)) {
+				modifiers = modifiers.withModifierAdded(Attributes.EXPLOSION_KNOCKBACK_RESISTANCE,
+						new AttributeModifier(id("volcanic_glass", slot), 0.25, AttributeModifier.Operation.ADD_VALUE), slot);
 			}
 		}
 		return modifiers;

@@ -264,7 +264,7 @@ parts = {
     "sabre_blade": (["M", "M", "N"], {"N": N}),
     "axe_head": (["MMM", "M  "], {}),
     "jitte_rod": (["M", "N", "M"], {"N": N}),
-    "club_head": (["MMM", "MMM"], {}),
+    "club_head": (["MMM", "MKM"], {"K": K}),  # a stick for the haft, or iron or copper would make bars
     "spearhead": ([" M ", "MMM"], {}),
     "hand_guard": (["MNM", "MMM"], {"N": N}),  # a nugget in the gap, or iron would make a Minecart
     "binding": (["SMS"], {"S": S}),
@@ -278,14 +278,20 @@ parts = {
     "boot_soles": (["MLM", "M M"], {"L": L}),
     "lining": (["LML"], {"L": L}),
 }
+# Shapes that would clash with a vanilla recipe for one material get their own (GameTests check none clash).
+CLASHES = {
+    ("katana_blade", "minecraft:copper_ingot"): (["M ", "M ", "MN"], {"N": N}),  # three copper is a Lightning Rod
+    ("long_barrel", "minecraft:flint"): (["MMM", "  N"], {"N": N}),  # a flint lock on flint is the Axe Head mirrored
+}
 ARMOR_PARTS = {"crown", "coat_plates", "sash_weave", "boot_soles", "lining"}
 COUNTS = {"cannon_shell": 4}  # parts that come more than one to a craft
 for m in MATERIALS:
     if not m.get("craftable", True) or m["faction"] == "navy":
         continue
-    for part, (pattern, extra) in parts.items():
+    for part, shape in parts.items():
         if m.get("armor_only") and part not in ARMOR_PARTS:
             continue
+        pattern, extra = CLASHES.get((part, m["item"]), shape)
         w(f'{D}/recipe/{part}/{m["id"]}.json', {"type": "minecraft:crafting_shaped", "category": "equipment",
             "group": f"arsenal_{part}", "key": {"M": m["item"], **extra}, "pattern": pattern,
             "result": {"id": f"arsenal:{part}", **({"count": COUNTS[part]} if part in COUNTS else {}),

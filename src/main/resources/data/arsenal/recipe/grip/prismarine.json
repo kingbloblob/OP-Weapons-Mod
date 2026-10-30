@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_grip",
+  "key": {
+    "M": "minecraft:prismarine_shard",
+    "L": "minecraft:leather"
+  },
+  "pattern": [
+    "L",
+    "M",
+    "L"
+  ],
+  "result": {
+    "id": "arsenal:grip",
+    "components": {
+      "arsenal:part_material": "prismarine"
+    }
+  }
+}

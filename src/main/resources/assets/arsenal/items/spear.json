@@ -29,6 +29,27 @@
             }
           },
           {
+            "when": "flint",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/head/flint"
+            }
+          },
+          {
+            "when": "stone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/head/stone"
+            }
+          },
+          {
+            "when": "copper",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/head/copper"
+            }
+          },
+          {
             "when": "cannon_bronze",
             "model": {
               "type": "minecraft:model",
@@ -64,6 +85,27 @@
             }
           },
           {
+            "when": "amethyst",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/head/amethyst"
+            }
+          },
+          {
+            "when": "emerald",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/head/emerald"
+            }
+          },
+          {
+            "when": "prismarine",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/head/prismarine"
+            }
+          },
+          {
             "when": "tamahagane",
             "model": {
               "type": "minecraft:model",
@@ -92,6 +134,20 @@
             }
           },
           {
+            "when": "obsidian",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/head/obsidian"
+            }
+          },
+          {
+            "when": "diamond",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/head/diamond"
+            }
+          },
+          {
             "when": "wapometal",
             "model": {
               "type": "minecraft:model",
@@ -110,6 +166,13 @@
             "model": {
               "type": "minecraft:model",
               "model": "arsenal:item/spear/head/kokuto"
+            }
+          },
+          {
+            "when": "netherite",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/head/netherite"
             }
           },
           {
@@ -159,6 +222,27 @@
             }
           },
           {
+            "when": "flint",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/binding/flint"
+            }
+          },
+          {
+            "when": "stone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/binding/stone"
+            }
+          },
+          {
+            "when": "copper",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/binding/copper"
+            }
+          },
+          {
             "when": "cannon_bronze",
             "model": {
               "type": "minecraft:model",
@@ -194,6 +278,27 @@
             }
           },
           {
+            "when": "amethyst",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/binding/amethyst"
+            }
+          },
+          {
+            "when": "emerald",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/binding/emerald"
+            }
+          },
+          {
+            "when": "prismarine",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/binding/prismarine"
+            }
+          },
+          {
             "when": "tamahagane",
             "model": {
               "type": "minecraft:model",
@@ -222,6 +327,20 @@
             }
           },
           {
+            "when": "obsidian",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/binding/obsidian"
+            }
+          },
+          {
+            "when": "diamond",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/binding/diamond"
+            }
+          },
+          {
             "when": "wapometal",
             "model": {
               "type": "minecraft:model",
@@ -240,6 +359,13 @@
             "model": {
               "type": "minecraft:model",
               "model": "arsenal:item/spear/binding/kokuto"
+            }
+          },
+          {
+            "when": "netherite",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/binding/netherite"
             }
           },
           {
@@ -289,6 +415,27 @@
             }
           },
           {
+            "when": "flint",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/haft/flint"
+            }
+          },
+          {
+            "when": "stone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/haft/stone"
+            }
+          },
+          {
+            "when": "copper",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/haft/copper"
+            }
+          },
+          {
             "when": "cannon_bronze",
             "model": {
               "type": "minecraft:model",
@@ -324,6 +471,27 @@
             }
           },
           {
+            "when": "amethyst",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/haft/amethyst"
+            }
+          },
+          {
+            "when": "emerald",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/haft/emerald"
+            }
+          },
+          {
+            "when": "prismarine",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/haft/prismarine"
+            }
+          },
+          {
             "when": "tamahagane",
             "model": {
               "type": "minecraft:model",
@@ -352,6 +520,20 @@
             }
           },
           {
+            "when": "obsidian",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/haft/obsidian"
+            }
+          },
+          {
+            "when": "diamond",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/haft/diamond"
+            }
+          },
+          {
             "when": "wapometal",
             "model": {
               "type": "minecraft:model",
@@ -370,6 +552,13 @@
             "model": {
               "type": "minecraft:model",
               "model": "arsenal:item/spear/haft/kokuto"
+            }
+          },
+          {
+            "when": "netherite",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/spear/haft/netherite"
             }
           },
           {

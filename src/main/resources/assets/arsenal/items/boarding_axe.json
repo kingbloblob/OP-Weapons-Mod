@@ -29,6 +29,27 @@
             }
           },
           {
+            "when": "flint",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/head/flint"
+            }
+          },
+          {
+            "when": "stone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/head/stone"
+            }
+          },
+          {
+            "when": "copper",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/head/copper"
+            }
+          },
+          {
             "when": "cannon_bronze",
             "model": {
               "type": "minecraft:model",
@@ -64,6 +85,27 @@
             }
           },
           {
+            "when": "amethyst",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/head/amethyst"
+            }
+          },
+          {
+            "when": "emerald",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/head/emerald"
+            }
+          },
+          {
+            "when": "prismarine",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/head/prismarine"
+            }
+          },
+          {
             "when": "tamahagane",
             "model": {
               "type": "minecraft:model",
@@ -92,6 +134,20 @@
             }
           },
           {
+            "when": "obsidian",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/head/obsidian"
+            }
+          },
+          {
+            "when": "diamond",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/head/diamond"
+            }
+          },
+          {
             "when": "wapometal",
             "model": {
               "type": "minecraft:model",
@@ -110,6 +166,13 @@
             "model": {
               "type": "minecraft:model",
               "model": "arsenal:item/boarding_axe/head/kokuto"
+            }
+          },
+          {
+            "when": "netherite",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/head/netherite"
             }
           },
           {
@@ -159,6 +222,27 @@
             }
           },
           {
+            "when": "flint",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/binding/flint"
+            }
+          },
+          {
+            "when": "stone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/binding/stone"
+            }
+          },
+          {
+            "when": "copper",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/binding/copper"
+            }
+          },
+          {
             "when": "cannon_bronze",
             "model": {
               "type": "minecraft:model",
@@ -194,6 +278,27 @@
             }
           },
           {
+            "when": "amethyst",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/binding/amethyst"
+            }
+          },
+          {
+            "when": "emerald",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/binding/emerald"
+            }
+          },
+          {
+            "when": "prismarine",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/binding/prismarine"
+            }
+          },
+          {
             "when": "tamahagane",
             "model": {
               "type": "minecraft:model",
@@ -222,6 +327,20 @@
             }
           },
           {
+            "when": "obsidian",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/binding/obsidian"
+            }
+          },
+          {
+            "when": "diamond",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/binding/diamond"
+            }
+          },
+          {
             "when": "wapometal",
             "model": {
               "type": "minecraft:model",
@@ -240,6 +359,13 @@
             "model": {
               "type": "minecraft:model",
               "model": "arsenal:item/boarding_axe/binding/kokuto"
+            }
+          },
+          {
+            "when": "netherite",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/binding/netherite"
             }
           },
           {
@@ -289,6 +415,27 @@
             }
           },
           {
+            "when": "flint",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/haft/flint"
+            }
+          },
+          {
+            "when": "stone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/haft/stone"
+            }
+          },
+          {
+            "when": "copper",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/haft/copper"
+            }
+          },
+          {
             "when": "cannon_bronze",
             "model": {
               "type": "minecraft:model",
@@ -324,6 +471,27 @@
             }
           },
           {
+            "when": "amethyst",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/haft/amethyst"
+            }
+          },
+          {
+            "when": "emerald",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/haft/emerald"
+            }
+          },
+          {
+            "when": "prismarine",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/haft/prismarine"
+            }
+          },
+          {
             "when": "tamahagane",
             "model": {
               "type": "minecraft:model",
@@ -352,6 +520,20 @@
             }
           },
           {
+            "when": "obsidian",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/haft/obsidian"
+            }
+          },
+          {
+            "when": "diamond",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/haft/diamond"
+            }
+          },
+          {
             "when": "wapometal",
             "model": {
               "type": "minecraft:model",
@@ -370,6 +552,13 @@
             "model": {
               "type": "minecraft:model",
               "model": "arsenal:item/boarding_axe/haft/kokuto"
+            }
+          },
+          {
+            "when": "netherite",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/boarding_axe/haft/netherite"
             }
           },
           {

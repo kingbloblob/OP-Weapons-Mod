@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_katana_blade",
+  "key": {
+    "M": "minecraft:copper_ingot",
+    "N": "minecraft:iron_nugget"
+  },
+  "pattern": [
+    "M ",
+    "M ",
+    "MN"
+  ],
+  "result": {
+    "id": "arsenal:katana_blade",
+    "components": {
+      "arsenal:part_material": "copper"
+    }
+  }
+}

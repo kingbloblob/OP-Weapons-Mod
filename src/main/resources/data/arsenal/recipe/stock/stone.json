@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_stock",
+  "key": {
+    "M": "minecraft:cobblestone"
+  },
+  "pattern": [
+    "MM",
+    " M"
+  ],
+  "result": {
+    "id": "arsenal:stock",
+    "components": {
+      "arsenal:part_material": "stone"
+    }
+  }
+}

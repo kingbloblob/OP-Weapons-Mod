@@ -19,7 +19,8 @@
       "com.onepiecearsenal.test.SalvageTests",
       "com.onepiecearsenal.test.SetBonusTests",
       "com.onepiecearsenal.test.SkillTests",
-      "com.onepiecearsenal.test.UpgradeTests"
+      "com.onepiecearsenal.test.UpgradeTests",
+      "com.onepiecearsenal.test.VanillaMaterialTests"
     ]
   },
   "depends": {

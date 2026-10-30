@@ -25,6 +25,27 @@
         }
       },
       {
+        "when": "flint",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/lining/flint"
+        }
+      },
+      {
+        "when": "stone",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/lining/stone"
+        }
+      },
+      {
+        "when": "copper",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/lining/copper"
+        }
+      },
+      {
         "when": "cannon_bronze",
         "model": {
           "type": "minecraft:model",
@@ -74,6 +95,27 @@
         }
       },
       {
+        "when": "amethyst",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/lining/amethyst"
+        }
+      },
+      {
+        "when": "emerald",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/lining/emerald"
+        }
+      },
+      {
+        "when": "prismarine",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/lining/prismarine"
+        }
+      },
+      {
         "when": "tamahagane",
         "model": {
           "type": "minecraft:model",
@@ -109,6 +151,20 @@
         }
       },
       {
+        "when": "obsidian",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/lining/obsidian"
+        }
+      },
+      {
+        "when": "diamond",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/lining/diamond"
+        }
+      },
+      {
         "when": "wapometal",
         "model": {
           "type": "minecraft:model",
@@ -134,6 +190,13 @@
         "model": {
           "type": "minecraft:model",
           "model": "arsenal:item/part/lining/dragon_scale"
+        }
+      },
+      {
+        "when": "netherite",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/lining/netherite"
         }
       },
       {

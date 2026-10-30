@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "arsenal:prismarine"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "arsenal:prismarine"
+      }
+    ]
+  }
+}

@@ -25,6 +25,27 @@
         }
       },
       {
+        "when": "flint",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/cannon_bore/flint"
+        }
+      },
+      {
+        "when": "stone",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/cannon_bore/stone"
+        }
+      },
+      {
+        "when": "copper",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/cannon_bore/copper"
+        }
+      },
+      {
         "when": "cannon_bronze",
         "model": {
           "type": "minecraft:model",
@@ -60,6 +81,27 @@
         }
       },
       {
+        "when": "amethyst",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/cannon_bore/amethyst"
+        }
+      },
+      {
+        "when": "emerald",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/cannon_bore/emerald"
+        }
+      },
+      {
+        "when": "prismarine",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/cannon_bore/prismarine"
+        }
+      },
+      {
         "when": "tamahagane",
         "model": {
           "type": "minecraft:model",
@@ -88,6 +130,20 @@
         }
       },
       {
+        "when": "obsidian",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/cannon_bore/obsidian"
+        }
+      },
+      {
+        "when": "diamond",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/cannon_bore/diamond"
+        }
+      },
+      {
         "when": "wapometal",
         "model": {
           "type": "minecraft:model",
@@ -106,6 +162,13 @@
         "model": {
           "type": "minecraft:model",
           "model": "arsenal:item/part/cannon_bore/kokuto"
+        }
+      },
+      {
+        "when": "netherite",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/cannon_bore/netherite"
         }
       },
       {
