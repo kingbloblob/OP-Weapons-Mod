@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_katana_blade",
+  "key": {
+    "M": "minecraft:prismarine_shard"
+  },
+  "pattern": [
+    "M",
+    "M",
+    "M"
+  ],
+  "result": {
+    "id": "arsenal:katana_blade",
+    "components": {
+      "arsenal:part_material": "prismarine"
+    }
+  }
+}

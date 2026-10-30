@@ -69,6 +69,17 @@ public class TraitEffects {
 	/** Extra damage from Tidal (in water) and Conductive (wet target). */
 	private static final float TIDAL_DAMAGE = 2.0f;
 	private static final float CONDUCTIVE_DAMAGE = 2.0f;
+	/** Chance a Sparking (flint) hit sets the target alight. */
+	private static final float SPARKING_CHANCE = 0.25f;
+	/** Lightning Rod's crack of lightning, Resonant's ring (to each enemy nearby) and its reach. */
+	private static final float LIGHTNING_ROD_DAMAGE = 4.0f;
+	private static final float RESONANT_DAMAGE = 2.0f;
+	private static final double RESONANT_RADIUS = 3.0;
+	/** Brilliant's extra damage on every charged hit, and Volcanic Glass's on critical hits. */
+	private static final float BRILLIANT_DAMAGE = 1.5f;
+	private static final float VOLCANIC_GLASS_DAMAGE = 3.0f;
+	/** What each Spined armor piece pricks a melee attacker for. */
+	private static final float SPINED_DAMAGE = 1.0f;
 	/** How often Edible-forged gear mends 1 durability: every 5 seconds. */
 	private static final int MEND_TICKS = 100;
 	/** Sea creatures and Sea Kings, for Predator. */
@@ -148,6 +159,27 @@ public class TraitEffects {
 			}
 		});
 
+		// Spined (prismarine) armor: whoever hits the wearer up close gets pricked, once per Spined piece.
+		ServerLivingEntityEvents.AFTER_DAMAGE.register((entity, source, baseDamageTaken, damageTaken, blocked) -> {
+			if (!dealingExtra && !blocked && !source.is(DamageTypes.THORNS) && entity.level() instanceof ServerLevel level
+					&& source.getDirectEntity() instanceof LivingEntity attacker && attacker == source.getEntity() && attacker != entity) {
+				int pieces = 0;
+				for (EquipmentSlot slot : ARMOR_SLOTS) {
+					if (hasTrait(entity.getItemBySlot(slot), Trait.SPINED)) {
+						pieces++;
+					}
+				}
+				if (pieces > 0) {
+					dealingExtra = true;
+					try {
+						attacker.hurtServer(level, entity.damageSources().thorns(entity), SPINED_DAMAGE * pieces);
+					} finally {
+						dealingExtra = false;
+					}
+				}
+			}
+		});
+
 		// Once a second: fruit users holding or wearing something with seastone in its lining feel weak,
 		// Endurance armor takes the edge off hunger, and Edible-forged gear mends a little.
 		ServerTickEvents.END_LEVEL_TICK.register(level -> {
@@ -162,6 +194,10 @@ public class TraitEffects {
 				if (wearsOrHolds(player, Trait.ENDURANCE)) {
 					FoodDataAccessor exhaustion = (FoodDataAccessor) player.getFoodData();
 					exhaustion.arsenal$setExhaustionLevel(Math.max(0.0f, exhaustion.arsenal$getExhaustionLevel() - ENDURANCE_PER_SECOND));
+				}
+				if (wearsOrHolds(player, Trait.TRADERS_CHARM)) {
+					// Emerald gear: villagers treat you like the hero of their village, so their prices drop.
+					player.addEffect(new MobEffectInstance(MobEffects.HERO_OF_THE_VILLAGE, 60, 0, true, false, true));
 				}
 				if (wearsFullSet(player, Trait.DRAGONHIDE)) {
 					// The same as the One Piece Mod's full Dragon Scale armor.
@@ -222,6 +258,34 @@ public class TraitEffects {
 			extraHit(player, level, target, CONDUCTIVE_DAMAGE);
 			level.sendParticles(ParticleTypes.ELECTRIC_SPARK, target.getX(), target.getY() + target.getBbHeight() / 2, target.getZ(),
 					10, 0.3, 0.4, 0.3, 0.2);
+		}
+		if (traits.contains(Trait.SPARKING) && random.nextFloat() < SPARKING_CHANCE) {
+			target.igniteForSeconds(3.0f);
+		}
+		if (traits.contains(Trait.CRUSHING)) {
+			target.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, 40, 0), player);
+		}
+		if (traits.contains(Trait.LIGHTNING_ROD) && level.isThundering() && level.canSeeSky(target.blockPosition())) {
+			extraHit(player, level, target, LIGHTNING_ROD_DAMAGE, player.damageSources().lightningBolt());
+			level.sendParticles(ParticleTypes.ELECTRIC_SPARK, target.getX(), target.getY() + target.getBbHeight() / 2, target.getZ(),
+					20, 0.3, 0.8, 0.3, 0.3);
+			level.playSound(null, target.blockPosition(), SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.WEATHER, 1.0f, 1.2f);
+		}
+		if (traits.contains(Trait.RESONANT)) {
+			level.playSound(null, target.blockPosition(), SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 1.5f, 1.0f);
+			for (LivingEntity nearby : level.getEntitiesOfClass(LivingEntity.class, target.getBoundingBox().inflate(RESONANT_RADIUS),
+					e -> e != player && e != target && e.isAlive() && (e instanceof Enemy || e instanceof Mob mob && mob.getTarget() == player))) {
+				extraHit(player, level, nearby, RESONANT_DAMAGE);
+			}
+		}
+		if (traits.contains(Trait.BRILLIANT)) {
+			extraHit(player, level, target, BRILLIANT_DAMAGE);
+		}
+		if (traits.contains(Trait.VOLCANIC_GLASS) && melee && isCritical(player)) {
+			extraHit(player, level, target, VOLCANIC_GLASS_DAMAGE);
+		}
+		if (traits.contains(Trait.NETHERFORGED)) {
+			target.igniteForSeconds(4.0f);
 		}
 		if (traits.contains(Trait.RECOIL)) {
 			target.knockback(0.6, player.getX() - target.getX(), player.getZ() - target.getZ(), player.damageSources().playerAttack(player), 0.0f);

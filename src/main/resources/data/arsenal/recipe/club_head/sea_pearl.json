@@ -3,11 +3,12 @@
   "category": "equipment",
   "group": "arsenal_club_head",
   "key": {
-    "M": "onepiece:sea_pearl"
+    "M": "onepiece:sea_pearl",
+    "K": "minecraft:stick"
   },
   "pattern": [
     "MMM",
-    "MMM"
+    "MKM"
   ],
   "result": {
     "id": "arsenal:club_head",

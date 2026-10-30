@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "arsenal:flint"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "arsenal:flint"
+      }
+    ]
+  }
+}

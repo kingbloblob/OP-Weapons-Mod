@@ -3,11 +3,12 @@
   "category": "equipment",
   "group": "arsenal_club_head",
   "key": {
-    "M": "onepiece:dial_shell"
+    "M": "onepiece:dial_shell",
+    "K": "minecraft:stick"
   },
   "pattern": [
     "MMM",
-    "MMM"
+    "MKM"
   ],
   "result": {
     "id": "arsenal:club_head",

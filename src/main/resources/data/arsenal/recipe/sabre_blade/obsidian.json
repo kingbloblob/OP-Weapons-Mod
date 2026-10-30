@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_sabre_blade",
+  "key": {
+    "M": "minecraft:obsidian",
+    "N": "minecraft:iron_nugget"
+  },
+  "pattern": [
+    "M",
+    "M",
+    "N"
+  ],
+  "result": {
+    "id": "arsenal:sabre_blade",
+    "components": {
+      "arsenal:part_material": "obsidian"
+    }
+  }
+}

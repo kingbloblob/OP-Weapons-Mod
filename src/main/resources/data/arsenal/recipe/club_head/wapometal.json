@@ -3,11 +3,12 @@
   "category": "equipment",
   "group": "arsenal_club_head",
   "key": {
-    "M": "onepiece:wapometal_ingot"
+    "M": "onepiece:wapometal_ingot",
+    "K": "minecraft:stick"
   },
   "pattern": [
     "MMM",
-    "MMM"
+    "MKM"
   ],
   "result": {
     "id": "arsenal:club_head",

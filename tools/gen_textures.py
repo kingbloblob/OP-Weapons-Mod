@@ -100,6 +100,42 @@ MATERIALS = {
         'main': ramp('2a0604', '6a140a', 'a82a12', 'd85024', 'f68a4a'),
         'cloth': ramp('100c0c', '262020', '3c3434', '564c4c', '766a6a'),
     },
+    'flint': {  # knapped grey-black flint on rawhide
+        'main': ramp('101012', '2a2a2e', '45454b', '66666e', '94949c'),
+        'cloth': ramp('2a1a0e', '5a3e24', '86603a', 'a88054', 'c8a278'),
+    },
+    'stone': {  # cobblestone grey, bound with twine
+        'main': ramp('222224', '4a4a4e', '6e6e72', '8e8e92', 'b4b4b8'),
+        'cloth': ramp('3a3020', '6e5e40', '9a8660', 'bcaa80', 'dccca4'),
+    },
+    'copper': {  # fresh copper with a green verdigris wrap
+        'main': ramp('3a1a0c', '7a3a1c', 'b0582e', 'd8804a', 'f4b07a'),
+        'cloth': ramp('0e2a22', '1e5244', '2e7a64', '4aa488', '7ccab0'),
+    },
+    'amethyst': {  # violet crystal, pale lilac silk
+        'main': ramp('22103a', '4a2a74', '7a4aac', 'a87ad6', 'd8b4f6'),
+        'cloth': ramp('2a2238', '5a4a74', '8a7aa8', 'b8aacc', 'e4dcf0'),
+    },
+    'emerald': {  # emerald green, with a trader's brown cloth
+        'main': ramp('04220e', '0a4a20', '149038', '2ccc5a', '8af0a6'),
+        'cloth': ramp('2a180c', '5a3a20', '86603a', 'a88054', 'cca878'),
+    },
+    'prismarine': {  # ocean-monument teal, dark sea-green cord
+        'main': ramp('0e2a2a', '1e5250', '3a827a', '62ae9e', 'a2dccc'),
+        'cloth': ramp('0a1a20', '163644', '24526a', '3a7090', '6496b4'),
+    },
+    'obsidian': {  # glassy black-violet, crying-obsidian purple wrap
+        'main': ramp('06040c', '140e22', '24183a', '3c2a5c', '6a4c96'),
+        'cloth': ramp('1a0630', '3a0e66', '5c1a9a', '8434c8', 'b070ec'),
+    },
+    'diamond': {  # pale cyan diamond, deep blue silk
+        'main': ramp('0e3a3e', '1e7a7e', '3cbcbc', '7ae6e0', 'd4fffa'),
+        'cloth': ramp('0a1238', '16246a', '24389c', '3a54c4', '6a86e6'),
+    },
+    'netherite': {  # dark netherite with a warm sheen, nether-red cloth
+        'main': ramp('120e10', '2a2224', '3e3436', '5a4c4c', '7e6c68'),
+        'cloth': ramp('240606', '4e0c0c', '7a1616', 'a42420', 'cc4434'),
+    },
     'black_blade': {  # black with a crimson sheen
         'main': ramp('050406', '141015', '261c24', '3d2c38', '7a4a5c'),
         'cloth': ramp('1a0507', '3e0c10', '64141a', '8c2028', 'b83a40'),
@@ -580,6 +616,7 @@ BLACK = ramp('0c0a0e', '1d1a22', '2e2a35', '45404f', '615a6e')
 BROWN = ramp('1c140f', '3a2a1f', '554032', '6e5644', '8a7058')
 STRAW = OUTFITS['driftwood']['hat']
 WHITE = OUTFITS['marine_steel']['coat']
+GOLD_TRIM = ramp('5a400c', '8a6418', 'c99a32', 'e2b84a', 'f5d77a')
 
 OUTFITS.update({
     # A ship's gunner: olive coat with bronze buttons.
@@ -643,6 +680,37 @@ OUTFITS.update({
     'dragon_scale': outfit('captain', main_of('dragon_scale'), cloth_of('dragon_scale'), main_of('dragon_scale'),
                            cloth_of('dragon_scale'), cloth_of('dragon_scale'), main_of('dragon_scale'),
                            cloth_of('dragon_scale'), main_of('dragon_scale')),
+    # A beachcomber's flint-tipped kit: grey hat, rawhide vest, sandals.
+    'flint': outfit('castaway', main_of('flint'), cloth_of('flint'), cloth_of('flint'), SKIN,
+                    BROWN, main_of('flint'), cloth_of('flint'), SKIN),
+    # A quarry hand: a grey cap, a stone-coloured jerkin and twine-bound boots.
+    'stone': outfit('captain', main_of('stone'), cloth_of('stone'), main_of('stone'), cloth_of('stone'),
+                    BROWN, main_of('stone'), BLACK, main_of('stone')),
+    # A copper-buttoned sailor's coat gone green at the seams.
+    'copper': outfit('captain', BROWN, main_of('copper'), cloth_of('copper'), main_of('copper'),
+                     BROWN, cloth_of('copper'), BLACK, main_of('copper')),
+    # A fortune teller's violet robes.
+    'amethyst': outfit('officer', main_of('amethyst'), cloth_of('amethyst'), main_of('amethyst'), cloth_of('amethyst'),
+                       ramp('140a20', '2a1a40', '402a5e', '5a3e80', '7a58a4'), BLACK, BLACK,
+                       main_of('amethyst')) | {'mark': False},
+    # A rich merchant captain in emerald green and brown.
+    'emerald': outfit('captain', cloth_of('emerald'), main_of('emerald'), main_of('emerald'), GOLD_TRIM,
+                      BROWN, main_of('emerald'), cloth_of('emerald'), main_of('emerald')),
+    # A sea raider in prismarine scale.
+    'prismarine': outfit('captain', main_of('prismarine'), cloth_of('prismarine'), main_of('prismarine'),
+                         cloth_of('prismarine'), cloth_of('prismarine'), main_of('prismarine'),
+                         cloth_of('prismarine'), main_of('prismarine')),
+    # An obsidian-plated warrior, laced in purple.
+    'obsidian': outfit('samurai', main_of('obsidian'), cloth_of('obsidian'), main_of('obsidian'), cloth_of('obsidian'),
+                       ramp('0a0810', '1a1622', '2a2434', '3c3448', '52485e'), cloth_of('obsidian'),
+                       main_of('obsidian'), cloth_of('obsidian')),
+    # Diamond plate over deep blue, cut like a captain's coat.
+    'diamond': outfit('captain', main_of('diamond'), cloth_of('diamond'), main_of('diamond'), cloth_of('diamond'),
+                      cloth_of('diamond'), main_of('diamond'), cloth_of('diamond'), main_of('diamond')),
+    # A warlord in dark netherite plate and nether red.
+    'netherite': outfit('samurai', main_of('netherite'), cloth_of('netherite'), main_of('netherite'), cloth_of('netherite'),
+                        ramp('0c0a0a', '1c1616', '2c2424', '3e3434', '544848'), cloth_of('netherite'),
+                        main_of('netherite'), cloth_of('netherite')),
     # An Egghead scientist's white coat over a cyan suit.
     'vegapunk_compound': outfit('officer', WHITE, cloth_of('vegapunk_compound'), WHITE, main_of('vegapunk_compound'),
                                 ramp('0e1a20', '1d3540', '2c5060', '3f6e80', '5a90a4'), BLACK, BLACK,

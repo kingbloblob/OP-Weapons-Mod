@@ -29,6 +29,16 @@ public enum Trait {
 	KOKUTO("Kokuto", "Black steel: 10% of each hit goes through armor, and a Kokuto katana awakens into a Black Blade in half the time.", true),
 	DRAGONHIDE("Dragonhide", "As armor: each piece makes you burn 25% shorter, and a full set makes you immune to fire.", true),
 	BUBBLY("Bubbly", "Sabaody resin: as armor, each piece takes 20% off fall damage.", true),
+	// From vanilla materials.
+	SPARKING("Sparking", "Flint: charged hits have a 1 in 4 chance to set the target alight.", true),
+	CRUSHING("Crushing", "Stone: charged hits leave the target slowed for 2 seconds.", true),
+	LIGHTNING_ROD("Lightning Rod", "Copper: in a thunderstorm, charged hits under open sky call down a crack of lightning for +4 damage.", true),
+	RESONANT("Resonant", "Amethyst: charged hits ring out, dealing 2 damage to other enemies within 3 blocks.", true),
+	TRADERS_CHARM("Trader's Charm", "Emerald: hold or wear it and villagers give you better prices.", true),
+	SPINED("Spined", "Prismarine: as armor, each piece pricks melee attackers for 1 damage, like a Guardian's spines.", true),
+	VOLCANIC_GLASS("Volcanic Glass", "Obsidian: critical hits cut deep for +3 damage. As armor: each piece makes blasts knock you back 25% less.", true),
+	BRILLIANT("Brilliant", "Diamond: charged hits deal +1.5 damage. As armor: +1 toughness each piece, like diamond.", true),
+	NETHERFORGED("Netherforged", "Netherite: charged hits set the target on fire. As armor: +1 toughness and 10% knockback resistance each piece, like netherite.", true),
 
 	// ---- Handle traits (from the guard and hilt) ----
 	LIGHT("Light", "Weighs little: swords swing faster and guns reload quicker.", true),
