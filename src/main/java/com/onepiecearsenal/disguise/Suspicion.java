@@ -15,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 
+import com.onepiecearsenal.armorset.SetBonuses;
 import com.onepiecearsenal.compat.OnePieceBridge;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Faction;
@@ -40,7 +41,7 @@ public class Suspicion {
 	/** A Marine calls the player out at this. With one recruit watching and nothing else, that's 20 seconds. */
 	private static final int CAUGHT_AT = 20;
 
-	private static final Map<UUID, Integer> SUSPICION = new HashMap<>();
+	private static final Map<UUID, Float> SUSPICION = new HashMap<>();
 
 	public static void initialize() {
 		ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> SUSPICION.remove(handler.player.getUUID()));
@@ -57,8 +58,8 @@ public class Suspicion {
 				}
 				List<Mob> watchers = level.getEntitiesOfClass(Mob.class, player.getBoundingBox().inflate(WATCH_RANGE),
 						mob -> OnePieceBridge.isMarine(mob) && mob.getTarget() == null && mob.hasLineOfSight(player));
-				int before = SUSPICION.getOrDefault(player.getUUID(), 0);
-				int after = watchers.isEmpty() ? Math.max(0, before - 1) : before + gain(player, cover, watchers);
+				float before = SUSPICION.getOrDefault(player.getUUID(), 0.0f);
+				float after = watchers.isEmpty() ? Math.max(0.0f, before - 1.0f) : before + gain(player, cover, watchers);
 
 				if (after >= CAUGHT_AT) {
 					caught(player, watchers);
@@ -68,7 +69,7 @@ public class Suspicion {
 				if (before < NOTICED_AT && after >= NOTICED_AT) {
 					player.sendOverlayMessage(Component.literal("A Marine is eyeing you suspiciously...").withStyle(ChatFormatting.YELLOW));
 				}
-				if (after == 0) {
+				if (after <= 0.0f) {
 					SUSPICION.remove(player.getUUID());
 				} else {
 					SUSPICION.put(player.getUUID(), after);
@@ -77,8 +78,8 @@ public class Suspicion {
 		});
 	}
 
-	/** How much more suspicious the watching Marines get this second. */
-	private static int gain(Player player, MarineDisguise.Quality cover, List<Mob> watchers) {
+	/** How much more suspicious the watching Marines get this second. A Regulation Uniform set slows it (SetBonuses). */
+	private static float gain(Player player, MarineDisguise.Quality cover, List<Mob> watchers) {
 		int gain = 0;
 		for (int i = 0; i < Math.min(MAX_WATCHERS, watchers.size()); i++) {
 			gain += 1 + OnePieceBridge.marineInsight(watchers.get(i));
@@ -86,10 +87,10 @@ public class Suspicion {
 		if (carriesPirateGear(player)) {
 			gain *= 2; // No Marine carries a pirate's blade.
 		}
-		if (OnePieceBridge.bounty(player) > cover.hidesBountyUpTo / 2) {
+		if (OnePieceBridge.bounty(player) > MarineDisguise.hidesBountyUpTo(player, cover) / 2) {
 			gain += 1; // That face looks familiar...
 		}
-		return gain;
+		return gain * (float) SetBonuses.suspicion(player);
 	}
 
 	/** The closest watcher calls the player out, and everyone who was watching attacks. */

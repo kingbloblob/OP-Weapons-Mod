@@ -19,6 +19,7 @@ import net.minecraft.world.item.ItemStack;
 
 import com.onepiecearsenal.ArsenalItems;
 import com.onepiecearsenal.ArsenalMod;
+import com.onepiecearsenal.armorset.SetBonus;
 import com.onepiecearsenal.cannon.CannonShells;
 import com.onepiecearsenal.cannon.CannonStats;
 import com.onepiecearsenal.loot.BossGear;
@@ -54,7 +55,7 @@ public final class GuideChapters {
 		public String color = "FFD75E";
 		/** One entry per line. "# " = heading, "- " = bullet, "> " = tip, "" = empty line. */
 		public List<String> text = new ArrayList<>();
-		/** Lines written from the mod's data after the text: materials, traits, weapons, guns, navy_casting, meito, navy_brass or upgrades. */
+		/** Lines written from the mod's data after the text: materials, traits, weapons, guns, navy_casting, meito, navy_brass, upgrades or set_bonuses. */
 		public String generated;
 		/** More lines, shown after the generated ones. */
 		public List<String> after = new ArrayList<>();
@@ -159,8 +160,19 @@ public final class GuideChapters {
 			case "cannons" -> cannons();
 			case "navy_brass" -> navyBrass();
 			case "upgrades" -> upgrades();
+			case "set_bonuses" -> setBonuses();
 			default -> List.of("(Nothing is written here yet: \"" + what + "\" isn't a page the manual knows.)");
 		};
+	}
+
+	private static List<String> setBonuses() {
+		List<String> lines = new ArrayList<>();
+		for (SetBonus set : SetBonus.values()) {
+			lines.add("# " + set.name);
+			lines.add("Wear " + set.requirement() + ".");
+			lines.add("- " + set.description);
+		}
+		return lines;
 	}
 
 	private static List<String> materials() {

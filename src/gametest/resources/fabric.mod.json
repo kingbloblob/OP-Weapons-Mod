@@ -14,6 +14,7 @@
       "com.onepiecearsenal.test.GuideTests",
       "com.onepiecearsenal.test.MeitoTests",
       "com.onepiecearsenal.test.RestatTests",
+      "com.onepiecearsenal.test.SetBonusTests",
       "com.onepiecearsenal.test.SkillTests",
       "com.onepiecearsenal.test.UpgradeTests"
     ]
