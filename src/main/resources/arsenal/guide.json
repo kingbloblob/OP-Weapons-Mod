@@ -193,6 +193,33 @@
 			"generated": "upgrades"
 		},
 		{
+			"id": "broken_gear",
+			"title": "Broken Gear",
+			"icon": "arsenal:katana_blade",
+			"color": "FF8A6B",
+			"text": [
+				"Forged gear doesn't shatter and vanish when it wears out. It stops at its last point of durability and is Broken, and it stays Broken until you do something about it.",
+				"",
+				"# What breaking does",
+				"- A broken weapon hits like a bare fist: no damage, traits or upgrades.",
+				"- Broken armor stops nothing, and its traits go quiet.",
+				"- A broken gun won't fire.",
+				"- Its name says Broken, and you hear it go.",
+				"",
+				"# Mending it",
+				"Hold it and right-click a Shipwright's Anvil, the same as any worn gear. Each piece of its blade, head, barrel or shell material mends a quarter.",
+				"",
+				"# Taking it apart",
+				"Sneak and right-click a Shipwright's Anvil holding forged gear to take it apart for its parts. You can do this to any forged gear, broken or not.",
+				"- Gear that still works comes apart into every part.",
+				"- Broken gear loses the part that held it together: a katana's tsuba, a weapon's binding or guard, a gun's firing part, or an armor piece's lining. The rest come back.",
+				"- The blade, head, barrel or shell remembers the gear it came from. Forge it into the same kind of gear again, with any other parts, and it comes back with its upgrades, whetstone grade, blade level, enchantments, Dials and name.",
+				"- Gear that still worked keeps its wear. Broken gear's head comes back unworn, since the snapped part took the wear with it.",
+				"> Taking a working katana apart is how you give it a better tsuba or hilt without losing the blade.",
+				"> Navy heads still need a Marine Armory Bench to be put back together."
+			]
+		},
+		{
 			"id": "stations",
 			"title": "Navy Stations",
 			"icon": "arsenal:marine_armory_bench",

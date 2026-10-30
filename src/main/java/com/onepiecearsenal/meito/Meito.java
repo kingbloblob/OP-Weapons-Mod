@@ -38,6 +38,7 @@ import com.onepiecearsenal.ArsenalComponents;
 import com.onepiecearsenal.ArsenalMod;
 import com.onepiecearsenal.compat.OnePieceBridge;
 import com.onepiecearsenal.material.ArsenalMaterial;
+import com.onepiecearsenal.salvage.Breakage;
 import com.onepiecearsenal.tool.KatanaItem;
 import com.onepiecearsenal.tool.KatanaStats;
 
@@ -120,7 +121,7 @@ public final class Meito {
 		// A katana that finishes off an enemy learns from it.
 		ServerLivingEntityEvents.AFTER_DEATH.register((entity, source) -> {
 			if (source.getEntity() instanceof ServerPlayer player && player != entity
-					&& player.getMainHandItem().getItem() instanceof KatanaItem) {
+					&& player.getMainHandItem().getItem() instanceof KatanaItem && !Breakage.isBroken(player.getMainHandItem())) {
 				onKill(player, player.getMainHandItem(), entity);
 			}
 		});
@@ -128,7 +129,7 @@ public final class Meito {
 		// A Haki-coated katana hit on a foe keeps the fight going for awakening.
 		AttackEntityCallback.EVENT.register((player, level, hand, target, hitResult) -> {
 			if (player instanceof ServerPlayer fighter && target instanceof LivingEntity foe && isFoe(foe)
-					&& fighter.getMainHandItem().getItem() instanceof KatanaItem
+					&& fighter.getMainHandItem().getItem() instanceof KatanaItem && !Breakage.isBroken(fighter.getMainHandItem())
 					&& OnePieceBridge.activeArmamentLevel(fighter) >= AWAKEN_ARMAMENT) {
 				LAST_COATED_HIT.put(fighter.getUUID(), level.getGameTime());
 			}

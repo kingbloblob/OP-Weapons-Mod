@@ -39,6 +39,7 @@ import com.onepiecearsenal.ArsenalMod;
 import com.onepiecearsenal.compat.OnePieceBridge;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.TraitEffects;
+import com.onepiecearsenal.salvage.Breakage;
 import com.onepiecearsenal.tool.ArmorStats;
 import com.onepiecearsenal.tool.ArsenalGunItem;
 import com.onepiecearsenal.tool.ArsenalWeaponItem;
@@ -81,7 +82,7 @@ public final class Upgrades {
 					&& player.getAttackStrengthScale(0.5f) >= 0.9f) {
 				ItemStack weapon = player.getMainHandItem();
 				double share = total(weapon, "haki_pierce");
-				if (share > 0 && OnePieceBridge.activeArmamentLevel(attacker) > 0) {
+				if (share > 0 && !Breakage.isBroken(weapon) && OnePieceBridge.activeArmamentLevel(attacker) > 0) {
 					float damage = (float) (player.getAttributeValue(Attributes.ATTACK_DAMAGE) * share);
 					TraitEffects.extraHit(attacker, serverLevel, living, damage, attacker.damageSources().indirectMagic(attacker, attacker));
 				}
@@ -332,7 +333,8 @@ public final class Upgrades {
 		if (gear.isDamaged()) {
 			ArsenalMaterial material = headMaterial(gear);
 			return Component.literal("Mend it with " + new ItemStack(material.repairItem()).getHoverName().getString() + ", the stuff of its "
-					+ material.displayName + ". Or hold an upgrade's item in your offhand to upgrade it.").withStyle(ChatFormatting.YELLOW);
+					+ material.displayName + (Breakage.isBroken(gear) ? ". Or sneak and right-click to take it apart for its parts."
+					: ". Or hold an upgrade's item in your offhand to upgrade it.")).withStyle(ChatFormatting.YELLOW);
 		}
 		Gear kind = gearOf(gear);
 		return Component.literal(gear.getHoverName().getString() + ": " + usedSlots(gear) + "/" + Upgrade.slots(kind)

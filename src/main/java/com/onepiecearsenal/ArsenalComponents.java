@@ -12,6 +12,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.world.item.component.ItemContainerContents;
 
 import com.onepiecearsenal.meito.BladeRecord;
 
@@ -81,6 +82,20 @@ public class ArsenalComponents {
 	public static final DataComponentType<Integer> STATS_STAMP = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
 			ArsenalMod.id("stats_stamp"),
 			DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT).ignoreSwapAnimation().build());
+
+	/**
+	 * On a head part taken off forged gear at the Shipwright's Anvil (see Salvage): the gear it came from, so forging it
+	 * into the same kind of gear again brings back its upgrades, whetstone grade, blade level, enchantments, name and wear.
+	 */
+	public static final DataComponentType<ItemContainerContents> SALVAGED_FROM = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
+			ArsenalMod.id("salvaged_from"),
+			DataComponentType.<ItemContainerContents>builder().persistent(ItemContainerContents.CODEC)
+					.networkSynchronized(ItemContainerContents.STREAM_CODEC).build());
+
+	/** Set on forged gear the moment it breaks, until its owner has been told (see Breakage). */
+	public static final DataComponentType<Boolean> JUST_BROKE = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
+			ArsenalMod.id("just_broke"),
+			DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).ignoreSwapAnimation().build());
 
 	/** Loads this class, which registers the components above. */
 	static void initialize() {

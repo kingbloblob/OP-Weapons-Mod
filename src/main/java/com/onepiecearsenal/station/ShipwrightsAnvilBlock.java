@@ -28,6 +28,7 @@ import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Faction;
 import com.onepiecearsenal.part.PartItem;
 import com.onepiecearsenal.part.PartType;
+import com.onepiecearsenal.salvage.Salvage;
 import com.onepiecearsenal.tool.ArmorStats;
 import com.onepiecearsenal.tool.GunStats;
 import com.onepiecearsenal.tool.GunType;
@@ -47,7 +48,8 @@ import com.onepiecearsenal.upgrade.Upgrades;
  * Navy gear (a blade, barrel or armor shell of a Navy material, or a Marine Sabre or Jitte) can't be put together
  * here: that takes a Marine Armory Bench captured from a Marine base, which runs the same forge with navy = true.
  *
- * Right-click it holding forged gear (any gear, Navy too) to mend or upgrade it instead: see Upgrades.
+ * Right-click it holding forged gear (any gear, Navy too) to mend or upgrade it instead: see Upgrades. Sneak and
+ * right-click to take it apart for its parts: see Salvage. A head part salvaged that way is forged back into its old gear.
  */
 public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 	public ShipwrightsAnvilBlock(Properties properties) {
@@ -127,31 +129,35 @@ public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 
 	/** What a full set of parts makes, and the slots it uses up. */
 	private record Forged(ItemStack item, int[] slots) {
+		/** The slots' first part is the head: a salvaged one brings back the gear it came from. */
+		Forged(Inventory inventory, ItemStack built, int[] slots) {
+			this(Salvage.restore(inventory.getItem(slots[0]), built), slots);
+		}
 	}
 
 	/** The first full set the smith carries, in this order: katana, guns, ship cannon, other hand weapons, armor. Null if none. */
 	private static Forged findSet(Inventory inventory, boolean navy) {
 		int[] used = findParts(inventory, navy, PartType.KATANA_BLADE, PartType.TSUBA, PartType.HILT);
 		if (used != null) {
-			return new Forged(KatanaStats.build(material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2])), used);
+			return new Forged(inventory, KatanaStats.build(material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2])), used);
 		}
 		for (GunType type : GunType.values()) {
 			if ((used = findParts(inventory, navy, type.parts())) != null) {
-				return new Forged(GunStats.build(type, material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2])), used);
+				return new Forged(inventory, GunStats.build(type, material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2])), used);
 			}
 		}
 		if ((used = findParts(inventory, navy, PartType.CANNON_BORE, PartType.FUSE, PartType.GUN_CARRIAGE)) != null) {
-			return new Forged(CannonStats.build(material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2])), used);
+			return new Forged(inventory, CannonStats.build(material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2])), used);
 		}
 		for (WeaponType type : WeaponType.values()) {
 			// Marine Sabres and Jittes are Navy designs: only the Marine Armory Bench puts them together.
 			if ((navy || type.faction != Faction.NAVY) && (used = findParts(inventory, navy, type.parts())) != null) {
-				return new Forged(WeaponStats.build(type, material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2])), used);
+				return new Forged(inventory, WeaponStats.build(type, material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2])), used);
 			}
 		}
 		if ((used = findArmor(inventory, navy)) != null) {
 			PartType shell = ((PartItem) inventory.getItem(used[0]).getItem()).type();
-			return new Forged(ArmorStats.build(shell, material(inventory, used[0]), material(inventory, used[1])), used);
+			return new Forged(inventory, ArmorStats.build(shell, material(inventory, used[0]), material(inventory, used[1])), used);
 		}
 		return null;
 	}

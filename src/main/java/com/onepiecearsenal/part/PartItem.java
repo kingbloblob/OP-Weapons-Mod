@@ -15,6 +15,7 @@ import com.onepiecearsenal.cannon.CannonShells;
 import com.onepiecearsenal.cannon.CannonStats;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
+import com.onepiecearsenal.salvage.Salvage;
 import com.onepiecearsenal.tool.ArmorStats;
 import com.onepiecearsenal.tool.GunStats;
 import com.onepiecearsenal.tool.GunType;
@@ -74,6 +75,12 @@ public class PartItem extends Item {
 		ArsenalMaterial material = material(stack);
 		if (material == null) {
 			return;
+		}
+		ItemStack history = Salvage.history(stack);
+		if (!history.isEmpty()) {
+			textConsumer.accept(Component.literal("Salvaged from a " + history.getHoverName().getString()).withStyle(ChatFormatting.LIGHT_PURPLE));
+			textConsumer.accept(Component.literal("Forge it into one again to bring back its upgrades, grade, level and wear.")
+					.withStyle(ChatFormatting.DARK_GRAY));
 		}
 		textConsumer.accept(Component.literal("Tier " + material.tier + " · " + material.faction.displayName).withStyle(ChatFormatting.GRAY));
 		if (material.armorOnly && !this.type.isArmor()) {

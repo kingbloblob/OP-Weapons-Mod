@@ -31,6 +31,7 @@ import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import com.onepiecearsenal.ArsenalMod;
 import com.onepiecearsenal.compat.OnePieceBridge;
 import com.onepiecearsenal.mixin.FoodDataAccessor;
+import com.onepiecearsenal.salvage.Breakage;
 import com.onepiecearsenal.tool.ArmorStats;
 import com.onepiecearsenal.tool.ArsenalArmorItem;
 import com.onepiecearsenal.tool.ArsenalGunItem;
@@ -88,7 +89,7 @@ public class TraitEffects {
 			if (!dealingExtra && !blocked && !gun.isEmpty() && source.is(DamageTypes.THROWN) && source.getEntity() instanceof ServerPlayer shooter
 					&& shooter.level() instanceof ServerLevel serverLevel) {
 				entity.damageCooldownTime = 0; // The shot just hit, so without this its extra trait hits would bounce off.
-				onHit(shooter, serverLevel, entity, GunStats.traits(gun), baseDamageTaken, false);
+				onHit(shooter, serverLevel, entity, traits(gun), baseDamageTaken, false);
 			}
 		});
 
@@ -238,8 +239,11 @@ public class TraitEffects {
 		return traits(stack).contains(trait);
 	}
 
-	/** The traits of any Arsenal weapon or armor piece. Empty for anything else. */
+	/** The traits of any Arsenal weapon or armor piece. Empty for anything else, and for broken gear. */
 	public static Set<Trait> traits(ItemStack stack) {
+		if (Breakage.isBroken(stack)) {
+			return EnumSet.noneOf(Trait.class);
+		}
 		if (stack.getItem() instanceof KatanaItem) {
 			return KatanaStats.traits(stack);
 		}

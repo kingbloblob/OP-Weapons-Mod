@@ -17,6 +17,7 @@ import com.onepiecearsenal.compat.OnePieceBridge;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
 import com.onepiecearsenal.meito.Meito;
+import com.onepiecearsenal.salvage.Breakage;
 import com.onepiecearsenal.upgrade.Upgrades;
 
 /**
@@ -33,6 +34,7 @@ public class KatanaItem extends Item {
 	@Override
 	public void inventoryTick(ItemStack stack, ServerLevel level, Entity owner, EquipmentSlot slot) {
 		Restat.refresh(stack);
+		Breakage.notice(stack, owner);
 	}
 
 	@Override
@@ -41,7 +43,7 @@ public class KatanaItem extends Item {
 		if (parts.isEmpty()) {
 			return Component.literal("Unforged Katana");
 		}
-		return Component.literal(KatanaStats.isBlackBlade(stack) ? "Black Blade" : parts.get(0).displayName + " Katana");
+		return Breakage.name(stack, KatanaStats.isBlackBlade(stack) ? "Black Blade" : parts.get(0).displayName + " Katana");
 	}
 
 	@Override
@@ -51,6 +53,7 @@ public class KatanaItem extends Item {
 			textConsumer.accept(Component.literal("Build one at a Shipwright's Anvil.").withStyle(ChatFormatting.GRAY));
 			return;
 		}
+		Breakage.describe(stack, textConsumer);
 		textConsumer.accept(Component.literal("Blade: " + parts.get(0).displayName).withStyle(ChatFormatting.GRAY));
 		textConsumer.accept(Component.literal("Tsuba: " + parts.get(1).displayName).withStyle(ChatFormatting.GRAY));
 		textConsumer.accept(Component.literal("Hilt: " + parts.get(2).displayName).withStyle(ChatFormatting.GRAY));

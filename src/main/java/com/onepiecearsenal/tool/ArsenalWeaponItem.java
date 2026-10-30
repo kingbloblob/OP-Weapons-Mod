@@ -15,6 +15,7 @@ import net.minecraft.world.item.component.TooltipDisplay;
 
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
+import com.onepiecearsenal.salvage.Breakage;
 import com.onepiecearsenal.upgrade.Upgrades;
 
 /**
@@ -38,12 +39,13 @@ public class ArsenalWeaponItem extends Item {
 	@Override
 	public void inventoryTick(ItemStack stack, ServerLevel level, Entity owner, EquipmentSlot slot) {
 		Restat.refresh(stack);
+		Breakage.notice(stack, owner);
 	}
 
 	@Override
 	public Component getName(ItemStack stack) {
 		List<ArsenalMaterial> parts = WeaponStats.parts(stack);
-		return Component.literal(parts.isEmpty() ? "Unforged " + type.displayName : parts.get(0).displayName + " " + type.displayName);
+		return parts.isEmpty() ? Component.literal("Unforged " + type.displayName) : Breakage.name(stack, parts.get(0).displayName + " " + type.displayName);
 	}
 
 	@Override
@@ -53,6 +55,7 @@ public class ArsenalWeaponItem extends Item {
 			textConsumer.accept(Component.literal("Build one at a Shipwright's Anvil.").withStyle(ChatFormatting.GRAY));
 			return;
 		}
+		Breakage.describe(stack, textConsumer);
 		textConsumer.accept(Component.literal(type.head.displayName + ": " + parts.get(0).displayName).withStyle(ChatFormatting.GRAY));
 		textConsumer.accept(Component.literal(type.binding.displayName + ": " + parts.get(1).displayName).withStyle(ChatFormatting.GRAY));
 		textConsumer.accept(Component.literal(type.handle.displayName + ": " + parts.get(2).displayName).withStyle(ChatFormatting.GRAY));

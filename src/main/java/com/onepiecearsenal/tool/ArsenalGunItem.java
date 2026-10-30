@@ -6,6 +6,7 @@ import java.util.function.Consumer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -18,6 +19,7 @@ import net.minecraft.world.level.Level;
 
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
+import com.onepiecearsenal.salvage.Breakage;
 import com.onepiecearsenal.upgrade.Upgrades;
 import com.onepiecemod.weapon.Ammo;
 import com.onepiecemod.weapon.GunItem;
@@ -61,6 +63,12 @@ public class ArsenalGunItem extends GunItem {
 	 */
 	@Override
 	public InteractionResult use(Level level, Player player, InteractionHand hand) {
+		if (Breakage.isBroken(player.getItemInHand(hand))) {
+			if (player instanceof ServerPlayer shooter) {
+				Breakage.tellBroken(shooter, player.getItemInHand(hand));
+			}
+			return InteractionResult.FAIL;
+		}
 		if (level.isClientSide()) {
 			return super.use(level, player, hand);
 		}
@@ -96,12 +104,13 @@ public class ArsenalGunItem extends GunItem {
 	public void inventoryTick(ItemStack stack, ServerLevel level, Entity owner, EquipmentSlot slot) {
 		super.inventoryTick(stack, level, owner, slot);
 		Restat.refresh(stack);
+		Breakage.notice(stack, owner);
 	}
 
 	@Override
 	public Component getName(ItemStack stack) {
 		List<ArsenalMaterial> parts = GunStats.parts(stack);
-		return Component.literal(parts.isEmpty() ? "Unforged " + type.displayName : parts.get(0).displayName + " " + type.displayName);
+		return parts.isEmpty() ? Component.literal("Unforged " + type.displayName) : Breakage.name(stack, parts.get(0).displayName + " " + type.displayName);
 	}
 
 	@Override
@@ -111,6 +120,7 @@ public class ArsenalGunItem extends GunItem {
 			textConsumer.accept(Component.literal("Build one at a Shipwright's Anvil.").withStyle(ChatFormatting.GRAY));
 			return;
 		}
+		Breakage.describe(stack, textConsumer);
 		Stats stats = GunStats.stats(stack);
 		textConsumer.accept(Component.literal(String.format("%.0f damage, %.2fs reload, %.0f block range",
 				stats.damage(), stats.cooldown() / 20.0, stats.range())).withStyle(ChatFormatting.GRAY));
