@@ -9,6 +9,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -160,7 +161,7 @@ public final class WeaponSkills {
 			}
 			case BOARDING_LEAP -> { // Leap forward and up. Hits on the way down are cutlass boarding hits (WeaponEffects).
 				player.setDeltaMovement(flatLook.x * 1.3, 0.75, flatLook.z * 1.3);
-				player.needsSync = true;
+				sendMotion(player);
 				player.resetFallDistance();
 				SAFE_FALL_UNTIL.put(player.getUUID(), now + LEAP_SAFE_TICKS);
 				level.sendParticles(ParticleTypes.CLOUD, player.getX(), player.getY(), player.getZ(), 8, 0.3, 0.05, 0.3, 0.02);
@@ -217,7 +218,7 @@ public final class WeaponSkills {
 					target.needsSync = true;
 				}
 				player.setDeltaMovement(flatLook.x * 1.8, 0.1, flatLook.z * 1.8);
-				player.needsSync = true;
+				sendMotion(player);
 				level.sendParticles(ParticleTypes.CLOUD, player.getX(), player.getY() + 0.1, player.getZ(), 10, 0.3, 0.05, 0.3, 0.02);
 				sound(level, player, SoundEvents.PLAYER_ATTACK_STRONG, 0.9f);
 			}
@@ -252,6 +253,11 @@ public final class WeaponSkills {
 	/** True while the player is on guard from Riposte. */
 	static boolean onGuard(ServerPlayer player) {
 		return player.level().getGameTime() <= GUARD_UNTIL.getOrDefault(player.getUUID(), 0L);
+	}
+
+	/** Tells the player's game about a push. needsSync doesn't reach the player's own game, so the push would be lost. */
+	private static void sendMotion(ServerPlayer player) {
+		player.connection.send(new ClientboundSetEntityMotionPacket(player));
 	}
 
 	private static void particles(ServerLevel level, LivingEntity at, ParticleOptions particle, int count) {
