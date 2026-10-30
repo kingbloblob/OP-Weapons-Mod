@@ -9,7 +9,9 @@ import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.decoration.ArmorStand;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.GameType;
 
 import net.fabricmc.fabric.api.gametest.v1.GameTest;
 
@@ -33,7 +35,8 @@ public class SalvageTests {
 
 	@GameTest
 	public void wornOutGearBreaksInsteadOfVanishing(GameTestHelper helper) {
-		ServerPlayer fighter = helper.makeMockServerPlayerInLevel();
+		// A survival player: the mock server player is in Creative, where items take no wear at all.
+		Player fighter = helper.makeMockPlayer(GameType.SURVIVAL);
 		ItemStack katana = KatanaStats.build(KAIROSEKI, IRON, IRON);
 		fighter.setItemSlot(EquipmentSlot.MAINHAND, katana);
 		fighter.getMainHandItem().hurtAndBreak(katana.getMaxDamage() + 50, fighter, EquipmentSlot.MAINHAND);
