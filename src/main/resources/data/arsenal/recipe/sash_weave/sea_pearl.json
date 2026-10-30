@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_sash_weave",
+  "key": {
+    "M": "onepiece:sea_pearl",
+    "L": "minecraft:leather"
+  },
+  "pattern": [
+    "MMM",
+    "MLM",
+    "M M"
+  ],
+  "result": {
+    "id": "arsenal:sash_weave",
+    "components": {
+      "arsenal:part_material": "sea_pearl"
+    }
+  }
+}

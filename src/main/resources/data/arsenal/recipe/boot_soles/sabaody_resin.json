@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_boot_soles",
+  "key": {
+    "M": "onepiece:yarukiman_resin",
+    "L": "minecraft:leather"
+  },
+  "pattern": [
+    "MLM",
+    "M M"
+  ],
+  "result": {
+    "id": "arsenal:boot_soles",
+    "components": {
+      "arsenal:part_material": "sabaody_resin"
+    }
+  }
+}

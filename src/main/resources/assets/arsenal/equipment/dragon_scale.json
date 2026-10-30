@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "arsenal:dragon_scale"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "arsenal:dragon_scale"
+      }
+    ]
+  }
+}

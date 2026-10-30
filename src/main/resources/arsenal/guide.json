@@ -160,7 +160,7 @@
 				"- A Lining, of any material, which adds its handle trait.",
 				"",
 				"# Looks",
-				"Armor looks like clothes when you wear it, cut by its shell material: Driftwood is a castaway's straw hat and sandals, Ship Iron a pirate captain's tricorn and crimson coat, Marine Standard Steel a recruit's sailor uniform, Kairoseki a Navy officer's coat, Wano Tamahagane a samurai's armor and hakama.",
+				"Armor looks like clothes when you wear it, cut by its shell material: Driftwood is a castaway's straw hat and sandals, Ship Iron a pirate captain's tricorn and crimson coat, Marine Standard Steel a recruit's sailor uniform, Kairoseki a Navy officer's coat, Wano Tamahagane and Kokuto a samurai's armor and hakama, Dragon Scale a red scale coat.",
 				"",
 				"# Armor traits",
 				"Some traits only matter on armor: Waterproof swims faster, Endurance keeps you from getting hungry, Plated deflects bullets and arrows, and a Kairoseki shell drains Devil Fruit users who hit you.",
@@ -238,7 +238,7 @@
 			"generated": "meito",
 			"after": [
 				"# Black Blade awakening",
-				"A Supreme Grade katana can turn black for good. Fight with it for 2 hours with your Armament Haki (level 4 or higher) switched on. Only real fighting counts: a hit on a foe in the last 5 seconds.",
+				"A Supreme Grade katana can turn black for good. Fight with it for 2 hours (1 hour for a Kokuto blade) with your Armament Haki (level 4 or higher) switched on. Only real fighting counts: a hit on a foe in the last 5 seconds.",
 				"When it awakens, its blade becomes Black Blade Steel (8 damage, 2000 uses, the Black Blade trait) and it's fully mended. It keeps its tsuba, hilt, grade, level and enchantments, and the whole server hears about it.",
 				"> The katana's tooltip shows how many minutes it has so far."
 			]
@@ -292,6 +292,15 @@
 				"- Ship Iron and Treasure Gold: iron and gold ingots.",
 				"- Wano Tamahagane, Wapometal, Kairoseki and Adam Wood: the One Piece Mod's ingots and logs.",
 				"- Sea King Hide: its parts are made straight from the One Piece Mod's Sea King Scale.",
+				"",
+				"# From the islands",
+				"These come straight from the One Piece Mod's islands. Their parts are made at a crafting table.",
+				"- Dial Shell: Dial Shells from shell sand on beaches, in Skypiea, Jaya and the East Blue.",
+				"- Fishman Island Pearl: Sea Pearls from oyster gravel on the sea floor, in every ocean and around Fishman Island.",
+				"- Sabaody Resin (armor only): tap a Yarukiman tree on Sabaody with a Glass Bottle.",
+				"- Shandora Gold: Shandora Gold ore in Skypiea, Jaya, badlands and jungles.",
+				"- Kokuto Black Steel: Kokuto ore, rare and deep underground. A Kokuto katana awakens into a Black Blade in half the time.",
+				"- Dragon Scale (armor only): Punk Hazard's dragon.",
 				"",
 				"# Taken in battle",
 				"- Sea King Bone: Sea Kings.",

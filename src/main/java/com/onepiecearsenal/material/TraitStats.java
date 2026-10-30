@@ -37,7 +37,7 @@ public final class TraitStats {
 		return durability;
 	}
 
-	/** Adds the attribute traits (Heavy, Legendary Hull, Waterproof) for the slot the item works in. */
+	/** Adds the attribute traits (Heavy, Legendary Hull, Waterproof, Tidal, Dragonhide, Bubbly) for the slot the item works in. */
 	public static ItemAttributeModifiers modifiers(ItemAttributeModifiers modifiers, Set<Trait> traits, EquipmentSlotGroup slot) {
 		if (traits.contains(Trait.HEAVY)) {
 			modifiers = modifiers.withModifierAdded(Attributes.ARMOR_TOUGHNESS,
@@ -50,6 +50,21 @@ public final class TraitStats {
 		if (traits.contains(Trait.WATERPROOF) && slot != EquipmentSlotGroup.MAINHAND) {
 			modifiers = modifiers.withModifierAdded(Attributes.WATER_MOVEMENT_EFFICIENCY,
 					new AttributeModifier(id("waterproof", slot), 0.2, AttributeModifier.Operation.ADD_VALUE), slot);
+		}
+		if (slot != EquipmentSlotGroup.MAINHAND) {
+			// Worn traits, per piece. A full Tidal set breathes like Respiration III.
+			if (traits.contains(Trait.TIDAL)) {
+				modifiers = modifiers.withModifierAdded(Attributes.OXYGEN_BONUS,
+						new AttributeModifier(id("tidal", slot), 0.75, AttributeModifier.Operation.ADD_VALUE), slot);
+			}
+			if (traits.contains(Trait.DRAGONHIDE)) {
+				modifiers = modifiers.withModifierAdded(Attributes.BURNING_TIME,
+						new AttributeModifier(id("dragonhide", slot), -0.25, AttributeModifier.Operation.ADD_MULTIPLIED_BASE), slot);
+			}
+			if (traits.contains(Trait.BUBBLY)) {
+				modifiers = modifiers.withModifierAdded(Attributes.FALL_DAMAGE_MULTIPLIER,
+						new AttributeModifier(id("bubbly", slot), -0.2, AttributeModifier.Operation.ADD_MULTIPLIED_BASE), slot);
+			}
 		}
 		return modifiers;
 	}

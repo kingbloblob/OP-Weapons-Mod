@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_hand_guard",
+  "key": {
+    "M": "onepiece:dial_shell",
+    "N": "minecraft:iron_nugget"
+  },
+  "pattern": [
+    "MNM",
+    "MMM"
+  ],
+  "result": {
+    "id": "arsenal:hand_guard",
+    "components": {
+      "arsenal:part_material": "dial_shell"
+    }
+  }
+}
