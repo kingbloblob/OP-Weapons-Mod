@@ -22,6 +22,7 @@ import com.onepiecearsenal.ArsenalMod;
 import com.onepiecearsenal.cannon.CannonShells;
 import com.onepiecearsenal.cannon.CannonStats;
 import com.onepiecearsenal.loot.BossGear;
+import com.onepiecearsenal.loot.HunterGear;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Faction;
 import com.onepiecearsenal.material.Trait;
@@ -53,7 +54,7 @@ public final class GuideChapters {
 		public String color = "FFD75E";
 		/** One entry per line. "# " = heading, "- " = bullet, "> " = tip, "" = empty line. */
 		public List<String> text = new ArrayList<>();
-		/** Lines written from the mod's data after the text: materials, traits, weapons, guns, navy_casting, meito, navy_brass or upgrades. */
+		/** Lines written from the mod's data after the text: materials, traits, weapons, guns, navy_casting, meito, navy_brass, hunter_gear or upgrades. */
 		public String generated;
 		/** More lines, shown after the generated ones. */
 		public List<String> after = new ArrayList<>();
@@ -156,6 +157,7 @@ public final class GuideChapters {
 			case "meito" -> meito();
 			case "cannons" -> cannons();
 			case "navy_brass" -> navyBrass();
+			case "hunter_gear" -> hunterGear();
 			case "upgrades" -> upgrades();
 			default -> List.of("(Nothing is written here yet: \"" + what + "\" isn't a page the manual knows.)");
 		};
@@ -308,6 +310,33 @@ public final class GuideChapters {
 			lines.add("- " + signature.name() + " (" + signature.owners() + "): " + signature.description() + ".");
 		}
 		return lines;
+	}
+
+	private static List<String> hunterGear() {
+		List<String> lines = new ArrayList<>();
+		String[] from = {"100,000,000", "300,000,000", "1,000,000,000"};
+		for (int threat = 3; threat <= 5; threat++) {
+			HunterGear.Loadout loadout = HunterGear.loadout(threat);
+			lines.add("# Bounty of " + from[threat - 3] + " or more");
+			List<ArsenalMaterial> heads = new ArrayList<>(loadout.weaponHeads());
+			if (threat == 5) {
+				heads.add(ArsenalMaterial.KAIROSEKI);
+			}
+			lines.add("- Weapon: " + materialNames(heads) + ".");
+			lines.add("- Armor: " + (loadout.armorPieces() == 4 ? "a full set" : loadout.armorPieces() == 1 ? "a coat" : "a coat and hat")
+					+ " of " + materialNames(loadout.shells()) + ".");
+			lines.add("");
+		}
+		return lines;
+	}
+
+	private static String materialNames(List<ArsenalMaterial> materials) {
+		List<String> names = new ArrayList<>();
+		for (ArsenalMaterial material : materials) {
+			names.add(material.displayName);
+		}
+		return names.size() < 2 ? String.join("", names)
+				: String.join(", ", names.subList(0, names.size() - 1)) + " or " + names.get(names.size() - 1);
 	}
 
 	private static List<String> upgrades() {

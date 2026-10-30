@@ -20,6 +20,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.item.ItemStack;
@@ -89,6 +90,14 @@ public class TraitEffects {
 					&& shooter.level() instanceof ServerLevel serverLevel) {
 				entity.damageCooldownTime = 0; // The shot just hit, so without this its extra trait hits would bounce off.
 				onHit(shooter, serverLevel, entity, GunStats.traits(gun), baseDamageTaken, false);
+			}
+		});
+
+		// Seastone weapons in a mob's hand (Kairoseki-bladed Marines, bounty hunters) drain fruit users too.
+		ServerLivingEntityEvents.AFTER_DAMAGE.register((entity, source, baseDamageTaken, damageTaken, blocked) -> {
+			if (!blocked && source.getEntity() instanceof Mob attacker && source.getDirectEntity() == attacker
+					&& traits(attacker.getMainHandItem()).contains(Trait.SEASTONE) && OnePieceBridge.isFruitUser(entity)) {
+				OnePieceBridge.drainFruitPower(entity, SEASTONE_DRAIN_TICKS);
 			}
 		});
 

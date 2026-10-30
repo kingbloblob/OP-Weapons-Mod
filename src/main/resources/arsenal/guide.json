@@ -303,6 +303,7 @@
 				"# Navy-issue weapons",
 				"Some Marines carry Arsenal katanas or flintlocks instead of their usual gear (Kairoseki blades for senior officers), and drop them now and then.",
 				"Vice Admirals, Commanders and famous Marines carry rarer gear still (see Navy Brass).",
+				"Bounty hunters carry forged pirate gear and drop it now and then (see Bounty Hunters).",
 				"> Black Blade Steel can't be crafted or looted. It's what a Supreme Grade katana's blade becomes when it awakens (see Meito)."
 			]
 		},
@@ -326,6 +327,25 @@
 			"after": [
 				"",
 				"> Named gear is ordinary Arsenal gear with a name: it repairs, levels and takes whetstones like any other. Graded blades still refuse a wielder who isn't worthy (see Meito)."
+			]
+		},
+		{
+			"id": "bounty_hunters",
+			"title": "Bounty Hunters",
+			"icon": "arsenal:kanabo",
+			"icon_material": "wapometal",
+			"color": "B070E0",
+			"text": [
+				"Once your bounty reaches 100,000,000, bounty hunters with Devil Fruits come after you. They aren't Marines, so a Navy disguise won't fool them. They fight with forged pirate gear: a cutlass, boarding axe, kanabo, spear or katana, and some armor. The higher your bounty, the better their gear.",
+				"",
+				"- Their weapon hits no harder than the sword they used to carry, but its type still counts: a kanabo knocks you far back and a spear reaches further.",
+				"- The best hunters sometimes carry Kairoseki. Every hit drains a Devil Fruit user's power for a few seconds, the same as Kairoseki in your own hands. So do Marine officers' Kairoseki blades.",
+				"- Beat a hunter and their weapon drops about 1 time in 10, each armor piece about 1 time in 20. It's worn from use, and its lore names who carried it."
+			],
+			"generated": "hunter_gear",
+			"after": [
+				"",
+				"> Check /bounty to see how many hunters come at a time at your bounty."
 			]
 		}
 	]

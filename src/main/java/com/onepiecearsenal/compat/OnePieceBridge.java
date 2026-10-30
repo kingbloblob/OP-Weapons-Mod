@@ -11,6 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 import com.onepiecemod.bounty.Bounty;
+import com.onepiecemod.bounty.BountyHunterEntity;
 import com.onepiecemod.bounty.MarineEntity;
 import com.onepiecemod.bounty.MarineHunters;
 import com.onepiecemod.bounty.MarineRank;
@@ -98,6 +99,16 @@ public final class OnePieceBridge {
 	/** True if this Marine was sent to hunt down this player. */
 	public static boolean isHunting(Mob marine, Player player) {
 		return MarineEntity.isHunting(marine, player);
+	}
+
+	/** True for the main mod's Devil Fruit bounty hunters, who come after players with a bounty of 100,000,000 or more. */
+	public static boolean isBountyHunter(LivingEntity entity) {
+		return entity instanceof BountyHunterEntity;
+	}
+
+	/** The threat level (3 to 5) a bounty hunter was sent for: it sets their health and damage. 0 for anything else. */
+	public static int hunterStrength(LivingEntity entity) {
+		return entity instanceof BountyHunterEntity hunter ? hunter.getStrength() : 0;
 	}
 
 	/** True for the main mod's people (pirates, Marines, townsfolk, story characters). */
