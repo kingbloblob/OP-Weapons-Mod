@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_studs",
+  "key": {
+    "M": "onepiece:dial_shell",
+    "N": "minecraft:iron_nugget"
+  },
+  "pattern": [
+    "N N",
+    " M ",
+    "N N"
+  ],
+  "result": {
+    "id": "arsenal:studs",
+    "components": {
+      "arsenal:part_material": "dial_shell"
+    }
+  }
+}

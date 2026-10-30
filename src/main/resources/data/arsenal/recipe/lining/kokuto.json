@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_lining",
+  "key": {
+    "M": "onepiece:kokuto_ingot",
+    "L": "minecraft:leather"
+  },
+  "pattern": [
+    "LML"
+  ],
+  "result": {
+    "id": "arsenal:lining",
+    "components": {
+      "arsenal:part_material": "kokuto"
+    }
+  }
+}

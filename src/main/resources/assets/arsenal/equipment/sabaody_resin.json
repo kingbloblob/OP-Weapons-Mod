@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "arsenal:sabaody_resin"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "arsenal:sabaody_resin"
+      }
+    ]
+  }
+}

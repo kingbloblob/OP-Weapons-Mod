@@ -5,6 +5,7 @@
 	"mixins": [
 		"FoodDataAccessor",
 		"ItemStackMixin",
+		"LivingEntityMixin",
 		"MobMixin"
 	],
 	"client": [

@@ -76,6 +76,30 @@ MATERIALS = {
         'main': ramp('2a1408', '5a2e12', '8a4a1e', 'b26a30', 'd89050'),
         'cloth': ramp('3d3628', '7a705a', 'aea385', 'd6cdb0', 'f2ecd8'),
     },
+    'dial_shell': {  # Skypiea's spiral shells, cream and coral, on sky-blue cord
+        'main': ramp('4a3428', '9a6e58', 'd2a088', 'ecc8b0', 'fbeee2'),
+        'cloth': ramp('0e2a40', '22568a', '3c86c4', '6cb2e6', 'b0dcf8'),
+    },
+    'sea_pearl': {  # Fishman Island pearl, pink-white lustre, coral-red cord
+        'main': ramp('4a4450', '948ca4', 'cbc4d8', 'ebe4f2', 'fffaff'),
+        'cloth': ramp('2a0a10', '6a1a24', 'a82e38', 'd65058', 'f08a88'),
+    },
+    'sabaody_resin': {  # Yarukiman resin, amber, with soap-bubble cloth
+        'main': ramp('3a1e06', '7a4410', 'b06e1e', 'd89a3a', 'f6cc78'),
+        'cloth': ramp('2a3a4a', '6a8aa8', 'a0c8e0', 'd0eaf6', 'f6e6fa'),
+    },
+    'shandora_gold': {  # the bright gold of the City of Gold, with Shandian green
+        'main': ramp('5a3a04', '9a6a0c', 'd8a018', 'f4cc3a', 'fff08a'),
+        'cloth': ramp('0c2014', '1c4a2a', '2c7040', '48985a', '7cc488'),
+    },
+    'kokuto': {  # black steel with a cold blue sheen, grey silk
+        'main': ramp('060709', '15181e', '262c36', '3c4656', '6a7a92'),
+        'cloth': ramp('121214', '2a2a30', '44444c', '62626c', '86868f'),
+    },
+    'dragon_scale': {  # Punk Hazard dragon, red scales, charcoal leather
+        'main': ramp('2a0604', '6a140a', 'a82a12', 'd85024', 'f68a4a'),
+        'cloth': ramp('100c0c', '262020', '3c3434', '564c4c', '766a6a'),
+    },
     'black_blade': {  # black with a crimson sheen
         'main': ramp('050406', '141015', '261c24', '3d2c38', '7a4a5c'),
         'cloth': ramp('1a0507', '3e0c10', '64141a', '8c2028', 'b83a40'),
@@ -597,6 +621,28 @@ OUTFITS.update({
     # A swordsman's black and crimson.
     'black_blade': outfit('captain', main_of('black_blade'), cloth_of('black_blade'), main_of('black_blade'),
                           cloth_of('black_blade'), BLACK, cloth_of('black_blade'), BLACK, cloth_of('black_blade')),
+    # A Skypiean in a cloud-white cap, a sky-blue vest and shell-trimmed sandals.
+    'dial_shell': outfit('castaway', WHITE, main_of('dial_shell'), cloth_of('dial_shell'), SKIN,
+                         WHITE, cloth_of('dial_shell'), main_of('dial_shell'), SKIN),
+    # A Fishman Island captain in coral red, studded with pearl.
+    'sea_pearl': outfit('captain', main_of('sea_pearl'), cloth_of('sea_pearl'), cloth_of('sea_pearl'), main_of('sea_pearl'),
+                        ramp('061420', '0e2a40', '1a4a6a', '2b6e94', '4a96bc'), main_of('sea_pearl'),
+                        BLACK, main_of('sea_pearl')),
+    # A Sabaody coater's resin-stiffened oilskins.
+    'sabaody_resin': outfit('castaway', main_of('sabaody_resin'), cloth_of('sabaody_resin'), main_of('sabaody_resin'),
+                            cloth_of('sabaody_resin'), cloth_of('sabaody_resin'), main_of('sabaody_resin'),
+                            main_of('sabaody_resin'), SKIN),
+    # A Shandian warrior's gold and green.
+    'shandora_gold': outfit('castaway', main_of('shandora_gold'), cloth_of('shandora_gold'), cloth_of('shandora_gold'),
+                            main_of('shandora_gold'), BROWN, main_of('shandora_gold'), main_of('shandora_gold'), SKIN),
+    # A Wano swordsman in black steel armor laced with grey.
+    'kokuto': outfit('samurai', main_of('kokuto'), cloth_of('kokuto'), main_of('kokuto'), cloth_of('kokuto'),
+                     ramp('0a0a0c', '1a1a1f', '2a2a32', '3c3c46', '52525e'), cloth_of('kokuto'),
+                     main_of('kokuto'), cloth_of('kokuto')),
+    # A dragon hunter's red scale coat over charcoal leather.
+    'dragon_scale': outfit('captain', main_of('dragon_scale'), cloth_of('dragon_scale'), main_of('dragon_scale'),
+                           cloth_of('dragon_scale'), cloth_of('dragon_scale'), main_of('dragon_scale'),
+                           cloth_of('dragon_scale'), main_of('dragon_scale')),
     # An Egghead scientist's white coat over a cyan suit.
     'vegapunk_compound': outfit('officer', WHITE, cloth_of('vegapunk_compound'), WHITE, main_of('vegapunk_compound'),
                                 ramp('0e1a20', '1d3540', '2c5060', '3f6e80', '5a90a4'), BLACK, BLACK,

@@ -13,6 +13,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 
+import com.onepiecearsenal.armorset.SetBonus;
+import com.onepiecearsenal.armorset.SetBonuses;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
 import com.onepiecearsenal.salvage.Breakage;
@@ -59,6 +61,10 @@ public class ArsenalArmorItem extends Item {
 		for (Trait trait : ArmorStats.traits(stack)) {
 			textConsumer.accept(Component.literal(trait.displayName + ": " + trait.description + (trait.active ? "" : " (coming soon)"))
 					.withStyle(ChatFormatting.GOLD));
+		}
+		for (SetBonus set : SetBonuses.setsOf(stack)) {
+			textConsumer.accept(Component.literal("Set: " + set.name + " (" + set.requirement() + ")").withStyle(ChatFormatting.AQUA));
+			textConsumer.accept(Component.literal("  " + set.description).withStyle(ChatFormatting.DARK_AQUA));
 		}
 		Upgrades.describe(stack, textConsumer);
 	}

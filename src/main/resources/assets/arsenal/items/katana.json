@@ -50,6 +50,20 @@
             }
           },
           {
+            "when": "dial_shell",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/blade/dial_shell"
+            }
+          },
+          {
+            "when": "sea_pearl",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/blade/sea_pearl"
+            }
+          },
+          {
             "when": "tamahagane",
             "model": {
               "type": "minecraft:model",
@@ -71,6 +85,13 @@
             }
           },
           {
+            "when": "shandora_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/blade/shandora_gold"
+            }
+          },
+          {
             "when": "wapometal",
             "model": {
               "type": "minecraft:model",
@@ -82,6 +103,13 @@
             "model": {
               "type": "minecraft:model",
               "model": "arsenal:item/katana/blade/adam_wood"
+            }
+          },
+          {
+            "when": "kokuto",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/blade/kokuto"
             }
           },
           {
@@ -152,6 +180,20 @@
             }
           },
           {
+            "when": "dial_shell",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/tsuba/dial_shell"
+            }
+          },
+          {
+            "when": "sea_pearl",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/tsuba/sea_pearl"
+            }
+          },
+          {
             "when": "tamahagane",
             "model": {
               "type": "minecraft:model",
@@ -173,6 +215,13 @@
             }
           },
           {
+            "when": "shandora_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/tsuba/shandora_gold"
+            }
+          },
+          {
             "when": "wapometal",
             "model": {
               "type": "minecraft:model",
@@ -184,6 +233,13 @@
             "model": {
               "type": "minecraft:model",
               "model": "arsenal:item/katana/tsuba/adam_wood"
+            }
+          },
+          {
+            "when": "kokuto",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/tsuba/kokuto"
             }
           },
           {
@@ -254,6 +310,20 @@
             }
           },
           {
+            "when": "dial_shell",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/hilt/dial_shell"
+            }
+          },
+          {
+            "when": "sea_pearl",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/hilt/sea_pearl"
+            }
+          },
+          {
             "when": "tamahagane",
             "model": {
               "type": "minecraft:model",
@@ -275,6 +345,13 @@
             }
           },
           {
+            "when": "shandora_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/hilt/shandora_gold"
+            }
+          },
+          {
             "when": "wapometal",
             "model": {
               "type": "minecraft:model",
@@ -286,6 +363,13 @@
             "model": {
               "type": "minecraft:model",
               "model": "arsenal:item/katana/hilt/adam_wood"
+            }
+          },
+          {
+            "when": "kokuto",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/katana/hilt/kokuto"
             }
           },
           {

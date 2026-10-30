@@ -53,6 +53,27 @@
         }
       },
       {
+        "when": "dial_shell",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/dial_shell"
+        }
+      },
+      {
+        "when": "sea_pearl",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/sea_pearl"
+        }
+      },
+      {
+        "when": "sabaody_resin",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/sabaody_resin"
+        }
+      },
+      {
         "when": "tamahagane",
         "model": {
           "type": "minecraft:model",
@@ -81,6 +102,13 @@
         }
       },
       {
+        "when": "shandora_gold",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/shandora_gold"
+        }
+      },
+      {
         "when": "wapometal",
         "model": {
           "type": "minecraft:model",
@@ -92,6 +120,20 @@
         "model": {
           "type": "minecraft:model",
           "model": "arsenal:item/part/crown/adam_wood"
+        }
+      },
+      {
+        "when": "kokuto",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/kokuto"
+        }
+      },
+      {
+        "when": "dragon_scale",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/crown/dragon_scale"
         }
       },
       {

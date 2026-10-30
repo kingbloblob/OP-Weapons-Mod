@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "arsenal:shandora_gold"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "arsenal:shandora_gold"
+      }
+    ]
+  }
+}

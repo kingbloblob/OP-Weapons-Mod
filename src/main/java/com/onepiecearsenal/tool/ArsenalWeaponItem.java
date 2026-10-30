@@ -16,6 +16,7 @@ import net.minecraft.world.item.component.TooltipDisplay;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
 import com.onepiecearsenal.salvage.Breakage;
+import com.onepiecearsenal.skill.WeaponSkill;
 import com.onepiecearsenal.upgrade.Upgrades;
 
 /**
@@ -60,6 +61,7 @@ public class ArsenalWeaponItem extends Item {
 		textConsumer.accept(Component.literal(type.binding.displayName + ": " + parts.get(1).displayName).withStyle(ChatFormatting.GRAY));
 		textConsumer.accept(Component.literal(type.handle.displayName + ": " + parts.get(2).displayName).withStyle(ChatFormatting.GRAY));
 		textConsumer.accept(Component.literal(type.ability).withStyle(ChatFormatting.AQUA));
+		WeaponSkill.describe(stack, textConsumer);
 		for (Trait trait : WeaponStats.traits(stack)) {
 			textConsumer.accept(Component.literal(trait.displayName + ": " + trait.description + (trait.active ? "" : " (coming soon)"))
 					.withStyle(ChatFormatting.GOLD));
