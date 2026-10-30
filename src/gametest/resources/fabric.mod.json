@@ -12,6 +12,7 @@
       "com.onepiecearsenal.test.CannonTests",
       "com.onepiecearsenal.test.DisguiseTests",
       "com.onepiecearsenal.test.GuideTests",
+      "com.onepiecearsenal.test.IslandMaterialTests",
       "com.onepiecearsenal.test.MeitoTests",
       "com.onepiecearsenal.test.RestatTests",
       "com.onepiecearsenal.test.SetBonusTests",

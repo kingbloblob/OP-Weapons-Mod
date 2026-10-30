@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "arsenal:kokuto"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "arsenal:kokuto"
+      }
+    ]
+  }
+}

@@ -38,6 +38,7 @@ import com.onepiecearsenal.ArsenalComponents;
 import com.onepiecearsenal.ArsenalMod;
 import com.onepiecearsenal.compat.OnePieceBridge;
 import com.onepiecearsenal.material.ArsenalMaterial;
+import com.onepiecearsenal.material.Trait;
 import com.onepiecearsenal.tool.KatanaItem;
 import com.onepiecearsenal.tool.KatanaStats;
 
@@ -188,6 +189,12 @@ public final class Meito {
 				&& !KatanaStats.parts(katana).isEmpty() && !KatanaStats.isBlackBlade(katana);
 	}
 
+	/** Seconds of Haki-coated fighting this katana needs to awaken. A Kokuto blade is black steel already, so it needs half. */
+	public static int awakenSeconds(ItemStack katana) {
+		List<ArsenalMaterial> parts = KatanaStats.parts(katana);
+		return !parts.isEmpty() && parts.get(0).headTrait == Trait.KOKUTO ? AWAKEN_SECONDS / 2 : AWAKEN_SECONDS;
+	}
+
 	/** Seconds of Haki-coated fighting this katana has done toward awakening. */
 	public static int hakiSeconds(ItemStack katana) {
 		return katana.getOrDefault(ArsenalComponents.HAKI_SOAK, 0);
@@ -203,11 +210,12 @@ public final class Meito {
 			return;
 		}
 		int seconds = hakiSeconds(katana) + 1;
-		if (seconds < AWAKEN_SECONDS) {
+		int needed = awakenSeconds(katana);
+		if (seconds < needed) {
 			katana.set(ArsenalComponents.HAKI_SOAK, seconds);
-			if (seconds % (AWAKEN_SECONDS / 4) == 0) {
+			if (seconds % (needed / 4) == 0) {
 				player.sendSystemMessage(Component.literal("Your Haki is sinking into " + katana.getHoverName().getString() + ". It's darkening ("
-						+ seconds * 100 / AWAKEN_SECONDS + "%).").withStyle(ChatFormatting.DARK_PURPLE));
+						+ seconds * 100 / needed + "%).").withStyle(ChatFormatting.DARK_PURPLE));
 			}
 			return;
 		}

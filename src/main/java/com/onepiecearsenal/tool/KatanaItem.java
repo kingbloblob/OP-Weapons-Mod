@@ -73,7 +73,7 @@ public class KatanaItem extends Item {
 		}
 		if (Meito.canAwaken(stack)) {
 			int minutes = Meito.hakiSeconds(stack) / 60;
-			textConsumer.accept(Component.literal("Black Blade awakening: " + minutes + "/" + Meito.AWAKEN_SECONDS / 60 + " min of Haki fighting")
+			textConsumer.accept(Component.literal("Black Blade awakening: " + minutes + "/" + Meito.awakenSeconds(stack) / 60 + " min of Haki fighting")
 					.withStyle(ChatFormatting.DARK_PURPLE));
 			textConsumer.accept(Component.literal(" Fight with Armament Haki " + Meito.AWAKEN_ARMAMENT + "+ switched on").withStyle(ChatFormatting.DARK_GRAY));
 		}

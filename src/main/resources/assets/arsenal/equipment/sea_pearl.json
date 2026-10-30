@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "arsenal:sea_pearl"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "arsenal:sea_pearl"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_fuse",
+  "key": {
+    "M": "onepiece:dial_shell",
+    "S": "minecraft:string",
+    "G": "minecraft:gunpowder"
+  },
+  "pattern": [
+    "S",
+    "G",
+    "M"
+  ],
+  "result": {
+    "id": "arsenal:fuse",
+    "components": {
+      "arsenal:part_material": "dial_shell"
+    }
+  }
+}
