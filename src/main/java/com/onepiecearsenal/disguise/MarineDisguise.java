@@ -26,6 +26,7 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 
 import com.onepiecearsenal.ArsenalMod;
+import com.onepiecearsenal.armorset.SetBonuses;
 import com.onepiecearsenal.compat.OnePieceBridge;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Faction;
@@ -120,7 +121,7 @@ public class MarineDisguise {
 					state = "";
 				} else if (isBlown(player)) {
 					state = "blown";
-				} else if (OnePieceBridge.bounty(player) > quality.hidesBountyUpTo) {
+				} else if (OnePieceBridge.bounty(player) > hidesBountyUpTo(player, quality)) {
 					state = "famous";
 				} else {
 					state = "hidden";
@@ -200,11 +201,16 @@ public class MarineDisguise {
 			return cached.quality();
 		}
 		Quality quality = quality(player);
-		if (quality != Quality.NONE && (isBlown(player) || OnePieceBridge.bounty(player) > quality.hidesBountyUpTo)) {
+		if (quality != Quality.NONE && (isBlown(player) || OnePieceBridge.bounty(player) > hidesBountyUpTo(player, quality))) {
 			quality = Quality.NONE;
 		}
 		COVER.put(player, new Cover(now, quality));
 		return quality;
+	}
+
+	/** The highest bounty this player's uniform hides: the uniform's own limit, raised by a Regulation Uniform set (SetBonuses). */
+	public static long hidesBountyUpTo(Player player, Quality quality) {
+		return Math.round(quality.hidesBountyUpTo * SetBonuses.disguiseBounty(player));
 	}
 
 	public static boolean isBlown(Player player) {

@@ -1,0 +1,98 @@
+{
+  "_comment": [
+    "Armor set bonuses (see armorset/SetBonuses.java). Wear enough matching Arsenal armor pieces and the set's effects",
+    "switch on; take one off and they stop. Several sets can be on at once. The Shipwright's Manual's Set Bonuses",
+    "chapter is written from this file, so change the numbers here and the book follows.",
+    "pieces = how many of the four (hat, coat, sash, boots) must match. 4 = a full set.",
+    "shell / lining = what each matching piece's shell or lining must be made of: a faction (pirate, navy or shared)",
+    "and/or a list of material ids. Leave one out and that part can be anything.",
+    "Effects:",
+    "  attribute: attribute id, amount, operation (add_value, add_multiplied_base or add_multiplied_total).",
+    "  mob_effect: effect id and amplifier (0 = level I), kept on while the set is worn.",
+    "  damage_taken: from = devil_fruit_users, projectiles, fire, marines or pirates. amount = share taken off (0.3 = 30% less).",
+    "  damage_dealt: against = devil_fruit_users, marines, pirates or sea_creatures. amount = share added (0.1 = 10% more).",
+    "  disguise_bounty: amount = how many times the bounty your Marine uniform can hide (2 = twice as much).",
+    "  suspicion: amount = how fast watching Marines get suspicious (0.5 = half as fast).",
+    "All damage_taken cuts together never take off more than 60% of a hit."
+  ],
+  "sets": [
+    {"id": "regulation_uniform", "name": "Regulation Uniform", "pieces": 4,
+     "shell": {"faction": "navy"}, "lining": {"faction": "navy"},
+     "description": "A uniform Navy inside and out: hides twice the bounty, and Marines get suspicious half as fast.",
+     "effects": [
+       {"type": "disguise_bounty", "amount": 2.0},
+       {"type": "suspicion", "amount": 0.5}
+     ]},
+    {"id": "seastone_bulwark", "name": "Seastone Bulwark", "pieces": 4,
+     "shell": {"materials": ["kairoseki"]},
+     "description": "35% less damage from Devil Fruit users.",
+     "effects": [
+       {"type": "damage_taken", "from": "devil_fruit_users", "amount": 0.35}
+     ]},
+    {"id": "pacifista_frame", "name": "Pacifista Frame", "pieces": 4,
+     "shell": {"materials": ["pacifista_alloy"]},
+     "description": "25% less damage from bullets and arrows, and +0.2 knockback resistance.",
+     "effects": [
+       {"type": "damage_taken", "from": "projectiles", "amount": 0.25},
+       {"type": "attribute", "attribute": "minecraft:knockback_resistance", "amount": 0.2, "operation": "add_value"}
+     ]},
+    {"id": "seraphim_plating", "name": "Seraphim Plating", "pieces": 4,
+     "shell": {"materials": ["vegapunk_compound"]},
+     "description": "20% less damage from Devil Fruit users and from bullets and arrows, and fire can't hurt you.",
+     "effects": [
+       {"type": "damage_taken", "from": "devil_fruit_users", "amount": 0.2},
+       {"type": "damage_taken", "from": "projectiles", "amount": 0.2},
+       {"type": "mob_effect", "effect": "minecraft:fire_resistance", "amplifier": 0}
+     ]},
+    {"id": "jolly_roger", "name": "Jolly Roger", "pieces": 4,
+     "shell": {"faction": "pirate"},
+     "description": "Pirate colours from head to toe: 10% more damage against Marines.",
+     "effects": [
+       {"type": "damage_dealt", "against": "marines", "amount": 0.1}
+     ]},
+    {"id": "castaway", "name": "Castaway", "pieces": 4,
+     "shell": {"materials": ["driftwood"]},
+     "description": "Straw hat and sandals: 10% faster on your feet.",
+     "effects": [
+       {"type": "attribute", "attribute": "minecraft:movement_speed", "amount": 0.1, "operation": "add_multiplied_base"}
+     ]},
+    {"id": "iron_captain", "name": "Iron Captain", "pieces": 4,
+     "shell": {"materials": ["ship_iron"]},
+     "description": "+2 armor toughness.",
+     "effects": [
+       {"type": "attribute", "attribute": "minecraft:armor_toughness", "amount": 2.0, "operation": "add_value"}
+     ]},
+    {"id": "treasure_hoard", "name": "Treasure Hoard", "pieces": 4,
+     "shell": {"materials": ["treasure_gold"]},
+     "description": "+2 luck: better loot from chests and fishing.",
+     "effects": [
+       {"type": "attribute", "attribute": "minecraft:luck", "amount": 2.0, "operation": "add_value"}
+     ]},
+    {"id": "sea_king_scales", "name": "Sea King Scales", "pieces": 4,
+     "shell": {"materials": ["sea_king_hide"]},
+     "description": "Breathe underwater, and deal 25% more damage to sea creatures and Sea Kings.",
+     "effects": [
+       {"type": "mob_effect", "effect": "minecraft:water_breathing", "amplifier": 0},
+       {"type": "damage_dealt", "against": "sea_creatures", "amount": 0.25}
+     ]},
+    {"id": "island_whale", "name": "Island Whale", "pieces": 4,
+     "shell": {"materials": ["island_whale_leather"]},
+     "description": "+4 max health (two hearts).",
+     "effects": [
+       {"type": "attribute", "attribute": "minecraft:max_health", "amount": 4.0, "operation": "add_value"}
+     ]},
+    {"id": "samurai_of_wano", "name": "Samurai of Wano", "pieces": 4,
+     "shell": {"materials": ["tamahagane"]},
+     "description": "10% more attack damage.",
+     "effects": [
+       {"type": "attribute", "attribute": "minecraft:attack_damage", "amount": 0.1, "operation": "add_multiplied_total"}
+     ]},
+    {"id": "treasure_tree", "name": "Treasure Tree", "pieces": 4,
+     "shell": {"materials": ["adam_wood"]},
+     "description": "Built like the Sunny's hull: +0.3 knockback resistance and 30% less damage from fire.",
+     "effects": [
+       {"type": "attribute", "attribute": "minecraft:knockback_resistance", "amount": 0.3, "operation": "add_value"},
+       {"type": "damage_taken", "from": "fire", "amount": 0.3}
+     ]}
+  ]
+}

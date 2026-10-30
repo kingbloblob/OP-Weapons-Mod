@@ -63,7 +63,7 @@ public class TraitEffects {
 	/** How often Edible-forged gear mends 1 durability: every 5 seconds. */
 	private static final int MEND_TICKS = 100;
 	/** Sea creatures and Sea Kings, for Predator. */
-	private static final TagKey<EntityType<?>> SEA_CREATURES = TagKey.create(Registries.ENTITY_TYPE, ArsenalMod.id("sea_creatures"));
+	public static final TagKey<EntityType<?>> SEA_CREATURES = TagKey.create(Registries.ENTITY_TYPE, ArsenalMod.id("sea_creatures"));
 	/** True while a trait's own extra damage is being dealt, so it can't set the traits off again. */
 	private static boolean dealingExtra = false;
 
