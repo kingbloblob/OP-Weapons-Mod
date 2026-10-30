@@ -20,6 +20,7 @@ import com.onepiecearsenal.loot.MaterialLoot;
 import com.onepiecearsenal.material.TraitEffects;
 import com.onepiecearsenal.material.TraitStats;
 import com.onepiecearsenal.meito.Meito;
+import com.onepiecearsenal.skill.WeaponSkills;
 import com.onepiecearsenal.station.NavyStations;
 import com.onepiecearsenal.tool.WeaponEffects;
 import com.onepiecearsenal.upgrade.Upgrades;
@@ -39,6 +40,7 @@ public class ArsenalMod implements ModInitializer {
 		TraitStats.initialize();
 		TraitEffects.initialize();
 		WeaponEffects.initialize();
+		WeaponSkills.initialize();
 		MaterialLoot.initialize();
 		MarineDisguise.initialize();
 		MarineSteelLoot.initialize();

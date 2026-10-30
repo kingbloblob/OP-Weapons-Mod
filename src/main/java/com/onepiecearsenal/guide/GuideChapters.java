@@ -28,6 +28,7 @@ import com.onepiecearsenal.material.Trait;
 import com.onepiecearsenal.meito.Meito;
 import com.onepiecearsenal.part.PartItem;
 import com.onepiecearsenal.part.PartType;
+import com.onepiecearsenal.skill.WeaponSkill;
 import com.onepiecearsenal.station.NavyCastingBlock;
 import com.onepiecearsenal.tool.ArmorStats;
 import com.onepiecearsenal.tool.GunStats;
@@ -151,6 +152,7 @@ public final class GuideChapters {
 			case "materials" -> materials();
 			case "traits" -> traits();
 			case "weapons" -> weapons();
+			case "skills" -> skills();
 			case "guns" -> guns();
 			case "navy_casting" -> navyCasting();
 			case "meito" -> meito();
@@ -240,6 +242,23 @@ public final class GuideChapters {
 			}
 		}
 		return lines;
+	}
+
+	private static List<String> skills() {
+		List<String> lines = new ArrayList<>();
+		lines.add("# Katana: " + WeaponSkill.IAI_DRAW.displayName);
+		lines.add(skillLine(WeaponSkill.IAI_DRAW));
+		for (WeaponType type : WeaponType.values()) {
+			WeaponSkill skill = WeaponSkill.of(type);
+			lines.add("# " + type.displayName + ": " + skill.displayName);
+			lines.add(skillLine(skill));
+		}
+		return lines;
+	}
+
+	private static String skillLine(WeaponSkill skill) {
+		String damage = skill.damageScale > 0 ? " Each hit does " + Math.round(skill.damageScale * 100) + "% of the weapon's damage." : "";
+		return "- " + skill.description + damage + " Ready again after " + skill.cooldownTicks / 20 + " seconds.";
 	}
 
 	private static List<String> guns() {

@@ -1,8 +1,10 @@
 package com.onepiecearsenal.compat;
 
+import java.util.List;
 import java.util.Set;
 
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -19,10 +21,12 @@ import com.onepiecemod.character.CharacterEntity;
 import com.onepiecemod.character.CharacterFeature;
 import com.onepiecemod.haki.HakiAttachments;
 import com.onepiecemod.haki.HakiData;
+import com.onepiecemod.haki.HakiPowers;
 import com.onepiecemod.news.NewsLog;
 import com.onepiecemod.npc.HumanNpc;
 import com.onepiecemod.style.FightingStyle;
 import com.onepiecemod.style.StyleAttachments;
+import com.onepiecemod.style.StyleMoves;
 import com.onepiecemod.weapon.WeaponItems;
 import com.onepiecemod.weapon.WeaponUpgrades;
 import com.onepiecemod.world.SeastoneEffects;
@@ -208,5 +212,32 @@ public final class OnePieceBridge {
 			return 2;
 		}
 		return stack.is(WeaponItems.SUPREME_WHETSTONE) ? 3 : 0;
+	}
+
+	/** True while the player's Armament Haki is switched on and coating their hits. */
+	public static boolean armamentActive(Player player) {
+		return HakiPowers.hasArmamentActive(player);
+	}
+
+	// ---- Who a weapon skill may hit: the same rule as the main mod's fighting style techniques ----
+
+	/** Monsters, bosses and anything fighting the player: yes. Crewmates, friendly characters, pets and animals: no. */
+	public static boolean isEnemy(Player player, LivingEntity entity) {
+		return StyleMoves.isEnemy(player, entity);
+	}
+
+	/** Enemies within radius blocks of the player. */
+	public static List<LivingEntity> enemiesAround(Player player, ServerLevel level, double radius) {
+		return StyleMoves.around(player, level, radius);
+	}
+
+	/** Enemies along the line the player is looking at, stopping at the first solid block. */
+	public static List<LivingEntity> enemiesInLine(Player player, ServerLevel level, double range, double width, int max) {
+		return StyleMoves.inLine(player, level, range, width, max);
+	}
+
+	/** Enemies in front of the player that they can see. minDot 1.0 is a thin line, 0.5 is a wide fan. */
+	public static List<LivingEntity> enemiesInCone(Player player, ServerLevel level, double range, double minDot, int max) {
+		return StyleMoves.inCone(player, level, range, minDot, max);
 	}
 }

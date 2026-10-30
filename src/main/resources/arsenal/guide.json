@@ -1,5 +1,5 @@
 {
-	"_help": "The Shipwright's Manual (GuideChapters.java). Each chapter is a button on the left of the book. Lines in 'text': '# ' = heading, '- ' = bullet point, '> ' = tip, '' = empty line, anything else = normal text. Pages are split up by themselves. 'icon' is any item id; Arsenal gear in it is shown made of 'icon_material'. 'color' is a hex colour. 'generated' adds lines written from the mod's own data after the text: materials, traits, weapons, guns, cannons, navy_casting, meito, navy_brass or upgrades. 'after' is more text that goes after the generated lines.",
+	"_help": "The Shipwright's Manual (GuideChapters.java). Each chapter is a button on the left of the book. Lines in 'text': '# ' = heading, '- ' = bullet point, '> ' = tip, '' = empty line, anything else = normal text. Pages are split up by themselves. 'icon' is any item id; Arsenal gear in it is shown made of 'icon_material'. 'color' is a hex colour. 'generated' adds lines written from the mod's own data after the text: materials, traits, weapons, skills, guns, cannons, navy_casting, meito, navy_brass or upgrades. 'after' is more text that goes after the generated lines.",
 	"chapters": [
 		{
 			"id": "welcome",
@@ -100,6 +100,28 @@
 				"> Katanas, cutlasses and sabres are swords, so the One Piece Mod's whetstones, sword styles, Dials and Haki work on them."
 			],
 			"generated": "weapons"
+		},
+		{
+			"id": "skills",
+			"title": "Weapon Skills",
+			"icon": "arsenal:boarding_axe",
+			"icon_material": "ship_iron",
+			"color": "F0C040",
+			"text": [
+				"Every Arsenal hand weapon has a skill of its own. Hold it in your main hand and press X (Options > Controls > Key Binds, under \"One Piece Arsenal\", to change the key).",
+				"",
+				"# How skills work",
+				"- A skill hits for a share of the weapon's own damage, so better parts, grades, levels and upgrades make it stronger. Armament Haki adds 25%.",
+				"- Your weapon's material traits go off on skill hits too, like Seastone draining a fruit user.",
+				"- Each use costs 1 hunger point and 2 uses of the weapon. You can't use one when you're starving.",
+				"- The cooldown shows on the weapon in your hotbar. Every weapon of the same kind shares it.",
+				"- Skills that need a target (Iai Draw, Arrest Hook) cost nothing if there's no enemy in reach.",
+				"- A graded katana that refuses you won't do its skill either.",
+				"",
+				"> Skills are on their own key, so a katana, cutlass or sabre can still use your fighting style's techniques on Z. Guns have no skill.",
+				""
+			],
+			"generated": "skills"
 		},
 		{
 			"id": "guns",
