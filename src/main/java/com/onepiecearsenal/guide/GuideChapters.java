@@ -22,6 +22,9 @@ import com.onepiecearsenal.ArsenalMod;
 import com.onepiecearsenal.armorset.SetBonus;
 import com.onepiecearsenal.cannon.CannonShells;
 import com.onepiecearsenal.cannon.CannonStats;
+import com.onepiecearsenal.fruit.Beast;
+import com.onepiecearsenal.fruit.FamousFruitWeapon;
+import com.onepiecearsenal.fruit.FruitWeapons;
 import com.onepiecearsenal.loot.BossGear;
 import com.onepiecearsenal.loot.HunterGear;
 import com.onepiecearsenal.material.ArsenalMaterial;
@@ -163,6 +166,7 @@ public final class GuideChapters {
 			case "hunter_gear" -> hunterGear();
 			case "upgrades" -> upgrades();
 			case "set_bonuses" -> setBonuses();
+			case "fruit_weapons" -> fruitWeapons();
 			default -> List.of("(Nothing is written here yet: \"" + what + "\" isn't a page the manual knows.)");
 		};
 	}
@@ -339,6 +343,22 @@ public final class GuideChapters {
 		List<String> lines = new ArrayList<>();
 		for (BossGear.Signature signature : BossGear.SIGNATURES) {
 			lines.add("- " + signature.name() + " (" + signature.owners() + "): " + signature.description() + ".");
+		}
+		return lines;
+	}
+
+	private static List<String> fruitWeapons() {
+		List<String> lines = new ArrayList<>();
+		lines.add("# What each animal does");
+		for (Beast beast : Beast.values()) {
+			lines.add("- " + beast.animal + " (" + beast.signature + "): " + beast.description);
+		}
+		lines.add("");
+		lines.add("# The famous ones");
+		lines.add("These come with their fruit already inside. Their owners aren't in the game, so the bosses below carry them instead. Each one may drop it the first time you beat them, and Hard and Expert fights make that likelier.");
+		for (FamousFruitWeapon famous : FamousFruitWeapon.values()) {
+			lines.add("- " + famous.displayName + ", " + famous.what + ". It ate the " + FruitWeapons.fruitName(famous.fruitId) + ". "
+					+ famous.power + " Carried by " + famous.fromName + ".");
 		}
 		return lines;
 	}

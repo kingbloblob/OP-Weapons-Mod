@@ -34,6 +34,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 
 import com.onepiecearsenal.compat.OnePieceBridge;
+import com.onepiecearsenal.fruit.FruitWeapons;
 import com.onepiecearsenal.material.TraitEffects;
 import com.onepiecearsenal.meito.Meito;
 import com.onepiecearsenal.salvage.Breakage;
@@ -108,7 +109,15 @@ public final class WeaponSkills {
 			return;
 		}
 		ItemStack weapon = player.getMainHandItem();
+		// Sneak + the key wakes a weapon that ate a Devil Fruit (guns too).
+		if (player.isShiftKeyDown() && FruitWeapons.awaken(player)) {
+			return;
+		}
 		WeaponSkill skill = WeaponSkill.of(weapon);
+		if (skill == null && FruitWeapons.hasFruit(weapon)) {
+			tell(player, "Sneak + Weapon Skill wakes " + weapon.getHoverName().getString() + ".", ChatFormatting.GRAY);
+			return;
+		}
 		if (skill == null) {
 			tell(player, "Hold an Arsenal katana, cutlass, sabre, axe, jitte, kanabo or spear to use a weapon skill.", ChatFormatting.RED);
 			return;

@@ -124,6 +124,30 @@
 			"generated": "skills"
 		},
 		{
+			"id": "fruit_weapons",
+			"title": "Devil Fruit Weapons",
+			"icon": "arsenal:hand_cannon",
+			"icon_material": "cannon_bronze",
+			"color": "D070E0",
+			"text": [
+				"In One Piece, a few weapons ate a Devil Fruit and came alive: Mr. 4's bazooka Lassoo is a dachshund, and Spandam's sword Funkfreed turns into an elephant. You can do the same.",
+				"",
+				"# Feeding a weapon",
+				"- Hold a forged weapon or gun and put a Zoan fruit (an animal fruit) in your offhand, then right-click a Shipwright's Anvil. The weapon eats the fruit.",
+				"- Only Zoan fruits can live in a weapon. Paramecia and Logia fruits won't work.",
+				"- A weapon only eats one fruit, and anything with a Kairoseki part refuses one: it's the sea turned to stone.",
+				"- The fruit's power belongs to the weapon. Anyone can use it, even someone who ate a fruit of their own.",
+				"",
+				"# Waking it up",
+				"- Sneak and press the Weapon Skill key (X) with it in your main hand. It turns into its animal and hits with the animal's signature move.",
+				"- For 12 seconds it then fights on its own, biting the nearest enemy every second and a half. It goes back to sleep if you put it away.",
+				"- Waking it costs 1 hunger point and 4 uses of the weapon, and it can't wake again for a minute after it sleeps.",
+				"- Its bites hit for a share of the weapon's own damage, so good parts and upgrades make it stronger. Without Sneak, X still does the weapon's normal skill.",
+				""
+			],
+			"generated": "fruit_weapons"
+		},
+		{
 			"id": "guns",
 			"title": "Guns",
 			"icon": "arsenal:flintlock",

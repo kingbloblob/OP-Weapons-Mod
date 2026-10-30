@@ -36,6 +36,7 @@ import com.onepiecearsenal.cannon.CannonStats;
 import com.onepiecearsenal.cannon.ShipCannonBlock;
 import com.onepiecearsenal.cannon.ShipCannonBlockEntity;
 import com.onepiecearsenal.cannon.ShipCannonItem;
+import com.onepiecearsenal.fruit.FamousFruitWeapon;
 import com.onepiecearsenal.guide.GuideBook;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.part.PartItem;
@@ -231,6 +232,10 @@ public class ArsenalItems {
 					// One Ship Cannon per bore material, with a Ship Iron fuse and carriage.
 					for (ArsenalMaterial material : metals) {
 						output.accept(CannonStats.build(material, ArsenalMaterial.SHIP_IRON, ArsenalMaterial.SHIP_IRON));
+					}
+					// The famous weapons that ate a Devil Fruit.
+					for (FamousFruitWeapon famous : FamousFruitWeapon.values()) {
+						output.accept(famous.create());
 					}
 					// One armor set of each material, with a Driftwood lining.
 					for (ArsenalMaterial material : ArsenalMaterial.values()) {

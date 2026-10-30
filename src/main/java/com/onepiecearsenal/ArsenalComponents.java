@@ -97,6 +97,14 @@ public class ArsenalComponents {
 			ArsenalMod.id("just_broke"),
 			DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).ignoreSwapAnimation().build());
 
+	/**
+	 * The Devil Fruit a weapon or gun has eaten, like "inu_inu_no_mi_wolf" (see FruitWeapons). The weapon itself holds
+	 * the power, so its wielder doesn't need a fruit, and a fruit user can wield it too.
+	 */
+	public static final DataComponentType<String> EATEN_FRUIT = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
+			ArsenalMod.id("eaten_fruit"),
+			DataComponentType.<String>builder().persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.STRING_UTF8).build());
+
 	/** Loads this class, which registers the components above. */
 	static void initialize() {
 	}

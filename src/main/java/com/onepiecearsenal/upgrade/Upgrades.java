@@ -37,6 +37,7 @@ import com.onepiecearsenal.ArsenalComponents;
 import com.onepiecearsenal.ArsenalItems;
 import com.onepiecearsenal.ArsenalMod;
 import com.onepiecearsenal.compat.OnePieceBridge;
+import com.onepiecearsenal.fruit.FruitWeapons;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.TraitEffects;
 import com.onepiecearsenal.salvage.Breakage;
@@ -267,6 +268,9 @@ public final class Upgrades {
 	 */
 	public static InteractionResult work(Level level, BlockPos pos, ServerPlayer smith, ItemStack gear) {
 		ItemStack offhand = smith.getOffhandItem();
+		if (OnePieceBridge.fruitId(offhand) != null) {
+			return FruitWeapons.feed(level, pos, smith, gear, offhand);
+		}
 		for (Upgrade upgrade : Upgrade.values()) {
 			if (upgrade.isItem(offhand)) {
 				return upgrade(level, pos, smith, gear, upgrade, offhand);
