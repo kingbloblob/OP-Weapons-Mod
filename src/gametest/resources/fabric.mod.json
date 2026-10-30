@@ -13,8 +13,11 @@
       "com.onepiecearsenal.test.DisguiseTests",
       "com.onepiecearsenal.test.GuideTests",
       "com.onepiecearsenal.test.HunterGearTests",
+      "com.onepiecearsenal.test.IslandMaterialTests",
       "com.onepiecearsenal.test.MeitoTests",
       "com.onepiecearsenal.test.RestatTests",
+      "com.onepiecearsenal.test.SetBonusTests",
+      "com.onepiecearsenal.test.SkillTests",
       "com.onepiecearsenal.test.UpgradeTests"
     ]
   },

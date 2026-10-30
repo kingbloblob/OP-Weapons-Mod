@@ -61,10 +61,17 @@ public class TraitEffects {
 	private static final long GREED_BOUNTY = 50_000L;
 	/** Hunger exhaustion Endurance armor takes away each second (4 exhaustion = 1 hunger point). */
 	private static final float ENDURANCE_PER_SECOND = 0.05f;
+	/** Share of an Impact weapon's hit its burst adds. */
+	private static final float IMPACT_SHARE = 0.20f;
+	/** Share of a Kokuto weapon's hit that ignores armor. Less than Keen: its real gift is awakening faster (Meito). */
+	private static final float KOKUTO_SHARE = 0.10f;
+	/** Extra damage from Tidal (in water) and Conductive (wet target). */
+	private static final float TIDAL_DAMAGE = 2.0f;
+	private static final float CONDUCTIVE_DAMAGE = 2.0f;
 	/** How often Edible-forged gear mends 1 durability: every 5 seconds. */
 	private static final int MEND_TICKS = 100;
 	/** Sea creatures and Sea Kings, for Predator. */
-	private static final TagKey<EntityType<?>> SEA_CREATURES = TagKey.create(Registries.ENTITY_TYPE, ArsenalMod.id("sea_creatures"));
+	public static final TagKey<EntityType<?>> SEA_CREATURES = TagKey.create(Registries.ENTITY_TYPE, ArsenalMod.id("sea_creatures"));
 	/** True while a trait's own extra damage is being dealt, so it can't set the traits off again. */
 	private static boolean dealingExtra = false;
 
@@ -155,6 +162,10 @@ public class TraitEffects {
 					FoodDataAccessor exhaustion = (FoodDataAccessor) player.getFoodData();
 					exhaustion.arsenal$setExhaustionLevel(Math.max(0.0f, exhaustion.arsenal$getExhaustionLevel() - ENDURANCE_PER_SECOND));
 				}
+				if (wearsFullSet(player, Trait.DRAGONHIDE)) {
+					// The same as the One Piece Mod's full Dragon Scale armor.
+					player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 60, 0, true, false, true));
+				}
 				if (mend) {
 					for (EquipmentSlot slot : EquipmentSlot.values()) {
 						ItemStack stack = player.getItemBySlot(slot);
@@ -195,6 +206,22 @@ public class TraitEffects {
 			level.sendParticles(ParticleTypes.SQUID_INK, target.getX(), target.getY() + target.getBbHeight() / 2, target.getZ(),
 					6, 0.3, 0.4, 0.3, 0.05);
 		}
+		if (traits.contains(Trait.KOKUTO)) {
+			extraHit(player, level, target, hitDamage * KOKUTO_SHARE, player.damageSources().indirectMagic(player, player));
+		}
+		if (traits.contains(Trait.IMPACT)) {
+			extraHit(player, level, target, hitDamage * IMPACT_SHARE);
+			target.knockback(0.5, player.getX() - target.getX(), player.getZ() - target.getZ(), player.damageSources().playerAttack(player), 0.0f);
+			level.sendParticles(ParticleTypes.GUST, target.getX(), target.getY() + target.getBbHeight() / 2, target.getZ(), 1, 0, 0, 0, 0);
+		}
+		if (traits.contains(Trait.TIDAL) && (player.isInWater() || target.isInWater())) {
+			extraHit(player, level, target, TIDAL_DAMAGE);
+		}
+		if (traits.contains(Trait.CONDUCTIVE) && target.isInWaterOrRain()) {
+			extraHit(player, level, target, CONDUCTIVE_DAMAGE);
+			level.sendParticles(ParticleTypes.ELECTRIC_SPARK, target.getX(), target.getY() + target.getBbHeight() / 2, target.getZ(),
+					10, 0.3, 0.4, 0.3, 0.2);
+		}
 		if (traits.contains(Trait.RECOIL)) {
 			target.knockback(0.6, player.getX() - target.getX(), player.getZ() - target.getZ(), player.damageSources().playerAttack(player), 0.0f);
 		}
@@ -232,6 +259,15 @@ public class TraitEffects {
 			}
 		}
 		return false;
+	}
+
+	private static boolean wearsFullSet(ServerPlayer player, Trait trait) {
+		for (EquipmentSlot slot : ARMOR_SLOTS) {
+			if (!hasTrait(player.getItemBySlot(slot), trait)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	private static boolean wears(LivingEntity entity, Trait trait) {

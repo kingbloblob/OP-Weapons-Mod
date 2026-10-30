@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import net.fabricmc.api.ModInitializer;
 
+import com.onepiecearsenal.armorset.SetBonuses;
 import com.onepiecearsenal.cannon.CannonShells;
 import com.onepiecearsenal.compat.MainModLinks;
 import com.onepiecearsenal.disguise.MarineDisguise;
@@ -21,6 +22,7 @@ import com.onepiecearsenal.loot.MaterialLoot;
 import com.onepiecearsenal.material.TraitEffects;
 import com.onepiecearsenal.material.TraitStats;
 import com.onepiecearsenal.meito.Meito;
+import com.onepiecearsenal.skill.WeaponSkills;
 import com.onepiecearsenal.station.NavyStations;
 import com.onepiecearsenal.tool.WeaponEffects;
 import com.onepiecearsenal.upgrade.Upgrades;
@@ -40,8 +42,10 @@ public class ArsenalMod implements ModInitializer {
 		TraitStats.initialize();
 		TraitEffects.initialize();
 		WeaponEffects.initialize();
+		WeaponSkills.initialize();
 		MaterialLoot.initialize();
 		MarineDisguise.initialize();
+		SetBonuses.initialize();
 		MarineSteelLoot.initialize();
 		MarineGear.initialize();
 		BossGear.initialize();

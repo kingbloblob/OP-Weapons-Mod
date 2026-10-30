@@ -1,21 +1,45 @@
 package com.onepiecearsenal.client;
 
+import com.mojang.blaze3d.platform.InputConstants;
+import org.lwjgl.sdl.SDLScancode;
+
+import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 
 import com.onepiecearsenal.ArsenalMod;
 import com.onepiecearsenal.guide.GuideBook;
 import com.onepiecearsenal.mixin.client.SelectItemModelPropertiesAccessor;
+import com.onepiecearsenal.skill.WeaponSkillPayload;
 
 /**
  * The client-only start of One Piece Arsenal. Runs before resource packs load, so item models can use
  * the "arsenal:part_material" property.
+ *
+ * X uses the weapon skill of the Arsenal weapon in your hand (see WeaponSkill). The One Piece Mod already
+ * uses Z, C, V, B, G, R, Y, H, J, K, U, M, N and I, so X is the free key next to its techniques. You can change
+ * it in Options > Controls > Key Binds, under "One Piece Arsenal".
  */
 public class ArsenalClient implements ClientModInitializer {
+	public static final KeyMapping.Category CATEGORY = KeyMapping.Category.register(ArsenalMod.id("arsenal"));
+
 	@Override
 	public void onInitializeClient() {
 		SelectItemModelPropertiesAccessor.arsenal$idMapper().put(ArsenalMod.id("part_material"), PartMaterialProperty.TYPE);
 		GuideBook.openBook = () -> Minecraft.getInstance().gui.setScreen(new GuideScreen());
+
+		KeyMapping skillKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
+				"key.arsenal.weapon_skill", InputConstants.Type.KEYBOARD, SDLScancode.SDL_SCANCODE_X, CATEGORY));
+		ClientTickEvents.END_CLIENT_TICK.register(client -> {
+			while (skillKey.consumeClick()) {
+				if (client.player != null && ClientPlayNetworking.canSend(WeaponSkillPayload.TYPE)) {
+					ClientPlayNetworking.send(WeaponSkillPayload.INSTANCE);
+				}
+			}
+		});
 	}
 }

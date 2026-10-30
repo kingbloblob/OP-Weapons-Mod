@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_fuse",
+  "key": {
+    "M": "onepiece:kokuto_ingot",
+    "S": "minecraft:string",
+    "G": "minecraft:gunpowder"
+  },
+  "pattern": [
+    "S",
+    "G",
+    "M"
+  ],
+  "result": {
+    "id": "arsenal:fuse",
+    "components": {
+      "arsenal:part_material": "kokuto"
+    }
+  }
+}

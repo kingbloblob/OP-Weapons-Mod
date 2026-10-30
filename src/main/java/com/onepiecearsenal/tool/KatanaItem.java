@@ -16,6 +16,7 @@ import net.minecraft.world.item.component.TooltipDisplay;
 import com.onepiecearsenal.compat.OnePieceBridge;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
+import com.onepiecearsenal.skill.WeaponSkill;
 import com.onepiecearsenal.meito.Meito;
 import com.onepiecearsenal.upgrade.Upgrades;
 
@@ -54,6 +55,7 @@ public class KatanaItem extends Item {
 		textConsumer.accept(Component.literal("Blade: " + parts.get(0).displayName).withStyle(ChatFormatting.GRAY));
 		textConsumer.accept(Component.literal("Tsuba: " + parts.get(1).displayName).withStyle(ChatFormatting.GRAY));
 		textConsumer.accept(Component.literal("Hilt: " + parts.get(2).displayName).withStyle(ChatFormatting.GRAY));
+		WeaponSkill.describe(stack, textConsumer);
 		for (Trait trait : KatanaStats.traits(stack)) {
 			textConsumer.accept(Component.literal(trait.displayName + ": " + trait.description + (trait.active ? "" : " (coming soon)"))
 					.withStyle(ChatFormatting.GOLD));
@@ -71,7 +73,7 @@ public class KatanaItem extends Item {
 		}
 		if (Meito.canAwaken(stack)) {
 			int minutes = Meito.hakiSeconds(stack) / 60;
-			textConsumer.accept(Component.literal("Black Blade awakening: " + minutes + "/" + Meito.AWAKEN_SECONDS / 60 + " min of Haki fighting")
+			textConsumer.accept(Component.literal("Black Blade awakening: " + minutes + "/" + Meito.awakenSeconds(stack) / 60 + " min of Haki fighting")
 					.withStyle(ChatFormatting.DARK_PURPLE));
 			textConsumer.accept(Component.literal(" Fight with Armament Haki " + Meito.AWAKEN_ARMAMENT + "+ switched on").withStyle(ChatFormatting.DARK_GRAY));
 		}

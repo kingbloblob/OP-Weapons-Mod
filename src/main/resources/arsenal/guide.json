@@ -1,5 +1,5 @@
 {
-	"_help": "The Shipwright's Manual (GuideChapters.java). Each chapter is a button on the left of the book. Lines in 'text': '# ' = heading, '- ' = bullet point, '> ' = tip, '' = empty line, anything else = normal text. Pages are split up by themselves. 'icon' is any item id; Arsenal gear in it is shown made of 'icon_material'. 'color' is a hex colour. 'generated' adds lines written from the mod's own data after the text: materials, traits, weapons, guns, cannons, navy_casting, meito, navy_brass or upgrades. 'after' is more text that goes after the generated lines.",
+	"_help": "The Shipwright's Manual (GuideChapters.java). Each chapter is a button on the left of the book. Lines in 'text': '# ' = heading, '- ' = bullet point, '> ' = tip, '' = empty line, anything else = normal text. Pages are split up by themselves. 'icon' is any item id; Arsenal gear in it is shown made of 'icon_material'. 'color' is a hex colour. 'generated' adds lines written from the mod's own data after the text: materials, traits, weapons, skills, guns, cannons, navy_casting, meito, navy_brass, hunter_gear, upgrades or set_bonuses. 'after' is more text that goes after the generated lines.",
 	"chapters": [
 		{
 			"id": "welcome",
@@ -102,6 +102,28 @@
 			"generated": "weapons"
 		},
 		{
+			"id": "skills",
+			"title": "Weapon Skills",
+			"icon": "arsenal:boarding_axe",
+			"icon_material": "ship_iron",
+			"color": "F0C040",
+			"text": [
+				"Every Arsenal hand weapon has a skill of its own. Hold it in your main hand and press X (Options > Controls > Key Binds, under \"One Piece Arsenal\", to change the key).",
+				"",
+				"# How skills work",
+				"- A skill hits for a share of the weapon's own damage, so better parts, grades, levels and upgrades make it stronger. Armament Haki adds 25%.",
+				"- Your weapon's material traits go off on skill hits too, like Seastone draining a fruit user.",
+				"- Each use costs 1 hunger point and 2 uses of the weapon. You can't use one when you're starving.",
+				"- The cooldown shows on the weapon in your hotbar. Every weapon of the same kind shares it.",
+				"- Skills that need a target (Iai Draw, Arrest Hook) cost nothing if there's no enemy in reach.",
+				"- A graded katana that refuses you won't do its skill either.",
+				"",
+				"> Skills are on their own key, so a katana, cutlass or sabre can still use your fighting style's techniques on Z. Guns have no skill.",
+				""
+			],
+			"generated": "skills"
+		},
+		{
 			"id": "guns",
 			"title": "Guns",
 			"icon": "arsenal:flintlock",
@@ -160,13 +182,29 @@
 				"- A Lining, of any material, which adds its handle trait.",
 				"",
 				"# Looks",
-				"Armor looks like clothes when you wear it, cut by its shell material: Driftwood is a castaway's straw hat and sandals, Ship Iron a pirate captain's tricorn and crimson coat, Marine Standard Steel a recruit's sailor uniform, Kairoseki a Navy officer's coat, Wano Tamahagane a samurai's armor and hakama.",
+				"Armor looks like clothes when you wear it, cut by its shell material: Driftwood is a castaway's straw hat and sandals, Ship Iron a pirate captain's tricorn and crimson coat, Marine Standard Steel a recruit's sailor uniform, Kairoseki a Navy officer's coat, Wano Tamahagane and Kokuto a samurai's armor and hakama, Dragon Scale a red scale coat.",
 				"",
 				"# Armor traits",
 				"Some traits only matter on armor: Waterproof swims faster, Endurance keeps you from getting hungry, Plated deflects bullets and arrows, and a Kairoseki shell drains Devil Fruit users who hit you.",
 				"> Armor shells have a leather pad in the middle of the recipe, so they don't clash with vanilla armor.",
-				"> A full set with Navy shells is a Marine uniform. See Marine Disguise."
+				"> A full set with Navy shells is a Marine uniform. See Marine Disguise.",
+				"> Four pieces of the same kind give a set bonus. See Set Bonuses."
 			]
+		},
+		{
+			"id": "set_bonuses",
+			"title": "Set Bonuses",
+			"icon": "arsenal:hat",
+			"icon_material": "kairoseki",
+			"color": "60D0D0",
+			"text": [
+				"Wear a full set of matching armor (hat, coat, sash and boots) and it does more than each piece alone. A piece's tooltip lists the sets it belongs to.",
+				"- Most sets only care about the shells. Linings can be anything, unless the set says otherwise.",
+				"- Sets stack: a full Kairoseki set with Navy linings is a Seastone Bulwark and a Regulation Uniform at once.",
+				"- Damage cuts from several sets add up, but never take off more than 60% of a hit.",
+				"- Marines and famous Navy officers in Arsenal armor get the damage bonuses of their sets too."
+			],
+			"generated": "set_bonuses"
 		},
 		{
 			"id": "upgrades",
@@ -238,7 +276,7 @@
 			"generated": "meito",
 			"after": [
 				"# Black Blade awakening",
-				"A Supreme Grade katana can turn black for good. Fight with it for 2 hours with your Armament Haki (level 4 or higher) switched on. Only real fighting counts: a hit on a foe in the last 5 seconds.",
+				"A Supreme Grade katana can turn black for good. Fight with it for 2 hours (1 hour for a Kokuto blade) with your Armament Haki (level 4 or higher) switched on. Only real fighting counts: a hit on a foe in the last 5 seconds.",
 				"When it awakens, its blade becomes Black Blade Steel (8 damage, 2000 uses, the Black Blade trait) and it's fully mended. It keeps its tsuba, hilt, grade, level and enchantments, and the whole server hears about it.",
 				"> The katana's tooltip shows how many minutes it has so far."
 			]
@@ -258,7 +296,7 @@
 				"# Blowing your cover",
 				"Hit a Marine and your cover is blown for a minute, even if you log out. Marines sent to hunt you give up after a minute too.",
 				"Named Marines like Garp and Smoker know who you are. No uniform fools them.",
-				"> Linings can be any material: a Kairoseki uniform with Driftwood linings is still a uniform."
+				"> Linings can be any material: a Kairoseki uniform with Driftwood linings is still a uniform. Navy linings make it a Regulation Uniform, which hides twice the bounty and draws suspicion half as fast (see Set Bonuses)."
 			]
 		},
 		{
@@ -292,6 +330,15 @@
 				"- Ship Iron and Treasure Gold: iron and gold ingots.",
 				"- Wano Tamahagane, Wapometal, Kairoseki and Adam Wood: the One Piece Mod's ingots and logs.",
 				"- Sea King Hide: its parts are made straight from the One Piece Mod's Sea King Scale.",
+				"",
+				"# From the islands",
+				"These come straight from the One Piece Mod's islands. Their parts are made at a crafting table.",
+				"- Dial Shell: Dial Shells from shell sand on beaches, in Skypiea, Jaya and the East Blue.",
+				"- Fishman Island Pearl: Sea Pearls from oyster gravel on the sea floor, in every ocean and around Fishman Island.",
+				"- Sabaody Resin (armor only): tap a Yarukiman tree on Sabaody with a Glass Bottle.",
+				"- Shandora Gold: Shandora Gold ore in Skypiea, Jaya, badlands and jungles.",
+				"- Kokuto Black Steel: Kokuto ore, rare and deep underground. A Kokuto katana awakens into a Black Blade in half the time.",
+				"- Dragon Scale (armor only): Punk Hazard's dragon.",
 				"",
 				"# Taken in battle",
 				"- Sea King Bone: Sea Kings.",
