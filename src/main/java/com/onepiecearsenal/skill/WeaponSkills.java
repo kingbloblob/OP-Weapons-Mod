@@ -24,6 +24,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.SwingAnimation;
 import net.minecraft.world.phys.Vec3;
 
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
@@ -136,7 +137,7 @@ public final class WeaponSkills {
 		player.getCooldowns().addCooldown(weapon, skill.cooldownTicks);
 		player.causeFoodExhaustion(EXHAUSTION);
 		weapon.hurtAndBreak(DURABILITY_COST, player, EquipmentSlot.MAINHAND);
-		player.swing(InteractionHand.MAIN_HAND, true);
+		player.swing(InteractionHand.MAIN_HAND, SwingAnimation.DEFAULT, true);
 		tell(player, skill.displayName + "!", ChatFormatting.GOLD, ChatFormatting.BOLD);
 	}
 

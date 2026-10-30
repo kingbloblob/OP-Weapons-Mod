@@ -11,6 +11,7 @@ import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.monster.zombie.Zombie;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.GameType;
 import net.minecraft.world.phys.Vec3;
 
 import net.fabricmc.fabric.api.gametest.v1.GameTest;
@@ -97,6 +98,7 @@ public class SkillTests {
 	/** A player standing at (1, 1, 1) of the test, looking straight south (toward +z). */
 	private static ServerPlayer facingSouth(GameTestHelper helper) {
 		ServerPlayer player = helper.makeMockServerPlayerInLevel();
+		player.setGameMode(GameType.SURVIVAL); // The mock player starts in creative, where weapons don't wear.
 		Vec3 at = helper.absoluteVec(new Vec3(1.5, 1, 1.5));
 		player.teleportTo(at.x, at.y, at.z);
 		player.setYRot(0.0f);
