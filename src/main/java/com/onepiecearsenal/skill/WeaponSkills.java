@@ -36,6 +36,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import com.onepiecearsenal.compat.OnePieceBridge;
 import com.onepiecearsenal.material.TraitEffects;
 import com.onepiecearsenal.meito.Meito;
+import com.onepiecearsenal.salvage.Breakage;
 import com.onepiecearsenal.tool.KatanaItem;
 import com.onepiecearsenal.tool.KatanaStats;
 import com.onepiecearsenal.tool.WeaponStats;
@@ -115,6 +116,10 @@ public final class WeaponSkills {
 		boolean katana = weapon.getItem() instanceof KatanaItem;
 		if (katana ? KatanaStats.parts(weapon).isEmpty() : WeaponStats.parts(weapon).isEmpty()) {
 			tell(player, "Forge it at a Shipwright's Anvil first.", ChatFormatting.RED);
+			return;
+		}
+		if (Breakage.isBroken(weapon)) {
+			Breakage.tellBroken(player, weapon);
 			return;
 		}
 		if (katana && !Meito.worthy(player, OnePieceBridge.swordGrade(weapon))) {
