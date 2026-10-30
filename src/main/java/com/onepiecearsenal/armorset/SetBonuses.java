@@ -34,6 +34,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import com.onepiecearsenal.ArsenalMod;
 import com.onepiecearsenal.compat.OnePieceBridge;
 import com.onepiecearsenal.material.TraitEffects;
+import com.onepiecearsenal.salvage.Breakage;
 import com.onepiecearsenal.tool.ArsenalArmorItem;
 
 /**
@@ -145,8 +146,8 @@ public final class SetBonuses {
 		List<ItemStack> pieces = new ArrayList<>(4);
 		for (EquipmentSlot slot : ARMOR_SLOTS) {
 			ItemStack piece = wearer.getItemBySlot(slot);
-			if (piece.getItem() instanceof ArsenalArmorItem) {
-				pieces.add(piece);
+			if (piece.getItem() instanceof ArsenalArmorItem && !Breakage.isBroken(piece)) {
+				pieces.add(piece); // Broken armor stops nothing, so it doesn't count toward a set either.
 			}
 		}
 		List<SetBonus> sets = new ArrayList<>();

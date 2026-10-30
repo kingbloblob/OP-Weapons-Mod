@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "arsenal:dial_shell"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "arsenal:dial_shell"
+      }
+    ]
+  }
+}

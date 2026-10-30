@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_club_head",
+  "key": {
+    "M": "onepiece:sea_pearl"
+  },
+  "pattern": [
+    "MMM",
+    "MMM"
+  ],
+  "result": {
+    "id": "arsenal:club_head",
+    "components": {
+      "arsenal:part_material": "sea_pearl"
+    }
+  }
+}

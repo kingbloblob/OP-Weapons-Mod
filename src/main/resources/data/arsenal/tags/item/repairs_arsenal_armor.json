@@ -11,9 +11,15 @@
     "minecraft:gold_ingot",
     "minecraft:iron_ingot",
     "onepiece:adam_log",
+    "onepiece:dial_shell",
+    "onepiece:dragon_scale",
+    "onepiece:kokuto_ingot",
     "onepiece:sea_king_scale",
+    "onepiece:sea_pearl",
     "onepiece:seastone_ingot",
+    "onepiece:shandora_gold_ingot",
     "onepiece:tamahagane_ingot",
-    "onepiece:wapometal_ingot"
+    "onepiece:wapometal_ingot",
+    "onepiece:yarukiman_resin"
   ]
 }

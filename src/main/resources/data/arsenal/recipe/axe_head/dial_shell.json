@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_axe_head",
+  "key": {
+    "M": "onepiece:dial_shell"
+  },
+  "pattern": [
+    "MMM",
+    "M  "
+  ],
+  "result": {
+    "id": "arsenal:axe_head",
+    "components": {
+      "arsenal:part_material": "dial_shell"
+    }
+  }
+}

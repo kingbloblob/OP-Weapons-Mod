@@ -15,6 +15,7 @@ import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 
 import com.onepiecearsenal.compat.OnePieceBridge;
 import com.onepiecearsenal.material.TraitEffects;
+import com.onepiecearsenal.salvage.Breakage;
 
 /**
  * What makes each weapon type different, whatever it's made of (the material traits are in TraitEffects).
@@ -37,7 +38,7 @@ public final class WeaponEffects {
 			if (player instanceof ServerPlayer attacker && level instanceof ServerLevel serverLevel
 					&& target instanceof LivingEntity living && !player.isSpectator()
 					&& player.getAttackStrengthScale(0.5f) >= 0.9f
-					&& player.getMainHandItem().getItem() instanceof ArsenalWeaponItem weapon) {
+					&& player.getMainHandItem().getItem() instanceof ArsenalWeaponItem weapon && !Breakage.isBroken(player.getMainHandItem())) {
 				switch (weapon.type()) {
 					case CUTLASS -> {
 						if (TraitEffects.isCritical(attacker)) {
@@ -61,6 +62,7 @@ public final class WeaponEffects {
 			if (entity instanceof ServerPlayer defender && defender.isShiftKeyDown()
 					&& source.getDirectEntity() instanceof LivingEntity attacker && attacker == source.getEntity()
 					&& defender.getMainHandItem().getItem() instanceof ArsenalWeaponItem weapon && weapon.type() == WeaponType.MARINE_SABRE
+					&& !Breakage.isBroken(defender.getMainHandItem())
 					&& inFront(defender, attacker) && defender.getRandom().nextFloat() < PARRY_CHANCE) {
 				ItemStack sabre = defender.getMainHandItem();
 				sabre.hurtAndBreak(1, defender, EquipmentSlot.MAINHAND);

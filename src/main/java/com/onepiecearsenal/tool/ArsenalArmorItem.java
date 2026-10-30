@@ -17,6 +17,7 @@ import com.onepiecearsenal.armorset.SetBonus;
 import com.onepiecearsenal.armorset.SetBonuses;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
+import com.onepiecearsenal.salvage.Breakage;
 import com.onepiecearsenal.upgrade.Upgrades;
 
 /**
@@ -35,7 +36,7 @@ public class ArsenalArmorItem extends Item {
 	@Override
 	public Component getName(ItemStack stack) {
 		List<ArsenalMaterial> parts = ArmorStats.parts(stack);
-		return Component.literal(parts.isEmpty() ? "Unmade " + pieceName : parts.get(0).displayName + " " + pieceName);
+		return parts.isEmpty() ? Component.literal("Unmade " + pieceName) : Breakage.name(stack, parts.get(0).displayName + " " + pieceName);
 	}
 
 	@Override
@@ -44,6 +45,7 @@ public class ArsenalArmorItem extends Item {
 		ArmorStats.fixSharedIds(stack);
 		// Then, if the materials have been rebalanced since it was forged, bring its numbers up to date.
 		Restat.refresh(stack);
+		Breakage.notice(stack, owner);
 	}
 
 	@Override
@@ -53,6 +55,7 @@ public class ArsenalArmorItem extends Item {
 			textConsumer.accept(Component.literal("Build one at a Shipwright's Anvil.").withStyle(ChatFormatting.GRAY));
 			return;
 		}
+		Breakage.describe(stack, textConsumer);
 		textConsumer.accept(Component.literal("Shell: " + parts.get(0).displayName).withStyle(ChatFormatting.GRAY));
 		textConsumer.accept(Component.literal("Lining: " + parts.get(1).displayName).withStyle(ChatFormatting.GRAY));
 		for (Trait trait : ArmorStats.traits(stack)) {

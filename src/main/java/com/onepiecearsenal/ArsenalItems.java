@@ -244,6 +244,16 @@ public class ArsenalItems {
 
 	// ---- Helpers ----
 
+	/** The item for a kind of part, like the Katana Blade for PartType.KATANA_BLADE. */
+	public static Item partItem(PartType type) {
+		for (Item item : PART_ITEMS) {
+			if (((PartItem) item).type() == type) {
+				return item;
+			}
+		}
+		throw new IllegalArgumentException("No part item for " + type);
+	}
+
 	private static Item part(PartType type) {
 		Item item = register(type.id(), properties -> new PartItem(type, properties), new Item.Properties());
 		PART_ITEMS.add(item);

@@ -22,6 +22,13 @@ public enum Trait {
 	FRONTIER_SCIENCE("Frontier Science", "Charged hits burn or freeze the target.", true),
 	WATERPROOF("Waterproof", "As armor: swim faster.", true),
 	ENDURANCE("Endurance", "As armor: you get hungry more slowly.", true),
+	// From the One Piece Mod's islands.
+	IMPACT("Impact", "Like an Impact Dial: charged hits let out a burst for 20% more damage and a hard shove.", true),
+	TIDAL("Tidal", "Fishman Island pearl: +2 damage when you or the target are in water. As armor: hold your breath longer.", true),
+	CONDUCTIVE("Conductive", "Skypiean gold: charged hits on a wet target (rain or water) shock it for +2 damage.", true),
+	KOKUTO("Kokuto", "Black steel: 10% of each hit goes through armor, and a Kokuto katana awakens into a Black Blade in half the time.", true),
+	DRAGONHIDE("Dragonhide", "As armor: each piece makes you burn 25% shorter, and a full set makes you immune to fire.", true),
+	BUBBLY("Bubbly", "Sabaody resin: as armor, each piece takes 20% off fall damage.", true),
 
 	// ---- Handle traits (from the guard and hilt) ----
 	LIGHT("Light", "Weighs little: swords swing faster and guns reload quicker.", true),

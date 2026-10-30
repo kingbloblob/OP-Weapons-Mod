@@ -39,6 +39,10 @@ public final class ArsenalMaterial {
 	public static final ArsenalMaterial ADAM_WOOD = require("adam_wood");
 	public static final ArsenalMaterial SEA_KING_HIDE = require("sea_king_hide");
 	public static final ArsenalMaterial ISLAND_WHALE_LEATHER = require("island_whale_leather");
+	// Used by the bounty hunters' gear (loot/HunterGear).
+	public static final ArsenalMaterial SEA_KING_BONE = require("sea_king_bone");
+	public static final ArsenalMaterial CANNON_BRONZE = require("cannon_bronze");
+	public static final ArsenalMaterial WAPOMETAL = require("wapometal");
 
 	private final String id;
 	public final String displayName;

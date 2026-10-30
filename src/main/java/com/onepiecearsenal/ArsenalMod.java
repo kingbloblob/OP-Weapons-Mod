@@ -15,12 +15,15 @@ import com.onepiecearsenal.disguise.PirateGrudge;
 import com.onepiecearsenal.disguise.Suspicion;
 import com.onepiecearsenal.guide.GuideBook;
 import com.onepiecearsenal.loot.BossGear;
+import com.onepiecearsenal.loot.HunterGear;
 import com.onepiecearsenal.loot.MarineGear;
 import com.onepiecearsenal.loot.MarineSteelLoot;
 import com.onepiecearsenal.loot.MaterialLoot;
 import com.onepiecearsenal.material.TraitEffects;
 import com.onepiecearsenal.material.TraitStats;
 import com.onepiecearsenal.meito.Meito;
+import com.onepiecearsenal.salvage.Salvage;
+import com.onepiecearsenal.skill.WeaponSkills;
 import com.onepiecearsenal.station.NavyStations;
 import com.onepiecearsenal.tool.WeaponEffects;
 import com.onepiecearsenal.upgrade.Upgrades;
@@ -40,18 +43,21 @@ public class ArsenalMod implements ModInitializer {
 		TraitStats.initialize();
 		TraitEffects.initialize();
 		WeaponEffects.initialize();
+		WeaponSkills.initialize();
 		MaterialLoot.initialize();
 		MarineDisguise.initialize();
 		SetBonuses.initialize();
 		MarineSteelLoot.initialize();
 		MarineGear.initialize();
 		BossGear.initialize();
+		HunterGear.initialize();
 		Suspicion.initialize();
 		PirateGrudge.initialize();
 		Meito.initialize();
 		MainModLinks.initialize(); // After Meito, so whetstones its gates refuse don't count.
 		NavyStations.initialize();
 		Upgrades.initialize();
+		Salvage.initialize();
 		GuideBook.initialize();
 		CannonShells.initialize();
 	}

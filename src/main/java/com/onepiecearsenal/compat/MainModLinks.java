@@ -23,6 +23,7 @@ import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import com.onepiecearsenal.disguise.MarineDisguise;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.TraitEffects;
+import com.onepiecearsenal.salvage.Breakage;
 import com.onepiecearsenal.tool.ArmorStats;
 import com.onepiecearsenal.tool.ArsenalArmorItem;
 
@@ -99,7 +100,7 @@ public final class MainModLinks {
 	}
 
 	private static void kick(ServerPlayer player, ServerLevel level, LivingEntity target, ItemStack boots) {
-		if (!(boots.getItem() instanceof ArsenalArmorItem)) {
+		if (!(boots.getItem() instanceof ArsenalArmorItem) || Breakage.isBroken(boots)) {
 			return;
 		}
 		List<ArsenalMaterial> parts = ArmorStats.parts(boots);

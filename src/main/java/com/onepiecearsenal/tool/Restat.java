@@ -88,7 +88,8 @@ public final class Restat {
 		return stamp == 0 ? 1 : stamp;
 	}
 
-	private static List<ArsenalMaterial> parts(ItemStack stack, Upgrade.Gear gear) {
+	/** The gear's materials, head part first, in the order its parts component lists them. */
+	public static List<ArsenalMaterial> parts(ItemStack stack, Upgrade.Gear gear) {
 		return switch (gear) {
 			case KATANA -> KatanaStats.parts(stack);
 			case WEAPON -> WeaponStats.parts(stack);
