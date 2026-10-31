@@ -34,6 +34,7 @@ import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 
+import com.onepiecearsenal.haki.HakiImbue;
 import com.onepiecearsenal.ArsenalComponents;
 import com.onepiecearsenal.ArsenalMod;
 import com.onepiecearsenal.compat.OnePieceBridge;
@@ -132,7 +133,7 @@ public final class Meito {
 		AttackEntityCallback.EVENT.register((player, level, hand, target, hitResult) -> {
 			if (player instanceof ServerPlayer fighter && target instanceof LivingEntity foe && isFoe(foe)
 					&& fighter.getMainHandItem().getItem() instanceof KatanaItem && !Breakage.isBroken(fighter.getMainHandItem())
-					&& OnePieceBridge.activeArmamentLevel(fighter) >= AWAKEN_ARMAMENT) {
+					&& HakiImbue.hakiBehind(fighter, fighter.getMainHandItem()) >= AWAKEN_ARMAMENT) {
 				LAST_COATED_HIT.put(fighter.getUUID(), level.getGameTime());
 			}
 			return InteractionResult.PASS;
@@ -204,7 +205,7 @@ public final class Meito {
 
 	/** One more second of the wielder's Haki, if they're mid-fight with it on. Awakens the blade when it's soaked enough. */
 	private static void soak(ServerPlayer player, ServerLevel level, ItemStack katana) {
-		if (!canAwaken(katana) || OnePieceBridge.activeArmamentLevel(player) < AWAKEN_ARMAMENT) {
+		if (!canAwaken(katana) || HakiImbue.hakiBehind(player, katana) < AWAKEN_ARMAMENT) {
 			return;
 		}
 		Long lastHit = LAST_COATED_HIT.get(player.getUUID());

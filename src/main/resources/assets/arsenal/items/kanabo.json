@@ -8,7 +8,12 @@
         "when": "ragnir",
         "model": {
           "type": "minecraft:model",
-          "model": "arsenal:item/famous/ragnir"
+          "model": "arsenal:item/famous/ragnir",
+          "tints": [
+            {
+              "type": "arsenal:haki_coat"
+            }
+          ]
         }
       }
     ],
@@ -24,188 +29,323 @@
               "when": "driftwood",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/driftwood"
+                "model": "arsenal:item/kanabo/head/driftwood",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "ship_iron",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/ship_iron"
+                "model": "arsenal:item/kanabo/head/ship_iron",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "marine_steel",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/marine_steel"
+                "model": "arsenal:item/kanabo/head/marine_steel",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "flint",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/flint"
+                "model": "arsenal:item/kanabo/head/flint",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "stone",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/stone"
+                "model": "arsenal:item/kanabo/head/stone",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "copper",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/copper"
+                "model": "arsenal:item/kanabo/head/copper",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "cannon_bronze",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/cannon_bronze"
+                "model": "arsenal:item/kanabo/head/cannon_bronze",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "sea_king_bone",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/sea_king_bone"
+                "model": "arsenal:item/kanabo/head/sea_king_bone",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "treasure_gold",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/treasure_gold"
+                "model": "arsenal:item/kanabo/head/treasure_gold",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "dial_shell",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/dial_shell"
+                "model": "arsenal:item/kanabo/head/dial_shell",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "sea_pearl",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/sea_pearl"
+                "model": "arsenal:item/kanabo/head/sea_pearl",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "amethyst",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/amethyst"
+                "model": "arsenal:item/kanabo/head/amethyst",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "emerald",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/emerald"
+                "model": "arsenal:item/kanabo/head/emerald",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "prismarine",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/prismarine"
+                "model": "arsenal:item/kanabo/head/prismarine",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "tamahagane",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/tamahagane"
+                "model": "arsenal:item/kanabo/head/tamahagane",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "kairoseki",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/kairoseki"
+                "model": "arsenal:item/kanabo/head/kairoseki",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "pacifista_alloy",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/pacifista_alloy"
+                "model": "arsenal:item/kanabo/head/pacifista_alloy",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "shandora_gold",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/shandora_gold"
+                "model": "arsenal:item/kanabo/head/shandora_gold",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "obsidian",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/obsidian"
+                "model": "arsenal:item/kanabo/head/obsidian",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "diamond",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/diamond"
+                "model": "arsenal:item/kanabo/head/diamond",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "wapometal",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/wapometal"
+                "model": "arsenal:item/kanabo/head/wapometal",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "adam_wood",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/adam_wood"
+                "model": "arsenal:item/kanabo/head/adam_wood",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "kokuto",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/kokuto"
+                "model": "arsenal:item/kanabo/head/kokuto",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "netherite",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/netherite"
+                "model": "arsenal:item/kanabo/head/netherite",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "black_blade",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/black_blade"
+                "model": "arsenal:item/kanabo/head/black_blade",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             },
             {
               "when": "vegapunk_compound",
               "model": {
                 "type": "minecraft:model",
-                "model": "arsenal:item/kanabo/head/vegapunk_compound"
+                "model": "arsenal:item/kanabo/head/vegapunk_compound",
+                "tints": [
+                  {
+                    "type": "arsenal:haki_coat"
+                  }
+                ]
               }
             }
           ],
           "fallback": {
             "type": "minecraft:model",
-            "model": "arsenal:item/kanabo/head/ship_iron"
+            "model": "arsenal:item/kanabo/head/ship_iron",
+            "tints": [
+              {
+                "type": "arsenal:haki_coat"
+              }
+            ]
           }
         },
         {

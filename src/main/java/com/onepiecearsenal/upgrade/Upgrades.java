@@ -33,6 +33,7 @@ import net.minecraft.world.level.Level;
 
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 
+import com.onepiecearsenal.haki.HakiImbue;
 import com.onepiecearsenal.ArsenalComponents;
 import com.onepiecearsenal.ArsenalItems;
 import com.onepiecearsenal.ArsenalMod;
@@ -85,7 +86,7 @@ public final class Upgrades {
 					&& player.getAttackStrengthScale(0.5f) >= 0.9f) {
 				ItemStack weapon = player.getMainHandItem();
 				double share = total(weapon, "haki_pierce");
-				if (share > 0 && !Breakage.isBroken(weapon) && OnePieceBridge.activeArmamentLevel(attacker) > 0) {
+				if (share > 0 && !Breakage.isBroken(weapon) && HakiImbue.hakiBehind(attacker, weapon) > 0) {
 					float damage = (float) (player.getAttributeValue(Attributes.ATTACK_DAMAGE) * share);
 					TraitEffects.extraHit(attacker, serverLevel, living, damage, attacker.damageSources().indirectMagic(attacker, attacker));
 				}

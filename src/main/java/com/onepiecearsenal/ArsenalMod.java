@@ -16,6 +16,7 @@ import com.onepiecearsenal.disguise.PirateGrudge;
 import com.onepiecearsenal.disguise.Suspicion;
 import com.onepiecearsenal.fruit.FruitWeapons;
 import com.onepiecearsenal.guide.GuideBook;
+import com.onepiecearsenal.haki.HakiImbue;
 import com.onepiecearsenal.loot.BossGear;
 import com.onepiecearsenal.loot.HunterGear;
 import com.onepiecearsenal.loot.MarineGear;
@@ -49,6 +50,7 @@ public class ArsenalMod implements ModInitializer {
 		WeaponEffects.initialize();
 		WeaponSkills.initialize();
 		FruitWeapons.initialize();
+		HakiImbue.initialize();
 		MaterialLoot.initialize();
 		MarineDisguise.initialize();
 		SetBonuses.initialize();

@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 
+import com.onepiecearsenal.haki.HakiImbue;
 import com.onepiecearsenal.mastery.Mastery;
 import com.onepiecearsenal.fruit.FruitWeapons;
 import com.onepiecearsenal.material.ArsenalMaterial;
@@ -43,6 +44,7 @@ public class ArsenalWeaponItem extends Item {
 	public void inventoryTick(ItemStack stack, ServerLevel level, Entity owner, EquipmentSlot slot) {
 		Restat.refresh(stack);
 		Breakage.notice(stack, owner);
+		HakiImbue.tidy(stack, level.getGameTime(), slot);
 	}
 
 	@Override
@@ -66,6 +68,7 @@ public class ArsenalWeaponItem extends Item {
 		DialCharge.describe(stack, textConsumer);
 		WeaponSkill.describe(stack, textConsumer);
 		FruitWeapons.describe(stack, textConsumer);
+		HakiImbue.describe(stack, textConsumer);
 		for (Trait trait : WeaponStats.traits(stack)) {
 			textConsumer.accept(Component.literal(trait.displayName + ": " + trait.description + (trait.active ? "" : " (coming soon)"))
 					.withStyle(ChatFormatting.GOLD));

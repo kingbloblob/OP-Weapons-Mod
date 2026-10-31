@@ -18,10 +18,11 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 
+import com.onepiecearsenal.haki.HakiImbue;
 import com.onepiecearsenal.salvage.Breakage;
 
 /**
- * Broken Arsenal gear (see Breakage). Every way an item takes wear ends in setDamageValue, and vanilla only destroys
+ * Broken Arsenal gear (see Breakage), and Haki-coated weapons that take no wear (see HakiImbue). Every way an item takes wear ends in setDamageValue, and vanilla only destroys
  * the item if the wear reaches its durability, so stopping one short there keeps forged gear from vanishing.
  * forEachModifier is where worn and held items hand their attributes to their owner (and to the tooltip), so broken
  * gear hands over none.
@@ -30,7 +31,8 @@ import com.onepiecearsenal.salvage.Breakage;
 public abstract class ItemStackMixin {
 	@ModifyVariable(method = "setDamageValue(I)V", at = @At("HEAD"), argsOnly = true)
 	private int arsenal$keepBrokenGear(int damage) {
-		return Breakage.keepBroken((ItemStack) (Object) this, damage);
+		ItemStack stack = (ItemStack) (Object) this;
+		return HakiImbue.keepUnworn(stack, Breakage.keepBroken(stack, damage));
 	}
 
 	@Inject(method = "forEachModifier(Lnet/minecraft/world/entity/EquipmentSlot;Ljava/util/function/BiConsumer;)V",

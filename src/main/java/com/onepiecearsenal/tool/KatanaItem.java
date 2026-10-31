@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 
+import com.onepiecearsenal.haki.HakiImbue;
 import com.onepiecearsenal.mastery.Mastery;
 import com.onepiecearsenal.compat.OnePieceBridge;
 import com.onepiecearsenal.fruit.FruitWeapons;
@@ -38,6 +39,7 @@ public class KatanaItem extends Item {
 	public void inventoryTick(ItemStack stack, ServerLevel level, Entity owner, EquipmentSlot slot) {
 		Restat.refresh(stack);
 		Breakage.notice(stack, owner);
+		HakiImbue.tidy(stack, level.getGameTime(), slot);
 	}
 
 	@Override
@@ -62,6 +64,7 @@ public class KatanaItem extends Item {
 		textConsumer.accept(Component.literal("Hilt: " + parts.get(2).displayName).withStyle(ChatFormatting.GRAY));
 		WeaponSkill.describe(stack, textConsumer);
 		FruitWeapons.describe(stack, textConsumer);
+		HakiImbue.describe(stack, textConsumer);
 		for (Trait trait : KatanaStats.traits(stack)) {
 			textConsumer.accept(Component.literal(trait.displayName + ": " + trait.description + (trait.active ? "" : " (coming soon)"))
 					.withStyle(ChatFormatting.GOLD));
@@ -82,7 +85,7 @@ public class KatanaItem extends Item {
 			int minutes = Meito.hakiSeconds(stack) / 60;
 			textConsumer.accept(Component.literal("Black Blade awakening: " + minutes + "/" + Meito.awakenSeconds(stack) / 60 + " min of Haki fighting")
 					.withStyle(ChatFormatting.DARK_PURPLE));
-			textConsumer.accept(Component.literal(" Fight with Armament Haki " + Meito.AWAKEN_ARMAMENT + "+ switched on").withStyle(ChatFormatting.DARK_GRAY));
+			textConsumer.accept(Component.literal(" Fight with Armament Haki " + Meito.AWAKEN_ARMAMENT + "+ on or imbued").withStyle(ChatFormatting.DARK_GRAY));
 		}
 		List<Meito.Need> needs = Meito.promotionNeeds(stack);
 		if (!needs.isEmpty()) {

@@ -87,6 +87,10 @@ lang = {
 }
 for name, title in {**WEAPONS, **GUNS}.items():
     lang[f"item.arsenal.{name}"] = title
+# Options > Controls > Key Binds (client/ArsenalClient).
+lang["key.category.arsenal.arsenal"] = "One Piece Arsenal"
+lang["key.arsenal.weapon_skill"] = "Weapon Skill"
+lang["key.arsenal.imbue_haki"] = "Imbue Haki"
 w(f'{A}/lang/en_us.json', lang)
 # Item art is drawn by tools/gen_textures.py, one texture per material for every part and weapon layer.
 # The item model picks the texture from the material saved on the stack (the "arsenal:part_material" property,
@@ -102,13 +106,24 @@ def model(path, parent="minecraft:item/generated"):
     return {"type": "minecraft:model", "model": f"arsenal:item/{path}"}
 
 
-def by_material(folder, index=None, parent="minecraft:item/generated", materials=None):
-    """Picks folder/<material> by the material of the part at index (or of the part itself)."""
+# A weapon coated in Armament Haki (haki/HakiImbue) turns its first layer black: the "arsenal:haki_coat" tint
+# (client/HakiCoatTint) multiplies it down to near black while the coat is on, and leaves it as drawn otherwise.
+HAKI_COAT = [{"type": "arsenal:haki_coat"}]
+
+
+def coated(entry):
+    return {**entry, "tints": HAKI_COAT}
+
+
+def by_material(folder, index=None, parent="minecraft:item/generated", materials=None, haki=False):
+    """Picks folder/<material> by the material of the part at index (or of the part itself).
+    haki=True lets these models turn black while the weapon is coated in Haki."""
+    tint = coated if haki else (lambda entry: entry)
     select = {"type": "minecraft:select", "property": "arsenal:part_material"}
     if index is not None:
         select["index"] = index
-    select["cases"] = [{"when": m, "model": model(f"{folder}/{m}", parent)} for m in (materials or TEXTURED)]
-    select["fallback"] = {"type": "minecraft:model", "model": f"arsenal:item/{folder}/{FALLBACK}"}
+    select["cases"] = [{"when": m, "model": tint(model(f"{folder}/{m}", parent))} for m in (materials or TEXTURED)]
+    select["fallback"] = tint({"type": "minecraft:model", "model": f"arsenal:item/{folder}/{FALLBACK}"})
     return select
 
 
@@ -139,10 +154,11 @@ weapon_layers = {
 famous = {"hand_cannon": ["lassoo"], "marine_sabre": ["funkfreed"], "cutlass": ["cerberus"], "kanabo": ["ragnir"]}
 for weapon, layers in weapon_layers.items():
     forged = {"type": "minecraft:composite", "models": [
-        by_material(f"{weapon}/{layer}", i, "minecraft:item/handheld", WEAPON_TEXTURED) for i, layer in enumerate(layers)]}
+        by_material(f"{weapon}/{layer}", i, "minecraft:item/handheld", WEAPON_TEXTURED, haki=i == 0 and weapon != "ship_cannon")
+        for i, layer in enumerate(layers)]}
     if weapon in famous:
         forged = {"type": "minecraft:select", "property": "minecraft:custom_model_data", "index": 0,
-                  "cases": [{"when": name, "model": model(f"famous/{name}", "minecraft:item/handheld")} for name in famous[weapon]],
+                  "cases": [{"when": name, "model": coated(model(f"famous/{name}", "minecraft:item/handheld"))} for name in famous[weapon]],
                   "fallback": forged}
     w(f'{A}/items/{weapon}.json', {"model": forged})
 

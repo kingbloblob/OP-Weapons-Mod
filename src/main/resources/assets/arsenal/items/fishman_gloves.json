@@ -11,188 +11,323 @@
             "when": "driftwood",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/driftwood"
+              "model": "arsenal:item/fishman_gloves/knuckles/driftwood",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "ship_iron",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/ship_iron"
+              "model": "arsenal:item/fishman_gloves/knuckles/ship_iron",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "marine_steel",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/marine_steel"
+              "model": "arsenal:item/fishman_gloves/knuckles/marine_steel",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "flint",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/flint"
+              "model": "arsenal:item/fishman_gloves/knuckles/flint",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "stone",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/stone"
+              "model": "arsenal:item/fishman_gloves/knuckles/stone",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "copper",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/copper"
+              "model": "arsenal:item/fishman_gloves/knuckles/copper",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "cannon_bronze",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/cannon_bronze"
+              "model": "arsenal:item/fishman_gloves/knuckles/cannon_bronze",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "sea_king_bone",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/sea_king_bone"
+              "model": "arsenal:item/fishman_gloves/knuckles/sea_king_bone",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "treasure_gold",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/treasure_gold"
+              "model": "arsenal:item/fishman_gloves/knuckles/treasure_gold",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "dial_shell",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/dial_shell"
+              "model": "arsenal:item/fishman_gloves/knuckles/dial_shell",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "sea_pearl",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/sea_pearl"
+              "model": "arsenal:item/fishman_gloves/knuckles/sea_pearl",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "amethyst",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/amethyst"
+              "model": "arsenal:item/fishman_gloves/knuckles/amethyst",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "emerald",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/emerald"
+              "model": "arsenal:item/fishman_gloves/knuckles/emerald",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "prismarine",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/prismarine"
+              "model": "arsenal:item/fishman_gloves/knuckles/prismarine",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "tamahagane",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/tamahagane"
+              "model": "arsenal:item/fishman_gloves/knuckles/tamahagane",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "kairoseki",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/kairoseki"
+              "model": "arsenal:item/fishman_gloves/knuckles/kairoseki",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "pacifista_alloy",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/pacifista_alloy"
+              "model": "arsenal:item/fishman_gloves/knuckles/pacifista_alloy",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "shandora_gold",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/shandora_gold"
+              "model": "arsenal:item/fishman_gloves/knuckles/shandora_gold",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "obsidian",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/obsidian"
+              "model": "arsenal:item/fishman_gloves/knuckles/obsidian",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "diamond",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/diamond"
+              "model": "arsenal:item/fishman_gloves/knuckles/diamond",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "wapometal",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/wapometal"
+              "model": "arsenal:item/fishman_gloves/knuckles/wapometal",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "adam_wood",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/adam_wood"
+              "model": "arsenal:item/fishman_gloves/knuckles/adam_wood",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "kokuto",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/kokuto"
+              "model": "arsenal:item/fishman_gloves/knuckles/kokuto",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "netherite",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/netherite"
+              "model": "arsenal:item/fishman_gloves/knuckles/netherite",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "black_blade",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/black_blade"
+              "model": "arsenal:item/fishman_gloves/knuckles/black_blade",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "vegapunk_compound",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/fishman_gloves/knuckles/vegapunk_compound"
+              "model": "arsenal:item/fishman_gloves/knuckles/vegapunk_compound",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           }
         ],
         "fallback": {
           "type": "minecraft:model",
-          "model": "arsenal:item/fishman_gloves/knuckles/ship_iron"
+          "model": "arsenal:item/fishman_gloves/knuckles/ship_iron",
+          "tints": [
+            {
+              "type": "arsenal:haki_coat"
+            }
+          ]
         }
       },
       {

@@ -11,188 +11,323 @@
             "when": "driftwood",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/driftwood"
+              "model": "arsenal:item/impact_palm/dial/driftwood",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "ship_iron",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/ship_iron"
+              "model": "arsenal:item/impact_palm/dial/ship_iron",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "marine_steel",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/marine_steel"
+              "model": "arsenal:item/impact_palm/dial/marine_steel",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "flint",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/flint"
+              "model": "arsenal:item/impact_palm/dial/flint",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "stone",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/stone"
+              "model": "arsenal:item/impact_palm/dial/stone",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "copper",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/copper"
+              "model": "arsenal:item/impact_palm/dial/copper",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "cannon_bronze",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/cannon_bronze"
+              "model": "arsenal:item/impact_palm/dial/cannon_bronze",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "sea_king_bone",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/sea_king_bone"
+              "model": "arsenal:item/impact_palm/dial/sea_king_bone",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "treasure_gold",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/treasure_gold"
+              "model": "arsenal:item/impact_palm/dial/treasure_gold",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "dial_shell",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/dial_shell"
+              "model": "arsenal:item/impact_palm/dial/dial_shell",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "sea_pearl",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/sea_pearl"
+              "model": "arsenal:item/impact_palm/dial/sea_pearl",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "amethyst",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/amethyst"
+              "model": "arsenal:item/impact_palm/dial/amethyst",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "emerald",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/emerald"
+              "model": "arsenal:item/impact_palm/dial/emerald",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "prismarine",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/prismarine"
+              "model": "arsenal:item/impact_palm/dial/prismarine",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "tamahagane",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/tamahagane"
+              "model": "arsenal:item/impact_palm/dial/tamahagane",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "kairoseki",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/kairoseki"
+              "model": "arsenal:item/impact_palm/dial/kairoseki",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "pacifista_alloy",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/pacifista_alloy"
+              "model": "arsenal:item/impact_palm/dial/pacifista_alloy",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "shandora_gold",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/shandora_gold"
+              "model": "arsenal:item/impact_palm/dial/shandora_gold",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "obsidian",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/obsidian"
+              "model": "arsenal:item/impact_palm/dial/obsidian",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "diamond",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/diamond"
+              "model": "arsenal:item/impact_palm/dial/diamond",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "wapometal",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/wapometal"
+              "model": "arsenal:item/impact_palm/dial/wapometal",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "adam_wood",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/adam_wood"
+              "model": "arsenal:item/impact_palm/dial/adam_wood",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "kokuto",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/kokuto"
+              "model": "arsenal:item/impact_palm/dial/kokuto",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "netherite",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/netherite"
+              "model": "arsenal:item/impact_palm/dial/netherite",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "black_blade",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/black_blade"
+              "model": "arsenal:item/impact_palm/dial/black_blade",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "vegapunk_compound",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/impact_palm/dial/vegapunk_compound"
+              "model": "arsenal:item/impact_palm/dial/vegapunk_compound",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           }
         ],
         "fallback": {
           "type": "minecraft:model",
-          "model": "arsenal:item/impact_palm/dial/ship_iron"
+          "model": "arsenal:item/impact_palm/dial/ship_iron",
+          "tints": [
+            {
+              "type": "arsenal:haki_coat"
+            }
+          ]
         }
       },
       {

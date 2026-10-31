@@ -11,188 +11,323 @@
             "when": "driftwood",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/driftwood"
+              "model": "arsenal:item/jitte/rod/driftwood",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "ship_iron",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/ship_iron"
+              "model": "arsenal:item/jitte/rod/ship_iron",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "marine_steel",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/marine_steel"
+              "model": "arsenal:item/jitte/rod/marine_steel",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "flint",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/flint"
+              "model": "arsenal:item/jitte/rod/flint",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "stone",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/stone"
+              "model": "arsenal:item/jitte/rod/stone",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "copper",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/copper"
+              "model": "arsenal:item/jitte/rod/copper",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "cannon_bronze",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/cannon_bronze"
+              "model": "arsenal:item/jitte/rod/cannon_bronze",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "sea_king_bone",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/sea_king_bone"
+              "model": "arsenal:item/jitte/rod/sea_king_bone",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "treasure_gold",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/treasure_gold"
+              "model": "arsenal:item/jitte/rod/treasure_gold",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "dial_shell",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/dial_shell"
+              "model": "arsenal:item/jitte/rod/dial_shell",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "sea_pearl",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/sea_pearl"
+              "model": "arsenal:item/jitte/rod/sea_pearl",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "amethyst",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/amethyst"
+              "model": "arsenal:item/jitte/rod/amethyst",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "emerald",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/emerald"
+              "model": "arsenal:item/jitte/rod/emerald",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "prismarine",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/prismarine"
+              "model": "arsenal:item/jitte/rod/prismarine",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "tamahagane",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/tamahagane"
+              "model": "arsenal:item/jitte/rod/tamahagane",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "kairoseki",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/kairoseki"
+              "model": "arsenal:item/jitte/rod/kairoseki",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "pacifista_alloy",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/pacifista_alloy"
+              "model": "arsenal:item/jitte/rod/pacifista_alloy",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "shandora_gold",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/shandora_gold"
+              "model": "arsenal:item/jitte/rod/shandora_gold",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "obsidian",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/obsidian"
+              "model": "arsenal:item/jitte/rod/obsidian",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "diamond",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/diamond"
+              "model": "arsenal:item/jitte/rod/diamond",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "wapometal",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/wapometal"
+              "model": "arsenal:item/jitte/rod/wapometal",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "adam_wood",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/adam_wood"
+              "model": "arsenal:item/jitte/rod/adam_wood",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "kokuto",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/kokuto"
+              "model": "arsenal:item/jitte/rod/kokuto",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "netherite",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/netherite"
+              "model": "arsenal:item/jitte/rod/netherite",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "black_blade",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/black_blade"
+              "model": "arsenal:item/jitte/rod/black_blade",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "vegapunk_compound",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/jitte/rod/vegapunk_compound"
+              "model": "arsenal:item/jitte/rod/vegapunk_compound",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           }
         ],
         "fallback": {
           "type": "minecraft:model",
-          "model": "arsenal:item/jitte/rod/ship_iron"
+          "model": "arsenal:item/jitte/rod/ship_iron",
+          "tints": [
+            {
+              "type": "arsenal:haki_coat"
+            }
+          ]
         }
       },
       {

@@ -2,10 +2,13 @@ package com.onepiecearsenal.compat;
 
 import java.util.List;
 import java.util.Set;
+import java.util.function.BiPredicate;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -28,6 +31,7 @@ import com.onepiecemod.item.DevilFruitItem;
 import com.onepiecemod.news.NewsLog;
 import com.onepiecemod.power.DevilFruit;
 import com.onepiecemod.power.DevilFruits;
+import com.onepiecemod.sound.ModSounds;
 import com.onepiecemod.npc.HumanNpc;
 import com.onepiecemod.style.FightingStyle;
 import com.onepiecemod.style.StyleAttachments;
@@ -252,6 +256,34 @@ public final class OnePieceBridge {
 	/** True while the player's Armament Haki is switched on and coating their hits. */
 	public static boolean armamentActive(Player player) {
 		return HakiPowers.hasArmamentActive(player);
+	}
+
+	/** The player's Armament Haki level, 0 (not awakened) to 5 (master), whether it's switched on or not. */
+	public static int armamentLevel(Player player) {
+		return HakiAttachments.get(player).armamentLevel();
+	}
+
+	/**
+	 * Tells the main mod's Logia dodge that hits passing this check carry Armament Haki, so they land on Logia users.
+	 * False if the main mod is too old to have the hook (then only the wielder's own Armament counts, as before).
+	 */
+	public static boolean registerCoatedHit(BiPredicate<Entity, DamageSource> check) {
+		try {
+			HakiPowers.registerCoatedHit(check);
+			return true;
+		} catch (NoSuchMethodError oldMainMod) {
+			return false;
+		}
+	}
+
+	/** The main mod's black flash sound when Armament Haki lands a hit. */
+	public static SoundEvent armamentHitSound() {
+		return ModSounds.ARMAMENT_HIT;
+	}
+
+	/** The main mod's sound for switching Armament Haki on. */
+	public static SoundEvent armamentOnSound() {
+		return ModSounds.ARMAMENT_ON;
 	}
 
 	// ---- Who a weapon skill may hit: the same rule as the main mod's fighting style techniques ----
