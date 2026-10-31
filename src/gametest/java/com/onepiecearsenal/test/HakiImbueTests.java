@@ -106,12 +106,18 @@ public class HakiImbueTests {
 		ServerPlayer attacker = fighter(helper, LEVEL_3);
 		ItemStack katana = KatanaStats.build(IRON, IRON, IRON);
 		attacker.setItemSlot(EquipmentSlot.MAINHAND, katana);
+		// Compared with the same hit uncoated, so the main mod's own damage rules (races and so on) cancel out.
+		float plain = lost(helper, attacker);
 		HakiImbue.press(attacker);
+		float coated = lost(helper, attacker);
+		helper.assertTrue(coated > plain + 2.0f, "a level 3 coat should add 3 damage before armor, went from " + plain + " to " + coated);
+		helper.succeed();
+	}
+
+	private static float lost(GameTestHelper helper, ServerPlayer attacker) {
 		ServerPlayer target = fighter(helper, 0);
 		target.hurtServer((ServerLevel) target.level(), attacker.damageSources().playerAttack(attacker), 1.0f);
-		float lost = target.getMaxHealth() - target.getHealth();
-		helper.assertTrue(Math.abs(lost - 4.0f) < 0.01f, "a level 3 coat should turn a 1 damage hit into 4, it did " + lost);
-		helper.succeed();
+		return target.getMaxHealth() - target.getHealth();
 	}
 
 	@GameTest
