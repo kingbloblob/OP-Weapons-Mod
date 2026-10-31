@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_knuckles",
+  "key": {
+    "M": "arsenal:cannon_bronze_ingot",
+    "N": "minecraft:iron_nugget"
+  },
+  "pattern": [
+    "MMM",
+    "N N"
+  ],
+  "result": {
+    "id": "arsenal:knuckles",
+    "components": {
+      "arsenal:part_material": "cannon_bronze"
+    }
+  }
+}

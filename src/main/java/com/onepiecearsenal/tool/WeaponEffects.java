@@ -1,5 +1,6 @@
 package com.onepiecearsenal.tool;
 
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -7,6 +8,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 
@@ -29,6 +31,9 @@ public final class WeaponEffects {
 	private static final int ARREST_TICKS = 30;
 	/** Chance a sneaking sabre wielder turns aside a hit from the front. */
 	private static final float PARRY_CHANCE = 1.0f / 3.0f;
+	/** Fishman Gloves' Water Shock: a share of the punch's damage that goes through armor, more when it's wet. */
+	private static final float WATER_SHOCK = 0.25f;
+	private static final float WET_SHOCK = 0.5f;
 
 	private WeaponEffects() {
 	}
@@ -50,12 +55,23 @@ public final class WeaponEffects {
 							OnePieceBridge.drainFruitPower(living, ARREST_TICKS);
 						}
 					}
+					case FISHMAN_GLOVES -> { // The shock goes through the water inside them, so armor doesn't stop it.
+						float share = wet(attacker) || wet(living) ? WET_SHOCK : WATER_SHOCK;
+						float shock = (float) attacker.getAttributeValue(Attributes.ATTACK_DAMAGE) * share;
+						TraitEffects.extraHit(attacker, serverLevel, living, shock, attacker.damageSources().indirectMagic(attacker, attacker));
+						serverLevel.sendParticles(ParticleTypes.SPLASH, living.getX(), living.getY() + living.getBbHeight() / 2, living.getZ(),
+								12, 0.3, 0.3, 0.3, 0.1);
+					}
 					default -> {
 					}
 				}
 			}
 			return InteractionResult.PASS;
 		});
+
+		// Impact and Reject Palms: sneak and the Dial catches blows from the front (see DialCharge).
+		ServerLivingEntityEvents.ALLOW_DAMAGE.register((entity, source, amount) ->
+				!(entity instanceof ServerPlayer defender && DialCharge.tryCatch(defender, source, amount)));
 
 		// Sabre parry: sneak to stand on guard, and some hits from the front glance off the blade.
 		ServerLivingEntityEvents.ALLOW_DAMAGE.register((entity, source, amount) -> {
@@ -71,6 +87,11 @@ public final class WeaponEffects {
 			}
 			return true;
 		});
+	}
+
+	/** In water or out in the rain: Fish-Man Karate is strongest with water all around. */
+	public static boolean wet(LivingEntity entity) {
+		return entity.isInWaterOrRain();
 	}
 
 	/** True if the attacker is within about 70 degrees of where the defender is looking. */

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_impact_core",
+  "key": {
+    "M": "onepiece:kokuto_ingot",
+    "D": "onepiece:dial_shell"
+  },
+  "pattern": [
+    " M ",
+    "MDM",
+    " M "
+  ],
+  "result": {
+    "id": "arsenal:impact_core",
+    "components": {
+      "arsenal:part_material": "kokuto"
+    }
+  }
+}

@@ -1,0 +1,586 @@
+{
+  "model": {
+    "type": "minecraft:composite",
+    "models": [
+      {
+        "type": "minecraft:select",
+        "property": "arsenal:part_material",
+        "index": 0,
+        "cases": [
+          {
+            "when": "driftwood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/driftwood"
+            }
+          },
+          {
+            "when": "ship_iron",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/ship_iron"
+            }
+          },
+          {
+            "when": "marine_steel",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/marine_steel"
+            }
+          },
+          {
+            "when": "flint",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/flint"
+            }
+          },
+          {
+            "when": "stone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/stone"
+            }
+          },
+          {
+            "when": "copper",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/copper"
+            }
+          },
+          {
+            "when": "cannon_bronze",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/cannon_bronze"
+            }
+          },
+          {
+            "when": "sea_king_bone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/sea_king_bone"
+            }
+          },
+          {
+            "when": "treasure_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/treasure_gold"
+            }
+          },
+          {
+            "when": "dial_shell",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/dial_shell"
+            }
+          },
+          {
+            "when": "sea_pearl",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/sea_pearl"
+            }
+          },
+          {
+            "when": "amethyst",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/amethyst"
+            }
+          },
+          {
+            "when": "emerald",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/emerald"
+            }
+          },
+          {
+            "when": "prismarine",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/prismarine"
+            }
+          },
+          {
+            "when": "tamahagane",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/tamahagane"
+            }
+          },
+          {
+            "when": "kairoseki",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/kairoseki"
+            }
+          },
+          {
+            "when": "pacifista_alloy",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/pacifista_alloy"
+            }
+          },
+          {
+            "when": "shandora_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/shandora_gold"
+            }
+          },
+          {
+            "when": "obsidian",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/obsidian"
+            }
+          },
+          {
+            "when": "diamond",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/diamond"
+            }
+          },
+          {
+            "when": "wapometal",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/wapometal"
+            }
+          },
+          {
+            "when": "adam_wood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/adam_wood"
+            }
+          },
+          {
+            "when": "kokuto",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/kokuto"
+            }
+          },
+          {
+            "when": "netherite",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/netherite"
+            }
+          },
+          {
+            "when": "black_blade",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/black_blade"
+            }
+          },
+          {
+            "when": "vegapunk_compound",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/knuckles/vegapunk_compound"
+            }
+          }
+        ],
+        "fallback": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/fishman_gloves/knuckles/ship_iron"
+        }
+      },
+      {
+        "type": "minecraft:select",
+        "property": "arsenal:part_material",
+        "index": 1,
+        "cases": [
+          {
+            "when": "driftwood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/driftwood"
+            }
+          },
+          {
+            "when": "ship_iron",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/ship_iron"
+            }
+          },
+          {
+            "when": "marine_steel",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/marine_steel"
+            }
+          },
+          {
+            "when": "flint",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/flint"
+            }
+          },
+          {
+            "when": "stone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/stone"
+            }
+          },
+          {
+            "when": "copper",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/copper"
+            }
+          },
+          {
+            "when": "cannon_bronze",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/cannon_bronze"
+            }
+          },
+          {
+            "when": "sea_king_bone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/sea_king_bone"
+            }
+          },
+          {
+            "when": "treasure_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/treasure_gold"
+            }
+          },
+          {
+            "when": "dial_shell",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/dial_shell"
+            }
+          },
+          {
+            "when": "sea_pearl",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/sea_pearl"
+            }
+          },
+          {
+            "when": "amethyst",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/amethyst"
+            }
+          },
+          {
+            "when": "emerald",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/emerald"
+            }
+          },
+          {
+            "when": "prismarine",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/prismarine"
+            }
+          },
+          {
+            "when": "tamahagane",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/tamahagane"
+            }
+          },
+          {
+            "when": "kairoseki",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/kairoseki"
+            }
+          },
+          {
+            "when": "pacifista_alloy",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/pacifista_alloy"
+            }
+          },
+          {
+            "when": "shandora_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/shandora_gold"
+            }
+          },
+          {
+            "when": "obsidian",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/obsidian"
+            }
+          },
+          {
+            "when": "diamond",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/diamond"
+            }
+          },
+          {
+            "when": "wapometal",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/wapometal"
+            }
+          },
+          {
+            "when": "adam_wood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/adam_wood"
+            }
+          },
+          {
+            "when": "kokuto",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/kokuto"
+            }
+          },
+          {
+            "when": "netherite",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/netherite"
+            }
+          },
+          {
+            "when": "black_blade",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/black_blade"
+            }
+          },
+          {
+            "when": "vegapunk_compound",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/strap/vegapunk_compound"
+            }
+          }
+        ],
+        "fallback": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/fishman_gloves/strap/ship_iron"
+        }
+      },
+      {
+        "type": "minecraft:select",
+        "property": "arsenal:part_material",
+        "index": 2,
+        "cases": [
+          {
+            "when": "driftwood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/driftwood"
+            }
+          },
+          {
+            "when": "ship_iron",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/ship_iron"
+            }
+          },
+          {
+            "when": "marine_steel",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/marine_steel"
+            }
+          },
+          {
+            "when": "flint",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/flint"
+            }
+          },
+          {
+            "when": "stone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/stone"
+            }
+          },
+          {
+            "when": "copper",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/copper"
+            }
+          },
+          {
+            "when": "cannon_bronze",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/cannon_bronze"
+            }
+          },
+          {
+            "when": "sea_king_bone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/sea_king_bone"
+            }
+          },
+          {
+            "when": "treasure_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/treasure_gold"
+            }
+          },
+          {
+            "when": "dial_shell",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/dial_shell"
+            }
+          },
+          {
+            "when": "sea_pearl",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/sea_pearl"
+            }
+          },
+          {
+            "when": "amethyst",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/amethyst"
+            }
+          },
+          {
+            "when": "emerald",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/emerald"
+            }
+          },
+          {
+            "when": "prismarine",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/prismarine"
+            }
+          },
+          {
+            "when": "tamahagane",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/tamahagane"
+            }
+          },
+          {
+            "when": "kairoseki",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/kairoseki"
+            }
+          },
+          {
+            "when": "pacifista_alloy",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/pacifista_alloy"
+            }
+          },
+          {
+            "when": "shandora_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/shandora_gold"
+            }
+          },
+          {
+            "when": "obsidian",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/obsidian"
+            }
+          },
+          {
+            "when": "diamond",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/diamond"
+            }
+          },
+          {
+            "when": "wapometal",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/wapometal"
+            }
+          },
+          {
+            "when": "adam_wood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/adam_wood"
+            }
+          },
+          {
+            "when": "kokuto",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/kokuto"
+            }
+          },
+          {
+            "when": "netherite",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/netherite"
+            }
+          },
+          {
+            "when": "black_blade",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/black_blade"
+            }
+          },
+          {
+            "when": "vegapunk_compound",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/fishman_gloves/palm/vegapunk_compound"
+            }
+          }
+        ],
+        "fallback": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/fishman_gloves/palm/ship_iron"
+        }
+      }
+    ]
+  }
+}
