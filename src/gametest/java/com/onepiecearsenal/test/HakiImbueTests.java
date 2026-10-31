@@ -1,6 +1,7 @@
 package com.onepiecearsenal.test;
 
 import net.minecraft.gametest.framework.GameTestHelper;
+import net.minecraft.network.protocol.game.ServerboundPlayerLoadedPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -79,7 +80,7 @@ public class HakiImbueTests {
 		ServerPlayer logia = logiaUser(helper);
 		// A Logia body lets half of all hits pass through, so 12 landing in a row only happens if the coat works.
 		for (int i = 0; i < 12; i++) {
-			logia.invulnerableTime = 0;
+			logia.damageCooldownTime = 0;
 			logia.setHealth(logia.getMaxHealth());
 			helper.assertTrue(logia.hurtServer((ServerLevel) logia.level(), attacker.damageSources().playerAttack(attacker), 0.5f),
 					"a coated blade's hit " + (i + 1) + " should land on a Logia user");
@@ -93,7 +94,7 @@ public class HakiImbueTests {
 		attacker.setItemSlot(EquipmentSlot.MAINHAND, KatanaStats.build(ArsenalMaterial.BLACK_BLADE, IRON, IRON));
 		ServerPlayer logia = logiaUser(helper);
 		for (int i = 0; i < 12; i++) {
-			logia.invulnerableTime = 0;
+			logia.damageCooldownTime = 0;
 			logia.setHealth(logia.getMaxHealth());
 			helper.assertTrue(logia.hurtServer((ServerLevel) logia.level(), attacker.damageSources().playerAttack(attacker), 0.5f),
 					"a Black Blade's hit " + (i + 1) + " should land on a Logia user");
@@ -139,6 +140,8 @@ public class HakiImbueTests {
 	private static ServerPlayer fighter(GameTestHelper helper, int armamentXp) {
 		ServerPlayer player = helper.makeMockServerPlayerInLevel();
 		player.setGameMode(GameType.SURVIVAL); // The mock player starts in creative, where hunger and wear don't count.
+		// 26.3 players can't be hurt until their game says it has loaded the world; the mock has no game to say so.
+		player.connection.handleAcceptPlayerLoad(new ServerboundPlayerLoadedPacket());
 		Vec3 at = helper.absoluteVec(new Vec3(1.5, 1, 1.5));
 		player.teleportTo(at.x, at.y, at.z);
 		HakiAttachments.set(player, HakiAttachments.get(player).withArmamentXp(armamentXp));
