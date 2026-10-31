@@ -16,6 +16,7 @@
       "com.onepiecearsenal.test.GuideTests",
       "com.onepiecearsenal.test.HunterGearTests",
       "com.onepiecearsenal.test.IslandMaterialTests",
+      "com.onepiecearsenal.test.MasteryTests",
       "com.onepiecearsenal.test.MeitoTests",
       "com.onepiecearsenal.test.RestatTests",
       "com.onepiecearsenal.test.SalvageTests",

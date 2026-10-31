@@ -255,6 +255,34 @@
 			"generated": "upgrades"
 		},
 		{
+			"id": "mastery",
+			"title": "Weapon Mastery",
+			"icon": "arsenal:cutlass",
+			"icon_material": "ship_iron",
+			"color": "7CE07C",
+			"text": [
+				"A weapon gets better the more you fight with it. Every forged katana, hand weapon and gun learns from the foes it beats, and a weapon you've truly mastered can take a fourth trait.",
+				"",
+				"# Mastery ranks",
+				"Beating a foe with the weapon gives it mastery XP: 1 for any monster, person or player, 3 if they were holding a weapon, and 5 more for each tier of a boss. Cows teach nothing. Guns learn from their shots, not from being swung.",
+				"- Untested: 0 XP",
+				"- Blooded: 10 XP",
+				"- Seasoned: 30 XP",
+				"- Veteran: 70 XP",
+				"- Feared: 140 XP",
+				"- Mastered: 250 XP",
+				"> Folded handles (Tamahagane) make a weapon learn 25% faster. On a katana, a kill counts toward its blade level too.",
+				"",
+				"# The mastery slot",
+				"A Mastered weapon opens a mastery slot. Hold the weapon, put any part in your offhand and right-click a Shipwright's Anvil. The part is used up and its trait is bound into the slot: a head part (blade, head, barrel or shell) gives its head trait, any other part its handle trait.",
+				"- Bind another part to swap the trait. The old one is lost.",
+				"- The trait has to work in a fight: ones that change a weapon's numbers as it's forged (Riveted, Light, Heavy, Unbreakable Grain, Legendary Hull, Ultra-alloy) and armor traits can't be bound.",
+				"- Black Blade only comes from awakening, and guns can't use Serrated or Volcanic Glass.",
+				"- A weapon can't take a trait it already has.",
+				"> The weapon keeps its mastery and its bound trait when it's taken apart and forged again, like its upgrades."
+			]
+		},
+		{
 			"id": "broken_gear",
 			"title": "Broken Gear",
 			"icon": "arsenal:katana_blade",

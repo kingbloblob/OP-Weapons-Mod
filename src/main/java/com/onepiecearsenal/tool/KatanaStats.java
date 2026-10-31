@@ -16,6 +16,7 @@ import net.minecraft.world.item.component.ItemAttributeModifiers;
 import com.onepiecearsenal.ArsenalComponents;
 import com.onepiecearsenal.ArsenalItems;
 import com.onepiecearsenal.ArsenalMod;
+import com.onepiecearsenal.mastery.Mastery;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
 import com.onepiecearsenal.material.TraitStats;
@@ -111,7 +112,7 @@ public final class KatanaStats {
 	/** The traits a katana has: the blade's head trait, and the handle traits of its tsuba and hilt. */
 	public static Set<Trait> traits(ItemStack katana) {
 		List<ArsenalMaterial> parts = parts(katana);
-		return parts.isEmpty() ? EnumSet.noneOf(Trait.class) : traits(parts.get(0), parts.get(1), parts.get(2));
+		return parts.isEmpty() ? EnumSet.noneOf(Trait.class) : Mastery.withBound(katana, traits(parts.get(0), parts.get(1), parts.get(2)));
 	}
 
 	private static Set<Trait> traits(ArsenalMaterial blade, ArsenalMaterial tsuba, ArsenalMaterial hilt) {

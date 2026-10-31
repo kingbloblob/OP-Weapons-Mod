@@ -22,6 +22,7 @@ import com.onepiecearsenal.loot.MarineSteelLoot;
 import com.onepiecearsenal.loot.MaterialLoot;
 import com.onepiecearsenal.material.TraitEffects;
 import com.onepiecearsenal.material.TraitStats;
+import com.onepiecearsenal.mastery.Mastery;
 import com.onepiecearsenal.meito.Meito;
 import com.onepiecearsenal.salvage.Salvage;
 import com.onepiecearsenal.skill.WeaponSkills;
@@ -57,6 +58,7 @@ public class ArsenalMod implements ModInitializer {
 		Suspicion.initialize();
 		PirateGrudge.initialize();
 		Meito.initialize();
+		Mastery.initialize();
 		MainModLinks.initialize(); // After Meito, so whetstones its gates refuse don't count.
 		NavyStations.initialize();
 		Upgrades.initialize();

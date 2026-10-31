@@ -14,6 +14,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.world.item.component.ItemContainerContents;
 
+import com.onepiecearsenal.mastery.WeaponMastery;
 import com.onepiecearsenal.meito.BladeRecord;
 
 /**
@@ -104,6 +105,15 @@ public class ArsenalComponents {
 	public static final DataComponentType<String> EATEN_FRUIT = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
 			ArsenalMod.id("eaten_fruit"),
 			DataComponentType.<String>builder().persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.STRING_UTF8).build());
+
+	/**
+	 * A weapon's mastery XP and the trait bound into its mastery slot (see Mastery). It changes with kills, so it skips
+	 * the "pull out" animation.
+	 */
+	public static final DataComponentType<WeaponMastery> MASTERY = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
+			ArsenalMod.id("mastery"),
+			DataComponentType.<WeaponMastery>builder().persistent(WeaponMastery.CODEC).networkSynchronized(WeaponMastery.STREAM_CODEC)
+					.ignoreSwapAnimation().build());
 
 	/** Loads this class, which registers the components above. */
 	static void initialize() {
