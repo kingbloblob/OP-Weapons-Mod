@@ -11,6 +11,7 @@ import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.equipment.ArmorType;
 
 import com.onepiecearsenal.ArsenalComponents;
+import com.onepiecearsenal.ammo.MusketBalls;
 import com.onepiecearsenal.cannon.CannonShells;
 import com.onepiecearsenal.cannon.CannonStats;
 import com.onepiecearsenal.material.ArsenalMaterial;
@@ -70,6 +71,18 @@ public class PartItem extends Item {
 		textConsumer.accept(Component.literal("Hold it when you fire your cannons to load it.").withStyle(ChatFormatting.DARK_GRAY));
 	}
 
+	/** Musket Balls are ammo, not built into anything either. */
+	private static void ballTooltip(ArsenalMaterial material, Consumer<Component> textConsumer) {
+		float bonus = MusketBalls.bonusDamage(material);
+		textConsumer.accept(Component.literal(bonus == 0.0f ? "Damage: the same as a Bullet" : String.format("Damage: %+.1f on top of the gun's", bonus))
+				.withStyle(ChatFormatting.BLUE));
+		if (MusketBalls.hasTrait(material)) {
+			Trait trait = material.headTrait;
+			textConsumer.accept(Component.literal("On a hit: " + trait.displayName + ". " + trait.description).withStyle(ChatFormatting.GOLD));
+		}
+		textConsumer.accept(Component.literal("A bullet for any pistol or rifle. Hold it in your off hand to fire it first.").withStyle(ChatFormatting.DARK_GRAY));
+	}
+
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay displayComponent, Consumer<Component> textConsumer, TooltipFlag type) {
 		ArsenalMaterial material = material(stack);
@@ -89,6 +102,10 @@ public class PartItem extends Item {
 		}
 		if (this.type == PartType.CANNON_SHELL) {
 			shellTooltip(material, textConsumer);
+			return;
+		}
+		if (this.type == PartType.MUSKET_BALL) {
+			ballTooltip(material, textConsumer);
 			return;
 		}
 		GunType gun = GunType.using(this.type);

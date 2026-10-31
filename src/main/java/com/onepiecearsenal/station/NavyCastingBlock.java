@@ -65,12 +65,14 @@ public class NavyCastingBlock extends NavyStationBlock {
 			}
 			take(inventory, ingot, cost);
 			ItemStack copy = PartItem.of(part, material);
+			copy.setCount(yield(part.type()));
+			int made = copy.getCount();
 			String name = copy.getHoverName().getString(); // inventory.add empties the stack, so read the name first.
 			if (!inventory.add(copy)) {
 				player.drop(copy, false, Prediction.SERVER_ONLY);
 			}
 			level.playSound(null, pos, sound, SoundSource.BLOCKS, 1.0f, 1.0f);
-			player.sendOverlayMessage(Component.literal(verb + " a " + name + "!").withStyle(ChatFormatting.GREEN));
+			player.sendOverlayMessage(Component.literal(verb + (made > 1 ? " " + made + " " + name + "s!" : " a " + name + "!")).withStyle(ChatFormatting.GREEN));
 			return InteractionResult.SUCCESS;
 		}
 		ArsenalMaterial first = materials.get(0);
@@ -82,7 +84,7 @@ public class NavyCastingBlock extends NavyStationBlock {
 	/** Ingots per part, the same as the crafting table recipes for the other materials. */
 	public static int cost(PartType type) {
 		return switch (type) {
-			case HILT, LINING, FUSE, BINDING, STUDS, GRIP, HAFT, CANNON_SHELL -> 1;
+			case HILT, LINING, FUSE, BINDING, STUDS, GRIP, HAFT, CANNON_SHELL, MUSKET_BALL -> 1;
 			case BARREL, LOCK, SABRE_BLADE, JITTE_ROD -> 2;
 			case KATANA_BLADE, STOCK, LONG_BARREL, CUTLASS_BLADE, GUN_CARRIAGE -> 3;
 			case TSUBA, BOOT_SOLES, AXE_HEAD, SPEARHEAD -> 4;
@@ -91,6 +93,15 @@ public class NavyCastingBlock extends NavyStationBlock {
 			case SASH_WEAVE -> 7;
 			case COAT_PLATES -> 8;
 			default -> 3; // New part types: give them their own line above.
+		};
+	}
+
+	/** Parts that come more than one to a cast, the same as their crafting table recipes. */
+	public static int yield(PartType type) {
+		return switch (type) {
+			case CANNON_SHELL -> 4;
+			case MUSKET_BALL -> 8;
+			default -> 1;
 		};
 	}
 

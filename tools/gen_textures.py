@@ -1534,6 +1534,47 @@ CANNON_SHELL = check('cannon_shell', '''
 ................
 ''')
 
+# Gun ammo (ammo/MusketBalls): a little pile of three cast balls.
+def _balls():
+    ball = ['.1111.', '145541', '144431', '143321', '133221', '.1111.']
+    grid = [['.'] * 16 for _ in range(16)]
+    for x0, y0 in [(5, 3), (2, 8), (8, 8)]:  # the top one first, so the two in front cover it
+        for dy, row in enumerate(ball):
+            for dx, ch in enumerate(row):
+                if ch != '.':
+                    grid[y0 + dy][x0 + dx] = ch
+    return check('musket_ball', '\n'.join(''.join(r) for r in grid))
+
+
+MUSKET_BALL = _balls()
+
+# Dial Rounds (ammo/DialRound): three cartridges, a Dial-shell band behind a tip coloured by what the Dial holds
+# (6, 7, 8 = dark, mid, light; set per kind in DIAL_ROUNDS) and a brass case.
+DIAL_ROUND = check('dial_round', '''
+................
+..kk...kk...kk..
+.k87k.k87k.k87k.
+.k76k.k76k.k76k.
+.k66k.k66k.k66k.
+.k45k.k45k.k45k.
+.k23k.k23k.k23k.
+.ktsk.ktsk.ktsk.
+.ksrk.ksrk.ksrk.
+.ksrk.ksrk.ksrk.
+.ksrk.ksrk.ksrk.
+.ksrk.ksrk.ksrk.
+.krqk.krqk.krqk.
+.kqpk.kqpk.kqpk.
+..kk...kk...kk..
+................
+''')
+DIAL_ROUNDS = {
+    'flame_dial_round': ('b8321a', 'f07a22', 'ffd25a'),
+    'impact_dial_round': ('4a4a58', '8a8aa0', 'd6d6e6'),
+    'breath_dial_round': ('3a86b8', '8acff0', 'eefaff'),
+    'flash_dial_round': ('c8a018', 'f4e060', 'fffbe0'),
+}
+
 CUTLASS_BLADE = check('cutlass_blade', '''
 ..............11
 .............141
@@ -2094,7 +2135,7 @@ PARTS = {
     'katana_blade': KATANA_BLADE, 'tsuba': TSUBA, 'hilt': HILT,
     'barrel': BARREL, 'firing_lock': FIRING_LOCK, 'stock': STOCK,
     'long_barrel': LONG_BARREL, 'cannon_bore': CANNON_BORE, 'fuse': FUSE,
-    'gun_carriage': GUN_CARRIAGE, 'cannon_shell': CANNON_SHELL,
+    'gun_carriage': GUN_CARRIAGE, 'cannon_shell': CANNON_SHELL, 'musket_ball': MUSKET_BALL,
     'cutlass_blade': CUTLASS_BLADE, 'sabre_blade': SABRE_BLADE, 'axe_head': AXE_HEAD, 'jitte_rod': JITTE_ROD,
     'club_head': CLUB_HEAD, 'spearhead': SPEARHEAD, 'hand_guard': HAND_GUARD, 'binding': BINDING, 'studs': STUDS,
     'grip': GRIP, 'haft': HAFT,
@@ -2225,6 +2266,9 @@ if __name__ == '__main__':
         assert m['id'] in MATERIALS and m['id'] in OUTFITS, f"draw {m['id']}: add it to MATERIALS and OUTFITS"
     for name, (mask, mat) in RAW.items():
         save(paint(mask, [mat] * 3), f'item/{name}')
+    for name, tip in DIAL_ROUNDS.items():
+        FIXED.update({c: hexc(h) for c, h in zip('678', tip)})
+        save(paint(DIAL_ROUND, ['dial_shell', 'cannon_bronze', 'dial_shell']), f'item/{name}')
     for m in roster:
         mat = m['id']
         parts = ARMOR_PARTS if m.get('armor_only') else {**PARTS, **ARMOR_PARTS}

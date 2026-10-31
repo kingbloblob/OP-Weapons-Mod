@@ -32,6 +32,8 @@ import net.minecraft.world.level.material.PushReaction;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 
+import com.onepiecearsenal.ammo.DialRound;
+import com.onepiecearsenal.ammo.DialRoundItem;
 import com.onepiecearsenal.cannon.CannonStats;
 import com.onepiecearsenal.cannon.ShipCannonBlock;
 import com.onepiecearsenal.cannon.ShipCannonBlockEntity;
@@ -112,6 +114,16 @@ public class ArsenalItems {
 	public static final Item GUN_CARRIAGE = part(PartType.GUN_CARRIAGE);
 	/** Cannon ammo, one per material (see CannonShells). A part, so the Navy stations can cast it too. */
 	public static final Item CANNON_SHELL = part(PartType.CANNON_SHELL);
+	/** Flintlock and musket ammo, one per material (see MusketBalls). A part, so the Navy stations can cast it too. */
+	public static final Item MUSKET_BALL = part(PartType.MUSKET_BALL);
+	/** Bullets with a Sky Island Dial packed behind the ball (see DialRound). */
+	public static final Map<DialRound, Item> DIAL_ROUNDS = new EnumMap<>(DialRound.class);
+
+	static {
+		for (DialRound round : DialRound.values()) {
+			DIAL_ROUNDS.put(round, register(round.id(), properties -> new DialRoundItem(round, properties), new Item.Properties()));
+		}
+	}
 
 	// ---- Weapons ----
 
@@ -207,6 +219,9 @@ public class ArsenalItems {
 					output.accept(ISLAND_WHALE_LEATHER);
 					output.accept(PACIFISTA_ALLOY);
 					output.accept(VEGAPUNK_COMPOUND);
+					for (Item round : DIAL_ROUNDS.values()) {
+						output.accept(round);
+					}
 					for (Item part : PART_ITEMS) {
 						for (ArsenalMaterial material : ArsenalMaterial.values()) {
 							if (!material.armorOnly || ((PartItem) part).type().isArmor()) {
