@@ -18,6 +18,8 @@ public enum PartType {
 	// The ship cannon's carriage (its bore and fuse are the hand cannon's), and cannon ammo (see cannon/).
 	GUN_CARRIAGE("gun_carriage", "Gun Carriage", false),
 	CANNON_SHELL("cannon_shell", "Cannon Shell", true),
+	// Bullets of any material for flintlocks and muskets (see ammo/MusketBalls).
+	MUSKET_BALL("musket_ball", "Musket Ball", true),
 	// Heads of the other hand weapons (see WeaponType), and the bindings and handles they share.
 	CUTLASS_BLADE("cutlass_blade", "Cutlass Blade", true),
 	SABRE_BLADE("sabre_blade", "Sabre Blade", true),

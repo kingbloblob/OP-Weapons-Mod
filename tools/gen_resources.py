@@ -51,6 +51,11 @@ lang = {
     "item.arsenal.fuse": "Fuse",
     "item.arsenal.gun_carriage": "Gun Carriage",
     "item.arsenal.cannon_shell": "Cannon Shell",
+    "item.arsenal.musket_ball": "Musket Ball",
+    "item.arsenal.flame_dial_round": "Flame Dial Round",
+    "item.arsenal.impact_dial_round": "Impact Dial Round",
+    "item.arsenal.breath_dial_round": "Breath Dial Round",
+    "item.arsenal.flash_dial_round": "Flash Dial Round",
     "block.arsenal.ship_cannon": "Ship Cannon",
     "item.arsenal.cutlass_blade": "Cutlass Blade",
     "item.arsenal.sabre_blade": "Sabre Blade",
@@ -108,11 +113,12 @@ def by_material(folder, index=None, parent="minecraft:item/generated", materials
 
 
 for name in ["driftwood", "marine_steel_ingot", "cannon_bronze_ingot", "sea_king_bone", "island_whale_leather",
-             "pacifista_alloy", "vegapunk_compound", "shipwrights_manual"]:
+             "pacifista_alloy", "vegapunk_compound", "shipwrights_manual",
+             "flame_dial_round", "impact_dial_round", "breath_dial_round", "flash_dial_round"]:
     w(f'{A}/items/{name}.json', {"model": model(name)})
 for part in ["katana_blade", "tsuba", "hilt", "barrel", "firing_lock", "stock", "long_barrel", "cannon_bore", "fuse",
-             "gun_carriage", "cannon_shell", "cutlass_blade", "sabre_blade", "axe_head", "jitte_rod", "club_head", "spearhead", "knuckles",
-             "impact_core", "reject_core", "hand_guard", "binding", "studs", "grip", "haft"]:
+             "gun_carriage", "cannon_shell", "musket_ball", "cutlass_blade", "sabre_blade", "axe_head", "jitte_rod", "club_head", "spearhead",
+             "knuckles", "impact_core", "reject_core", "hand_guard", "binding", "studs", "grip", "haft"]:
     w(f'{A}/items/{part}.json', {"model": by_material(f"part/{part}", materials=WEAPON_TEXTURED)})
 for part in ["crown", "coat_plates", "sash_weave", "boot_soles", "lining"]:
     w(f'{A}/items/{part}.json', {"model": by_material(f"part/{part}")})
@@ -286,6 +292,11 @@ w(f'{D}/recipe/cannon_bronze_ingot.json', {"type": "minecraft:crafting_shapeless
 w(f'{D}/recipe/cannon_bronze_ingot_from_iron.json', {"type": "minecraft:crafting_shapeless", "category": "misc",
     "ingredients": ["minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:iron_ingot"],
     "result": {"id": "arsenal:cannon_bronze_ingot", "count": 2}})
+# Dial Rounds (ammo/DialRound): a Sky Island Dial packed with eight of the One Piece Mod's Bullets.
+for kind in ["flame", "impact", "breath", "flash"]:
+    w(f'{D}/recipe/{kind}_dial_round.json', {"type": "minecraft:crafting_shapeless", "category": "equipment",
+        "ingredients": [f"onepiece:{kind}_dial"] + ["onepiece:bullet"] * 8,
+        "result": {"id": f"arsenal:{kind}_dial_round", "count": 8}})
 
 # One recipe per part per material, from materials.json. Each part has its own shape, and none of them
 # matches a vanilla recipe for the same ingredient (an iron sword is iron, iron, stick, so no part is).
@@ -306,6 +317,7 @@ parts = {
     "fuse": (["S", "G", "M"], {"S": S, "G": G}),
     "gun_carriage": (["MMM", "K K"], {"K": K}),
     "cannon_shell": ([" M ", "MGM", " M "], {"G": G}),
+    "musket_ball": (["M", "G"], {"G": G}),
     "cutlass_blade": (["  M", " M ", "M  "], {}),
     "sabre_blade": (["M", "M", "N"], {"N": N}),
     "axe_head": (["MMM", "M  "], {}),
@@ -334,7 +346,7 @@ CLASHES = {
     ("long_barrel", "minecraft:flint"): (["MMM", "  N"], {"N": N}),  # a flint lock on flint is the Axe Head mirrored
 }
 ARMOR_PARTS = {"crown", "coat_plates", "sash_weave", "boot_soles", "lining"}
-COUNTS = {"cannon_shell": 4}  # parts that come more than one to a craft
+COUNTS = {"cannon_shell": 4, "musket_ball": 8}  # parts that come more than one to a craft
 for m in MATERIALS:
     if not m.get("craftable", True) or m["faction"] == "navy":
         continue

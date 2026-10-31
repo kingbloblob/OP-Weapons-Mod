@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "onepiece:breath_dial",
+    "onepiece:bullet",
+    "onepiece:bullet",
+    "onepiece:bullet",
+    "onepiece:bullet",
+    "onepiece:bullet",
+    "onepiece:bullet",
+    "onepiece:bullet",
+    "onepiece:bullet"
+  ],
+  "result": {
+    "id": "arsenal:breath_dial_round",
+    "count": 8
+  }
+}

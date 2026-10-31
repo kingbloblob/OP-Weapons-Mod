@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "onepiece:flash_dial",
+    "onepiece:bullet",
+    "onepiece:bullet",
+    "onepiece:bullet",
+    "onepiece:bullet",
+    "onepiece:bullet",
+    "onepiece:bullet",
+    "onepiece:bullet",
+    "onepiece:bullet"
+  ],
+  "result": {
+    "id": "arsenal:flash_dial_round",
+    "count": 8
+  }
+}
