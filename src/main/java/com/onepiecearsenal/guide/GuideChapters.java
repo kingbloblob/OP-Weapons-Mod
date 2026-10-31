@@ -59,7 +59,7 @@ public final class GuideChapters {
 		public String color = "FFD75E";
 		/** One entry per line. "# " = heading, "- " = bullet, "> " = tip, "" = empty line. */
 		public List<String> text = new ArrayList<>();
-		/** Lines written from the mod's data after the text: materials, traits, weapons, skills, guns, navy_casting, meito, navy_brass, hunter_gear, upgrades or set_bonuses. */
+		/** Lines written from the mod's data after the text: materials, traits, weapons, skills, guns, navy_casting, meito, navy_brass, hunter_gear, upgrades, set_bonuses, fruit_weapons or town_smiths. */
 		public String generated;
 		/** More lines, shown after the generated ones. */
 		public List<String> after = new ArrayList<>();
@@ -167,6 +167,7 @@ public final class GuideChapters {
 			case "upgrades" -> upgrades();
 			case "set_bonuses" -> setBonuses();
 			case "fruit_weapons" -> fruitWeapons();
+			case "town_smiths" -> com.onepiecearsenal.town.Blacksmiths.guideLines();
 			default -> List.of("(Nothing is written here yet: \"" + what + "\" isn't a page the manual knows.)");
 		};
 	}

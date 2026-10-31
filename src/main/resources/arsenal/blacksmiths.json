@@ -1,0 +1,33 @@
+{
+  "_comment": [
+    "What town blacksmiths (the One Piece Mod's \"smith\" townsfolk) do for Arsenal gear: see town/Blacksmiths.java.",
+    "Hold something and talk to a blacksmith:",
+    "  a part, with a material in your offhand: they forge a copy of it in that material. It takes the part's",
+    "    crafting recipe's worth of material, less material_saving (never less than 1), plus a fee in Berries of",
+    "    forge_fee + forge_fee_per_tier x the material's tier.",
+    "  a part, with your offhand empty, carrying a full set of parts: they put the gear together for assemble_fee.",
+    "  damaged forged gear: they mend it with its head material. Each piece mends repair_share of it (the",
+    "    Shipwright's Anvil mends 0.25), and costs repair_fee Berries.",
+    "Blacksmiths never touch Navy materials or put together Navy gear. They do mend Navy gear.",
+    "towns: per town (the main mod's town structure id): price multiplies every fee, and the town's specialty",
+    "  parts take specialty_saving more off the material."
+  ],
+  "forge_fee": 1,
+  "forge_fee_per_tier": 1,
+  "material_saving": 1,
+  "assemble_fee": 3,
+  "repair_share": 0.5,
+  "repair_fee": 1,
+  "specialty_saving": 1,
+  "towns": {
+    "shells_town": {"price": 1.0, "specialty": ["cutlass_blade", "sabre_blade", "jitte_rod"]},
+    "loguetown": {"price": 1.0, "specialty": ["katana_blade", "tsuba", "hilt"]},
+    "mock_town": {"price": 1.5, "specialty": ["axe_head", "club_head", "studs"]},
+    "whisky_peak": {"price": 1.25, "specialty": ["barrel", "firing_lock", "stock", "long_barrel"]},
+    "nanohana_port": {"price": 1.0, "specialty": ["spearhead", "haft", "sash_weave"]},
+    "galley_la_dock": {"price": 1.0, "specialty": ["cannon_bore", "gun_carriage", "cannon_shell", "fuse"]},
+    "sabaody_park": {"price": 1.25, "specialty": ["crown", "coat_plates", "boot_soles", "lining"]},
+    "flower_capital": {"price": 1.25, "specialty": ["katana_blade", "tsuba", "hilt"]},
+    "amazon_lily": {"price": 1.0, "specialty": ["spearhead", "haft", "grip"]}
+  }
+}

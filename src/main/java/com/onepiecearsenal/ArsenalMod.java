@@ -27,6 +27,7 @@ import com.onepiecearsenal.salvage.Salvage;
 import com.onepiecearsenal.skill.WeaponSkills;
 import com.onepiecearsenal.station.NavyStations;
 import com.onepiecearsenal.tool.WeaponEffects;
+import com.onepiecearsenal.town.Blacksmiths;
 import com.onepiecearsenal.upgrade.Upgrades;
 
 /**
@@ -60,6 +61,7 @@ public class ArsenalMod implements ModInitializer {
 		NavyStations.initialize();
 		Upgrades.initialize();
 		Salvage.initialize();
+		Blacksmiths.initialize();
 		GuideBook.initialize();
 		CannonShells.initialize();
 	}

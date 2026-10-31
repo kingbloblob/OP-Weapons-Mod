@@ -282,6 +282,34 @@
 			]
 		},
 		{
+			"id": "town_smiths",
+			"title": "Town Blacksmiths",
+			"icon": "minecraft:anvil",
+			"color": "E0A060",
+			"text": [
+				"Some towns have a blacksmith: Shells Town, Loguetown, Whisky Peak, Mock Town, Nanohana, Water 7, Sabaody, the Flower Capital and Amazon Lily. They work at the town's anvils and forges by day and sleep at night, like everyone else in town.",
+				"Bring the materials and they'll do the work. They take Berries for it.",
+				"",
+				"# Forging a part",
+				"Hold a part (any material) as the pattern and the material you want in your offhand, then talk to the smith. You keep the pattern and get a copy made of that material.",
+				"- A smith wastes less than you do: it takes one less of the material than the crafting recipe (never less than one).",
+				"- Each smith has specialty parts (below) that take one less again.",
+				"- The fee is a few Berries, more for better materials.",
+				"",
+				"# Putting gear together",
+				"Hold any part with your offhand empty while you carry a full set, and the smith puts it together, just like a Shipwright's Anvil.",
+				"",
+				"# Mending",
+				"Hold worn or broken forged gear and talk to the smith. They mend it with its head material from your inventory, and each piece mends half of it, twice what the anvil does. Each piece costs a Berry, a little more in pricier towns.",
+				"",
+				"> Town smiths won't touch Navy materials or put together Navy gear: that still takes the Navy's own stations. They'll mend Navy gear, though, no questions asked.",
+				"> Talk to a smith with anything else in your hand for their usual wares, and sneak to haggle. A town that's angry with you won't serve you at all.",
+				"",
+				"# Where to find them, and their specialties"
+			],
+			"generated": "town_smiths"
+		},
+		{
 			"id": "stations",
 			"title": "Navy Stations",
 			"icon": "arsenal:marine_armory_bench",
