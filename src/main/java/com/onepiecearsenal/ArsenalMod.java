@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import net.fabricmc.api.ModInitializer;
 
 import com.onepiecearsenal.armorset.SetBonuses;
+import com.onepiecearsenal.ammo.ArsenalRounds;
 import com.onepiecearsenal.cannon.CannonShells;
 import com.onepiecearsenal.compat.MainModLinks;
 import com.onepiecearsenal.disguise.MarineDisguise;
@@ -66,6 +67,7 @@ public class ArsenalMod implements ModInitializer {
 		Blacksmiths.initialize();
 		GuideBook.initialize();
 		CannonShells.initialize();
+		ArsenalRounds.initialize();
 	}
 
 	public static Identifier id(String path) {

@@ -20,6 +20,8 @@ import net.minecraft.world.item.ItemStack;
 import com.onepiecearsenal.ArsenalItems;
 import com.onepiecearsenal.ArsenalMod;
 import com.onepiecearsenal.armorset.SetBonus;
+import com.onepiecearsenal.ammo.DialRound;
+import com.onepiecearsenal.ammo.MusketBalls;
 import com.onepiecearsenal.cannon.CannonShells;
 import com.onepiecearsenal.cannon.CannonStats;
 import com.onepiecearsenal.fruit.Beast;
@@ -289,6 +291,19 @@ public final class GuideChapters {
 					+ type.hold.name().toLowerCase(Locale.ROOT) + ".");
 			lines.add("- About " + (int) type.baseRange + " blocks of range and " + number(type.baseCooldown / 20.0f)
 					+ " seconds to reload, before its parts.");
+		}
+		lines.add("# Musket Balls by material");
+		for (ArsenalMaterial material : ArsenalMaterial.values()) {
+			if (material.armorOnly) {
+				continue;
+			}
+			float bonus = MusketBalls.bonusDamage(material);
+			lines.add("- " + material.displayName + ": " + (bonus == 0.0f ? "the same damage as a Bullet" : String.format(Locale.ROOT, "%+.1f damage", bonus))
+					+ (MusketBalls.hasTrait(material) ? ", " + material.headTrait.displayName + " on a hit." : "."));
+		}
+		lines.add("# Dial Rounds");
+		for (DialRound round : DialRound.values()) {
+			lines.add("- " + round.displayName + ": " + round.description);
 		}
 		return lines;
 	}

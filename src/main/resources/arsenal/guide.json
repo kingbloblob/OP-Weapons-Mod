@@ -159,7 +159,16 @@
 				"# What each part does",
 				"- Barrel: the damage, the range, and the blade trait. A Kairoseki barrel drains Devil Fruit users it shoots.",
 				"- Firing part: the reload. A light material reloads faster.",
-				"- Stock: the aim. A higher tier stock spreads less."
+				"- Stock: the aim. A higher tier stock spreads less.",
+				"",
+				"# Musket Balls",
+				"Bullets of any material: eight from a crafting table (the material over gunpowder). Navy balls are cast at a Navy station, eight for one Navy ingot. They're One Piece Mod bullets, so any pistol or rifle fires them.",
+				"- The ball's material changes the damage a little: harder materials hit harder.",
+				"- What it hits gets the material's blade trait, like a Cannon Shell's burst. Kairoseki balls drain Devil Fruit users, Sea King Bone ones make them bleed.",
+				"",
+				"# Dial Rounds",
+				"Pack a Sky Island Dial with eight Bullets for eight Dial Rounds: Flame, Impact, Breath or Flash.",
+				"> Hold the ammo you want in your off hand and your gun fires it first."
 			],
 			"generated": "guns"
 		},
