@@ -1,0 +1,194 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "property": "arsenal:part_material",
+    "cases": [
+      {
+        "when": "driftwood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/driftwood"
+        }
+      },
+      {
+        "when": "ship_iron",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/ship_iron"
+        }
+      },
+      {
+        "when": "marine_steel",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/marine_steel"
+        }
+      },
+      {
+        "when": "flint",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/flint"
+        }
+      },
+      {
+        "when": "stone",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/stone"
+        }
+      },
+      {
+        "when": "copper",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/copper"
+        }
+      },
+      {
+        "when": "cannon_bronze",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/cannon_bronze"
+        }
+      },
+      {
+        "when": "sea_king_bone",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/sea_king_bone"
+        }
+      },
+      {
+        "when": "treasure_gold",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/treasure_gold"
+        }
+      },
+      {
+        "when": "dial_shell",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/dial_shell"
+        }
+      },
+      {
+        "when": "sea_pearl",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/sea_pearl"
+        }
+      },
+      {
+        "when": "amethyst",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/amethyst"
+        }
+      },
+      {
+        "when": "emerald",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/emerald"
+        }
+      },
+      {
+        "when": "prismarine",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/prismarine"
+        }
+      },
+      {
+        "when": "tamahagane",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/tamahagane"
+        }
+      },
+      {
+        "when": "kairoseki",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/kairoseki"
+        }
+      },
+      {
+        "when": "pacifista_alloy",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/pacifista_alloy"
+        }
+      },
+      {
+        "when": "shandora_gold",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/shandora_gold"
+        }
+      },
+      {
+        "when": "obsidian",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/obsidian"
+        }
+      },
+      {
+        "when": "diamond",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/diamond"
+        }
+      },
+      {
+        "when": "wapometal",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/wapometal"
+        }
+      },
+      {
+        "when": "adam_wood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/adam_wood"
+        }
+      },
+      {
+        "when": "kokuto",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/kokuto"
+        }
+      },
+      {
+        "when": "netherite",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/netherite"
+        }
+      },
+      {
+        "when": "black_blade",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/black_blade"
+        }
+      },
+      {
+        "when": "vegapunk_compound",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/knuckles/vegapunk_compound"
+        }
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "arsenal:item/part/knuckles/ship_iron"
+    }
+  }
+}

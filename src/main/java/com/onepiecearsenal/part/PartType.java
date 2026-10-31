@@ -25,6 +25,11 @@ public enum PartType {
 	JITTE_ROD("jitte_rod", "Jitte Rod", true),
 	CLUB_HEAD("club_head", "Kanabo Head", true),
 	SPEARHEAD("spearhead", "Spearhead", true),
+	// Fishman Gloves' knuckles, and the Skypiea Dials the Impact and Reject Palms are built around (their recipes take a
+	// Dial Shell as well as the casing's material).
+	KNUCKLES("knuckles", "Knuckle Plates", true),
+	IMPACT_CORE("impact_core", "Impact Dial Core", true),
+	REJECT_CORE("reject_core", "Reject Dial Core", true),
 	HAND_GUARD("hand_guard", "Hand Guard", false),
 	BINDING("binding", "Binding", false),
 	STUDS("studs", "Studs", false),
@@ -53,6 +58,11 @@ public enum PartType {
 	}
 
 	/** Armor shells and linings: the only parts hides and leathers (armor-only materials) can make. */
+	/** The Skypiea Dial cores. Only crafted with Dial Shells: the Navy stations don't know how to make them. */
+	public boolean isDial() {
+		return this == IMPACT_CORE || this == REJECT_CORE;
+	}
+
 	public boolean isArmor() {
 		return this == CROWN || this == COAT_PLATES || this == SASH_WEAVE || this == BOOT_SOLES || this == LINING;
 	}

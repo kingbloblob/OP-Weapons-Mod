@@ -104,6 +104,9 @@ public class ArsenalItems {
 	public static final Item JITTE_ROD = part(PartType.JITTE_ROD);
 	public static final Item CLUB_HEAD = part(PartType.CLUB_HEAD);
 	public static final Item SPEARHEAD = part(PartType.SPEARHEAD);
+	public static final Item KNUCKLES = part(PartType.KNUCKLES);
+	public static final Item IMPACT_CORE = part(PartType.IMPACT_CORE);
+	public static final Item REJECT_CORE = part(PartType.REJECT_CORE);
 	public static final Item HAND_GUARD = part(PartType.HAND_GUARD);
 	public static final Item BINDING = part(PartType.BINDING);
 	public static final Item STUDS = part(PartType.STUDS);
@@ -120,7 +123,7 @@ public class ArsenalItems {
 			new Item.Properties().sword(ToolMaterial.IRON, 0.0f, -2.4f));
 	/** One Piece Mod guns whose stats come from their parts (see ArsenalGunItem). GunStats sets the durability when forged. */
 	public static final Map<GunType, Item> GUNS = new EnumMap<>(GunType.class);
-	/** Cutlasses, sabres, axes, jittes, kanabo and spears. Iron numbers until WeaponStats puts the parts' numbers on. */
+	/** Cutlasses, sabres, axes, jittes, kanabo, spears, Fishman Gloves and the Dial palms. Iron numbers until WeaponStats puts the parts' numbers on. */
 	public static final Map<WeaponType, Item> WEAPONS = new EnumMap<>(WeaponType.class);
 
 	static {

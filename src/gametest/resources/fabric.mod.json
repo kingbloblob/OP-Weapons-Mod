@@ -10,6 +10,7 @@
       "com.onepiecearsenal.test.ArmorTests",
       "com.onepiecearsenal.test.BossGearTests",
       "com.onepiecearsenal.test.CannonTests",
+      "com.onepiecearsenal.test.DialGearTests",
       "com.onepiecearsenal.test.DisguiseTests",
       "com.onepiecearsenal.test.FruitWeaponTests",
       "com.onepiecearsenal.test.GuideTests",

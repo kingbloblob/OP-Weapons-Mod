@@ -105,6 +105,14 @@ public class ArsenalComponents {
 			ArsenalMod.id("eaten_fruit"),
 			DataComponentType.<String>builder().persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.STRING_UTF8).build());
 
+	/**
+	 * The damage an Impact or Reject Palm's Dial has caught and is holding, ready to let out (see DialCharge).
+	 * It changes in the middle of fights, so it skips the "pull out" animation.
+	 */
+	public static final DataComponentType<Float> DIAL_CHARGE = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
+			ArsenalMod.id("dial_charge"),
+			DataComponentType.<Float>builder().persistent(Codec.FLOAT).networkSynchronized(ByteBufCodecs.FLOAT).ignoreSwapAnimation().build());
+
 	/** Loads this class, which registers the components above. */
 	static void initialize() {
 	}

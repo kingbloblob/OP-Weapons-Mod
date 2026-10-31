@@ -1,0 +1,586 @@
+{
+  "model": {
+    "type": "minecraft:composite",
+    "models": [
+      {
+        "type": "minecraft:select",
+        "property": "arsenal:part_material",
+        "index": 0,
+        "cases": [
+          {
+            "when": "driftwood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/driftwood"
+            }
+          },
+          {
+            "when": "ship_iron",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/ship_iron"
+            }
+          },
+          {
+            "when": "marine_steel",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/marine_steel"
+            }
+          },
+          {
+            "when": "flint",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/flint"
+            }
+          },
+          {
+            "when": "stone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/stone"
+            }
+          },
+          {
+            "when": "copper",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/copper"
+            }
+          },
+          {
+            "when": "cannon_bronze",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/cannon_bronze"
+            }
+          },
+          {
+            "when": "sea_king_bone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/sea_king_bone"
+            }
+          },
+          {
+            "when": "treasure_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/treasure_gold"
+            }
+          },
+          {
+            "when": "dial_shell",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/dial_shell"
+            }
+          },
+          {
+            "when": "sea_pearl",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/sea_pearl"
+            }
+          },
+          {
+            "when": "amethyst",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/amethyst"
+            }
+          },
+          {
+            "when": "emerald",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/emerald"
+            }
+          },
+          {
+            "when": "prismarine",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/prismarine"
+            }
+          },
+          {
+            "when": "tamahagane",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/tamahagane"
+            }
+          },
+          {
+            "when": "kairoseki",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/kairoseki"
+            }
+          },
+          {
+            "when": "pacifista_alloy",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/pacifista_alloy"
+            }
+          },
+          {
+            "when": "shandora_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/shandora_gold"
+            }
+          },
+          {
+            "when": "obsidian",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/obsidian"
+            }
+          },
+          {
+            "when": "diamond",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/diamond"
+            }
+          },
+          {
+            "when": "wapometal",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/wapometal"
+            }
+          },
+          {
+            "when": "adam_wood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/adam_wood"
+            }
+          },
+          {
+            "when": "kokuto",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/kokuto"
+            }
+          },
+          {
+            "when": "netherite",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/netherite"
+            }
+          },
+          {
+            "when": "black_blade",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/black_blade"
+            }
+          },
+          {
+            "when": "vegapunk_compound",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/dial/vegapunk_compound"
+            }
+          }
+        ],
+        "fallback": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/reject_palm/dial/ship_iron"
+        }
+      },
+      {
+        "type": "minecraft:select",
+        "property": "arsenal:part_material",
+        "index": 1,
+        "cases": [
+          {
+            "when": "driftwood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/driftwood"
+            }
+          },
+          {
+            "when": "ship_iron",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/ship_iron"
+            }
+          },
+          {
+            "when": "marine_steel",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/marine_steel"
+            }
+          },
+          {
+            "when": "flint",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/flint"
+            }
+          },
+          {
+            "when": "stone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/stone"
+            }
+          },
+          {
+            "when": "copper",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/copper"
+            }
+          },
+          {
+            "when": "cannon_bronze",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/cannon_bronze"
+            }
+          },
+          {
+            "when": "sea_king_bone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/sea_king_bone"
+            }
+          },
+          {
+            "when": "treasure_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/treasure_gold"
+            }
+          },
+          {
+            "when": "dial_shell",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/dial_shell"
+            }
+          },
+          {
+            "when": "sea_pearl",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/sea_pearl"
+            }
+          },
+          {
+            "when": "amethyst",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/amethyst"
+            }
+          },
+          {
+            "when": "emerald",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/emerald"
+            }
+          },
+          {
+            "when": "prismarine",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/prismarine"
+            }
+          },
+          {
+            "when": "tamahagane",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/tamahagane"
+            }
+          },
+          {
+            "when": "kairoseki",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/kairoseki"
+            }
+          },
+          {
+            "when": "pacifista_alloy",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/pacifista_alloy"
+            }
+          },
+          {
+            "when": "shandora_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/shandora_gold"
+            }
+          },
+          {
+            "when": "obsidian",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/obsidian"
+            }
+          },
+          {
+            "when": "diamond",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/diamond"
+            }
+          },
+          {
+            "when": "wapometal",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/wapometal"
+            }
+          },
+          {
+            "when": "adam_wood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/adam_wood"
+            }
+          },
+          {
+            "when": "kokuto",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/kokuto"
+            }
+          },
+          {
+            "when": "netherite",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/netherite"
+            }
+          },
+          {
+            "when": "black_blade",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/black_blade"
+            }
+          },
+          {
+            "when": "vegapunk_compound",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/strap/vegapunk_compound"
+            }
+          }
+        ],
+        "fallback": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/reject_palm/strap/ship_iron"
+        }
+      },
+      {
+        "type": "minecraft:select",
+        "property": "arsenal:part_material",
+        "index": 2,
+        "cases": [
+          {
+            "when": "driftwood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/driftwood"
+            }
+          },
+          {
+            "when": "ship_iron",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/ship_iron"
+            }
+          },
+          {
+            "when": "marine_steel",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/marine_steel"
+            }
+          },
+          {
+            "when": "flint",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/flint"
+            }
+          },
+          {
+            "when": "stone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/stone"
+            }
+          },
+          {
+            "when": "copper",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/copper"
+            }
+          },
+          {
+            "when": "cannon_bronze",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/cannon_bronze"
+            }
+          },
+          {
+            "when": "sea_king_bone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/sea_king_bone"
+            }
+          },
+          {
+            "when": "treasure_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/treasure_gold"
+            }
+          },
+          {
+            "when": "dial_shell",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/dial_shell"
+            }
+          },
+          {
+            "when": "sea_pearl",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/sea_pearl"
+            }
+          },
+          {
+            "when": "amethyst",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/amethyst"
+            }
+          },
+          {
+            "when": "emerald",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/emerald"
+            }
+          },
+          {
+            "when": "prismarine",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/prismarine"
+            }
+          },
+          {
+            "when": "tamahagane",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/tamahagane"
+            }
+          },
+          {
+            "when": "kairoseki",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/kairoseki"
+            }
+          },
+          {
+            "when": "pacifista_alloy",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/pacifista_alloy"
+            }
+          },
+          {
+            "when": "shandora_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/shandora_gold"
+            }
+          },
+          {
+            "when": "obsidian",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/obsidian"
+            }
+          },
+          {
+            "when": "diamond",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/diamond"
+            }
+          },
+          {
+            "when": "wapometal",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/wapometal"
+            }
+          },
+          {
+            "when": "adam_wood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/adam_wood"
+            }
+          },
+          {
+            "when": "kokuto",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/kokuto"
+            }
+          },
+          {
+            "when": "netherite",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/netherite"
+            }
+          },
+          {
+            "when": "black_blade",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/black_blade"
+            }
+          },
+          {
+            "when": "vegapunk_compound",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/reject_palm/palm/vegapunk_compound"
+            }
+          }
+        ],
+        "fallback": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/reject_palm/palm/ship_iron"
+        }
+      }
+    ]
+  }
+}

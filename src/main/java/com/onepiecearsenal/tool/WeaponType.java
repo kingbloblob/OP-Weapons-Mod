@@ -34,7 +34,18 @@ public enum WeaponType {
 			"Crushing: knocks enemies far back."),
 	SPEAR("spear", "Spear", Faction.SHARED, PartType.SPEARHEAD, PartType.BINDING, PartType.HAFT,
 			0.9f, 1.0f, -2.6f, 1.0f,
-			"Reach: hits enemies 1.5 blocks further away.");
+			"Reach: hits enemies 1.5 blocks further away."),
+	// Fist weapons. Fishman Gloves count as an empty hand for the One Piece Mod's fist styles (#onepiece:fist_weapons).
+	FISHMAN_GLOVES("fishman_gloves", "Fishman Gloves", Faction.PIRATE, PartType.KNUCKLES, PartType.BINDING, PartType.GRIP,
+			0.6f, 0.0f, -1.6f, 1.0f,
+			"Water Shock: charged hits shake the water inside the enemy, a quarter more damage through armor (half in water or rain). Fish-Man Karate works with them on."),
+	// Skypiea Dials strapped to the palm. Their punches are weak: the power is in what they store (see DialCharge).
+	IMPACT_PALM("impact_palm", "Impact Palm", Faction.SHARED, PartType.IMPACT_CORE, PartType.BINDING, PartType.GRIP,
+			0.4f, 0.0f, -2.0f, 0.9f,
+			"Impact Dial: sneak to catch hits from the front in the Dial instead of taking them. Release them with the Weapon Skill."),
+	REJECT_PALM("reject_palm", "Reject Palm", Faction.SHARED, PartType.REJECT_CORE, PartType.BINDING, PartType.GRIP,
+			0.4f, 0.0f, -2.2f, 0.7f,
+			"Reject Dial: catches hits like an Impact Dial, but lets them out three times as hard, and the blow hurts you too.");
 
 	private final String id;
 	public final String displayName;

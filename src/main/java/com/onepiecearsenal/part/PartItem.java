@@ -17,6 +17,7 @@ import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
 import com.onepiecearsenal.salvage.Salvage;
 import com.onepiecearsenal.tool.ArmorStats;
+import com.onepiecearsenal.tool.DialCharge;
 import com.onepiecearsenal.tool.GunStats;
 import com.onepiecearsenal.tool.GunType;
 import com.onepiecearsenal.tool.WeaponStats;
@@ -97,8 +98,10 @@ public class PartItem extends Item {
 			case KATANA_BLADE -> textConsumer.accept(Component.literal("Damage: " + material.damage).withStyle(ChatFormatting.BLUE));
 			case TSUBA, HILT, HAND_GUARD, BINDING, STUDS, GRIP, HAFT -> textConsumer.accept(
 					Component.literal("Speed: " + (material.speed >= 0 ? "+" : "") + material.speed).withStyle(ChatFormatting.BLUE));
-			case CUTLASS_BLADE, SABRE_BLADE, AXE_HEAD, JITTE_ROD, CLUB_HEAD, SPEARHEAD -> textConsumer.accept(Component.literal(
+			case CUTLASS_BLADE, SABRE_BLADE, AXE_HEAD, JITTE_ROD, CLUB_HEAD, SPEARHEAD, KNUCKLES -> textConsumer.accept(Component.literal(
 					String.format("%s damage: %.1f", weapon.displayName, WeaponStats.damage(weapon, material))).withStyle(ChatFormatting.BLUE));
+			case IMPACT_CORE, REJECT_CORE -> textConsumer.accept(Component.literal(String.format("%s punch: %.1f, catches up to %.0f damage",
+					weapon.displayName, WeaponStats.damage(weapon, material), DialCharge.CAPACITY)).withStyle(ChatFormatting.BLUE));
 			case BARREL, LONG_BARREL, CANNON_BORE -> textConsumer.accept(Component.literal(String.format("Shot damage: %.0f, range: %.0f blocks",
 					GunStats.damage(gun, material), GunStats.range(gun, material))).withStyle(ChatFormatting.BLUE));
 			case LOCK, FUSE -> textConsumer.accept(Component.literal(String.format("%s reload: %.2fs", gun.displayName, GunStats.cooldown(gun, material) / 20.0))
