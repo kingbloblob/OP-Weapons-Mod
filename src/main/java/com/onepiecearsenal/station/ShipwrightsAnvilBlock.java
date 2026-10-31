@@ -127,6 +127,11 @@ public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 		return InteractionResult.SUCCESS;
 	}
 
+	/** True if the inventory holds a full set of parts that forge() would put together (Navy sets only count when navy is true). */
+	public static boolean hasSet(Inventory inventory, boolean navy) {
+		return findSet(inventory, navy) != null;
+	}
+
 	/** What a full set of parts makes, and the slots it uses up. */
 	private record Forged(ItemStack item, int[] slots) {
 		/** The slots' first part is the head: a salvaged one brings back the gear it came from. */

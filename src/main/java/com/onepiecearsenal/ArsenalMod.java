@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import net.fabricmc.api.ModInitializer;
 
 import com.onepiecearsenal.armorset.SetBonuses;
+import com.onepiecearsenal.ammo.ArsenalRounds;
 import com.onepiecearsenal.cannon.CannonShells;
 import com.onepiecearsenal.compat.MainModLinks;
 import com.onepiecearsenal.disguise.MarineDisguise;
@@ -23,11 +24,13 @@ import com.onepiecearsenal.loot.MarineSteelLoot;
 import com.onepiecearsenal.loot.MaterialLoot;
 import com.onepiecearsenal.material.TraitEffects;
 import com.onepiecearsenal.material.TraitStats;
+import com.onepiecearsenal.mastery.Mastery;
 import com.onepiecearsenal.meito.Meito;
 import com.onepiecearsenal.salvage.Salvage;
 import com.onepiecearsenal.skill.WeaponSkills;
 import com.onepiecearsenal.station.NavyStations;
 import com.onepiecearsenal.tool.WeaponEffects;
+import com.onepiecearsenal.town.Blacksmiths;
 import com.onepiecearsenal.upgrade.Upgrades;
 
 /**
@@ -58,12 +61,15 @@ public class ArsenalMod implements ModInitializer {
 		Suspicion.initialize();
 		PirateGrudge.initialize();
 		Meito.initialize();
+		Mastery.initialize();
 		MainModLinks.initialize(); // After Meito, so whetstones its gates refuse don't count.
 		NavyStations.initialize();
 		Upgrades.initialize();
 		Salvage.initialize();
+		Blacksmiths.initialize();
 		GuideBook.initialize();
 		CannonShells.initialize();
+		ArsenalRounds.initialize();
 	}
 
 	public static Identifier id(String path) {

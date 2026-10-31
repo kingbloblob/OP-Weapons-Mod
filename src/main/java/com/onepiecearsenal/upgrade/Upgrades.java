@@ -39,8 +39,10 @@ import com.onepiecearsenal.ArsenalItems;
 import com.onepiecearsenal.ArsenalMod;
 import com.onepiecearsenal.compat.OnePieceBridge;
 import com.onepiecearsenal.fruit.FruitWeapons;
+import com.onepiecearsenal.mastery.Mastery;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.TraitEffects;
+import com.onepiecearsenal.part.PartItem;
 import com.onepiecearsenal.salvage.Breakage;
 import com.onepiecearsenal.tool.ArmorStats;
 import com.onepiecearsenal.tool.ArsenalGunItem;
@@ -271,6 +273,12 @@ public final class Upgrades {
 		ItemStack offhand = smith.getOffhandItem();
 		if (OnePieceBridge.fruitId(offhand) != null) {
 			return FruitWeapons.feed(level, pos, smith, gear, offhand);
+		}
+		if (offhand.getItem() instanceof PartItem) {
+			InteractionResult bound = Mastery.work(level, pos, smith, gear, offhand);
+			if (bound != null) {
+				return bound;
+			}
 		}
 		for (Upgrade upgrade : Upgrade.values()) {
 			if (upgrade.isItem(offhand)) {

@@ -38,6 +38,7 @@ import com.onepiecearsenal.haki.HakiImbue;
 import com.onepiecearsenal.ArsenalComponents;
 import com.onepiecearsenal.ArsenalMod;
 import com.onepiecearsenal.compat.OnePieceBridge;
+import com.onepiecearsenal.mastery.Mastery;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
 import com.onepiecearsenal.salvage.Breakage;
@@ -303,7 +304,9 @@ public final class Meito {
 		BladeRecord old = record(katana);
 		int oldLevel = level(katana);
 		int cap = xpForLevel(MAX_LEVEL[grade]);
-		int xp = Math.min(cap, old.xp() + KILL_XP + (armed ? ARMED_XP : 0) + bossTier * BOSS_XP_PER_TIER);
+		int gained = Mastery.withFolded(KILL_XP + (armed ? ARMED_XP : 0) + bossTier * BOSS_XP_PER_TIER,
+				KatanaStats.traits(katana).contains(Trait.FOLDED), player.getRandom());
+		int xp = Math.min(cap, old.xp() + gained);
 		katana.set(ArsenalComponents.BLADE_RECORD, new BladeRecord(xp, old.armedKills() + (armed ? 1 : 0), Math.max(old.bossTier(), bossTier)));
 
 		int newLevel = level(katana);

@@ -18,6 +18,7 @@ import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 
 import com.onepiecearsenal.haki.HakiImbue;
+import com.onepiecearsenal.mastery.Mastery;
 import com.onepiecearsenal.fruit.FruitWeapons;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
@@ -137,6 +138,7 @@ public class ArsenalGunItem extends GunItem {
 					.withStyle(ChatFormatting.GOLD));
 		}
 		Upgrades.describe(stack, textConsumer);
+		Mastery.describe(stack, textConsumer);
 		textConsumer.accept(Component.literal(type.ammo == Ammo.Kind.CANNONBALL ? "Needs Cannonballs." : "Needs Bullets or Seastone Bullets.")
 				.withStyle(ChatFormatting.DARK_GRAY));
 		WeaponUpgrades.describe(stack).forEach(textConsumer);

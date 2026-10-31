@@ -15,6 +15,7 @@ import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.world.item.component.ItemContainerContents;
 
 import com.onepiecearsenal.haki.HakiCoat;
+import com.onepiecearsenal.mastery.WeaponMastery;
 import com.onepiecearsenal.meito.BladeRecord;
 
 /**
@@ -113,6 +114,15 @@ public class ArsenalComponents {
 	public static final DataComponentType<HakiCoat> HAKI_COAT = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
 			ArsenalMod.id("haki_coat"),
 			DataComponentType.<HakiCoat>builder().persistent(HakiCoat.CODEC).networkSynchronized(HakiCoat.STREAM_CODEC).ignoreSwapAnimation().build());
+
+	/**
+	 * A weapon's mastery XP and the trait bound into its mastery slot (see Mastery). It changes with kills, so it skips
+	 * the "pull out" animation.
+	 */
+	public static final DataComponentType<WeaponMastery> MASTERY = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
+			ArsenalMod.id("mastery"),
+			DataComponentType.<WeaponMastery>builder().persistent(WeaponMastery.CODEC).networkSynchronized(WeaponMastery.STREAM_CODEC)
+					.ignoreSwapAnimation().build());
 
 	/** Loads this class, which registers the components above. */
 	static void initialize() {

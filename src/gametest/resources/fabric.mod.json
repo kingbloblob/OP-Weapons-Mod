@@ -7,7 +7,9 @@
   "environment": "*",
   "entrypoints": {
     "fabric-gametest": [
+      "com.onepiecearsenal.test.AmmoTests",
       "com.onepiecearsenal.test.ArmorTests",
+      "com.onepiecearsenal.test.BlacksmithTests",
       "com.onepiecearsenal.test.BossGearTests",
       "com.onepiecearsenal.test.CannonTests",
       "com.onepiecearsenal.test.DisguiseTests",
@@ -16,6 +18,7 @@
       "com.onepiecearsenal.test.HakiImbueTests",
       "com.onepiecearsenal.test.HunterGearTests",
       "com.onepiecearsenal.test.IslandMaterialTests",
+      "com.onepiecearsenal.test.MasteryTests",
       "com.onepiecearsenal.test.MeitoTests",
       "com.onepiecearsenal.test.RestatTests",
       "com.onepiecearsenal.test.SalvageTests",
