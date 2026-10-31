@@ -16,6 +16,7 @@ import net.minecraft.world.item.component.ItemAttributeModifiers;
 import com.onepiecearsenal.ArsenalComponents;
 import com.onepiecearsenal.ArsenalItems;
 import com.onepiecearsenal.ArsenalMod;
+import com.onepiecearsenal.mastery.Mastery;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
 import com.onepiecearsenal.material.TraitStats;
@@ -85,7 +86,7 @@ public final class WeaponStats {
 	/** The head's head trait, and the handle traits of the binding and handle. */
 	public static Set<Trait> traits(ItemStack weapon) {
 		List<ArsenalMaterial> parts = parts(weapon);
-		return parts.isEmpty() ? EnumSet.noneOf(Trait.class) : traits(parts.get(0), parts.get(1), parts.get(2));
+		return parts.isEmpty() ? EnumSet.noneOf(Trait.class) : Mastery.withBound(weapon, traits(parts.get(0), parts.get(1), parts.get(2)));
 	}
 
 	private static Set<Trait> traits(ArsenalMaterial head, ArsenalMaterial binding, ArsenalMaterial handle) {

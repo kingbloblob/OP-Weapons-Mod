@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 
+import com.onepiecearsenal.mastery.Mastery;
 import com.onepiecearsenal.compat.OnePieceBridge;
 import com.onepiecearsenal.fruit.FruitWeapons;
 import com.onepiecearsenal.material.ArsenalMaterial;
@@ -66,6 +67,7 @@ public class KatanaItem extends Item {
 					.withStyle(ChatFormatting.GOLD));
 		}
 		Upgrades.describe(stack, textConsumer);
+		Mastery.describe(stack, textConsumer);
 
 		int level = Meito.level(stack);
 		int maxLevel = Meito.maxLevel(stack);
