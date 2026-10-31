@@ -133,6 +133,32 @@ for weapon, layers in weapon_layers.items():
                   "cases": [{"when": name, "model": model(f"famous/{name}", "minecraft:item/handheld")} for name in famous[weapon]],
                   "fallback": forged}
     w(f'{A}/items/{weapon}.json', {"model": forged})
+
+
+def held(scale, tilt=55, first_tilt=25, lift=0.0, first_lift=None, flip=False):
+    """Vanilla's handheld poses (item/handheld.json), scaled up so the famous weapons are their anime size in hand.
+    tilt is the angle of the texture's diagonal (55 is a sword's); a texture drawn level needs 45 more. lift raises it so
+    the grip stays in the hand once it's bigger, and first_lift (half of lift unless given) does the same in first person.
+    flip turns it upside down, for a texture whose top would end up underneath once it's tilted past level."""
+    third, first = scale
+    if first_lift is None:
+        first_lift = lift / 2
+    up = -1 if flip else 1
+    pose = {}
+    for side, sign in (("right", 1), ("left", -1)):
+        pose[f"thirdperson_{side}hand"] = {"rotation": [0, -90 * sign, tilt * sign],
+                                           "translation": [0, 4 + lift, 0.5], "scale": [0.85 * third, 0.85 * third * up, 0.85 * third]}
+        pose[f"firstperson_{side}hand"] = {"rotation": [0, -90 * sign, first_tilt * sign],
+                                           "translation": [1.13, 3.2 + first_lift, 1.13], "scale": [0.68 * first, 0.68 * first * up, 0.68 * first]}
+    return pose
+
+
+# How big each famous weapon is in hand (third person, first person). Icons in the inventory stay normal size.
+for name, display in {"ragnir": held((1.8, 1.4), lift=3.0, first_lift=0.0),  # a giant's hammer
+                      "lassoo": held((1.4, 1.4), tilt=100, first_tilt=200, flip=True),  # a bazooka, held level
+                      "funkfreed": held((1.15, 1.15), lift=0.5), "cerberus": held((1.15, 1.15), lift=0.5)}.items():
+    w(f'{A}/models/item/famous/{name}.json', {"parent": "minecraft:item/handheld",
+                                              "textures": {"layer0": f"arsenal:item/famous/{name}"}, "display": display})
 for piece in ["hat", "coat", "sash", "boots"]:
     w(f'{A}/items/{piece}.json', {"model": by_material(f"armor/{piece}", 0)})
 # The worn look of Arsenal armor, one per shell material (ArmorStats picks it when a piece is forged).
