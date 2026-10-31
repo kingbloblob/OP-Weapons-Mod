@@ -14,6 +14,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.world.item.component.ItemContainerContents;
 
+import com.onepiecearsenal.haki.HakiCoat;
 import com.onepiecearsenal.meito.BladeRecord;
 
 /**
@@ -104,6 +105,14 @@ public class ArsenalComponents {
 	public static final DataComponentType<String> EATEN_FRUIT = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
 			ArsenalMod.id("eaten_fruit"),
 			DataComponentType.<String>builder().persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.STRING_UTF8).build());
+
+	/**
+	 * Armament Haki coating a weapon or gun until a game time (see HakiImbue). The client blackens the blade while
+	 * it's on, so it's sent to the player's game. It skips the "pull out" animation.
+	 */
+	public static final DataComponentType<HakiCoat> HAKI_COAT = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
+			ArsenalMod.id("haki_coat"),
+			DataComponentType.<HakiCoat>builder().persistent(HakiCoat.CODEC).networkSynchronized(HakiCoat.STREAM_CODEC).ignoreSwapAnimation().build());
 
 	/** Loads this class, which registers the components above. */
 	static void initialize() {

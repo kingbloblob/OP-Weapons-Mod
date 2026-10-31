@@ -17,6 +17,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 
+import com.onepiecearsenal.haki.HakiImbue;
 import com.onepiecearsenal.fruit.FruitWeapons;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
@@ -106,6 +107,7 @@ public class ArsenalGunItem extends GunItem {
 		super.inventoryTick(stack, level, owner, slot);
 		Restat.refresh(stack);
 		Breakage.notice(stack, owner);
+		HakiImbue.tidy(stack, level.getGameTime(), slot);
 	}
 
 	@Override
@@ -129,6 +131,7 @@ public class ArsenalGunItem extends GunItem {
 		textConsumer.accept(Component.literal(type.lock.displayName + ": " + parts.get(1).displayName).withStyle(ChatFormatting.GRAY));
 		textConsumer.accept(Component.literal(type.stock.displayName + ": " + parts.get(2).displayName).withStyle(ChatFormatting.GRAY));
 		FruitWeapons.describe(stack, textConsumer);
+		HakiImbue.describe(stack, textConsumer);
 		for (Trait trait : GunStats.traits(stack)) {
 			textConsumer.accept(Component.literal(trait.displayName + ": " + trait.description + (trait.active ? "" : " (coming soon)"))
 					.withStyle(ChatFormatting.GOLD));

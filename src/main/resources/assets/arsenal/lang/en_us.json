@@ -52,5 +52,8 @@
   "item.arsenal.spear": "Spear",
   "item.arsenal.flintlock": "Flintlock",
   "item.arsenal.musket": "Musket",
-  "item.arsenal.hand_cannon": "Hand Cannon"
+  "item.arsenal.hand_cannon": "Hand Cannon",
+  "key.category.arsenal.arsenal": "One Piece Arsenal",
+  "key.arsenal.weapon_skill": "Weapon Skill",
+  "key.arsenal.imbue_haki": "Imbue Haki"
 }

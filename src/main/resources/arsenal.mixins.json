@@ -9,6 +9,7 @@
 		"MobMixin"
 	],
 	"client": [
+		"client.ItemTintSourcesAccessor",
 		"client.SelectItemModelPropertiesAccessor"
 	],
 	"injectors": {
