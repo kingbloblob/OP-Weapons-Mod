@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_knuckles",
+  "key": {
+    "M": "minecraft:gold_ingot",
+    "N": "minecraft:iron_nugget"
+  },
+  "pattern": [
+    "MMM",
+    "N N"
+  ],
+  "result": {
+    "id": "arsenal:knuckles",
+    "components": {
+      "arsenal:part_material": "treasure_gold"
+    }
+  }
+}

@@ -23,7 +23,7 @@ import com.onepiecearsenal.skill.WeaponSkill;
 import com.onepiecearsenal.upgrade.Upgrades;
 
 /**
- * A cutlass, sabre, boarding axe, jitte, kanabo or spear built from a head, a binding and a handle at the
+ * A cutlass, sabre, boarding axe, jitte, kanabo, spear, pair of Fishman Gloves or Dial palm built from a head, a binding and a handle at the
  * Shipwright's Anvil. Its name, numbers and traits all come from the parts (see WeaponStats), and what makes
  * each type different is in WeaponType and WeaponEffects.
  */
@@ -65,6 +65,7 @@ public class ArsenalWeaponItem extends Item {
 		textConsumer.accept(Component.literal(type.binding.displayName + ": " + parts.get(1).displayName).withStyle(ChatFormatting.GRAY));
 		textConsumer.accept(Component.literal(type.handle.displayName + ": " + parts.get(2).displayName).withStyle(ChatFormatting.GRAY));
 		textConsumer.accept(Component.literal(type.ability).withStyle(ChatFormatting.AQUA));
+		DialCharge.describe(stack, textConsumer);
 		WeaponSkill.describe(stack, textConsumer);
 		FruitWeapons.describe(stack, textConsumer);
 		HakiImbue.describe(stack, textConsumer);

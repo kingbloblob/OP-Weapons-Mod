@@ -38,8 +38,10 @@ import com.onepiecearsenal.fruit.FruitWeapons;
 import com.onepiecearsenal.material.TraitEffects;
 import com.onepiecearsenal.meito.Meito;
 import com.onepiecearsenal.salvage.Breakage;
+import com.onepiecearsenal.tool.DialCharge;
 import com.onepiecearsenal.tool.KatanaItem;
 import com.onepiecearsenal.tool.KatanaStats;
+import com.onepiecearsenal.tool.WeaponEffects;
 import com.onepiecearsenal.tool.WeaponStats;
 
 /**
@@ -62,6 +64,7 @@ public final class WeaponSkills {
 	private static final int RIPOSTE_TICKS = 30;
 	private static final int HOOK_SLOW_TICKS = 60;
 	private static final int SHIELD_DISABLE_TICKS = 100;
+	private static final int THROW_REEL_TICKS = 40;
 
 	/** Game time until which a player who used Boarding Leap takes no fall damage. */
 	private static final Map<UUID, Long> SAFE_FALL_UNTIL = new HashMap<>();
@@ -119,7 +122,7 @@ public final class WeaponSkills {
 			return;
 		}
 		if (skill == null) {
-			tell(player, "Hold an Arsenal katana, cutlass, sabre, axe, jitte, kanabo or spear to use a weapon skill.", ChatFormatting.RED);
+			tell(player, "Hold an Arsenal katana, cutlass, sabre, axe, jitte, kanabo, spear, gloves or Dial palm to use a weapon skill.", ChatFormatting.RED);
 			return;
 		}
 		boolean katana = weapon.getItem() instanceof KatanaItem;
@@ -138,6 +141,10 @@ public final class WeaponSkills {
 		if (player.getCooldowns().isOnCooldown(weapon)) {
 			int seconds = Mth.ceil(player.getCooldowns().getCooldownPercent(weapon, 0.0f) * skill.cooldownTicks / 20.0f);
 			tell(player, skill.displayName + " is ready in " + Math.max(1, seconds) + "s", ChatFormatting.GRAY);
+			return;
+		}
+		if (DialCharge.isDial(weapon) && DialCharge.stored(weapon) <= 0) {
+			tell(player, "The Dial is empty. Sneak and take a hit from the front to fill it.", ChatFormatting.GRAY);
 			return;
 		}
 		if (!player.isCreative() && player.getFoodData().getFoodLevel() <= MIN_FOOD) {
@@ -236,17 +243,65 @@ public final class WeaponSkills {
 				level.sendParticles(ParticleTypes.CLOUD, player.getX(), player.getY() + 0.1, player.getZ(), 10, 0.3, 0.05, 0.3, 0.02);
 				sound(level, player, SoundEvents.PLAYER_ATTACK_STRONG, 0.9f);
 			}
+			case SEA_DRAGON_THROW -> { // Grab them and throw them over your shoulder, to land behind you.
+				List<LivingEntity> target = OnePieceBridge.enemiesInLine(player, level, 3.0, 0.8, 1);
+				if (target.isEmpty()) {
+					return false;
+				}
+				LivingEntity thrown = target.get(0);
+				boolean wet = WeaponEffects.wet(player) || WeaponEffects.wet(thrown);
+				hit(player, level, thrown, skill, wet ? 2.0f : 1.0f);
+				thrown.setDeltaMovement(-flatLook.x * 0.9, 0.8, -flatLook.z * 0.9);
+				thrown.needsSync = true;
+				if (thrown instanceof ServerPlayer caught) {
+					caught.connection.send(new ClientboundSetEntityMotionPacket(caught));
+				}
+				thrown.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, THROW_REEL_TICKS, 1), player);
+				thrown.addEffect(new MobEffectInstance(MobEffects.NAUSEA, THROW_REEL_TICKS * 2, 0), player);
+				particles(level, thrown, ParticleTypes.SPLASH, 30);
+				sound(level, player, SoundEvents.PLAYER_SPLASH_HIGH_SPEED, 0.8f);
+			}
+			case IMPACT_RELEASE, REJECT_RELEASE -> { // Let out what the Dial caught.
+				List<LivingEntity> target = OnePieceBridge.enemiesInLine(player, level, 3.5, 0.9, 1);
+				if (target.isEmpty()) {
+					return false; // The charge stays in the Dial.
+				}
+				ItemStack dial = player.getMainHandItem();
+				float charge = DialCharge.stored(dial);
+				LivingEntity struck = target.get(0);
+				hit(player, level, struck, skill, 1.0f, DialCharge.power(dial, charge));
+				Vec3 away = struck.position().subtract(player.position()).multiply(1, 0, 1).normalize();
+				double force = 1.2 + charge / 10.0 * (skill == WeaponSkill.REJECT_RELEASE ? 2.0 : 1.0);
+				struck.setDeltaMovement(away.x * force, 0.4 + force * 0.15, away.z * force);
+				struck.needsSync = true;
+				if (struck instanceof ServerPlayer pushed) {
+					pushed.connection.send(new ClientboundSetEntityMotionPacket(pushed));
+				}
+				DialCharge.set(dial, 0);
+				DialCharge.kick(player, DialCharge.recoil(dial, charge));
+				level.sendParticles(ParticleTypes.EXPLOSION, struck.getX(), struck.getY() + struck.getBbHeight() / 2, struck.getZ(),
+						skill == WeaponSkill.REJECT_RELEASE ? 4 : 1, 0.3, 0.3, 0.3, 0);
+				sound(level, player, SoundEvents.GENERIC_EXPLODE.value(), skill == WeaponSkill.REJECT_RELEASE ? 0.6f : 1.2f);
+			}
 		}
 		return true;
+	}
+
+	private static void hit(ServerPlayer player, ServerLevel level, LivingEntity target, WeaponSkill skill) {
+		hit(player, level, target, skill, 1.0f, 0.0f);
+	}
+
+	private static void hit(ServerPlayer player, ServerLevel level, LivingEntity target, WeaponSkill skill, float scale) {
+		hit(player, level, target, skill, scale, 0.0f);
 	}
 
 	/**
 	 * One hit of a skill: a share of the weapon's attack damage (grades, levels, upgrades and Strength all count),
 	 * then the weapon's material traits, like a normal swing.
 	 */
-	private static void hit(ServerPlayer player, ServerLevel level, LivingEntity target, WeaponSkill skill) {
+	private static void hit(ServerPlayer player, ServerLevel level, LivingEntity target, WeaponSkill skill, float scale, float extra) {
 		float attack = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
-		float damage = attack * skill.damageScale * (OnePieceBridge.armamentActive(player) ? ARMAMENT_BONUS : 1.0f);
+		float damage = (attack * skill.damageScale * scale + extra) * (OnePieceBridge.armamentActive(player) ? ARMAMENT_BONUS : 1.0f);
 		if (target.hurtServer(level, player.damageSources().playerAttack(player), damage)) {
 			TraitEffects.onHit(player, level, target, TraitEffects.traits(player.getMainHandItem()), attack, true);
 		}

@@ -116,6 +116,14 @@ public class ArsenalComponents {
 			DataComponentType.<HakiCoat>builder().persistent(HakiCoat.CODEC).networkSynchronized(HakiCoat.STREAM_CODEC).ignoreSwapAnimation().build());
 
 	/**
+	 * The damage an Impact or Reject Palm's Dial has caught and is holding, ready to let out (see DialCharge).
+	 * It changes in the middle of fights, so it skips the "pull out" animation.
+	 */
+	public static final DataComponentType<Float> DIAL_CHARGE = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
+			ArsenalMod.id("dial_charge"),
+			DataComponentType.<Float>builder().persistent(Codec.FLOAT).networkSynchronized(ByteBufCodecs.FLOAT).ignoreSwapAnimation().build());
+
+	/**
 	 * A weapon's mastery XP and the trait bound into its mastery slot (see Mastery). It changes with kills, so it skips
 	 * the "pull out" animation.
 	 */

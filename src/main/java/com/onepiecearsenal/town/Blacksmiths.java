@@ -103,6 +103,10 @@ public final class Blacksmiths {
 	private static boolean forgePart(Level level, BlockPos pos, ServerPlayer customer, PartItem part, Item offhand, String town,
 			Consumer<String> say) {
 		PartType type = part.type();
+		if (type.isDial()) {
+			say.accept("A " + type.displayName + "? That's Skypiea work. Craft it yourself, around a Dial Shell.");
+			return false;
+		}
 		ArsenalMaterial material = null;
 		ArsenalMaterial refused = null;
 		for (ArsenalMaterial candidate : ArsenalMaterial.values()) {
