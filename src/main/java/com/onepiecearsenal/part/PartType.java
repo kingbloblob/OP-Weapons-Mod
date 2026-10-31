@@ -42,7 +42,11 @@ public enum PartType {
 	COAT_PLATES("coat_plates", "Coat Plates", true),
 	SASH_WEAVE("sash_weave", "Sash Weave", true),
 	BOOT_SOLES("boot_soles", "Boot Soles", true),
-	LINING("lining", "Lining", false);
+	LINING("lining", "Lining", false),
+	// A shield's face (its rim is a Binding and its strap a Grip, see ShieldStats), and the plates of a pair of
+	// gauntlets (lined with a Lining, see GauntletStats).
+	SHIELD_FACE("shield_face", "Shield Face", true),
+	GAUNTLET_PLATES("gauntlet_plates", "Gauntlet Plates", true);
 
 	private final String id;
 	public final String displayName;
@@ -59,13 +63,13 @@ public enum PartType {
 		return id;
 	}
 
-	/** Armor shells and linings: the only parts hides and leathers (armor-only materials) can make. */
 	/** The Skypiea Dial cores. Only crafted with Dial Shells: the Navy stations don't know how to make them. */
 	public boolean isDial() {
 		return this == IMPACT_CORE || this == REJECT_CORE;
 	}
 
+	/** Armor shells, gauntlet plates and linings: the only parts hides and leathers (armor-only materials) can make. */
 	public boolean isArmor() {
-		return this == CROWN || this == COAT_PLATES || this == SASH_WEAVE || this == BOOT_SOLES || this == LINING;
+		return this == CROWN || this == COAT_PLATES || this == SASH_WEAVE || this == BOOT_SOLES || this == LINING || this == GAUNTLET_PLATES;
 	}
 }

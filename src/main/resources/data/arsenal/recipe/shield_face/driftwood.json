@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_shield_face",
+  "key": {
+    "M": "arsenal:driftwood",
+    "L": "minecraft:leather"
+  },
+  "pattern": [
+    "MLM",
+    "MMM",
+    " M "
+  ],
+  "result": {
+    "id": "arsenal:shield_face",
+    "components": {
+      "arsenal:part_material": "driftwood"
+    }
+  }
+}

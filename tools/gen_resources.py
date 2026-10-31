@@ -80,6 +80,10 @@ lang = {
     "item.arsenal.coat": "Coat",
     "item.arsenal.sash": "Sash",
     "item.arsenal.boots": "Boots",
+    "item.arsenal.shield_face": "Shield Face",
+    "item.arsenal.gauntlet_plates": "Gauntlet Plates",
+    "item.arsenal.shield": "Shield",
+    "item.arsenal.gauntlets": "Gauntlets",
     "block.arsenal.shipwrights_anvil": "Shipwright's Anvil",
     "block.arsenal.marine_armory_bench": "Marine Armory Bench",
     "block.arsenal.quartermasters_desk": "Quartermaster's Desk",
@@ -101,9 +105,10 @@ WEAPON_TEXTURED = [m["id"] for m in MATERIALS if not m.get("armor_only")]
 FALLBACK = "ship_iron"  # what a blank part (from the creative menu) looks like
 
 
-def model(path, parent="minecraft:item/generated"):
-    w(f'{A}/models/item/{path}.json', {"parent": parent, "textures": {"layer0": f"arsenal:item/{path}"}})
-    return {"type": "minecraft:model", "model": f"arsenal:item/{path}"}
+def model(path, parent="minecraft:item/generated", suffix=""):
+    """An item model for the texture item/<path>. suffix names a second model of the same texture (another pose)."""
+    w(f'{A}/models/item/{path}{suffix}.json', {"parent": parent, "textures": {"layer0": f"arsenal:item/{path}"}})
+    return {"type": "minecraft:model", "model": f"arsenal:item/{path}{suffix}"}
 
 
 # A weapon coated in Armament Haki (haki/HakiImbue) turns its first layer black: the "arsenal:haki_coat" tint
@@ -115,15 +120,16 @@ def coated(entry):
     return {**entry, "tints": HAKI_COAT}
 
 
-def by_material(folder, index=None, parent="minecraft:item/generated", materials=None, haki=False):
+def by_material(folder, index=None, parent="minecraft:item/generated", materials=None, haki=False, suffix=""):
     """Picks folder/<material> by the material of the part at index (or of the part itself).
-    haki=True lets these models turn black while the weapon is coated in Haki."""
+    haki=True lets these models turn black while the weapon is coated in Haki. suffix names a second model of
+    the same textures (another pose, like a raised shield)."""
     tint = coated if haki else (lambda entry: entry)
     select = {"type": "minecraft:select", "property": "arsenal:part_material"}
     if index is not None:
         select["index"] = index
-    select["cases"] = [{"when": m, "model": tint(model(f"{folder}/{m}", parent))} for m in (materials or TEXTURED)]
-    select["fallback"] = tint({"type": "minecraft:model", "model": f"arsenal:item/{folder}/{FALLBACK}"})
+    select["cases"] = [{"when": m, "model": tint(model(f"{folder}/{m}", parent, suffix))} for m in (materials or TEXTURED)]
+    select["fallback"] = tint({"type": "minecraft:model", "model": f"arsenal:item/{folder}/{FALLBACK}{suffix}"})
     return select
 
 
@@ -133,9 +139,9 @@ for name in ["driftwood", "marine_steel_ingot", "cannon_bronze_ingot", "sea_king
     w(f'{A}/items/{name}.json', {"model": model(name)})
 for part in ["katana_blade", "tsuba", "hilt", "barrel", "firing_lock", "stock", "long_barrel", "cannon_bore", "fuse",
              "gun_carriage", "cannon_shell", "musket_ball", "cutlass_blade", "sabre_blade", "axe_head", "jitte_rod", "club_head", "spearhead",
-             "knuckles", "impact_core", "reject_core", "hand_guard", "binding", "studs", "grip", "haft"]:
+             "knuckles", "impact_core", "reject_core", "hand_guard", "binding", "studs", "grip", "haft", "shield_face"]:
     w(f'{A}/items/{part}.json', {"model": by_material(f"part/{part}", materials=WEAPON_TEXTURED)})
-for part in ["crown", "coat_plates", "sash_weave", "boot_soles", "lining"]:
+for part in ["crown", "coat_plates", "sash_weave", "boot_soles", "lining", "gauntlet_plates"]:
     w(f'{A}/items/{part}.json', {"model": by_material(f"part/{part}")})
 # Each weapon's layers, in the order its parts are saved (katana_parts, gun_parts or weapon_parts).
 weapon_layers = {
@@ -187,6 +193,41 @@ for name, display in {"ragnir": held((1.8, 1.4), lift=3.0, first_lift=0.0),  # a
                       "funkfreed": held((1.15, 1.15), lift=0.5), "cerberus": held((1.15, 1.15), lift=0.5)}.items():
     w(f'{A}/models/item/famous/{name}.json', {"parent": "minecraft:item/handheld",
                                               "textures": {"layer0": f"arsenal:item/famous/{name}"}, "display": display})
+# Shields (shield_parts: face, rim, strap; the strap shows as the boss in the middle). Held flat like a buckler, and
+# brought up in front of you while it's raised (minecraft:using_item). Both poses are the two parent models below.
+# Tuned in game. A flat item/generated sprite lies like a tray in third person and edge-on in first person at
+# rotation 0, so: held = a buckler on the forearm, face outward; raised = face toward the camera, lower middle.
+# Left-hand transforms are mirrored by the game, so both hands get the same numbers.
+SHIELD_HELD_3RD = {"rotation": [0, 90, 90], "translation": [2, 4, 1.5], "scale": [0.85, 0.85, 0.85]}
+SHIELD_HELD_1ST = {"rotation": [0, -90, 10], "translation": [-3, 4, -2], "scale": [0.8, 0.8, 0.8]}
+SHIELD_POSE = {
+    "thirdperson_righthand": SHIELD_HELD_3RD,
+    "thirdperson_lefthand": SHIELD_HELD_3RD,
+    "firstperson_righthand": SHIELD_HELD_1ST,
+    "firstperson_lefthand": SHIELD_HELD_1ST,
+    "gui": {"rotation": [0, 0, 0], "translation": [0, 0, 0], "scale": [1, 1, 1]},
+    "ground": {"rotation": [0, 0, 0], "translation": [0, 2, 0], "scale": [0.5, 0.5, 0.5]},
+    "fixed": {"rotation": [0, 180, 0], "translation": [0, 0, 0], "scale": [1, 1, 1]},
+}
+SHIELD_RAISED_1ST = {"rotation": [0, -90, 0], "translation": [22, 4, 5], "scale": [1.1, 1.1, 1.1]}
+SHIELD_RAISED = {**SHIELD_POSE,
+    "thirdperson_righthand": {"rotation": [0, 90, 0], "translation": [-3, 5, 3], "scale": [1.0, 1.0, 1.0]},
+    "thirdperson_lefthand": {"rotation": [0, -90, 0], "translation": [-3, 5, 3], "scale": [1.0, 1.0, 1.0]},
+    "firstperson_righthand": SHIELD_RAISED_1ST,
+    "firstperson_lefthand": SHIELD_RAISED_1ST,
+}
+w(f'{A}/models/item/shield_held.json', {"parent": "minecraft:item/generated", "display": SHIELD_POSE})
+w(f'{A}/models/item/shield_raised.json', {"parent": "minecraft:item/generated", "display": SHIELD_RAISED})
+shield_layers = ["face", "rim", "boss"]
+w(f'{A}/items/shield.json', {"model": {
+    "type": "minecraft:condition", "property": "minecraft:using_item",
+    "on_true": {"type": "minecraft:composite", "models": [
+        by_material(f"shield/{layer}", i, "arsenal:item/shield_raised", WEAPON_TEXTURED, suffix="_raised") for i, layer in enumerate(shield_layers)]},
+    "on_false": {"type": "minecraft:composite", "models": [
+        by_material(f"shield/{layer}", i, "arsenal:item/shield_held", WEAPON_TEXTURED) for i, layer in enumerate(shield_layers)]}}})
+# Gauntlets (gauntlet_parts: plates, lining). Any material makes plates, hides and leathers too.
+w(f'{A}/items/gauntlets.json', {"model": {"type": "minecraft:composite", "models": [
+    by_material(f"gauntlets/{layer}", i) for i, layer in enumerate(["plates", "lining"])]}})
 for piece in ["hat", "coat", "sash", "boots"]:
     w(f'{A}/items/{piece}.json', {"model": by_material(f"armor/{piece}", 0)})
 # The worn look of Arsenal armor, one per shell material (ArmorStats picks it when a piece is forged).
@@ -273,7 +314,7 @@ w('data/onepiece/tags/item/holds_dial.json', {"replace": False, "values": [
 # The One Piece Mod's gun enchantments (Quick Draw, Sniper's Eye) and Unbreaking/Mending work on Arsenal guns.
 w('data/onepiece/tags/item/guns.json', {"replace": False, "values": [f"arsenal:{g}" for g in GUNS]})
 w('data/minecraft/tags/item/enchantable/durability.json', {"replace": False,
-    "values": [f"arsenal:{g}" for g in GUNS] + OTHER_WEAPONS})
+    "values": [f"arsenal:{g}" for g in GUNS] + OTHER_WEAPONS + ["arsenal:shield", "arsenal:gauntlets"]})
 # Any part material repairs Arsenal armor at an anvil (the main mod's tags do the same per set).
 w(f'{D}/tags/item/repairs_arsenal_armor.json', {"replace": False,
     "values": sorted({m["item"] for m in MATERIALS if m.get("craftable", True)})})
@@ -355,13 +396,16 @@ parts = {
     "sash_weave": (["MMM", "MLM", "M M"], {"L": L}),
     "boot_soles": (["MLM", "M M"], {"L": L}),
     "lining": (["LML"], {"L": L}),
+    # Vanilla's shield shape with a leather pad where its iron goes; gauntlet plates are boot soles upside down.
+    "shield_face": (["MLM", "MMM", " M "], {"L": L}),
+    "gauntlet_plates": (["M M", "MLM"], {"L": L}),
 }
 # Shapes that would clash with a vanilla recipe for one material get their own (GameTests check none clash).
 CLASHES = {
     ("katana_blade", "minecraft:copper_ingot"): (["M ", "M ", "MN"], {"N": N}),  # three copper is a Lightning Rod
     ("long_barrel", "minecraft:flint"): (["MMM", "  N"], {"N": N}),  # a flint lock on flint is the Axe Head mirrored
 }
-ARMOR_PARTS = {"crown", "coat_plates", "sash_weave", "boot_soles", "lining"}
+ARMOR_PARTS = {"crown", "coat_plates", "sash_weave", "boot_soles", "lining", "gauntlet_plates"}
 COUNTS = {"cannon_shell": 4, "musket_ball": 8}  # parts that come more than one to a craft
 for m in MATERIALS:
     if not m.get("craftable", True) or m["faction"] == "navy":

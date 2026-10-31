@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_gauntlet_plates",
+  "key": {
+    "M": "minecraft:amethyst_shard",
+    "L": "minecraft:leather"
+  },
+  "pattern": [
+    "M M",
+    "MLM"
+  ],
+  "result": {
+    "id": "arsenal:gauntlet_plates",
+    "components": {
+      "arsenal:part_material": "amethyst"
+    }
+  }
+}

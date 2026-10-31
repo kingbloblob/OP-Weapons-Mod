@@ -2262,6 +2262,86 @@ REJECT_PALM = check('reject_palm', '\n'.join(REJECT_PALM))
 
 import json
 
+# ---- Shields and gauntlets ----
+
+def shield_mask(face_only=False):
+    """A round shield seen from the front, lit from the top left: the face (1-5) inside a riveted rim (p-t) with the
+    boss (v-z, the strap's material) in the middle. face_only draws the Shield Face part: the face with a dark edge and
+    the hole the boss goes through."""
+    rows = []
+    for y in range(16):
+        row = ''
+        for x in range(16):
+            dx, dy = x - 7.5, y - 7.5
+            d = (dx * dx + dy * dy) ** 0.5
+            light = -(dx + dy) / max(d, 0.01)  # 1 at the top left, -1 at the bottom right
+            if d > 7.9:
+                row += '.'
+            elif d > 6.4:  # the rim
+                if face_only:
+                    row += '1'
+                elif d > 7.2:
+                    row += 'p'
+                elif abs(dx) < 0.6 or abs(dy) < 0.6 or abs(abs(dx) - abs(dy)) < 0.6:
+                    row += 't'  # rivets, eight round the rim
+                else:
+                    row += 'r' if light < 0.3 else 's'
+            elif d < 1.6:  # the boss
+                row += '.' if face_only else ('z' if light > 0.3 else 'y')
+            elif d < 2.4:
+                row += '1' if face_only else 'v'
+            else:  # the face: boards of light and shade
+                band = 5 if light > 0.6 else 4 if light > -0.1 else 3 if light > -0.6 else 2
+                if not face_only and int(x) % 5 == 2 and band > 2:
+                    band -= 1  # seams between the planks
+                row += str(band)
+        rows.append(row)
+    return check('shield' + ('_face' if face_only else ''), '\n'.join(rows))
+
+
+SHIELD = shield_mask()
+SHIELD_FACE = shield_mask(face_only=True)
+
+# A vambrace and its knuckle plate, as the part on its own.
+GAUNTLET_PLATES = check('gauntlet_plates', '''
+................
+................
+.....1111111....
+....134444431...
+....134444431...
+....111111111...
+....134444431...
+....134444431...
+....111111111...
+...13444444431..
+...13444444431..
+...11111111111..
+....12333321....
+....12333321....
+.....111111.....
+................
+''')
+
+# A gauntlet, fingers up: plates (1-5) with the lining (F-J, its cloth) showing at the cuff.
+GAUNTLETS = check('gauntlets', '''
+....1.1.1.1.....
+...14141414.....
+...13131313.....
+...13131313.11..
+...1333333311451
+...1444444444331
+...133333333311.
+...12222222221..
+....134444431...
+....134444431...
+....111111111...
+...13444444431..
+...13444444431..
+...FHIJJJJJIHF..
+...FGGGGGGGGGF..
+....FFFFFFFFF...
+''')
+
 PARTS = {
     'katana_blade': KATANA_BLADE, 'tsuba': TSUBA, 'hilt': HILT,
     'barrel': BARREL, 'firing_lock': FIRING_LOCK, 'stock': STOCK,
@@ -2269,10 +2349,10 @@ PARTS = {
     'gun_carriage': GUN_CARRIAGE, 'cannon_shell': CANNON_SHELL, 'musket_ball': MUSKET_BALL,
     'cutlass_blade': CUTLASS_BLADE, 'sabre_blade': SABRE_BLADE, 'axe_head': AXE_HEAD, 'jitte_rod': JITTE_ROD,
     'club_head': CLUB_HEAD, 'spearhead': SPEARHEAD, 'hand_guard': HAND_GUARD, 'binding': BINDING, 'studs': STUDS,
-    'grip': GRIP, 'haft': HAFT, 'knuckles': KNUCKLES, 'impact_core': IMPACT_CORE, 'reject_core': REJECT_CORE,
+    'grip': GRIP, 'haft': HAFT, 'knuckles': KNUCKLES, 'impact_core': IMPACT_CORE, 'reject_core': REJECT_CORE, 'shield_face': SHIELD_FACE,
 }
 ARMOR_PARTS = {'crown': CROWN, 'coat_plates': COAT_PLATES, 'sash_weave': SASH_WEAVE, 'boot_soles': BOOT_SOLES,
-               'lining': LINING}
+               'lining': LINING, 'gauntlet_plates': GAUNTLET_PLATES}
 # Each weapon's layers, in the order its parts are saved on the item (katana_parts, gun_parts, weapon_parts).
 WEAPONS = {
     'katana': (KATANA, ['blade', 'tsuba', 'hilt']),
@@ -2286,6 +2366,7 @@ WEAPONS = {
     'jitte': (JITTE, ['rod', 'binding', 'grip']),
     'kanabo': (KANABO, ['head', 'studs', 'haft']),
     'spear': (SPEAR, ['head', 'binding', 'haft']),
+    'shield': (SHIELD, ['face', 'rim', 'boss']),
     'fishman_gloves': (FISHMAN_GLOVES, ['knuckles', 'strap', 'palm']),
     'impact_palm': (IMPACT_PALM, ['dial', 'strap', 'palm']),
     'reject_palm': (REJECT_PALM, ['dial', 'strap', 'palm']),
@@ -2412,6 +2493,9 @@ if __name__ == '__main__':
             for weapon, (mask, layers) in WEAPONS.items():
                 for group, layer in enumerate(layers):
                     save(paint(mask, [mat] * 3, only_group=group), f'item/{weapon}/{layer}/{mat}')
+        # Gauntlets: any material makes plates and linings, so every material draws both layers.
+        for group, layer in enumerate(['plates', 'lining']):
+            save(paint(GAUNTLETS, [mat] * 3, only_group=group), f'item/gauntlets/{layer}/{mat}')
         for piece, img in armor_icons(mat).items():
             save(img, f'item/armor/{piece}/{mat}')
         layer1, layer2 = worn(mat)

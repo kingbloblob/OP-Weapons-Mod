@@ -31,7 +31,8 @@ public final class Upgrade {
 	/** The kinds of gear an upgrade can fit. */
 	public enum Gear {
 		KATANA("katana", "Katanas"), WEAPON("weapon", "Hand weapons"), GUN("gun", "Guns"),
-		HAT("armor", "Hats"), COAT("armor", "Coats"), SASH("armor", "Sashes"), BOOTS("armor", "Boots");
+		HAT("armor", "Hats"), COAT("armor", "Coats"), SASH("armor", "Sashes"), BOOTS("armor", "Boots"),
+		SHIELD("shield", "Shields"), GAUNTLETS("gauntlets", "Gauntlets");
 
 		/** The key in upgrades.json's "slots": armor pieces share one. */
 		final String slotKey;
@@ -42,6 +43,7 @@ public final class Upgrade {
 			this.displayName = displayName;
 		}
 
+		/** The four worn pieces (gauntlets are armor too, but held in the offhand: see Upgrades.slotOf). */
 		public boolean isArmor() {
 			return slotKey.equals("armor");
 		}
@@ -50,6 +52,9 @@ public final class Upgrade {
 	/** What one level of an upgrade does (see upgrades.json's _comment). */
 	public record Effect(String type, Identifier attribute, double amount, String operation) {
 	}
+
+	/** What "armor" fits in upgrades.json: the four pieces, and gauntlets. */
+	private static final List<Gear> ARMOR = List.of(Gear.HAT, Gear.COAT, Gear.SASH, Gear.BOOTS, Gear.GAUNTLETS);
 
 	private static final Data DATA = load();
 
@@ -86,7 +91,7 @@ public final class Upgrade {
 		return switch (fits) {
 			case "any" -> List.of(Gear.values());
 			case "melee" -> List.of(Gear.KATANA, Gear.WEAPON);
-			case "armor" -> List.of(Gear.HAT, Gear.COAT, Gear.SASH, Gear.BOOTS);
+			case "armor" -> ARMOR;
 			default -> List.of(Gear.valueOf(fits.toUpperCase(Locale.ROOT)));
 		};
 	}
@@ -122,8 +127,8 @@ public final class Upgrade {
 		if (fits.equals(List.of(Gear.KATANA, Gear.WEAPON))) {
 			return "Katanas and hand weapons";
 		}
-		if (fits.equals(List.of(Gear.HAT, Gear.COAT, Gear.SASH, Gear.BOOTS))) {
-			return "Armor";
+		if (fits.equals(ARMOR)) {
+			return "Armor and gauntlets";
 		}
 		return String.join(", ", fits.stream().map(gear -> gear.displayName).toList());
 	}

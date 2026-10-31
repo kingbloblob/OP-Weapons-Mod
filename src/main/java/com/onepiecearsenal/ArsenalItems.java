@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -22,6 +23,8 @@ import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.item.equipment.EquipmentAssets;
+import net.minecraft.world.item.equipment.Equippable;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -48,7 +51,11 @@ import com.onepiecearsenal.station.NavyCastingBlock;
 import com.onepiecearsenal.station.ShipwrightsAnvilBlock;
 import com.onepiecearsenal.tool.ArmorStats;
 import com.onepiecearsenal.tool.ArsenalArmorItem;
+import com.onepiecearsenal.tool.ArsenalGauntletItem;
 import com.onepiecearsenal.tool.ArsenalGunItem;
+import com.onepiecearsenal.tool.ArsenalShieldItem;
+import com.onepiecearsenal.tool.GauntletStats;
+import com.onepiecearsenal.tool.ShieldStats;
 import com.onepiecearsenal.tool.ArsenalWeaponItem;
 import com.onepiecearsenal.tool.GunStats;
 import com.onepiecearsenal.tool.GunType;
@@ -117,6 +124,8 @@ public class ArsenalItems {
 	public static final Item GUN_CARRIAGE = part(PartType.GUN_CARRIAGE);
 	/** Cannon ammo, one per material (see CannonShells). A part, so the Navy stations can cast it too. */
 	public static final Item CANNON_SHELL = part(PartType.CANNON_SHELL);
+	public static final Item SHIELD_FACE = part(PartType.SHIELD_FACE);
+	public static final Item GAUNTLET_PLATES = part(PartType.GAUNTLET_PLATES);
 	/** Flintlock and musket ammo, one per material (see MusketBalls). A part, so the Navy stations can cast it too. */
 	public static final Item MUSKET_BALL = part(PartType.MUSKET_BALL);
 	/** Bullets with a Sky Island Dial packed behind the ball (see DialRound). */
@@ -170,6 +179,16 @@ public class ArsenalItems {
 	public static final Item COAT = armor("coat", "Coat", ArmorType.CHESTPLATE);
 	public static final Item SASH = armor("sash", "Sash", ArmorType.LEGGINGS);
 	public static final Item BOOTS = armor("boots", "Boots", ArmorType.BOOTS);
+
+	// ---- Shields and gauntlets (offhand gear) ----
+
+	/** Doesn't block until ShieldStats puts the parts' blocks_attacks on it when it's forged. Unswappable, so right-click raises it. */
+	public static final Item SHIELD = register("shield", ArsenalShieldItem::new,
+			new Item.Properties().durability(336).enchantable(1).equippableUnswappable(EquipmentSlot.OFFHAND));
+	/** Armor for the offhand: right-click puts them on there. GauntletStats sets the real numbers when they're forged. */
+	public static final Item GAUNTLETS = register("gauntlets", ArsenalGauntletItem::new,
+			new Item.Properties().durability(200).enchantable(9).component(DataComponents.EQUIPPABLE,
+					Equippable.builder(EquipmentSlot.OFFHAND).setEquipSound(SoundEvents.ARMOR_EQUIP_CHAIN).build()));
 
 	// ---- Ship cannons (see the cannon package) ----
 
@@ -254,6 +273,13 @@ public class ArsenalItems {
 					// The famous weapons that ate a Devil Fruit.
 					for (FamousFruitWeapon famous : FamousFruitWeapon.values()) {
 						output.accept(famous.create());
+					}
+					// A shield per face material (Ship Iron rim and strap), and gauntlets per plate material (Driftwood lining).
+					for (ArsenalMaterial material : metals) {
+						output.accept(ShieldStats.build(material, ArsenalMaterial.SHIP_IRON, ArsenalMaterial.SHIP_IRON));
+					}
+					for (ArsenalMaterial material : ArsenalMaterial.values()) {
+						output.accept(GauntletStats.build(material, ArsenalMaterial.DRIFTWOOD));
 					}
 					// One armor set of each material, with a Driftwood lining.
 					for (ArsenalMaterial material : ArsenalMaterial.values()) {

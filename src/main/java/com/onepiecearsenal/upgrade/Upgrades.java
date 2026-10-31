@@ -45,7 +45,11 @@ import com.onepiecearsenal.material.TraitEffects;
 import com.onepiecearsenal.part.PartItem;
 import com.onepiecearsenal.salvage.Breakage;
 import com.onepiecearsenal.tool.ArmorStats;
+import com.onepiecearsenal.tool.ArsenalGauntletItem;
 import com.onepiecearsenal.tool.ArsenalGunItem;
+import com.onepiecearsenal.tool.ArsenalShieldItem;
+import com.onepiecearsenal.tool.GauntletStats;
+import com.onepiecearsenal.tool.ShieldStats;
 import com.onepiecearsenal.tool.ArsenalWeaponItem;
 import com.onepiecearsenal.tool.GunStats;
 import com.onepiecearsenal.tool.KatanaItem;
@@ -56,7 +60,7 @@ import com.onepiecearsenal.upgrade.Upgrade.Gear;
 
 /**
  * Repairs and upgrades at the Shipwright's Anvil, the Tinkers' Construct way: right-click the anvil holding a forged
- * weapon, gun or armor piece.
+ * weapon, gun, armor piece, shield or pair of gauntlets.
  * - With an upgrade's item in your offhand (Quartz for Honed Edge, Hull Plating for Hull Plating...), it adds a level
  *   of that upgrade, if the gear has a free upgrade slot.
  * - Otherwise, if it's damaged, it's mended with the material of its blade, head, barrel or shell, taken from
@@ -109,6 +113,12 @@ public final class Upgrades {
 		if (item instanceof ArsenalGunItem) {
 			return GunStats.parts(stack).isEmpty() ? null : Gear.GUN;
 		}
+		if (item instanceof ArsenalShieldItem) {
+			return ShieldStats.parts(stack).isEmpty() ? null : Gear.SHIELD;
+		}
+		if (item instanceof ArsenalGauntletItem) {
+			return GauntletStats.parts(stack).isEmpty() ? null : Gear.GAUNTLETS;
+		}
 		if (ArmorStats.parts(stack).isEmpty()) {
 			return null;
 		}
@@ -134,6 +144,8 @@ public final class Upgrades {
 			case KATANA -> KatanaStats.parts(stack).get(0);
 			case WEAPON -> WeaponStats.parts(stack).get(0);
 			case GUN -> GunStats.parts(stack).get(0);
+			case SHIELD -> ShieldStats.parts(stack).get(0);
+			case GAUNTLETS -> GauntletStats.parts(stack).get(0);
 			default -> ArmorStats.parts(stack).get(0);
 		};
 	}
@@ -256,10 +268,13 @@ public final class Upgrades {
 		stack.set(DataComponents.ATTRIBUTE_MODIFIERS, modifiers);
 	}
 
-	/** Armor works in its own slot, weapons and guns in the main hand. */
+	/** Armor works in its own slot, shields and gauntlets in the offhand, weapons and guns in the main hand. */
 	private static EquipmentSlotGroup slotOf(ItemStack stack) {
 		Equippable equippable = stack.get(DataComponents.EQUIPPABLE);
 		Gear gear = gearOf(stack);
+		if (gear == Gear.SHIELD || gear == Gear.GAUNTLETS) {
+			return EquipmentSlotGroup.OFFHAND;
+		}
 		return equippable != null && gear != null && gear.isArmor() ? EquipmentSlotGroup.bySlot(equippable.slot()) : EquipmentSlotGroup.MAINHAND;
 	}
 

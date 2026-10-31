@@ -58,6 +58,18 @@ public class ArsenalComponents {
 			DataComponentType.<List<String>>builder().persistent(Codec.STRING.listOf())
 					.networkSynchronized(ByteBufCodecs.STRING_UTF8.apply(ByteBufCodecs.list())).build());
 
+	/** The material ids of a shield's face, rim (a Binding) and strap (a Grip), in that order (see ShieldStats). */
+	public static final DataComponentType<List<String>> SHIELD_PARTS = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
+			ArsenalMod.id("shield_parts"),
+			DataComponentType.<List<String>>builder().persistent(Codec.STRING.listOf())
+					.networkSynchronized(ByteBufCodecs.STRING_UTF8.apply(ByteBufCodecs.list())).build());
+
+	/** The material ids of a pair of gauntlets' plates and lining, in that order (see GauntletStats). */
+	public static final DataComponentType<List<String>> GAUNTLET_PARTS = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
+			ArsenalMod.id("gauntlet_parts"),
+			DataComponentType.<List<String>>builder().persistent(Codec.STRING.listOf())
+					.networkSynchronized(ByteBufCodecs.STRING_UTF8.apply(ByteBufCodecs.list())).build());
+
 	/** A katana's level and deeds, which decide when a whetstone can raise its grade (see Meito). */
 	public static final DataComponentType<BladeRecord> BLADE_RECORD = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
 			ArsenalMod.id("blade_record"),
