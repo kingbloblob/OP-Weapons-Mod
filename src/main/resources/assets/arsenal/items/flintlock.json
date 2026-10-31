@@ -11,188 +11,323 @@
             "when": "driftwood",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/driftwood"
+              "model": "arsenal:item/flintlock/barrel/driftwood",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "ship_iron",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/ship_iron"
+              "model": "arsenal:item/flintlock/barrel/ship_iron",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "marine_steel",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/marine_steel"
+              "model": "arsenal:item/flintlock/barrel/marine_steel",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "flint",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/flint"
+              "model": "arsenal:item/flintlock/barrel/flint",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "stone",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/stone"
+              "model": "arsenal:item/flintlock/barrel/stone",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "copper",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/copper"
+              "model": "arsenal:item/flintlock/barrel/copper",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "cannon_bronze",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/cannon_bronze"
+              "model": "arsenal:item/flintlock/barrel/cannon_bronze",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "sea_king_bone",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/sea_king_bone"
+              "model": "arsenal:item/flintlock/barrel/sea_king_bone",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "treasure_gold",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/treasure_gold"
+              "model": "arsenal:item/flintlock/barrel/treasure_gold",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "dial_shell",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/dial_shell"
+              "model": "arsenal:item/flintlock/barrel/dial_shell",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "sea_pearl",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/sea_pearl"
+              "model": "arsenal:item/flintlock/barrel/sea_pearl",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "amethyst",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/amethyst"
+              "model": "arsenal:item/flintlock/barrel/amethyst",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "emerald",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/emerald"
+              "model": "arsenal:item/flintlock/barrel/emerald",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "prismarine",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/prismarine"
+              "model": "arsenal:item/flintlock/barrel/prismarine",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "tamahagane",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/tamahagane"
+              "model": "arsenal:item/flintlock/barrel/tamahagane",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "kairoseki",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/kairoseki"
+              "model": "arsenal:item/flintlock/barrel/kairoseki",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "pacifista_alloy",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/pacifista_alloy"
+              "model": "arsenal:item/flintlock/barrel/pacifista_alloy",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "shandora_gold",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/shandora_gold"
+              "model": "arsenal:item/flintlock/barrel/shandora_gold",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "obsidian",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/obsidian"
+              "model": "arsenal:item/flintlock/barrel/obsidian",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "diamond",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/diamond"
+              "model": "arsenal:item/flintlock/barrel/diamond",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "wapometal",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/wapometal"
+              "model": "arsenal:item/flintlock/barrel/wapometal",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "adam_wood",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/adam_wood"
+              "model": "arsenal:item/flintlock/barrel/adam_wood",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "kokuto",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/kokuto"
+              "model": "arsenal:item/flintlock/barrel/kokuto",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "netherite",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/netherite"
+              "model": "arsenal:item/flintlock/barrel/netherite",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "black_blade",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/black_blade"
+              "model": "arsenal:item/flintlock/barrel/black_blade",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "vegapunk_compound",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/flintlock/barrel/vegapunk_compound"
+              "model": "arsenal:item/flintlock/barrel/vegapunk_compound",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           }
         ],
         "fallback": {
           "type": "minecraft:model",
-          "model": "arsenal:item/flintlock/barrel/ship_iron"
+          "model": "arsenal:item/flintlock/barrel/ship_iron",
+          "tints": [
+            {
+              "type": "arsenal:haki_coat"
+            }
+          ]
         }
       },
       {

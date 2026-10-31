@@ -31,7 +31,13 @@ public enum WeaponSkill {
 	GROUND_SMASH("Ground Smash", 200, 1.25f,
 			"Slam the ground: every enemy within 4 blocks is hurt, thrown into the air and slowed."),
 	SPEAR_CHARGE("Spear Charge", 160, 1.25f,
-			"Charge 6 blocks forward, running through every enemy in your way and driving them back.");
+			"Charge 6 blocks forward, running through every enemy in your way and driving them back."),
+	SEA_DRAGON_THROW("Kairyu Ippon Zeoi", 160, 1.5f,
+			"Grab the enemy you're looking at (up to 3 blocks) and throw them over your shoulder. Twice as hard in water or rain, and they're left reeling."),
+	IMPACT_RELEASE("Impact", 60, 0.5f,
+			"Press the Dial to the enemy in front (up to 3.5 blocks) and let out everything it caught. Sneak and take hits first to fill it."),
+	REJECT_RELEASE("Reject", 200, 0.5f,
+			"Let out what the Dial caught three times as hard at the enemy in front (up to 3.5 blocks). Half of what it caught hurts you too.");
 
 	public final String displayName;
 	public final int cooldownTicks;
@@ -55,6 +61,9 @@ public enum WeaponSkill {
 			case JITTE -> ARREST_HOOK;
 			case KANABO -> GROUND_SMASH;
 			case SPEAR -> SPEAR_CHARGE;
+			case FISHMAN_GLOVES -> SEA_DRAGON_THROW;
+			case IMPACT_PALM -> IMPACT_RELEASE;
+			case REJECT_PALM -> REJECT_RELEASE;
 		};
 	}
 

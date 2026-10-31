@@ -2,10 +2,14 @@ package com.onepiecearsenal.compat;
 
 import java.util.List;
 import java.util.Set;
+import java.util.function.BiPredicate;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
@@ -27,10 +31,14 @@ import com.onepiecemod.item.DevilFruitItem;
 import com.onepiecemod.news.NewsLog;
 import com.onepiecemod.power.DevilFruit;
 import com.onepiecemod.power.DevilFruits;
+import com.onepiecemod.sound.ModSounds;
 import com.onepiecemod.npc.HumanNpc;
 import com.onepiecemod.style.FightingStyle;
 import com.onepiecemod.style.StyleAttachments;
 import com.onepiecemod.style.StyleMoves;
+import com.onepiecemod.town.Town;
+import com.onepiecemod.town.TownData;
+import com.onepiecemod.town.TownsfolkEntity;
 import com.onepiecemod.weapon.WeaponItems;
 import com.onepiecemod.weapon.WeaponUpgrades;
 import com.onepiecemod.world.SeastoneEffects;
@@ -250,6 +258,34 @@ public final class OnePieceBridge {
 		return HakiPowers.hasArmamentActive(player);
 	}
 
+	/** The player's Armament Haki level, 0 (not awakened) to 5 (master), whether it's switched on or not. */
+	public static int armamentLevel(Player player) {
+		return HakiAttachments.get(player).armamentLevel();
+	}
+
+	/**
+	 * Tells the main mod's Logia dodge that hits passing this check carry Armament Haki, so they land on Logia users.
+	 * False if the main mod is too old to have the hook (then only the wielder's own Armament counts, as before).
+	 */
+	public static boolean registerCoatedHit(BiPredicate<Entity, DamageSource> check) {
+		try {
+			HakiPowers.registerCoatedHit(check);
+			return true;
+		} catch (NoSuchMethodError oldMainMod) {
+			return false;
+		}
+	}
+
+	/** The main mod's black flash sound when Armament Haki lands a hit. */
+	public static SoundEvent armamentHitSound() {
+		return ModSounds.ARMAMENT_HIT;
+	}
+
+	/** The main mod's sound for switching Armament Haki on. */
+	public static SoundEvent armamentOnSound() {
+		return ModSounds.ARMAMENT_ON;
+	}
+
 	// ---- Who a weapon skill may hit: the same rule as the main mod's fighting style techniques ----
 
 	/** Monsters, bosses and anything fighting the player: yes. Crewmates, friendly characters, pets and animals: no. */
@@ -270,5 +306,61 @@ public final class OnePieceBridge {
 	/** Enemies in front of the player that they can see. minDot 1.0 is a thin line, 0.5 is a wide fan. */
 	public static List<LivingEntity> enemiesInCone(Player player, ServerLevel level, double range, double minDot, int max) {
 		return StyleMoves.inCone(player, level, range, minDot, max);
+	}
+
+	// ---- Town blacksmiths (the main mod's "smith" townsfolk, see town/Blacksmiths) ----
+
+	/** True for a grown-up townsperson with the main mod's "smith" job. Only the server knows townsfolk jobs. */
+	public static boolean isTownSmith(Entity entity) {
+		return entity instanceof TownsfolkEntity folk && "smith".equals(folk.jobId()) && !folk.isChild();
+	}
+
+	/**
+	 * What a townsperson says instead of serving the player right now: asleep, in a bar brawl or knocked out of one,
+	 * trading with someone else, or scared of a player the town is angry with. Null if they'll serve.
+	 */
+	public static String townsfolkBusy(Entity entity, Player player) {
+		if (!(entity instanceof TownsfolkEntity folk)) {
+			return "...";
+		}
+		if (folk.isSleeping()) {
+			return "Zzz... the forge is cold... come back in the morning... zzz...";
+		}
+		if (folk.isKnockedOut()) {
+			return "Ugh... is the room spinning, or is it me?";
+		}
+		if (folk.brawlId() != 0) {
+			return "Not now, I'm busy!";
+		}
+		if (folk.isTrading() && folk.getTradingPlayer() != player) {
+			return "One customer at a time!";
+		}
+		Town town = folk.town();
+		if (town != null && town.isAngryAt(player.getUUID())) {
+			folk.panic(60);
+			return "Stay away from me! I'll call the Marines!";
+		}
+		return null;
+	}
+
+	/** The townsperson says this to the player, in chat, the way they talk in the main mod. */
+	public static void townsfolkSay(Entity entity, ServerPlayer player, String text) {
+		if (entity instanceof TownsfolkEntity folk) {
+			folk.say(player, text);
+		}
+	}
+
+	/** A town's name from the main mod's towns.json (like "Mock Town"), from its structure id. The id if it isn't a town. */
+	public static String townName(String structureId) {
+		TownData.TownDef town = TownData.town(structureId);
+		return town == null || town.name.isEmpty() ? structureId : town.name;
+	}
+
+	/** The structure id of the townsperson's town, like "mock_town". Empty if they have none. */
+	public static String townOf(Entity entity) {
+		if (entity instanceof TownsfolkEntity folk && folk.town() != null) {
+			return folk.town().structureId;
+		}
+		return "";
 	}
 }

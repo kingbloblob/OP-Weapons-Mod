@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_musket_ball",
+  "key": {
+    "M": "minecraft:amethyst_shard",
+    "G": "minecraft:gunpowder"
+  },
+  "pattern": [
+    "M",
+    "G"
+  ],
+  "result": {
+    "id": "arsenal:musket_ball",
+    "count": 8,
+    "components": {
+      "arsenal:part_material": "amethyst"
+    }
+  }
+}

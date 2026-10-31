@@ -4,7 +4,7 @@
 # Every part and weapon is drawn once as a shape, then coloured per material, the way Tinkers' Construct does it.
 # To give a new material its look, add it to MATERIALS (and to OUTFITS for how its armor looks when worn),
 # then run this and tools/gen_resources.py.
-import os, sys
+import math, os, sys
 from PIL import Image
 
 OUT = os.path.join(sys.argv[1], 'assets/arsenal/textures')
@@ -1534,6 +1534,47 @@ CANNON_SHELL = check('cannon_shell', '''
 ................
 ''')
 
+# Gun ammo (ammo/MusketBalls): a little pile of three cast balls.
+def _balls():
+    ball = ['.1111.', '145541', '144431', '143321', '133221', '.1111.']
+    grid = [['.'] * 16 for _ in range(16)]
+    for x0, y0 in [(5, 3), (2, 8), (8, 8)]:  # the top one first, so the two in front cover it
+        for dy, row in enumerate(ball):
+            for dx, ch in enumerate(row):
+                if ch != '.':
+                    grid[y0 + dy][x0 + dx] = ch
+    return check('musket_ball', '\n'.join(''.join(r) for r in grid))
+
+
+MUSKET_BALL = _balls()
+
+# Dial Rounds (ammo/DialRound): three cartridges, a Dial-shell band behind a tip coloured by what the Dial holds
+# (6, 7, 8 = dark, mid, light; set per kind in DIAL_ROUNDS) and a brass case.
+DIAL_ROUND = check('dial_round', '''
+................
+..kk...kk...kk..
+.k87k.k87k.k87k.
+.k76k.k76k.k76k.
+.k66k.k66k.k66k.
+.k45k.k45k.k45k.
+.k23k.k23k.k23k.
+.ktsk.ktsk.ktsk.
+.ksrk.ksrk.ksrk.
+.ksrk.ksrk.ksrk.
+.ksrk.ksrk.ksrk.
+.ksrk.ksrk.ksrk.
+.krqk.krqk.krqk.
+.kqpk.kqpk.kqpk.
+..kk...kk...kk..
+................
+''')
+DIAL_ROUNDS = {
+    'flame_dial_round': ('b8321a', 'f07a22', 'ffd25a'),
+    'impact_dial_round': ('4a4a58', '8a8aa0', 'd6d6e6'),
+    'breath_dial_round': ('3a86b8', '8acff0', 'eefaff'),
+    'flash_dial_round': ('c8a018', 'f4e060', 'fffbe0'),
+}
+
 CUTLASS_BLADE = check('cutlass_blade', '''
 ..............11
 .............141
@@ -2088,6 +2129,137 @@ def stations():
 
 # ---- Write everything ----
 
+# ---- Fishman Gloves and the Skypiea Dial palms ----
+# Dial shells are fixed colours: an Impact Dial's cream and coral spiral, a Reject Dial's dark shell with a red spiral.
+# The casing material is the rim (1-5), the strap is the binding (F-J), the palm is the grip (A-E, v-z).
+FIXED.update({'m': hexc('f4e6d0'), 'n': hexc('dca48a'), 'o': hexc('9a5442'),
+              'K': hexc('5a4a52'), 'u': hexc('3a2a32'), '0': hexc('c0302a')})
+
+def dial(rows, cx, cy, R, shell, ramp='12345', button=True, spikes=False):
+    """Draws a round Dial into rows: a rim of the casing material around a spiral shell (fixed chars light, mid, dark)."""
+    light, mid, dark = shell
+    rim = 1.1 if R > 4 else 0.9
+    for y in range(16):
+        for x in range(16):
+            dx, dy = x + 0.5 - cx, y + 0.5 - cy
+            r = math.hypot(dx, dy)
+            if r > R:
+                continue
+            if r > R - rim:
+                lit = (-dx - dy) / r
+                rows[y][x] = ramp[0] if r > R - 0.45 else ramp[min(4, max(1, int(2.5 + lit * 1.8)))]
+                continue
+            a = math.atan2(dy, dx)
+            pitch = (R - rim) / (2.6 if R > 5.5 else 1.8)
+            turn = (r - (a + math.pi) / (2 * math.pi) * pitch) % pitch
+            if turn < pitch * 0.32:
+                rows[y][x] = dark
+            elif (-dx - dy) / max(r, 0.1) > 0.25 and r > 1.2:
+                rows[y][x] = light
+            else:
+                rows[y][x] = mid
+    if button:
+        top = int(cy - R)
+        x0 = int(cx) - 1
+        if top >= 0:
+            rows[top][x0], rows[top][x0 + 1] = ramp[0], ramp[0]
+            rows[max(0, top - 1)][x0], rows[max(0, top - 1)][x0 + 1] = ramp[0], ramp[0]
+            rows[top][x0], rows[top][x0 + 1] = ramp[4], ramp[2]
+    if spikes:
+        for k in range(6):
+            a = k * math.pi / 3 + 0.3
+            x, y = int(cx + math.cos(a) * (R + 0.6)), int(cy + math.sin(a) * (R + 0.6))
+            if 0 <= x < 16 and 0 <= y < 16 and rows[y][x] == '.':
+                rows[y][x] = ramp[1]
+    return rows
+
+def blank_rows():
+    return [['.'] * 16 for _ in range(16)]
+
+def text(rows):
+    return [''.join(r) for r in rows]
+
+IMPACT_SHELL = ('m', 'n', 'o')
+REJECT_SHELL = ('K', 'u', '0')
+IMPACT_CORE = text(dial(blank_rows(), 8.0, 8.8, 6.6, IMPACT_SHELL))
+REJECT_CORE = text(dial(blank_rows(), 8.0, 8.8, 6.3, REJECT_SHELL, spikes=True))
+
+def palm(shell, spikes=False):
+    """A Dial palm: a glove palm (group 2) with the Dial (group 0) strapped (group 1) on it."""
+    rows = [list(r) for r in '''
+................
+................
+................
+................
+................
+.....ABBBA......
+....ABCCCCBA....
+...ABCDDDDCBA...
+...ABCDDDDDCBA..
+...ABCDDDDDCBA..
+...ABCCDDDDCBA..
+....ABCCCCCBA...
+.....ABBBBBA....
+......vwwwv.....
+......vxxxv.....
+.......vvv......
+'''.strip('\n').split('\n')]
+    dial(rows, 9.5, 6.0, 4.9, shell, spikes=spikes)
+    for x in range(3, 15):  # the strap round the back of the hand
+        if rows[9][x] != '.':
+            rows[9][x] = 'H' if x % 3 else 'J'
+            rows[10][x] = 'F' if rows[10][x] != '.' else '.'
+    return text(rows)
+
+IMPACT_PALM = palm(IMPACT_SHELL)
+REJECT_PALM = palm(REJECT_SHELL, spikes=True)
+
+KNUCKLES = '''
+................
+................
+................
+................
+..11..11..11....
+.1451451451.....
+.14534534531....
+.14324324321....
+.13213213211....
+..1221221221....
+...11111111.....
+...1......1.....
+...1......1.....
+....111111......
+................
+................
+'''.strip('\n').split('\n')
+KNUCKLES = [('..' + r)[:16] for r in KNUCKLES]
+
+FISHMAN_GLOVES = '''
+................
+................
+.....11.11.11...
+....1451451451..
+....14534534531.
+...A1432432431E.
+..ABD1111111DCE.
+..ABDCCCCCCCDCE.
+..ABCDCCCCCDCBE.
+..ABCCDDDDDCBBE.
+...ABCCCCCCBBE..
+....ABBBBBBBE...
+....FHHHHHHHF...
+....FGIGIGIGF...
+....vxxxxxxxv...
+.....vwwwwwv....
+'''.strip('\n').split('\n')
+
+KNUCKLES = check('knuckles', '\n'.join(KNUCKLES))
+FISHMAN_GLOVES = check('fishman_gloves', '\n'.join(FISHMAN_GLOVES))
+IMPACT_CORE = check('impact_core', '\n'.join(IMPACT_CORE))
+REJECT_CORE = check('reject_core', '\n'.join(REJECT_CORE))
+IMPACT_PALM = check('impact_palm', '\n'.join(IMPACT_PALM))
+REJECT_PALM = check('reject_palm', '\n'.join(REJECT_PALM))
+
 import json
 
 # ---- Shields and gauntlets ----
@@ -2174,10 +2346,10 @@ PARTS = {
     'katana_blade': KATANA_BLADE, 'tsuba': TSUBA, 'hilt': HILT,
     'barrel': BARREL, 'firing_lock': FIRING_LOCK, 'stock': STOCK,
     'long_barrel': LONG_BARREL, 'cannon_bore': CANNON_BORE, 'fuse': FUSE,
-    'gun_carriage': GUN_CARRIAGE, 'cannon_shell': CANNON_SHELL,
+    'gun_carriage': GUN_CARRIAGE, 'cannon_shell': CANNON_SHELL, 'musket_ball': MUSKET_BALL,
     'cutlass_blade': CUTLASS_BLADE, 'sabre_blade': SABRE_BLADE, 'axe_head': AXE_HEAD, 'jitte_rod': JITTE_ROD,
     'club_head': CLUB_HEAD, 'spearhead': SPEARHEAD, 'hand_guard': HAND_GUARD, 'binding': BINDING, 'studs': STUDS,
-    'grip': GRIP, 'haft': HAFT, 'shield_face': SHIELD_FACE,
+    'grip': GRIP, 'haft': HAFT, 'knuckles': KNUCKLES, 'impact_core': IMPACT_CORE, 'reject_core': REJECT_CORE, 'shield_face': SHIELD_FACE,
 }
 ARMOR_PARTS = {'crown': CROWN, 'coat_plates': COAT_PLATES, 'sash_weave': SASH_WEAVE, 'boot_soles': BOOT_SOLES,
                'lining': LINING, 'gauntlet_plates': GAUNTLET_PLATES}
@@ -2195,6 +2367,9 @@ WEAPONS = {
     'kanabo': (KANABO, ['head', 'studs', 'haft']),
     'spear': (SPEAR, ['head', 'binding', 'haft']),
     'shield': (SHIELD, ['face', 'rim', 'boss']),
+    'fishman_gloves': (FISHMAN_GLOVES, ['knuckles', 'strap', 'palm']),
+    'impact_palm': (IMPACT_PALM, ['dial', 'strap', 'palm']),
+    'reject_palm': (REJECT_PALM, ['dial', 'strap', 'palm']),
 }
 # Raw materials: (mask, the material whose colours it uses).
 RAW = {
@@ -2306,6 +2481,9 @@ if __name__ == '__main__':
         assert m['id'] in MATERIALS and m['id'] in OUTFITS, f"draw {m['id']}: add it to MATERIALS and OUTFITS"
     for name, (mask, mat) in RAW.items():
         save(paint(mask, [mat] * 3), f'item/{name}')
+    for name, tip in DIAL_ROUNDS.items():
+        FIXED.update({c: hexc(h) for c, h in zip('678', tip)})
+        save(paint(DIAL_ROUND, ['dial_shell', 'cannon_bronze', 'dial_shell']), f'item/{name}')
     for m in roster:
         mat = m['id']
         parts = ARMOR_PARTS if m.get('armor_only') else {**PARTS, **ARMOR_PARTS}

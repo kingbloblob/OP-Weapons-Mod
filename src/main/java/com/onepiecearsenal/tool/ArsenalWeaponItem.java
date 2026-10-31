@@ -13,6 +13,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 
+import com.onepiecearsenal.haki.HakiImbue;
+import com.onepiecearsenal.mastery.Mastery;
 import com.onepiecearsenal.fruit.FruitWeapons;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
@@ -21,7 +23,7 @@ import com.onepiecearsenal.skill.WeaponSkill;
 import com.onepiecearsenal.upgrade.Upgrades;
 
 /**
- * A cutlass, sabre, boarding axe, jitte, kanabo or spear built from a head, a binding and a handle at the
+ * A cutlass, sabre, boarding axe, jitte, kanabo, spear, pair of Fishman Gloves or Dial palm built from a head, a binding and a handle at the
  * Shipwright's Anvil. Its name, numbers and traits all come from the parts (see WeaponStats), and what makes
  * each type different is in WeaponType and WeaponEffects.
  */
@@ -42,6 +44,7 @@ public class ArsenalWeaponItem extends Item {
 	public void inventoryTick(ItemStack stack, ServerLevel level, Entity owner, EquipmentSlot slot) {
 		Restat.refresh(stack);
 		Breakage.notice(stack, owner);
+		HakiImbue.tidy(stack, level.getGameTime(), slot);
 	}
 
 	@Override
@@ -62,12 +65,15 @@ public class ArsenalWeaponItem extends Item {
 		textConsumer.accept(Component.literal(type.binding.displayName + ": " + parts.get(1).displayName).withStyle(ChatFormatting.GRAY));
 		textConsumer.accept(Component.literal(type.handle.displayName + ": " + parts.get(2).displayName).withStyle(ChatFormatting.GRAY));
 		textConsumer.accept(Component.literal(type.ability).withStyle(ChatFormatting.AQUA));
+		DialCharge.describe(stack, textConsumer);
 		WeaponSkill.describe(stack, textConsumer);
 		FruitWeapons.describe(stack, textConsumer);
+		HakiImbue.describe(stack, textConsumer);
 		for (Trait trait : WeaponStats.traits(stack)) {
 			textConsumer.accept(Component.literal(trait.displayName + ": " + trait.description + (trait.active ? "" : " (coming soon)"))
 					.withStyle(ChatFormatting.GOLD));
 		}
 		Upgrades.describe(stack, textConsumer);
+		Mastery.describe(stack, textConsumer);
 	}
 }

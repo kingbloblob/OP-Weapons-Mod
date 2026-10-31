@@ -11,188 +11,323 @@
             "when": "driftwood",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/driftwood"
+              "model": "arsenal:item/musket/barrel/driftwood",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "ship_iron",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/ship_iron"
+              "model": "arsenal:item/musket/barrel/ship_iron",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "marine_steel",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/marine_steel"
+              "model": "arsenal:item/musket/barrel/marine_steel",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "flint",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/flint"
+              "model": "arsenal:item/musket/barrel/flint",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "stone",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/stone"
+              "model": "arsenal:item/musket/barrel/stone",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "copper",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/copper"
+              "model": "arsenal:item/musket/barrel/copper",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "cannon_bronze",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/cannon_bronze"
+              "model": "arsenal:item/musket/barrel/cannon_bronze",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "sea_king_bone",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/sea_king_bone"
+              "model": "arsenal:item/musket/barrel/sea_king_bone",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "treasure_gold",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/treasure_gold"
+              "model": "arsenal:item/musket/barrel/treasure_gold",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "dial_shell",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/dial_shell"
+              "model": "arsenal:item/musket/barrel/dial_shell",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "sea_pearl",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/sea_pearl"
+              "model": "arsenal:item/musket/barrel/sea_pearl",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "amethyst",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/amethyst"
+              "model": "arsenal:item/musket/barrel/amethyst",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "emerald",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/emerald"
+              "model": "arsenal:item/musket/barrel/emerald",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "prismarine",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/prismarine"
+              "model": "arsenal:item/musket/barrel/prismarine",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "tamahagane",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/tamahagane"
+              "model": "arsenal:item/musket/barrel/tamahagane",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "kairoseki",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/kairoseki"
+              "model": "arsenal:item/musket/barrel/kairoseki",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "pacifista_alloy",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/pacifista_alloy"
+              "model": "arsenal:item/musket/barrel/pacifista_alloy",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "shandora_gold",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/shandora_gold"
+              "model": "arsenal:item/musket/barrel/shandora_gold",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "obsidian",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/obsidian"
+              "model": "arsenal:item/musket/barrel/obsidian",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "diamond",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/diamond"
+              "model": "arsenal:item/musket/barrel/diamond",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "wapometal",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/wapometal"
+              "model": "arsenal:item/musket/barrel/wapometal",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "adam_wood",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/adam_wood"
+              "model": "arsenal:item/musket/barrel/adam_wood",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "kokuto",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/kokuto"
+              "model": "arsenal:item/musket/barrel/kokuto",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "netherite",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/netherite"
+              "model": "arsenal:item/musket/barrel/netherite",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "black_blade",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/black_blade"
+              "model": "arsenal:item/musket/barrel/black_blade",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           },
           {
             "when": "vegapunk_compound",
             "model": {
               "type": "minecraft:model",
-              "model": "arsenal:item/musket/barrel/vegapunk_compound"
+              "model": "arsenal:item/musket/barrel/vegapunk_compound",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
             }
           }
         ],
         "fallback": {
           "type": "minecraft:model",
-          "model": "arsenal:item/musket/barrel/ship_iron"
+          "model": "arsenal:item/musket/barrel/ship_iron",
+          "tints": [
+            {
+              "type": "arsenal:haki_coat"
+            }
+          ]
         }
       },
       {

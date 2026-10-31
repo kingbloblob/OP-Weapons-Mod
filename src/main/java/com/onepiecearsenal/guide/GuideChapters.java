@@ -20,6 +20,8 @@ import net.minecraft.world.item.ItemStack;
 import com.onepiecearsenal.ArsenalItems;
 import com.onepiecearsenal.ArsenalMod;
 import com.onepiecearsenal.armorset.SetBonus;
+import com.onepiecearsenal.ammo.DialRound;
+import com.onepiecearsenal.ammo.MusketBalls;
 import com.onepiecearsenal.cannon.CannonShells;
 import com.onepiecearsenal.cannon.CannonStats;
 import com.onepiecearsenal.fruit.Beast;
@@ -61,7 +63,7 @@ public final class GuideChapters {
 		public String color = "FFD75E";
 		/** One entry per line. "# " = heading, "- " = bullet, "> " = tip, "" = empty line. */
 		public List<String> text = new ArrayList<>();
-		/** Lines written from the mod's data after the text: materials, traits, weapons, skills, guns, navy_casting, meito, navy_brass, hunter_gear, upgrades or set_bonuses. */
+		/** Lines written from the mod's data after the text: materials, traits, weapons, skills, guns, navy_casting, meito, navy_brass, hunter_gear, upgrades, set_bonuses, fruit_weapons or town_smiths. */
 		public String generated;
 		/** More lines, shown after the generated ones. */
 		public List<String> after = new ArrayList<>();
@@ -175,6 +177,7 @@ public final class GuideChapters {
 			case "upgrades" -> upgrades();
 			case "set_bonuses" -> setBonuses();
 			case "fruit_weapons" -> fruitWeapons();
+			case "town_smiths" -> com.onepiecearsenal.town.Blacksmiths.guideLines();
 			default -> List.of("(Nothing is written here yet: \"" + what + "\" isn't a page the manual knows.)");
 		};
 	}
@@ -296,6 +299,19 @@ public final class GuideChapters {
 					+ type.hold.name().toLowerCase(Locale.ROOT) + ".");
 			lines.add("- About " + (int) type.baseRange + " blocks of range and " + number(type.baseCooldown / 20.0f)
 					+ " seconds to reload, before its parts.");
+		}
+		lines.add("# Musket Balls by material");
+		for (ArsenalMaterial material : ArsenalMaterial.values()) {
+			if (material.armorOnly) {
+				continue;
+			}
+			float bonus = MusketBalls.bonusDamage(material);
+			lines.add("- " + material.displayName + ": " + (bonus == 0.0f ? "the same damage as a Bullet" : String.format(Locale.ROOT, "%+.1f damage", bonus))
+					+ (MusketBalls.hasTrait(material) ? ", " + material.headTrait.displayName + " on a hit." : "."));
+		}
+		lines.add("# Dial Rounds");
+		for (DialRound round : DialRound.values()) {
+			lines.add("- " + round.displayName + ": " + round.description);
 		}
 		return lines;
 	}

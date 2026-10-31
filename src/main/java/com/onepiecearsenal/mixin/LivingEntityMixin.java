@@ -10,6 +10,7 @@ import net.minecraft.world.entity.LivingEntity;
 
 import com.onepiecearsenal.armorset.SetBonuses;
 import com.onepiecearsenal.tool.GauntletStats;
+import com.onepiecearsenal.haki.HakiImbue;
 
 /**
  * As a hit starts, armor set bonuses change its damage: a full Kairoseki set takes less from Devil Fruit users,
@@ -23,5 +24,11 @@ public abstract class LivingEntityMixin {
 		LivingEntity self = (LivingEntity) (Object) this;
 		// Gauntlets' Guard first (a sneaking wearer's arms take a quarter of a hit from the front), then set bonuses.
 		return SetBonuses.adjustDamage(self, source, GauntletStats.guard(self, source, amount));
+	}
+
+	/** A Haki-coated weapon or bullet hits harder (HakiImbue.adjustDamage). */
+	@ModifyVariable(method = "hurtServer", at = @At("HEAD"), argsOnly = true)
+	private float arsenal$hakiCoatDamage(float amount, ServerLevel level, DamageSource source) {
+		return HakiImbue.adjustDamage((LivingEntity) (Object) this, source, amount);
 	}
 }

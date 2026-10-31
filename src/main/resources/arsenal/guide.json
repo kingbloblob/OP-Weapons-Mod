@@ -124,6 +124,32 @@
 			"generated": "skills"
 		},
 		{
+			"id": "haki",
+			"title": "Haki Imbuing",
+			"icon": "arsenal:katana",
+			"icon_material": "black_blade",
+			"color": "8050C0",
+			"text": [
+				"The One Piece Mod's Armament Haki (B) coats your body. Once it's strong enough you can push it past your skin and into your weapon, the way Zoro coats his swords.",
+				"",
+				"# Coating a weapon",
+				"Hold a forged Arsenal katana, hand weapon or gun and press Left Alt (Options > Controls > Key Binds, under \"One Piece Arsenal\", to change the key).",
+				"- You need Armament Haki level 2 or higher. It doesn't have to be switched on.",
+				"- The coat lasts 10 seconds plus 10 for every Armament level: 30 seconds at level 2, a full minute at level 5.",
+				"- It costs 2 hunger to coat, and a little more every second you hold the weapon. If you get too hungry, it fades.",
+				"- Press Left Alt again to let it go early. Either way, your Haki needs 20 seconds to gather before you can coat again.",
+				"",
+				"# What a coated weapon does",
+				"- Its blade, head or barrel turns black.",
+				"- It hits Logia users for real instead of passing through them. A coated gun's bullets do too.",
+				"- It hits harder: +1 damage for every Armament level you coated it with.",
+				"- It takes no wear while the coat is on.",
+				"- It counts as Haki-coated for a katana's Black Blade awakening (see Meito) and for the Kokuto Inlay upgrade.",
+				"",
+				"> A Black Blade is black for good, and its hits always land on Logia users, coated or not."
+			]
+		},
+		{
 			"id": "fruit_weapons",
 			"title": "Devil Fruit Weapons",
 			"icon": "arsenal:hand_cannon",
@@ -159,7 +185,16 @@
 				"# What each part does",
 				"- Barrel: the damage, the range, and the blade trait. A Kairoseki barrel drains Devil Fruit users it shoots.",
 				"- Firing part: the reload. A light material reloads faster.",
-				"- Stock: the aim. A higher tier stock spreads less."
+				"- Stock: the aim. A higher tier stock spreads less.",
+				"",
+				"# Musket Balls",
+				"Bullets of any material: eight from a crafting table (the material over gunpowder). Navy balls are cast at a Navy station, eight for one Navy ingot. They're One Piece Mod bullets, so any pistol or rifle fires them.",
+				"- The ball's material changes the damage a little: harder materials hit harder.",
+				"- What it hits gets the material's blade trait, like a Cannon Shell's burst. Kairoseki balls drain Devil Fruit users, Sea King Bone ones make them bleed.",
+				"",
+				"# Dial Rounds",
+				"Pack a Sky Island Dial with eight Bullets for eight Dial Rounds: Flame, Impact, Breath or Flash.",
+				"> Hold the ammo you want in your off hand and your gun fires it first."
 			],
 			"generated": "guns"
 		},
@@ -282,6 +317,34 @@
 			"generated": "upgrades"
 		},
 		{
+			"id": "mastery",
+			"title": "Weapon Mastery",
+			"icon": "arsenal:cutlass",
+			"icon_material": "ship_iron",
+			"color": "7CE07C",
+			"text": [
+				"A weapon gets better the more you fight with it. Every forged katana, hand weapon and gun learns from the foes it beats, and a weapon you've truly mastered can take a fourth trait.",
+				"",
+				"# Mastery ranks",
+				"Beating a foe with the weapon gives it mastery XP: 1 for any monster, person or player, 3 if they were holding a weapon, and 5 more for each tier of a boss. Cows teach nothing. Guns learn from their shots, not from being swung.",
+				"- Untested: 0 XP",
+				"- Blooded: 10 XP",
+				"- Seasoned: 30 XP",
+				"- Veteran: 70 XP",
+				"- Feared: 140 XP",
+				"- Mastered: 250 XP",
+				"> Folded handles (Tamahagane) make a weapon learn 25% faster. On a katana, a kill counts toward its blade level too.",
+				"",
+				"# The mastery slot",
+				"A Mastered weapon opens a mastery slot. Hold the weapon, put any part in your offhand and right-click a Shipwright's Anvil. The part is used up and its trait is bound into the slot: a head part (blade, head, barrel or shell) gives its head trait, any other part its handle trait.",
+				"- Bind another part to swap the trait. The old one is lost.",
+				"- The trait has to work in a fight: ones that change a weapon's numbers as it's forged (Riveted, Light, Heavy, Unbreakable Grain, Legendary Hull, Ultra-alloy) and armor traits can't be bound.",
+				"- Black Blade only comes from awakening, and guns can't use Serrated or Volcanic Glass.",
+				"- A weapon can't take a trait it already has.",
+				"> The weapon keeps its mastery and its bound trait when it's taken apart and forged again, like its upgrades."
+			]
+		},
+		{
 			"id": "broken_gear",
 			"title": "Broken Gear",
 			"icon": "arsenal:katana_blade",
@@ -307,6 +370,34 @@
 				"> Taking a working katana apart is how you give it a better tsuba or hilt without losing the blade.",
 				"> Navy heads still need a Marine Armory Bench to be put back together."
 			]
+		},
+		{
+			"id": "town_smiths",
+			"title": "Town Blacksmiths",
+			"icon": "minecraft:anvil",
+			"color": "E0A060",
+			"text": [
+				"Some towns have a blacksmith: Shells Town, Loguetown, Whisky Peak, Mock Town, Nanohana, Water 7, Sabaody, the Flower Capital and Amazon Lily. They work at the town's anvils and forges by day and sleep at night, like everyone else in town.",
+				"Bring the materials and they'll do the work. They take Berries for it.",
+				"",
+				"# Forging a part",
+				"Hold a part (any material) as the pattern and the material you want in your offhand, then talk to the smith. You keep the pattern and get a copy made of that material.",
+				"- A smith wastes less than you do: it takes one less of the material than the crafting recipe (never less than one).",
+				"- Each smith has specialty parts (below) that take one less again.",
+				"- The fee is a few Berries, more for better materials.",
+				"",
+				"# Putting gear together",
+				"Hold any part with your offhand empty while you carry a full set, and the smith puts it together, just like a Shipwright's Anvil.",
+				"",
+				"# Mending",
+				"Hold worn or broken forged gear and talk to the smith. They mend it with its head material from your inventory, and each piece mends half of it, twice what the anvil does. Each piece costs a Berry, a little more in pricier towns.",
+				"",
+				"> Town smiths won't touch Navy materials or put together Navy gear: that still takes the Navy's own stations. They'll mend Navy gear, though, no questions asked.",
+				"> Talk to a smith with anything else in your hand for their usual wares, and sneak to haggle. A town that's angry with you won't serve you at all.",
+				"",
+				"# Where to find them, and their specialties"
+			],
+			"generated": "town_smiths"
 		},
 		{
 			"id": "stations",
@@ -354,7 +445,7 @@
 			"generated": "meito",
 			"after": [
 				"# Black Blade awakening",
-				"A Supreme Grade katana can turn black for good. Fight with it for 2 hours (1 hour for a Kokuto blade) with your Armament Haki (level 4 or higher) switched on. Only real fighting counts: a hit on a foe in the last 5 seconds.",
+				"A Supreme Grade katana can turn black for good. Fight with it for 2 hours (1 hour for a Kokuto blade) with your Armament Haki (level 4 or higher) switched on, or with the blade imbued at level 4 or higher (see Haki Imbuing). Only real fighting counts: a hit on a foe in the last 5 seconds.",
 				"When it awakens, its blade becomes Black Blade Steel (8 damage, 2000 uses, the Black Blade trait) and it's fully mended. It keeps its tsuba, hilt, grade, level and enchantments, and the whole server hears about it.",
 				"> The katana's tooltip shows how many minutes it has so far."
 			]

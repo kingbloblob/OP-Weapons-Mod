@@ -35,6 +35,8 @@ import net.minecraft.world.level.material.PushReaction;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 
+import com.onepiecearsenal.ammo.DialRound;
+import com.onepiecearsenal.ammo.DialRoundItem;
 import com.onepiecearsenal.cannon.CannonStats;
 import com.onepiecearsenal.cannon.ShipCannonBlock;
 import com.onepiecearsenal.cannon.ShipCannonBlockEntity;
@@ -111,6 +113,9 @@ public class ArsenalItems {
 	public static final Item JITTE_ROD = part(PartType.JITTE_ROD);
 	public static final Item CLUB_HEAD = part(PartType.CLUB_HEAD);
 	public static final Item SPEARHEAD = part(PartType.SPEARHEAD);
+	public static final Item KNUCKLES = part(PartType.KNUCKLES);
+	public static final Item IMPACT_CORE = part(PartType.IMPACT_CORE);
+	public static final Item REJECT_CORE = part(PartType.REJECT_CORE);
 	public static final Item HAND_GUARD = part(PartType.HAND_GUARD);
 	public static final Item BINDING = part(PartType.BINDING);
 	public static final Item STUDS = part(PartType.STUDS);
@@ -121,6 +126,16 @@ public class ArsenalItems {
 	public static final Item CANNON_SHELL = part(PartType.CANNON_SHELL);
 	public static final Item SHIELD_FACE = part(PartType.SHIELD_FACE);
 	public static final Item GAUNTLET_PLATES = part(PartType.GAUNTLET_PLATES);
+	/** Flintlock and musket ammo, one per material (see MusketBalls). A part, so the Navy stations can cast it too. */
+	public static final Item MUSKET_BALL = part(PartType.MUSKET_BALL);
+	/** Bullets with a Sky Island Dial packed behind the ball (see DialRound). */
+	public static final Map<DialRound, Item> DIAL_ROUNDS = new EnumMap<>(DialRound.class);
+
+	static {
+		for (DialRound round : DialRound.values()) {
+			DIAL_ROUNDS.put(round, register(round.id(), properties -> new DialRoundItem(round, properties), new Item.Properties()));
+		}
+	}
 
 	// ---- Weapons ----
 
@@ -129,7 +144,7 @@ public class ArsenalItems {
 			new Item.Properties().sword(ToolMaterial.IRON, 0.0f, -2.4f));
 	/** One Piece Mod guns whose stats come from their parts (see ArsenalGunItem). GunStats sets the durability when forged. */
 	public static final Map<GunType, Item> GUNS = new EnumMap<>(GunType.class);
-	/** Cutlasses, sabres, axes, jittes, kanabo and spears. Iron numbers until WeaponStats puts the parts' numbers on. */
+	/** Cutlasses, sabres, axes, jittes, kanabo, spears, Fishman Gloves and the Dial palms. Iron numbers until WeaponStats puts the parts' numbers on. */
 	public static final Map<WeaponType, Item> WEAPONS = new EnumMap<>(WeaponType.class);
 
 	static {
@@ -226,6 +241,9 @@ public class ArsenalItems {
 					output.accept(ISLAND_WHALE_LEATHER);
 					output.accept(PACIFISTA_ALLOY);
 					output.accept(VEGAPUNK_COMPOUND);
+					for (Item round : DIAL_ROUNDS.values()) {
+						output.accept(round);
+					}
 					for (Item part : PART_ITEMS) {
 						for (ArsenalMaterial material : ArsenalMaterial.values()) {
 							if (!material.armorOnly || ((PartItem) part).type().isArmor()) {

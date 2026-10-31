@@ -10,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 
 import com.onepiecearsenal.ArsenalComponents;
 import com.onepiecearsenal.ArsenalItems;
+import com.onepiecearsenal.mastery.Mastery;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
 import com.onepiecearsenal.material.TraitStats;
@@ -89,7 +90,7 @@ public final class GunStats {
 	/** The barrel's head trait, and the handle traits of the firing part and stock. */
 	public static Set<Trait> traits(ItemStack gun) {
 		List<ArsenalMaterial> parts = parts(gun);
-		return parts.isEmpty() ? EnumSet.noneOf(Trait.class) : traits(parts.get(0), parts.get(1), parts.get(2));
+		return parts.isEmpty() ? EnumSet.noneOf(Trait.class) : Mastery.withBound(gun, traits(parts.get(0), parts.get(1), parts.get(2)));
 	}
 
 	private static Set<Trait> traits(ArsenalMaterial barrel, ArsenalMaterial lock, ArsenalMaterial stock) {

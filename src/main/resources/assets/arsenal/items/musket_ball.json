@@ -1,0 +1,194 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "property": "arsenal:part_material",
+    "cases": [
+      {
+        "when": "driftwood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/driftwood"
+        }
+      },
+      {
+        "when": "ship_iron",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/ship_iron"
+        }
+      },
+      {
+        "when": "marine_steel",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/marine_steel"
+        }
+      },
+      {
+        "when": "flint",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/flint"
+        }
+      },
+      {
+        "when": "stone",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/stone"
+        }
+      },
+      {
+        "when": "copper",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/copper"
+        }
+      },
+      {
+        "when": "cannon_bronze",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/cannon_bronze"
+        }
+      },
+      {
+        "when": "sea_king_bone",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/sea_king_bone"
+        }
+      },
+      {
+        "when": "treasure_gold",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/treasure_gold"
+        }
+      },
+      {
+        "when": "dial_shell",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/dial_shell"
+        }
+      },
+      {
+        "when": "sea_pearl",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/sea_pearl"
+        }
+      },
+      {
+        "when": "amethyst",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/amethyst"
+        }
+      },
+      {
+        "when": "emerald",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/emerald"
+        }
+      },
+      {
+        "when": "prismarine",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/prismarine"
+        }
+      },
+      {
+        "when": "tamahagane",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/tamahagane"
+        }
+      },
+      {
+        "when": "kairoseki",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/kairoseki"
+        }
+      },
+      {
+        "when": "pacifista_alloy",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/pacifista_alloy"
+        }
+      },
+      {
+        "when": "shandora_gold",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/shandora_gold"
+        }
+      },
+      {
+        "when": "obsidian",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/obsidian"
+        }
+      },
+      {
+        "when": "diamond",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/diamond"
+        }
+      },
+      {
+        "when": "wapometal",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/wapometal"
+        }
+      },
+      {
+        "when": "adam_wood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/adam_wood"
+        }
+      },
+      {
+        "when": "kokuto",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/kokuto"
+        }
+      },
+      {
+        "when": "netherite",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/netherite"
+        }
+      },
+      {
+        "when": "black_blade",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/black_blade"
+        }
+      },
+      {
+        "when": "vegapunk_compound",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/musket_ball/vegapunk_compound"
+        }
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "arsenal:item/part/musket_ball/ship_iron"
+    }
+  }
+}

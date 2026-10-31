@@ -27,7 +27,8 @@ A = 'assets/arsenal'
 MATERIALS = json.load(open('arsenal/materials.json'))['materials']
 # Weapon and gun items, with the One Piece-style names the code also uses (WeaponType, GunType).
 WEAPONS = {"cutlass": "Cutlass", "marine_sabre": "Marine Sabre", "boarding_axe": "Boarding Axe",
-           "jitte": "Jitte", "kanabo": "Kanabo", "spear": "Spear"}
+           "jitte": "Jitte", "kanabo": "Kanabo", "spear": "Spear",
+           "fishman_gloves": "Fishman Gloves", "impact_palm": "Impact Palm", "reject_palm": "Reject Palm"}
 GUNS = {"flintlock": "Flintlock", "musket": "Musket", "hand_cannon": "Hand Cannon"}
 lang = {
     "item.arsenal.driftwood": "Driftwood",
@@ -50,6 +51,11 @@ lang = {
     "item.arsenal.fuse": "Fuse",
     "item.arsenal.gun_carriage": "Gun Carriage",
     "item.arsenal.cannon_shell": "Cannon Shell",
+    "item.arsenal.musket_ball": "Musket Ball",
+    "item.arsenal.flame_dial_round": "Flame Dial Round",
+    "item.arsenal.impact_dial_round": "Impact Dial Round",
+    "item.arsenal.breath_dial_round": "Breath Dial Round",
+    "item.arsenal.flash_dial_round": "Flash Dial Round",
     "block.arsenal.ship_cannon": "Ship Cannon",
     "item.arsenal.cutlass_blade": "Cutlass Blade",
     "item.arsenal.sabre_blade": "Sabre Blade",
@@ -57,6 +63,9 @@ lang = {
     "item.arsenal.jitte_rod": "Jitte Rod",
     "item.arsenal.club_head": "Kanabo Head",
     "item.arsenal.spearhead": "Spearhead",
+    "item.arsenal.knuckles": "Knuckle Plates",
+    "item.arsenal.impact_core": "Impact Dial Core",
+    "item.arsenal.reject_core": "Reject Dial Core",
     "item.arsenal.hand_guard": "Hand Guard",
     "item.arsenal.binding": "Binding",
     "item.arsenal.studs": "Studs",
@@ -82,6 +91,10 @@ lang = {
 }
 for name, title in {**WEAPONS, **GUNS}.items():
     lang[f"item.arsenal.{name}"] = title
+# Options > Controls > Key Binds (client/ArsenalClient).
+lang["key.category.arsenal.arsenal"] = "One Piece Arsenal"
+lang["key.arsenal.weapon_skill"] = "Weapon Skill"
+lang["key.arsenal.imbue_haki"] = "Imbue Haki"
 w(f'{A}/lang/en_us.json', lang)
 # Item art is drawn by tools/gen_textures.py, one texture per material for every part and weapon layer.
 # The item model picks the texture from the material saved on the stack (the "arsenal:part_material" property,
@@ -98,22 +111,35 @@ def model(path, parent="minecraft:item/generated", suffix=""):
     return {"type": "minecraft:model", "model": f"arsenal:item/{path}{suffix}"}
 
 
-def by_material(folder, index=None, parent="minecraft:item/generated", materials=None, suffix=""):
-    """Picks folder/<material> by the material of the part at index (or of the part itself)."""
+# A weapon coated in Armament Haki (haki/HakiImbue) turns its first layer black: the "arsenal:haki_coat" tint
+# (client/HakiCoatTint) multiplies it down to near black while the coat is on, and leaves it as drawn otherwise.
+HAKI_COAT = [{"type": "arsenal:haki_coat"}]
+
+
+def coated(entry):
+    return {**entry, "tints": HAKI_COAT}
+
+
+def by_material(folder, index=None, parent="minecraft:item/generated", materials=None, haki=False, suffix=""):
+    """Picks folder/<material> by the material of the part at index (or of the part itself).
+    haki=True lets these models turn black while the weapon is coated in Haki. suffix names a second model of
+    the same textures (another pose, like a raised shield)."""
+    tint = coated if haki else (lambda entry: entry)
     select = {"type": "minecraft:select", "property": "arsenal:part_material"}
     if index is not None:
         select["index"] = index
-    select["cases"] = [{"when": m, "model": model(f"{folder}/{m}", parent, suffix)} for m in (materials or TEXTURED)]
-    select["fallback"] = {"type": "minecraft:model", "model": f"arsenal:item/{folder}/{FALLBACK}{suffix}"}
+    select["cases"] = [{"when": m, "model": tint(model(f"{folder}/{m}", parent, suffix))} for m in (materials or TEXTURED)]
+    select["fallback"] = tint({"type": "minecraft:model", "model": f"arsenal:item/{folder}/{FALLBACK}{suffix}"})
     return select
 
 
 for name in ["driftwood", "marine_steel_ingot", "cannon_bronze_ingot", "sea_king_bone", "island_whale_leather",
-             "pacifista_alloy", "vegapunk_compound", "shipwrights_manual"]:
+             "pacifista_alloy", "vegapunk_compound", "shipwrights_manual",
+             "flame_dial_round", "impact_dial_round", "breath_dial_round", "flash_dial_round"]:
     w(f'{A}/items/{name}.json', {"model": model(name)})
 for part in ["katana_blade", "tsuba", "hilt", "barrel", "firing_lock", "stock", "long_barrel", "cannon_bore", "fuse",
-             "gun_carriage", "cannon_shell", "cutlass_blade", "sabre_blade", "axe_head", "jitte_rod", "club_head", "spearhead", "hand_guard",
-             "binding", "studs", "grip", "haft", "shield_face"]:
+             "gun_carriage", "cannon_shell", "musket_ball", "cutlass_blade", "sabre_blade", "axe_head", "jitte_rod", "club_head", "spearhead",
+             "knuckles", "impact_core", "reject_core", "hand_guard", "binding", "studs", "grip", "haft", "shield_face"]:
     w(f'{A}/items/{part}.json', {"model": by_material(f"part/{part}", materials=WEAPON_TEXTURED)})
 for part in ["crown", "coat_plates", "sash_weave", "boot_soles", "lining", "gauntlet_plates"]:
     w(f'{A}/items/{part}.json', {"model": by_material(f"part/{part}")})
@@ -126,16 +152,19 @@ weapon_layers = {
     "cutlass": ["blade", "guard", "grip"], "marine_sabre": ["blade", "guard", "grip"],
     "boarding_axe": ["head", "binding", "haft"], "jitte": ["rod", "binding", "grip"],
     "kanabo": ["head", "studs", "haft"], "spear": ["head", "binding", "haft"],
+    "fishman_gloves": ["knuckles", "strap", "palm"],
+    "impact_palm": ["dial", "strap", "palm"], "reject_palm": ["dial", "strap", "palm"],
 }
 # The famous Devil Fruit weapons (fruit/FamousFruitWeapon) are forged gear of these kinds with their own look,
 # picked by the custom_model_data string FamousFruitWeapon.create sets.
 famous = {"hand_cannon": ["lassoo"], "marine_sabre": ["funkfreed"], "cutlass": ["cerberus"], "kanabo": ["ragnir"]}
 for weapon, layers in weapon_layers.items():
     forged = {"type": "minecraft:composite", "models": [
-        by_material(f"{weapon}/{layer}", i, "minecraft:item/handheld", WEAPON_TEXTURED) for i, layer in enumerate(layers)]}
+        by_material(f"{weapon}/{layer}", i, "minecraft:item/handheld", WEAPON_TEXTURED, haki=i == 0 and weapon != "ship_cannon")
+        for i, layer in enumerate(layers)]}
     if weapon in famous:
         forged = {"type": "minecraft:select", "property": "minecraft:custom_model_data", "index": 0,
-                  "cases": [{"when": name, "model": model(f"famous/{name}", "minecraft:item/handheld")} for name in famous[weapon]],
+                  "cases": [{"when": name, "model": coated(model(f"famous/{name}", "minecraft:item/handheld"))} for name in famous[weapon]],
                   "fallback": forged}
     w(f'{A}/items/{weapon}.json', {"model": forged})
 
@@ -274,9 +303,14 @@ w(f'{D}/tags/worldgen/structure/has_base_smeltery.json', {"replace": False, "val
 w('data/minecraft/tags/item/swords.json', {"replace": False, "values": ["arsenal:katana", "arsenal:cutlass", "arsenal:marine_sabre"]})
 w('data/minecraft/tags/item/axes.json', {"replace": False, "values": ["arsenal:boarding_axe"]})
 # Sword enchantments (Sharpness, Looting, Fire Aspect...) on the weapons that aren't swords or axes.
-OTHER_WEAPONS = ["arsenal:jitte", "arsenal:kanabo", "arsenal:spear"]
+OTHER_WEAPONS = ["arsenal:jitte", "arsenal:kanabo", "arsenal:spear", "arsenal:fishman_gloves", "arsenal:impact_palm", "arsenal:reject_palm"]
 w('data/minecraft/tags/item/enchantable/sword.json', {"replace": False, "values": OTHER_WEAPONS})
 w('data/minecraft/tags/item/enchantable/sharp_weapon.json', {"replace": False, "values": OTHER_WEAPONS})
+# The One Piece Mod's fist styles (Fish-Man Karate, Ryusoken, Fist of Love) treat Fishman Gloves as an empty hand.
+w('data/onepiece/tags/item/fist_weapons.json', {"replace": False, "values": ["arsenal:fishman_gloves"]})
+# These take the One Piece Mod's Flame and Impact Dials (WeaponUpgrades.HOLDS_DIAL). The Dial palms are Dials already.
+w('data/onepiece/tags/item/holds_dial.json', {"replace": False, "values": [
+    "arsenal:jitte", "arsenal:kanabo", "arsenal:spear", "arsenal:fishman_gloves"]})
 # The One Piece Mod's gun enchantments (Quick Draw, Sniper's Eye) and Unbreaking/Mending work on Arsenal guns.
 w('data/onepiece/tags/item/guns.json', {"replace": False, "values": [f"arsenal:{g}" for g in GUNS]})
 w('data/minecraft/tags/item/enchantable/durability.json', {"replace": False,
@@ -315,6 +349,11 @@ w(f'{D}/recipe/cannon_bronze_ingot.json', {"type": "minecraft:crafting_shapeless
 w(f'{D}/recipe/cannon_bronze_ingot_from_iron.json', {"type": "minecraft:crafting_shapeless", "category": "misc",
     "ingredients": ["minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:iron_ingot"],
     "result": {"id": "arsenal:cannon_bronze_ingot", "count": 2}})
+# Dial Rounds (ammo/DialRound): a Sky Island Dial packed with eight of the One Piece Mod's Bullets.
+for kind in ["flame", "impact", "breath", "flash"]:
+    w(f'{D}/recipe/{kind}_dial_round.json', {"type": "minecraft:crafting_shapeless", "category": "equipment",
+        "ingredients": [f"onepiece:{kind}_dial"] + ["onepiece:bullet"] * 8,
+        "result": {"id": f"arsenal:{kind}_dial_round", "count": 8}})
 
 # One recipe per part per material, from materials.json. Each part has its own shape, and none of them
 # matches a vanilla recipe for the same ingredient (an iron sword is iron, iron, stick, so no part is).
@@ -322,6 +361,7 @@ w(f'{D}/recipe/cannon_bronze_ingot_from_iron.json', {"type": "minecraft:crafting
 # Quartermaster's Desk; Kairoseki, Pacifista Alloy and Vegapunk Compound at the Marine Base Smeltery; see
 # NavyCastingBlock). Hides and leathers only make armor parts, and Black Blade Steel isn't crafted at all.
 L, S, K, N, F, G = "minecraft:leather", "minecraft:string", "minecraft:stick", "minecraft:iron_nugget", "minecraft:flint", "minecraft:gunpowder"
+DS = "onepiece:dial_shell"  # Skypiea's Dial shells: the Dial cores are built around one
 parts = {
     "katana_blade": (["M", "M", "M"], {}),
     "tsuba": ([" M ", "M M", " M "], {}),
@@ -334,12 +374,17 @@ parts = {
     "fuse": (["S", "G", "M"], {"S": S, "G": G}),
     "gun_carriage": (["MMM", "K K"], {"K": K}),
     "cannon_shell": ([" M ", "MGM", " M "], {"G": G}),
+    "musket_ball": (["M", "G"], {"G": G}),
     "cutlass_blade": (["  M", " M ", "M  "], {}),
     "sabre_blade": (["M", "M", "N"], {"N": N}),
     "axe_head": (["MMM", "M  "], {}),
     "jitte_rod": (["M", "N", "M"], {"N": N}),
     "club_head": (["MMM", "MKM"], {"K": K}),  # a stick for the haft, or iron or copper would make bars
     "spearhead": ([" M ", "MMM"], {}),
+    "knuckles": (["MMM", "N N"], {"N": N}),
+    # The casing's material around a Dial Shell. A Reject Dial is rarer: four shells and gunpowder for its kick.
+    "impact_core": ([" M ", "MDM", " M "], {"D": DS}),
+    "reject_core": (["DMD", "MGM", "DMD"], {"D": DS, "G": G}),
     "hand_guard": (["MNM", "MMM"], {"N": N}),  # a nugget in the gap, or iron would make a Minecart
     "binding": (["SMS"], {"S": S}),
     "studs": (["N N", " M ", "N N"], {"N": N}),
@@ -361,7 +406,7 @@ CLASHES = {
     ("long_barrel", "minecraft:flint"): (["MMM", "  N"], {"N": N}),  # a flint lock on flint is the Axe Head mirrored
 }
 ARMOR_PARTS = {"crown", "coat_plates", "sash_weave", "boot_soles", "lining", "gauntlet_plates"}
-COUNTS = {"cannon_shell": 4}  # parts that come more than one to a craft
+COUNTS = {"cannon_shell": 4, "musket_ball": 8}  # parts that come more than one to a craft
 for m in MATERIALS:
     if not m.get("craftable", True) or m["faction"] == "navy":
         continue
