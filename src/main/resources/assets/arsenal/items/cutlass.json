@@ -1,586 +1,600 @@
 {
   "model": {
-    "type": "minecraft:composite",
-    "models": [
+    "type": "minecraft:select",
+    "property": "minecraft:custom_model_data",
+    "index": 0,
+    "cases": [
       {
-        "type": "minecraft:select",
-        "property": "arsenal:part_material",
-        "index": 0,
-        "cases": [
-          {
-            "when": "driftwood",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/driftwood"
-            }
-          },
-          {
-            "when": "ship_iron",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/ship_iron"
-            }
-          },
-          {
-            "when": "marine_steel",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/marine_steel"
-            }
-          },
-          {
-            "when": "flint",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/flint"
-            }
-          },
-          {
-            "when": "stone",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/stone"
-            }
-          },
-          {
-            "when": "copper",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/copper"
-            }
-          },
-          {
-            "when": "cannon_bronze",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/cannon_bronze"
-            }
-          },
-          {
-            "when": "sea_king_bone",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/sea_king_bone"
-            }
-          },
-          {
-            "when": "treasure_gold",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/treasure_gold"
-            }
-          },
-          {
-            "when": "dial_shell",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/dial_shell"
-            }
-          },
-          {
-            "when": "sea_pearl",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/sea_pearl"
-            }
-          },
-          {
-            "when": "amethyst",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/amethyst"
-            }
-          },
-          {
-            "when": "emerald",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/emerald"
-            }
-          },
-          {
-            "when": "prismarine",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/prismarine"
-            }
-          },
-          {
-            "when": "tamahagane",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/tamahagane"
-            }
-          },
-          {
-            "when": "kairoseki",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/kairoseki"
-            }
-          },
-          {
-            "when": "pacifista_alloy",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/pacifista_alloy"
-            }
-          },
-          {
-            "when": "shandora_gold",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/shandora_gold"
-            }
-          },
-          {
-            "when": "obsidian",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/obsidian"
-            }
-          },
-          {
-            "when": "diamond",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/diamond"
-            }
-          },
-          {
-            "when": "wapometal",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/wapometal"
-            }
-          },
-          {
-            "when": "adam_wood",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/adam_wood"
-            }
-          },
-          {
-            "when": "kokuto",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/kokuto"
-            }
-          },
-          {
-            "when": "netherite",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/netherite"
-            }
-          },
-          {
-            "when": "black_blade",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/black_blade"
-            }
-          },
-          {
-            "when": "vegapunk_compound",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/blade/vegapunk_compound"
-            }
-          }
-        ],
-        "fallback": {
+        "when": "cerberus",
+        "model": {
           "type": "minecraft:model",
-          "model": "arsenal:item/cutlass/blade/ship_iron"
-        }
-      },
-      {
-        "type": "minecraft:select",
-        "property": "arsenal:part_material",
-        "index": 1,
-        "cases": [
-          {
-            "when": "driftwood",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/driftwood"
-            }
-          },
-          {
-            "when": "ship_iron",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/ship_iron"
-            }
-          },
-          {
-            "when": "marine_steel",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/marine_steel"
-            }
-          },
-          {
-            "when": "flint",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/flint"
-            }
-          },
-          {
-            "when": "stone",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/stone"
-            }
-          },
-          {
-            "when": "copper",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/copper"
-            }
-          },
-          {
-            "when": "cannon_bronze",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/cannon_bronze"
-            }
-          },
-          {
-            "when": "sea_king_bone",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/sea_king_bone"
-            }
-          },
-          {
-            "when": "treasure_gold",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/treasure_gold"
-            }
-          },
-          {
-            "when": "dial_shell",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/dial_shell"
-            }
-          },
-          {
-            "when": "sea_pearl",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/sea_pearl"
-            }
-          },
-          {
-            "when": "amethyst",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/amethyst"
-            }
-          },
-          {
-            "when": "emerald",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/emerald"
-            }
-          },
-          {
-            "when": "prismarine",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/prismarine"
-            }
-          },
-          {
-            "when": "tamahagane",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/tamahagane"
-            }
-          },
-          {
-            "when": "kairoseki",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/kairoseki"
-            }
-          },
-          {
-            "when": "pacifista_alloy",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/pacifista_alloy"
-            }
-          },
-          {
-            "when": "shandora_gold",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/shandora_gold"
-            }
-          },
-          {
-            "when": "obsidian",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/obsidian"
-            }
-          },
-          {
-            "when": "diamond",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/diamond"
-            }
-          },
-          {
-            "when": "wapometal",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/wapometal"
-            }
-          },
-          {
-            "when": "adam_wood",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/adam_wood"
-            }
-          },
-          {
-            "when": "kokuto",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/kokuto"
-            }
-          },
-          {
-            "when": "netherite",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/netherite"
-            }
-          },
-          {
-            "when": "black_blade",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/black_blade"
-            }
-          },
-          {
-            "when": "vegapunk_compound",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/guard/vegapunk_compound"
-            }
-          }
-        ],
-        "fallback": {
-          "type": "minecraft:model",
-          "model": "arsenal:item/cutlass/guard/ship_iron"
-        }
-      },
-      {
-        "type": "minecraft:select",
-        "property": "arsenal:part_material",
-        "index": 2,
-        "cases": [
-          {
-            "when": "driftwood",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/driftwood"
-            }
-          },
-          {
-            "when": "ship_iron",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/ship_iron"
-            }
-          },
-          {
-            "when": "marine_steel",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/marine_steel"
-            }
-          },
-          {
-            "when": "flint",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/flint"
-            }
-          },
-          {
-            "when": "stone",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/stone"
-            }
-          },
-          {
-            "when": "copper",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/copper"
-            }
-          },
-          {
-            "when": "cannon_bronze",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/cannon_bronze"
-            }
-          },
-          {
-            "when": "sea_king_bone",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/sea_king_bone"
-            }
-          },
-          {
-            "when": "treasure_gold",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/treasure_gold"
-            }
-          },
-          {
-            "when": "dial_shell",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/dial_shell"
-            }
-          },
-          {
-            "when": "sea_pearl",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/sea_pearl"
-            }
-          },
-          {
-            "when": "amethyst",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/amethyst"
-            }
-          },
-          {
-            "when": "emerald",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/emerald"
-            }
-          },
-          {
-            "when": "prismarine",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/prismarine"
-            }
-          },
-          {
-            "when": "tamahagane",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/tamahagane"
-            }
-          },
-          {
-            "when": "kairoseki",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/kairoseki"
-            }
-          },
-          {
-            "when": "pacifista_alloy",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/pacifista_alloy"
-            }
-          },
-          {
-            "when": "shandora_gold",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/shandora_gold"
-            }
-          },
-          {
-            "when": "obsidian",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/obsidian"
-            }
-          },
-          {
-            "when": "diamond",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/diamond"
-            }
-          },
-          {
-            "when": "wapometal",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/wapometal"
-            }
-          },
-          {
-            "when": "adam_wood",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/adam_wood"
-            }
-          },
-          {
-            "when": "kokuto",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/kokuto"
-            }
-          },
-          {
-            "when": "netherite",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/netherite"
-            }
-          },
-          {
-            "when": "black_blade",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/black_blade"
-            }
-          },
-          {
-            "when": "vegapunk_compound",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/cutlass/grip/vegapunk_compound"
-            }
-          }
-        ],
-        "fallback": {
-          "type": "minecraft:model",
-          "model": "arsenal:item/cutlass/grip/ship_iron"
+          "model": "arsenal:item/famous/cerberus"
         }
       }
-    ]
+    ],
+    "fallback": {
+      "type": "minecraft:composite",
+      "models": [
+        {
+          "type": "minecraft:select",
+          "property": "arsenal:part_material",
+          "index": 0,
+          "cases": [
+            {
+              "when": "driftwood",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/driftwood"
+              }
+            },
+            {
+              "when": "ship_iron",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/ship_iron"
+              }
+            },
+            {
+              "when": "marine_steel",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/marine_steel"
+              }
+            },
+            {
+              "when": "flint",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/flint"
+              }
+            },
+            {
+              "when": "stone",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/stone"
+              }
+            },
+            {
+              "when": "copper",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/copper"
+              }
+            },
+            {
+              "when": "cannon_bronze",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/cannon_bronze"
+              }
+            },
+            {
+              "when": "sea_king_bone",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/sea_king_bone"
+              }
+            },
+            {
+              "when": "treasure_gold",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/treasure_gold"
+              }
+            },
+            {
+              "when": "dial_shell",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/dial_shell"
+              }
+            },
+            {
+              "when": "sea_pearl",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/sea_pearl"
+              }
+            },
+            {
+              "when": "amethyst",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/amethyst"
+              }
+            },
+            {
+              "when": "emerald",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/emerald"
+              }
+            },
+            {
+              "when": "prismarine",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/prismarine"
+              }
+            },
+            {
+              "when": "tamahagane",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/tamahagane"
+              }
+            },
+            {
+              "when": "kairoseki",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/kairoseki"
+              }
+            },
+            {
+              "when": "pacifista_alloy",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/pacifista_alloy"
+              }
+            },
+            {
+              "when": "shandora_gold",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/shandora_gold"
+              }
+            },
+            {
+              "when": "obsidian",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/obsidian"
+              }
+            },
+            {
+              "when": "diamond",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/diamond"
+              }
+            },
+            {
+              "when": "wapometal",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/wapometal"
+              }
+            },
+            {
+              "when": "adam_wood",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/adam_wood"
+              }
+            },
+            {
+              "when": "kokuto",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/kokuto"
+              }
+            },
+            {
+              "when": "netherite",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/netherite"
+              }
+            },
+            {
+              "when": "black_blade",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/black_blade"
+              }
+            },
+            {
+              "when": "vegapunk_compound",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/blade/vegapunk_compound"
+              }
+            }
+          ],
+          "fallback": {
+            "type": "minecraft:model",
+            "model": "arsenal:item/cutlass/blade/ship_iron"
+          }
+        },
+        {
+          "type": "minecraft:select",
+          "property": "arsenal:part_material",
+          "index": 1,
+          "cases": [
+            {
+              "when": "driftwood",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/driftwood"
+              }
+            },
+            {
+              "when": "ship_iron",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/ship_iron"
+              }
+            },
+            {
+              "when": "marine_steel",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/marine_steel"
+              }
+            },
+            {
+              "when": "flint",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/flint"
+              }
+            },
+            {
+              "when": "stone",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/stone"
+              }
+            },
+            {
+              "when": "copper",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/copper"
+              }
+            },
+            {
+              "when": "cannon_bronze",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/cannon_bronze"
+              }
+            },
+            {
+              "when": "sea_king_bone",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/sea_king_bone"
+              }
+            },
+            {
+              "when": "treasure_gold",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/treasure_gold"
+              }
+            },
+            {
+              "when": "dial_shell",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/dial_shell"
+              }
+            },
+            {
+              "when": "sea_pearl",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/sea_pearl"
+              }
+            },
+            {
+              "when": "amethyst",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/amethyst"
+              }
+            },
+            {
+              "when": "emerald",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/emerald"
+              }
+            },
+            {
+              "when": "prismarine",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/prismarine"
+              }
+            },
+            {
+              "when": "tamahagane",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/tamahagane"
+              }
+            },
+            {
+              "when": "kairoseki",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/kairoseki"
+              }
+            },
+            {
+              "when": "pacifista_alloy",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/pacifista_alloy"
+              }
+            },
+            {
+              "when": "shandora_gold",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/shandora_gold"
+              }
+            },
+            {
+              "when": "obsidian",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/obsidian"
+              }
+            },
+            {
+              "when": "diamond",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/diamond"
+              }
+            },
+            {
+              "when": "wapometal",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/wapometal"
+              }
+            },
+            {
+              "when": "adam_wood",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/adam_wood"
+              }
+            },
+            {
+              "when": "kokuto",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/kokuto"
+              }
+            },
+            {
+              "when": "netherite",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/netherite"
+              }
+            },
+            {
+              "when": "black_blade",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/black_blade"
+              }
+            },
+            {
+              "when": "vegapunk_compound",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/guard/vegapunk_compound"
+              }
+            }
+          ],
+          "fallback": {
+            "type": "minecraft:model",
+            "model": "arsenal:item/cutlass/guard/ship_iron"
+          }
+        },
+        {
+          "type": "minecraft:select",
+          "property": "arsenal:part_material",
+          "index": 2,
+          "cases": [
+            {
+              "when": "driftwood",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/driftwood"
+              }
+            },
+            {
+              "when": "ship_iron",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/ship_iron"
+              }
+            },
+            {
+              "when": "marine_steel",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/marine_steel"
+              }
+            },
+            {
+              "when": "flint",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/flint"
+              }
+            },
+            {
+              "when": "stone",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/stone"
+              }
+            },
+            {
+              "when": "copper",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/copper"
+              }
+            },
+            {
+              "when": "cannon_bronze",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/cannon_bronze"
+              }
+            },
+            {
+              "when": "sea_king_bone",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/sea_king_bone"
+              }
+            },
+            {
+              "when": "treasure_gold",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/treasure_gold"
+              }
+            },
+            {
+              "when": "dial_shell",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/dial_shell"
+              }
+            },
+            {
+              "when": "sea_pearl",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/sea_pearl"
+              }
+            },
+            {
+              "when": "amethyst",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/amethyst"
+              }
+            },
+            {
+              "when": "emerald",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/emerald"
+              }
+            },
+            {
+              "when": "prismarine",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/prismarine"
+              }
+            },
+            {
+              "when": "tamahagane",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/tamahagane"
+              }
+            },
+            {
+              "when": "kairoseki",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/kairoseki"
+              }
+            },
+            {
+              "when": "pacifista_alloy",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/pacifista_alloy"
+              }
+            },
+            {
+              "when": "shandora_gold",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/shandora_gold"
+              }
+            },
+            {
+              "when": "obsidian",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/obsidian"
+              }
+            },
+            {
+              "when": "diamond",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/diamond"
+              }
+            },
+            {
+              "when": "wapometal",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/wapometal"
+              }
+            },
+            {
+              "when": "adam_wood",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/adam_wood"
+              }
+            },
+            {
+              "when": "kokuto",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/kokuto"
+              }
+            },
+            {
+              "when": "netherite",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/netherite"
+              }
+            },
+            {
+              "when": "black_blade",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/black_blade"
+              }
+            },
+            {
+              "when": "vegapunk_compound",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/cutlass/grip/vegapunk_compound"
+              }
+            }
+          ],
+          "fallback": {
+            "type": "minecraft:model",
+            "model": "arsenal:item/cutlass/grip/ship_iron"
+          }
+        }
+      ]
+    }
   }
 }

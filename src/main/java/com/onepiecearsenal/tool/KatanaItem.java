@@ -14,6 +14,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 
 import com.onepiecearsenal.compat.OnePieceBridge;
+import com.onepiecearsenal.fruit.FruitWeapons;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
 import com.onepiecearsenal.skill.WeaponSkill;
@@ -59,6 +60,7 @@ public class KatanaItem extends Item {
 		textConsumer.accept(Component.literal("Tsuba: " + parts.get(1).displayName).withStyle(ChatFormatting.GRAY));
 		textConsumer.accept(Component.literal("Hilt: " + parts.get(2).displayName).withStyle(ChatFormatting.GRAY));
 		WeaponSkill.describe(stack, textConsumer);
+		FruitWeapons.describe(stack, textConsumer);
 		for (Trait trait : KatanaStats.traits(stack)) {
 			textConsumer.accept(Component.literal(trait.displayName + ": " + trait.description + (trait.active ? "" : " (coming soon)"))
 					.withStyle(ChatFormatting.GOLD));

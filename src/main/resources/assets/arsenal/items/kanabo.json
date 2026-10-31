@@ -1,586 +1,600 @@
 {
   "model": {
-    "type": "minecraft:composite",
-    "models": [
+    "type": "minecraft:select",
+    "property": "minecraft:custom_model_data",
+    "index": 0,
+    "cases": [
       {
-        "type": "minecraft:select",
-        "property": "arsenal:part_material",
-        "index": 0,
-        "cases": [
-          {
-            "when": "driftwood",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/driftwood"
-            }
-          },
-          {
-            "when": "ship_iron",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/ship_iron"
-            }
-          },
-          {
-            "when": "marine_steel",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/marine_steel"
-            }
-          },
-          {
-            "when": "flint",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/flint"
-            }
-          },
-          {
-            "when": "stone",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/stone"
-            }
-          },
-          {
-            "when": "copper",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/copper"
-            }
-          },
-          {
-            "when": "cannon_bronze",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/cannon_bronze"
-            }
-          },
-          {
-            "when": "sea_king_bone",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/sea_king_bone"
-            }
-          },
-          {
-            "when": "treasure_gold",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/treasure_gold"
-            }
-          },
-          {
-            "when": "dial_shell",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/dial_shell"
-            }
-          },
-          {
-            "when": "sea_pearl",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/sea_pearl"
-            }
-          },
-          {
-            "when": "amethyst",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/amethyst"
-            }
-          },
-          {
-            "when": "emerald",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/emerald"
-            }
-          },
-          {
-            "when": "prismarine",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/prismarine"
-            }
-          },
-          {
-            "when": "tamahagane",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/tamahagane"
-            }
-          },
-          {
-            "when": "kairoseki",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/kairoseki"
-            }
-          },
-          {
-            "when": "pacifista_alloy",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/pacifista_alloy"
-            }
-          },
-          {
-            "when": "shandora_gold",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/shandora_gold"
-            }
-          },
-          {
-            "when": "obsidian",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/obsidian"
-            }
-          },
-          {
-            "when": "diamond",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/diamond"
-            }
-          },
-          {
-            "when": "wapometal",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/wapometal"
-            }
-          },
-          {
-            "when": "adam_wood",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/adam_wood"
-            }
-          },
-          {
-            "when": "kokuto",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/kokuto"
-            }
-          },
-          {
-            "when": "netherite",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/netherite"
-            }
-          },
-          {
-            "when": "black_blade",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/black_blade"
-            }
-          },
-          {
-            "when": "vegapunk_compound",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/head/vegapunk_compound"
-            }
-          }
-        ],
-        "fallback": {
+        "when": "ragnir",
+        "model": {
           "type": "minecraft:model",
-          "model": "arsenal:item/kanabo/head/ship_iron"
-        }
-      },
-      {
-        "type": "minecraft:select",
-        "property": "arsenal:part_material",
-        "index": 1,
-        "cases": [
-          {
-            "when": "driftwood",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/driftwood"
-            }
-          },
-          {
-            "when": "ship_iron",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/ship_iron"
-            }
-          },
-          {
-            "when": "marine_steel",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/marine_steel"
-            }
-          },
-          {
-            "when": "flint",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/flint"
-            }
-          },
-          {
-            "when": "stone",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/stone"
-            }
-          },
-          {
-            "when": "copper",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/copper"
-            }
-          },
-          {
-            "when": "cannon_bronze",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/cannon_bronze"
-            }
-          },
-          {
-            "when": "sea_king_bone",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/sea_king_bone"
-            }
-          },
-          {
-            "when": "treasure_gold",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/treasure_gold"
-            }
-          },
-          {
-            "when": "dial_shell",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/dial_shell"
-            }
-          },
-          {
-            "when": "sea_pearl",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/sea_pearl"
-            }
-          },
-          {
-            "when": "amethyst",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/amethyst"
-            }
-          },
-          {
-            "when": "emerald",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/emerald"
-            }
-          },
-          {
-            "when": "prismarine",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/prismarine"
-            }
-          },
-          {
-            "when": "tamahagane",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/tamahagane"
-            }
-          },
-          {
-            "when": "kairoseki",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/kairoseki"
-            }
-          },
-          {
-            "when": "pacifista_alloy",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/pacifista_alloy"
-            }
-          },
-          {
-            "when": "shandora_gold",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/shandora_gold"
-            }
-          },
-          {
-            "when": "obsidian",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/obsidian"
-            }
-          },
-          {
-            "when": "diamond",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/diamond"
-            }
-          },
-          {
-            "when": "wapometal",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/wapometal"
-            }
-          },
-          {
-            "when": "adam_wood",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/adam_wood"
-            }
-          },
-          {
-            "when": "kokuto",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/kokuto"
-            }
-          },
-          {
-            "when": "netherite",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/netherite"
-            }
-          },
-          {
-            "when": "black_blade",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/black_blade"
-            }
-          },
-          {
-            "when": "vegapunk_compound",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/studs/vegapunk_compound"
-            }
-          }
-        ],
-        "fallback": {
-          "type": "minecraft:model",
-          "model": "arsenal:item/kanabo/studs/ship_iron"
-        }
-      },
-      {
-        "type": "minecraft:select",
-        "property": "arsenal:part_material",
-        "index": 2,
-        "cases": [
-          {
-            "when": "driftwood",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/driftwood"
-            }
-          },
-          {
-            "when": "ship_iron",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/ship_iron"
-            }
-          },
-          {
-            "when": "marine_steel",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/marine_steel"
-            }
-          },
-          {
-            "when": "flint",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/flint"
-            }
-          },
-          {
-            "when": "stone",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/stone"
-            }
-          },
-          {
-            "when": "copper",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/copper"
-            }
-          },
-          {
-            "when": "cannon_bronze",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/cannon_bronze"
-            }
-          },
-          {
-            "when": "sea_king_bone",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/sea_king_bone"
-            }
-          },
-          {
-            "when": "treasure_gold",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/treasure_gold"
-            }
-          },
-          {
-            "when": "dial_shell",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/dial_shell"
-            }
-          },
-          {
-            "when": "sea_pearl",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/sea_pearl"
-            }
-          },
-          {
-            "when": "amethyst",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/amethyst"
-            }
-          },
-          {
-            "when": "emerald",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/emerald"
-            }
-          },
-          {
-            "when": "prismarine",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/prismarine"
-            }
-          },
-          {
-            "when": "tamahagane",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/tamahagane"
-            }
-          },
-          {
-            "when": "kairoseki",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/kairoseki"
-            }
-          },
-          {
-            "when": "pacifista_alloy",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/pacifista_alloy"
-            }
-          },
-          {
-            "when": "shandora_gold",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/shandora_gold"
-            }
-          },
-          {
-            "when": "obsidian",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/obsidian"
-            }
-          },
-          {
-            "when": "diamond",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/diamond"
-            }
-          },
-          {
-            "when": "wapometal",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/wapometal"
-            }
-          },
-          {
-            "when": "adam_wood",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/adam_wood"
-            }
-          },
-          {
-            "when": "kokuto",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/kokuto"
-            }
-          },
-          {
-            "when": "netherite",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/netherite"
-            }
-          },
-          {
-            "when": "black_blade",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/black_blade"
-            }
-          },
-          {
-            "when": "vegapunk_compound",
-            "model": {
-              "type": "minecraft:model",
-              "model": "arsenal:item/kanabo/haft/vegapunk_compound"
-            }
-          }
-        ],
-        "fallback": {
-          "type": "minecraft:model",
-          "model": "arsenal:item/kanabo/haft/ship_iron"
+          "model": "arsenal:item/famous/ragnir"
         }
       }
-    ]
+    ],
+    "fallback": {
+      "type": "minecraft:composite",
+      "models": [
+        {
+          "type": "minecraft:select",
+          "property": "arsenal:part_material",
+          "index": 0,
+          "cases": [
+            {
+              "when": "driftwood",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/driftwood"
+              }
+            },
+            {
+              "when": "ship_iron",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/ship_iron"
+              }
+            },
+            {
+              "when": "marine_steel",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/marine_steel"
+              }
+            },
+            {
+              "when": "flint",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/flint"
+              }
+            },
+            {
+              "when": "stone",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/stone"
+              }
+            },
+            {
+              "when": "copper",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/copper"
+              }
+            },
+            {
+              "when": "cannon_bronze",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/cannon_bronze"
+              }
+            },
+            {
+              "when": "sea_king_bone",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/sea_king_bone"
+              }
+            },
+            {
+              "when": "treasure_gold",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/treasure_gold"
+              }
+            },
+            {
+              "when": "dial_shell",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/dial_shell"
+              }
+            },
+            {
+              "when": "sea_pearl",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/sea_pearl"
+              }
+            },
+            {
+              "when": "amethyst",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/amethyst"
+              }
+            },
+            {
+              "when": "emerald",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/emerald"
+              }
+            },
+            {
+              "when": "prismarine",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/prismarine"
+              }
+            },
+            {
+              "when": "tamahagane",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/tamahagane"
+              }
+            },
+            {
+              "when": "kairoseki",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/kairoseki"
+              }
+            },
+            {
+              "when": "pacifista_alloy",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/pacifista_alloy"
+              }
+            },
+            {
+              "when": "shandora_gold",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/shandora_gold"
+              }
+            },
+            {
+              "when": "obsidian",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/obsidian"
+              }
+            },
+            {
+              "when": "diamond",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/diamond"
+              }
+            },
+            {
+              "when": "wapometal",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/wapometal"
+              }
+            },
+            {
+              "when": "adam_wood",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/adam_wood"
+              }
+            },
+            {
+              "when": "kokuto",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/kokuto"
+              }
+            },
+            {
+              "when": "netherite",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/netherite"
+              }
+            },
+            {
+              "when": "black_blade",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/black_blade"
+              }
+            },
+            {
+              "when": "vegapunk_compound",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/head/vegapunk_compound"
+              }
+            }
+          ],
+          "fallback": {
+            "type": "minecraft:model",
+            "model": "arsenal:item/kanabo/head/ship_iron"
+          }
+        },
+        {
+          "type": "minecraft:select",
+          "property": "arsenal:part_material",
+          "index": 1,
+          "cases": [
+            {
+              "when": "driftwood",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/driftwood"
+              }
+            },
+            {
+              "when": "ship_iron",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/ship_iron"
+              }
+            },
+            {
+              "when": "marine_steel",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/marine_steel"
+              }
+            },
+            {
+              "when": "flint",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/flint"
+              }
+            },
+            {
+              "when": "stone",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/stone"
+              }
+            },
+            {
+              "when": "copper",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/copper"
+              }
+            },
+            {
+              "when": "cannon_bronze",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/cannon_bronze"
+              }
+            },
+            {
+              "when": "sea_king_bone",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/sea_king_bone"
+              }
+            },
+            {
+              "when": "treasure_gold",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/treasure_gold"
+              }
+            },
+            {
+              "when": "dial_shell",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/dial_shell"
+              }
+            },
+            {
+              "when": "sea_pearl",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/sea_pearl"
+              }
+            },
+            {
+              "when": "amethyst",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/amethyst"
+              }
+            },
+            {
+              "when": "emerald",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/emerald"
+              }
+            },
+            {
+              "when": "prismarine",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/prismarine"
+              }
+            },
+            {
+              "when": "tamahagane",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/tamahagane"
+              }
+            },
+            {
+              "when": "kairoseki",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/kairoseki"
+              }
+            },
+            {
+              "when": "pacifista_alloy",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/pacifista_alloy"
+              }
+            },
+            {
+              "when": "shandora_gold",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/shandora_gold"
+              }
+            },
+            {
+              "when": "obsidian",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/obsidian"
+              }
+            },
+            {
+              "when": "diamond",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/diamond"
+              }
+            },
+            {
+              "when": "wapometal",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/wapometal"
+              }
+            },
+            {
+              "when": "adam_wood",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/adam_wood"
+              }
+            },
+            {
+              "when": "kokuto",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/kokuto"
+              }
+            },
+            {
+              "when": "netherite",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/netherite"
+              }
+            },
+            {
+              "when": "black_blade",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/black_blade"
+              }
+            },
+            {
+              "when": "vegapunk_compound",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/studs/vegapunk_compound"
+              }
+            }
+          ],
+          "fallback": {
+            "type": "minecraft:model",
+            "model": "arsenal:item/kanabo/studs/ship_iron"
+          }
+        },
+        {
+          "type": "minecraft:select",
+          "property": "arsenal:part_material",
+          "index": 2,
+          "cases": [
+            {
+              "when": "driftwood",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/driftwood"
+              }
+            },
+            {
+              "when": "ship_iron",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/ship_iron"
+              }
+            },
+            {
+              "when": "marine_steel",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/marine_steel"
+              }
+            },
+            {
+              "when": "flint",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/flint"
+              }
+            },
+            {
+              "when": "stone",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/stone"
+              }
+            },
+            {
+              "when": "copper",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/copper"
+              }
+            },
+            {
+              "when": "cannon_bronze",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/cannon_bronze"
+              }
+            },
+            {
+              "when": "sea_king_bone",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/sea_king_bone"
+              }
+            },
+            {
+              "when": "treasure_gold",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/treasure_gold"
+              }
+            },
+            {
+              "when": "dial_shell",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/dial_shell"
+              }
+            },
+            {
+              "when": "sea_pearl",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/sea_pearl"
+              }
+            },
+            {
+              "when": "amethyst",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/amethyst"
+              }
+            },
+            {
+              "when": "emerald",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/emerald"
+              }
+            },
+            {
+              "when": "prismarine",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/prismarine"
+              }
+            },
+            {
+              "when": "tamahagane",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/tamahagane"
+              }
+            },
+            {
+              "when": "kairoseki",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/kairoseki"
+              }
+            },
+            {
+              "when": "pacifista_alloy",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/pacifista_alloy"
+              }
+            },
+            {
+              "when": "shandora_gold",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/shandora_gold"
+              }
+            },
+            {
+              "when": "obsidian",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/obsidian"
+              }
+            },
+            {
+              "when": "diamond",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/diamond"
+              }
+            },
+            {
+              "when": "wapometal",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/wapometal"
+              }
+            },
+            {
+              "when": "adam_wood",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/adam_wood"
+              }
+            },
+            {
+              "when": "kokuto",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/kokuto"
+              }
+            },
+            {
+              "when": "netherite",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/netherite"
+              }
+            },
+            {
+              "when": "black_blade",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/black_blade"
+              }
+            },
+            {
+              "when": "vegapunk_compound",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/kanabo/haft/vegapunk_compound"
+              }
+            }
+          ],
+          "fallback": {
+            "type": "minecraft:model",
+            "model": "arsenal:item/kanabo/haft/ship_iron"
+          }
+        }
+      ]
+    }
   }
 }

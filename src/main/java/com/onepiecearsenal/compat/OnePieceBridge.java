@@ -23,7 +23,10 @@ import com.onepiecemod.character.CharacterFeature;
 import com.onepiecemod.haki.HakiAttachments;
 import com.onepiecemod.haki.HakiData;
 import com.onepiecemod.haki.HakiPowers;
+import com.onepiecemod.item.DevilFruitItem;
 import com.onepiecemod.news.NewsLog;
+import com.onepiecemod.power.DevilFruit;
+import com.onepiecemod.power.DevilFruits;
 import com.onepiecemod.npc.HumanNpc;
 import com.onepiecemod.style.FightingStyle;
 import com.onepiecemod.style.StyleAttachments;
@@ -44,6 +47,23 @@ public final class OnePieceBridge {
 	/** True for players who ate a fruit, and for story characters who have one. */
 	public static boolean isFruitUser(LivingEntity entity) {
 		return SeastoneEffects.isFruitUser(entity);
+	}
+
+	/** The fruit id of a Devil Fruit item, like "inu_inu_no_mi_wolf", or null if the stack isn't a Devil Fruit. */
+	public static String fruitId(ItemStack stack) {
+		return stack.getItem() instanceof DevilFruitItem fruit ? fruit.getFruit().id() : null;
+	}
+
+	/** The main mod's name for a fruit, like "Inu Inu no Mi, Model: Wolf", or null if the main mod has no such fruit. */
+	public static String fruitName(String fruitId) {
+		DevilFruit fruit = DevilFruits.get(fruitId);
+		return fruit == null ? null : fruit.name();
+	}
+
+	/** True for a main mod Zoan fruit (an animal fruit). */
+	public static boolean isZoan(String fruitId) {
+		DevilFruit fruit = DevilFruits.get(fruitId);
+		return fruit != null && fruit.type() == DevilFruit.Type.ZOAN;
 	}
 
 	/** The main mod's seastone weakness, the same one its cuffs and jitte use. 20 ticks = 1 second. */

@@ -122,9 +122,17 @@ weapon_layers = {
     "boarding_axe": ["head", "binding", "haft"], "jitte": ["rod", "binding", "grip"],
     "kanabo": ["head", "studs", "haft"], "spear": ["head", "binding", "haft"],
 }
+# The famous Devil Fruit weapons (fruit/FamousFruitWeapon) are forged gear of these kinds with their own look,
+# picked by the custom_model_data string FamousFruitWeapon.create sets.
+famous = {"hand_cannon": ["lassoo"], "marine_sabre": ["funkfreed"], "cutlass": ["cerberus"], "kanabo": ["ragnir"]}
 for weapon, layers in weapon_layers.items():
-    w(f'{A}/items/{weapon}.json', {"model": {"type": "minecraft:composite", "models": [
-        by_material(f"{weapon}/{layer}", i, "minecraft:item/handheld", WEAPON_TEXTURED) for i, layer in enumerate(layers)]}})
+    forged = {"type": "minecraft:composite", "models": [
+        by_material(f"{weapon}/{layer}", i, "minecraft:item/handheld", WEAPON_TEXTURED) for i, layer in enumerate(layers)]}
+    if weapon in famous:
+        forged = {"type": "minecraft:select", "property": "minecraft:custom_model_data", "index": 0,
+                  "cases": [{"when": name, "model": model(f"famous/{name}", "minecraft:item/handheld")} for name in famous[weapon]],
+                  "fallback": forged}
+    w(f'{A}/items/{weapon}.json', {"model": forged})
 for piece in ["hat", "coat", "sash", "boots"]:
     w(f'{A}/items/{piece}.json', {"model": by_material(f"armor/{piece}", 0)})
 # The worn look of Arsenal armor, one per shell material (ArmorStats picks it when a piece is forged).
