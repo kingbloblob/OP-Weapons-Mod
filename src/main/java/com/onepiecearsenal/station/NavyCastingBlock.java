@@ -65,7 +65,7 @@ public class NavyCastingBlock extends NavyStationBlock {
 			}
 			take(inventory, ingot, cost);
 			ItemStack copy = PartItem.of(part, material);
-			copy.setCount(yield(part.type()));
+			copy.setCount(NavyCastingBlock.yield(part.type()));
 			int made = copy.getCount();
 			String name = copy.getHoverName().getString(); // inventory.add empties the stack, so read the name first.
 			if (!inventory.add(copy)) {
