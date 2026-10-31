@@ -9,11 +9,10 @@ import java.util.Set;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.BlocksAttacks;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 
@@ -93,14 +92,16 @@ public final class ShieldStats {
 		shield.set(ArsenalComponents.SHIELD_PARTS, List.of(face.id(), rim.id(), strap.id()));
 
 		Set<Trait> traits = traits(face, rim, strap);
+		// What bypasses it (a registry-bound damage type set) and its sounds come from vanilla's shield.
+		BlocksAttacks vanilla = Items.SHIELD.components().get(DataComponents.BLOCKS_ATTACKS);
 		shield.set(DataComponents.BLOCKS_ATTACKS, new BlocksAttacks(
 				blockDelay(rim, strap),
 				disableScale(face, traits),
 				List.of(new BlocksAttacks.DamageReduction(angle(face), Optional.empty(), 0.0f, 1.0f)),
 				new BlocksAttacks.ItemDamageFunction(3.0f, 1.0f, 1.0f),
-				Optional.of(DamageTypeTags.BYPASSES_SHIELD),
-				Optional.of(SoundEvents.SHIELD_BLOCK),
-				Optional.of(SoundEvents.SHIELD_BREAK)));
+				vanilla.bypassedBy(),
+				vanilla.blockSound(),
+				vanilla.disableSound()));
 
 		// Held traits (Heavy's toughness, Legendary Hull's knockback resistance...) count from the offhand, where it's carried.
 		shield.set(DataComponents.ATTRIBUTE_MODIFIERS, TraitStats.modifiers(ItemAttributeModifiers.EMPTY, traits, EquipmentSlotGroup.OFFHAND));

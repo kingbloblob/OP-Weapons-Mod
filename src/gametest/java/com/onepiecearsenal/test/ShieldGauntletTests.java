@@ -99,7 +99,7 @@ public class ShieldGauntletTests {
 	@GameTest
 	public void spikedShieldPricksWhoeverHitsIt(GameTestHelper helper) {
 		ServerPlayer blocker = helper.makeMockServerPlayerInLevel();
-		ItemStack shield = ShieldStats.build(ArsenalMaterial.PRISMARINE, IRON, IRON);
+		ItemStack shield = ShieldStats.build(ArsenalMaterial.byId("prismarine"), IRON, IRON);
 		helper.assertTrue(Upgrades.add(shield, Upgrade.byId("spiked_boss")), "Spiked Boss should fit a shield");
 		Zombie attacker = helper.spawn(EntityTypes.ZOMBIE, new BlockPos(1, 1, 1));
 		float before = attacker.getHealth();
