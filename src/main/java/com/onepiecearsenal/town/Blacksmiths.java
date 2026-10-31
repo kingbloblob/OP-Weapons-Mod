@@ -234,13 +234,11 @@ public final class Blacksmiths {
 	}
 
 	private static boolean canPay(ServerPlayer customer, int fee) {
-		return customer.isCreative() || count(customer.getInventory(), OnePieceBridge.berry()) >= fee;
+		return count(customer.getInventory(), OnePieceBridge.berry()) >= fee;
 	}
 
 	private static void pay(ServerPlayer customer, int fee) {
-		if (!customer.isCreative()) {
-			take(customer.getInventory(), OnePieceBridge.berry(), fee);
-		}
+		take(customer.getInventory(), OnePieceBridge.berry(), fee); // Creative players pay too, like at any town stall.
 	}
 
 	/** How many of this item the inventory holds, not counting parts or gear made of it. */

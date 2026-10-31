@@ -126,7 +126,7 @@ public class BlacksmithTests {
 
 	private static ServerPlayer customer(GameTestHelper helper) {
 		ServerPlayer player = helper.makeMockServerPlayerInLevel();
-		player.setGameMode(GameType.SURVIVAL); // Creative players don't pay.
+		player.setGameMode(GameType.SURVIVAL);
 		return player;
 	}
 
