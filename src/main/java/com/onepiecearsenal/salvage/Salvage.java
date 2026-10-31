@@ -26,14 +26,17 @@ import com.onepiecearsenal.part.PartType;
 import com.onepiecearsenal.station.ShipwrightsAnvilBlock;
 import com.onepiecearsenal.tool.ArsenalGunItem;
 import com.onepiecearsenal.tool.ArsenalWeaponItem;
+import com.onepiecearsenal.tool.GauntletStats;
 import com.onepiecearsenal.tool.Restat;
+import com.onepiecearsenal.tool.ShieldStats;
 import com.onepiecearsenal.upgrade.Upgrade.Gear;
 import com.onepiecearsenal.upgrade.Upgrades;
 
 /**
  * Taking forged gear apart at the Shipwright's Anvil: sneak and right-click it holding the gear.
  * - Gear that still works comes apart into all its parts.
- * - Broken gear (see Breakage) loses the part that held it together: the tsuba, binding, firing part or lining.
+ * - Broken gear (see Breakage) loses the part that held it together: the tsuba, binding, firing part or lining
+ *   (a shield's rim, which is a Binding).
  *
  * The head part (blade, head, barrel or shell) carries the gear's history (ArsenalComponents.SALVAGED_FROM): forge
  * it into the same kind of gear again, with any other parts, and it comes back with its upgrades, whetstone grade,
@@ -116,6 +119,8 @@ public final class Salvage {
 			case COAT -> new PartType[] {PartType.COAT_PLATES, PartType.LINING};
 			case SASH -> new PartType[] {PartType.SASH_WEAVE, PartType.LINING};
 			case BOOTS -> new PartType[] {PartType.BOOT_SOLES, PartType.LINING};
+			case SHIELD -> ShieldStats.parts();
+			case GAUNTLETS -> GauntletStats.parts();
 		};
 	}
 
@@ -142,7 +147,7 @@ public final class Salvage {
 
 	private static void copyParts(ItemStack from, ItemStack to) {
 		for (var parts : List.of(ArsenalComponents.KATANA_PARTS, ArsenalComponents.WEAPON_PARTS, ArsenalComponents.GUN_PARTS,
-				ArsenalComponents.ARMOR_PARTS)) {
+				ArsenalComponents.ARMOR_PARTS, ArsenalComponents.SHIELD_PARTS, ArsenalComponents.GAUNTLET_PARTS)) {
 			List<String> materials = from.get(parts);
 			if (materials != null) {
 				to.set(parts, materials);

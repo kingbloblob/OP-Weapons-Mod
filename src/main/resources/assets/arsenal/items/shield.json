@@ -1,0 +1,1174 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:using_item",
+    "on_true": {
+      "type": "minecraft:composite",
+      "models": [
+        {
+          "type": "minecraft:select",
+          "property": "arsenal:part_material",
+          "index": 0,
+          "cases": [
+            {
+              "when": "driftwood",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/driftwood_raised"
+              }
+            },
+            {
+              "when": "ship_iron",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/ship_iron_raised"
+              }
+            },
+            {
+              "when": "marine_steel",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/marine_steel_raised"
+              }
+            },
+            {
+              "when": "flint",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/flint_raised"
+              }
+            },
+            {
+              "when": "stone",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/stone_raised"
+              }
+            },
+            {
+              "when": "copper",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/copper_raised"
+              }
+            },
+            {
+              "when": "cannon_bronze",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/cannon_bronze_raised"
+              }
+            },
+            {
+              "when": "sea_king_bone",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/sea_king_bone_raised"
+              }
+            },
+            {
+              "when": "treasure_gold",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/treasure_gold_raised"
+              }
+            },
+            {
+              "when": "dial_shell",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/dial_shell_raised"
+              }
+            },
+            {
+              "when": "sea_pearl",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/sea_pearl_raised"
+              }
+            },
+            {
+              "when": "amethyst",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/amethyst_raised"
+              }
+            },
+            {
+              "when": "emerald",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/emerald_raised"
+              }
+            },
+            {
+              "when": "prismarine",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/prismarine_raised"
+              }
+            },
+            {
+              "when": "tamahagane",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/tamahagane_raised"
+              }
+            },
+            {
+              "when": "kairoseki",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/kairoseki_raised"
+              }
+            },
+            {
+              "when": "pacifista_alloy",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/pacifista_alloy_raised"
+              }
+            },
+            {
+              "when": "shandora_gold",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/shandora_gold_raised"
+              }
+            },
+            {
+              "when": "obsidian",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/obsidian_raised"
+              }
+            },
+            {
+              "when": "diamond",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/diamond_raised"
+              }
+            },
+            {
+              "when": "wapometal",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/wapometal_raised"
+              }
+            },
+            {
+              "when": "adam_wood",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/adam_wood_raised"
+              }
+            },
+            {
+              "when": "kokuto",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/kokuto_raised"
+              }
+            },
+            {
+              "when": "netherite",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/netherite_raised"
+              }
+            },
+            {
+              "when": "black_blade",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/black_blade_raised"
+              }
+            },
+            {
+              "when": "vegapunk_compound",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/vegapunk_compound_raised"
+              }
+            }
+          ],
+          "fallback": {
+            "type": "minecraft:model",
+            "model": "arsenal:item/shield/face/ship_iron_raised"
+          }
+        },
+        {
+          "type": "minecraft:select",
+          "property": "arsenal:part_material",
+          "index": 1,
+          "cases": [
+            {
+              "when": "driftwood",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/driftwood_raised"
+              }
+            },
+            {
+              "when": "ship_iron",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/ship_iron_raised"
+              }
+            },
+            {
+              "when": "marine_steel",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/marine_steel_raised"
+              }
+            },
+            {
+              "when": "flint",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/flint_raised"
+              }
+            },
+            {
+              "when": "stone",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/stone_raised"
+              }
+            },
+            {
+              "when": "copper",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/copper_raised"
+              }
+            },
+            {
+              "when": "cannon_bronze",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/cannon_bronze_raised"
+              }
+            },
+            {
+              "when": "sea_king_bone",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/sea_king_bone_raised"
+              }
+            },
+            {
+              "when": "treasure_gold",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/treasure_gold_raised"
+              }
+            },
+            {
+              "when": "dial_shell",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/dial_shell_raised"
+              }
+            },
+            {
+              "when": "sea_pearl",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/sea_pearl_raised"
+              }
+            },
+            {
+              "when": "amethyst",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/amethyst_raised"
+              }
+            },
+            {
+              "when": "emerald",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/emerald_raised"
+              }
+            },
+            {
+              "when": "prismarine",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/prismarine_raised"
+              }
+            },
+            {
+              "when": "tamahagane",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/tamahagane_raised"
+              }
+            },
+            {
+              "when": "kairoseki",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/kairoseki_raised"
+              }
+            },
+            {
+              "when": "pacifista_alloy",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/pacifista_alloy_raised"
+              }
+            },
+            {
+              "when": "shandora_gold",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/shandora_gold_raised"
+              }
+            },
+            {
+              "when": "obsidian",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/obsidian_raised"
+              }
+            },
+            {
+              "when": "diamond",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/diamond_raised"
+              }
+            },
+            {
+              "when": "wapometal",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/wapometal_raised"
+              }
+            },
+            {
+              "when": "adam_wood",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/adam_wood_raised"
+              }
+            },
+            {
+              "when": "kokuto",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/kokuto_raised"
+              }
+            },
+            {
+              "when": "netherite",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/netherite_raised"
+              }
+            },
+            {
+              "when": "black_blade",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/black_blade_raised"
+              }
+            },
+            {
+              "when": "vegapunk_compound",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/vegapunk_compound_raised"
+              }
+            }
+          ],
+          "fallback": {
+            "type": "minecraft:model",
+            "model": "arsenal:item/shield/rim/ship_iron_raised"
+          }
+        },
+        {
+          "type": "minecraft:select",
+          "property": "arsenal:part_material",
+          "index": 2,
+          "cases": [
+            {
+              "when": "driftwood",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/driftwood_raised"
+              }
+            },
+            {
+              "when": "ship_iron",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/ship_iron_raised"
+              }
+            },
+            {
+              "when": "marine_steel",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/marine_steel_raised"
+              }
+            },
+            {
+              "when": "flint",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/flint_raised"
+              }
+            },
+            {
+              "when": "stone",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/stone_raised"
+              }
+            },
+            {
+              "when": "copper",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/copper_raised"
+              }
+            },
+            {
+              "when": "cannon_bronze",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/cannon_bronze_raised"
+              }
+            },
+            {
+              "when": "sea_king_bone",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/sea_king_bone_raised"
+              }
+            },
+            {
+              "when": "treasure_gold",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/treasure_gold_raised"
+              }
+            },
+            {
+              "when": "dial_shell",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/dial_shell_raised"
+              }
+            },
+            {
+              "when": "sea_pearl",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/sea_pearl_raised"
+              }
+            },
+            {
+              "when": "amethyst",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/amethyst_raised"
+              }
+            },
+            {
+              "when": "emerald",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/emerald_raised"
+              }
+            },
+            {
+              "when": "prismarine",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/prismarine_raised"
+              }
+            },
+            {
+              "when": "tamahagane",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/tamahagane_raised"
+              }
+            },
+            {
+              "when": "kairoseki",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/kairoseki_raised"
+              }
+            },
+            {
+              "when": "pacifista_alloy",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/pacifista_alloy_raised"
+              }
+            },
+            {
+              "when": "shandora_gold",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/shandora_gold_raised"
+              }
+            },
+            {
+              "when": "obsidian",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/obsidian_raised"
+              }
+            },
+            {
+              "when": "diamond",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/diamond_raised"
+              }
+            },
+            {
+              "when": "wapometal",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/wapometal_raised"
+              }
+            },
+            {
+              "when": "adam_wood",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/adam_wood_raised"
+              }
+            },
+            {
+              "when": "kokuto",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/kokuto_raised"
+              }
+            },
+            {
+              "when": "netherite",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/netherite_raised"
+              }
+            },
+            {
+              "when": "black_blade",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/black_blade_raised"
+              }
+            },
+            {
+              "when": "vegapunk_compound",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/vegapunk_compound_raised"
+              }
+            }
+          ],
+          "fallback": {
+            "type": "minecraft:model",
+            "model": "arsenal:item/shield/boss/ship_iron_raised"
+          }
+        }
+      ]
+    },
+    "on_false": {
+      "type": "minecraft:composite",
+      "models": [
+        {
+          "type": "minecraft:select",
+          "property": "arsenal:part_material",
+          "index": 0,
+          "cases": [
+            {
+              "when": "driftwood",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/driftwood"
+              }
+            },
+            {
+              "when": "ship_iron",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/ship_iron"
+              }
+            },
+            {
+              "when": "marine_steel",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/marine_steel"
+              }
+            },
+            {
+              "when": "flint",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/flint"
+              }
+            },
+            {
+              "when": "stone",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/stone"
+              }
+            },
+            {
+              "when": "copper",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/copper"
+              }
+            },
+            {
+              "when": "cannon_bronze",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/cannon_bronze"
+              }
+            },
+            {
+              "when": "sea_king_bone",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/sea_king_bone"
+              }
+            },
+            {
+              "when": "treasure_gold",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/treasure_gold"
+              }
+            },
+            {
+              "when": "dial_shell",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/dial_shell"
+              }
+            },
+            {
+              "when": "sea_pearl",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/sea_pearl"
+              }
+            },
+            {
+              "when": "amethyst",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/amethyst"
+              }
+            },
+            {
+              "when": "emerald",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/emerald"
+              }
+            },
+            {
+              "when": "prismarine",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/prismarine"
+              }
+            },
+            {
+              "when": "tamahagane",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/tamahagane"
+              }
+            },
+            {
+              "when": "kairoseki",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/kairoseki"
+              }
+            },
+            {
+              "when": "pacifista_alloy",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/pacifista_alloy"
+              }
+            },
+            {
+              "when": "shandora_gold",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/shandora_gold"
+              }
+            },
+            {
+              "when": "obsidian",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/obsidian"
+              }
+            },
+            {
+              "when": "diamond",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/diamond"
+              }
+            },
+            {
+              "when": "wapometal",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/wapometal"
+              }
+            },
+            {
+              "when": "adam_wood",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/adam_wood"
+              }
+            },
+            {
+              "when": "kokuto",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/kokuto"
+              }
+            },
+            {
+              "when": "netherite",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/netherite"
+              }
+            },
+            {
+              "when": "black_blade",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/black_blade"
+              }
+            },
+            {
+              "when": "vegapunk_compound",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/face/vegapunk_compound"
+              }
+            }
+          ],
+          "fallback": {
+            "type": "minecraft:model",
+            "model": "arsenal:item/shield/face/ship_iron"
+          }
+        },
+        {
+          "type": "minecraft:select",
+          "property": "arsenal:part_material",
+          "index": 1,
+          "cases": [
+            {
+              "when": "driftwood",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/driftwood"
+              }
+            },
+            {
+              "when": "ship_iron",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/ship_iron"
+              }
+            },
+            {
+              "when": "marine_steel",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/marine_steel"
+              }
+            },
+            {
+              "when": "flint",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/flint"
+              }
+            },
+            {
+              "when": "stone",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/stone"
+              }
+            },
+            {
+              "when": "copper",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/copper"
+              }
+            },
+            {
+              "when": "cannon_bronze",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/cannon_bronze"
+              }
+            },
+            {
+              "when": "sea_king_bone",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/sea_king_bone"
+              }
+            },
+            {
+              "when": "treasure_gold",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/treasure_gold"
+              }
+            },
+            {
+              "when": "dial_shell",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/dial_shell"
+              }
+            },
+            {
+              "when": "sea_pearl",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/sea_pearl"
+              }
+            },
+            {
+              "when": "amethyst",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/amethyst"
+              }
+            },
+            {
+              "when": "emerald",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/emerald"
+              }
+            },
+            {
+              "when": "prismarine",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/prismarine"
+              }
+            },
+            {
+              "when": "tamahagane",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/tamahagane"
+              }
+            },
+            {
+              "when": "kairoseki",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/kairoseki"
+              }
+            },
+            {
+              "when": "pacifista_alloy",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/pacifista_alloy"
+              }
+            },
+            {
+              "when": "shandora_gold",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/shandora_gold"
+              }
+            },
+            {
+              "when": "obsidian",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/obsidian"
+              }
+            },
+            {
+              "when": "diamond",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/diamond"
+              }
+            },
+            {
+              "when": "wapometal",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/wapometal"
+              }
+            },
+            {
+              "when": "adam_wood",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/adam_wood"
+              }
+            },
+            {
+              "when": "kokuto",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/kokuto"
+              }
+            },
+            {
+              "when": "netherite",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/netherite"
+              }
+            },
+            {
+              "when": "black_blade",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/black_blade"
+              }
+            },
+            {
+              "when": "vegapunk_compound",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/rim/vegapunk_compound"
+              }
+            }
+          ],
+          "fallback": {
+            "type": "minecraft:model",
+            "model": "arsenal:item/shield/rim/ship_iron"
+          }
+        },
+        {
+          "type": "minecraft:select",
+          "property": "arsenal:part_material",
+          "index": 2,
+          "cases": [
+            {
+              "when": "driftwood",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/driftwood"
+              }
+            },
+            {
+              "when": "ship_iron",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/ship_iron"
+              }
+            },
+            {
+              "when": "marine_steel",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/marine_steel"
+              }
+            },
+            {
+              "when": "flint",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/flint"
+              }
+            },
+            {
+              "when": "stone",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/stone"
+              }
+            },
+            {
+              "when": "copper",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/copper"
+              }
+            },
+            {
+              "when": "cannon_bronze",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/cannon_bronze"
+              }
+            },
+            {
+              "when": "sea_king_bone",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/sea_king_bone"
+              }
+            },
+            {
+              "when": "treasure_gold",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/treasure_gold"
+              }
+            },
+            {
+              "when": "dial_shell",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/dial_shell"
+              }
+            },
+            {
+              "when": "sea_pearl",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/sea_pearl"
+              }
+            },
+            {
+              "when": "amethyst",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/amethyst"
+              }
+            },
+            {
+              "when": "emerald",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/emerald"
+              }
+            },
+            {
+              "when": "prismarine",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/prismarine"
+              }
+            },
+            {
+              "when": "tamahagane",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/tamahagane"
+              }
+            },
+            {
+              "when": "kairoseki",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/kairoseki"
+              }
+            },
+            {
+              "when": "pacifista_alloy",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/pacifista_alloy"
+              }
+            },
+            {
+              "when": "shandora_gold",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/shandora_gold"
+              }
+            },
+            {
+              "when": "obsidian",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/obsidian"
+              }
+            },
+            {
+              "when": "diamond",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/diamond"
+              }
+            },
+            {
+              "when": "wapometal",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/wapometal"
+              }
+            },
+            {
+              "when": "adam_wood",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/adam_wood"
+              }
+            },
+            {
+              "when": "kokuto",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/kokuto"
+              }
+            },
+            {
+              "when": "netherite",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/netherite"
+              }
+            },
+            {
+              "when": "black_blade",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/black_blade"
+              }
+            },
+            {
+              "when": "vegapunk_compound",
+              "model": {
+                "type": "minecraft:model",
+                "model": "arsenal:item/shield/boss/vegapunk_compound"
+              }
+            }
+          ],
+          "fallback": {
+            "type": "minecraft:model",
+            "model": "arsenal:item/shield/boss/ship_iron"
+          }
+        }
+      ]
+    }
+  }
+}

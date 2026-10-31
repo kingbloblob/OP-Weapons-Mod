@@ -1,0 +1,6 @@
+{
+  "parent": "arsenal:item/shield_held",
+  "textures": {
+    "layer0": "arsenal:item/shield/boss/dial_shell"
+  }
+}

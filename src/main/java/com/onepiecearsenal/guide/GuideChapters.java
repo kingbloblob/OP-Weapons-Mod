@@ -38,7 +38,9 @@ import com.onepiecearsenal.station.NavyCastingBlock;
 import com.onepiecearsenal.tool.ArmorStats;
 import com.onepiecearsenal.tool.GunStats;
 import com.onepiecearsenal.tool.GunType;
+import com.onepiecearsenal.tool.GauntletStats;
 import com.onepiecearsenal.tool.KatanaStats;
+import com.onepiecearsenal.tool.ShieldStats;
 import com.onepiecearsenal.tool.WeaponStats;
 import com.onepiecearsenal.tool.WeaponType;
 import com.onepiecearsenal.upgrade.Upgrade;
@@ -143,6 +145,12 @@ public final class GuideChapters {
 		}
 		if (item == ArsenalItems.SHIP_CANNON) {
 			return CannonStats.build(material, iron, iron);
+		}
+		if (item == ArsenalItems.SHIELD) {
+			return ShieldStats.build(material, iron, iron);
+		}
+		if (item == ArsenalItems.GAUNTLETS) {
+			return GauntletStats.build(material, ArsenalMaterial.DRIFTWOOD);
 		}
 		if (item instanceof PartItem) {
 			return PartItem.of(item, material);
@@ -393,7 +401,8 @@ public final class GuideChapters {
 	private static List<String> upgrades() {
 		List<String> lines = new ArrayList<>();
 		lines.add("- Upgrade slots: " + Upgrade.slots(Upgrade.Gear.KATANA) + " on a katana, " + Upgrade.slots(Upgrade.Gear.WEAPON)
-				+ " on a hand weapon, " + Upgrade.slots(Upgrade.Gear.GUN) + " on a gun, " + Upgrade.slots(Upgrade.Gear.COAT) + " on each armor piece.");
+				+ " on a hand weapon, " + Upgrade.slots(Upgrade.Gear.GUN) + " on a gun, " + Upgrade.slots(Upgrade.Gear.COAT) + " on each armor piece, "
+				+ Upgrade.slots(Upgrade.Gear.SHIELD) + " on a shield, " + Upgrade.slots(Upgrade.Gear.GAUNTLETS) + " on gauntlets.");
 		lines.add("");
 		for (Upgrade upgrade : Upgrade.values()) {
 			lines.add(upgrade.displayName + " (up to " + Upgrade.numeral(upgrade.maxLevel) + ")");

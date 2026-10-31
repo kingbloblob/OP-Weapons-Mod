@@ -1,6 +1,8 @@
 package com.onepiecearsenal.material;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Set;
 
 import net.minecraft.core.particles.ParticleTypes;
@@ -35,6 +37,10 @@ import com.onepiecearsenal.mixin.FoodDataAccessor;
 import com.onepiecearsenal.salvage.Breakage;
 import com.onepiecearsenal.tool.ArmorStats;
 import com.onepiecearsenal.tool.ArsenalArmorItem;
+import com.onepiecearsenal.tool.ArsenalGauntletItem;
+import com.onepiecearsenal.tool.ArsenalShieldItem;
+import com.onepiecearsenal.tool.GauntletStats;
+import com.onepiecearsenal.tool.ShieldStats;
 import com.onepiecearsenal.tool.ArsenalGunItem;
 import com.onepiecearsenal.tool.ArsenalWeaponItem;
 import com.onepiecearsenal.tool.GunStats;
@@ -123,8 +129,8 @@ public class TraitEffects {
 		// Plated armor: each Plated piece has a chance to deflect a bullet, arrow or anything else thrown.
 		ServerLivingEntityEvents.ALLOW_DAMAGE.register((entity, source, amount) -> {
 			if (entity instanceof ServerPlayer wearer && source.is(DamageTypeTags.IS_PROJECTILE)) {
-				for (EquipmentSlot slot : ARMOR_SLOTS) {
-					if (hasTrait(wearer.getItemBySlot(slot), Trait.PLATED) && wearer.getRandom().nextFloat() < PLATED_CHANCE) {
+				for (ItemStack piece : worn(wearer)) {
+					if (hasTrait(piece, Trait.PLATED) && wearer.getRandom().nextFloat() < PLATED_CHANCE) {
 						wearer.level().playSound(null, wearer.blockPosition(), SoundEvents.ANVIL_PLACE, SoundSource.PLAYERS, 0.4f, 1.8f);
 						return false;
 					}
@@ -150,12 +156,21 @@ public class TraitEffects {
 		ServerLivingEntityEvents.AFTER_DAMAGE.register((entity, source, baseDamageTaken, damageTaken, blocked) -> {
 			if (!dealingExtra && entity instanceof ServerPlayer wearer && source.getDirectEntity() instanceof LivingEntity attacker
 					&& attacker == source.getEntity() && OnePieceBridge.isFruitUser(attacker)) {
-				for (EquipmentSlot slot : ARMOR_SLOTS) {
-					if (hasTrait(wearer.getItemBySlot(slot), Trait.SEASTONE)) {
+				for (ItemStack piece : worn(wearer)) {
+					if (hasTrait(piece, Trait.SEASTONE)) {
 						OnePieceBridge.drainFruitPower(attacker, SEASTONE_DRAIN_TICKS);
 						return;
 					}
 				}
+			}
+		});
+
+		// A raised Arsenal shield that stops a melee hit strikes back with its face's trait (ShieldStats.counter).
+		ServerLivingEntityEvents.AFTER_DAMAGE.register((entity, source, baseDamageTaken, damageTaken, blocked) -> {
+			if (!dealingExtra && blocked && entity instanceof ServerPlayer blocker && blocker.level() instanceof ServerLevel level
+					&& source.getDirectEntity() instanceof LivingEntity attacker && attacker == source.getEntity() && attacker != entity
+					&& blocker.getUseItem().getItem() instanceof ArsenalShieldItem) {
+				ShieldStats.counter(blocker, level, attacker, blocker.getUseItem());
 			}
 		});
 
@@ -164,8 +179,8 @@ public class TraitEffects {
 			if (!dealingExtra && !blocked && !source.is(DamageTypes.THORNS) && entity.level() instanceof ServerLevel level
 					&& source.getDirectEntity() instanceof LivingEntity attacker && attacker == source.getEntity() && attacker != entity) {
 				int pieces = 0;
-				for (EquipmentSlot slot : ARMOR_SLOTS) {
-					if (hasTrait(entity.getItemBySlot(slot), Trait.SPINED)) {
+				for (ItemStack piece : worn(entity)) {
+					if (hasTrait(piece, Trait.SPINED)) {
 						pieces++;
 					}
 				}
@@ -314,6 +329,18 @@ public class TraitEffects {
 
 	private static final EquipmentSlot[] ARMOR_SLOTS = {EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
 
+	/** The armor an entity wears: its four armor slots, and gauntlets in its offhand (see GauntletStats). */
+	private static List<ItemStack> worn(LivingEntity entity) {
+		List<ItemStack> pieces = new ArrayList<>(5);
+		for (EquipmentSlot slot : ARMOR_SLOTS) {
+			pieces.add(entity.getItemBySlot(slot));
+		}
+		if (entity.getOffhandItem().getItem() instanceof ArsenalGauntletItem) {
+			pieces.add(entity.getOffhandItem());
+		}
+		return pieces;
+	}
+
 	private static boolean wearsOrHolds(ServerPlayer player, Trait trait) {
 		if (hasTrait(player.getMainHandItem(), trait) || hasTrait(player.getOffhandItem(), trait)) {
 			return true;
@@ -336,8 +363,8 @@ public class TraitEffects {
 	}
 
 	private static boolean wears(LivingEntity entity, Trait trait) {
-		for (EquipmentSlot slot : ARMOR_SLOTS) {
-			if (hasTrait(entity.getItemBySlot(slot), trait)) {
+		for (ItemStack piece : worn(entity)) {
+			if (hasTrait(piece, trait)) {
 				return true;
 			}
 		}
@@ -348,7 +375,7 @@ public class TraitEffects {
 		return traits(stack).contains(trait);
 	}
 
-	/** The traits of any Arsenal weapon or armor piece. Empty for anything else, and for broken gear. */
+	/** The traits of any Arsenal weapon, armor piece, shield or gauntlets. Empty for anything else, and for broken gear. */
 	public static Set<Trait> traits(ItemStack stack) {
 		if (Breakage.isBroken(stack)) {
 			return EnumSet.noneOf(Trait.class);
@@ -361,6 +388,12 @@ public class TraitEffects {
 		}
 		if (stack.getItem() instanceof ArsenalGunItem) {
 			return GunStats.traits(stack);
+		}
+		if (stack.getItem() instanceof ArsenalShieldItem) {
+			return ShieldStats.traits(stack);
+		}
+		if (stack.getItem() instanceof ArsenalGauntletItem) {
+			return GauntletStats.traits(stack);
 		}
 		return stack.getItem() instanceof ArsenalArmorItem ? ArmorStats.traits(stack) : EnumSet.noneOf(Trait.class);
 	}

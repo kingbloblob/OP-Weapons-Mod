@@ -1,0 +1,6 @@
+{
+  "parent": "arsenal:item/shield_raised",
+  "textures": {
+    "layer0": "arsenal:item/shield/rim/ship_iron"
+  }
+}

@@ -30,9 +30,11 @@ import com.onepiecearsenal.part.PartItem;
 import com.onepiecearsenal.part.PartType;
 import com.onepiecearsenal.salvage.Salvage;
 import com.onepiecearsenal.tool.ArmorStats;
+import com.onepiecearsenal.tool.GauntletStats;
 import com.onepiecearsenal.tool.GunStats;
 import com.onepiecearsenal.tool.GunType;
 import com.onepiecearsenal.tool.KatanaStats;
+import com.onepiecearsenal.tool.ShieldStats;
 import com.onepiecearsenal.tool.WeaponStats;
 import com.onepiecearsenal.tool.WeaponType;
 import com.onepiecearsenal.upgrade.Upgrades;
@@ -41,7 +43,8 @@ import com.onepiecearsenal.upgrade.Upgrades;
  * The pirate assembly station. Right-click it with an empty hand while you carry a full set of parts
  * anywhere in your inventory, and it joins them: a katana blade, tsuba and hilt make a katana; a barrel, firing
  * part and stock make a gun (see GunType); a cannon bore, fuse and gun carriage make a Ship Cannon; a head, binding and handle make a cutlass, axe, kanabo or spear
- * (see WeaponType); an armor shell (hat crown, coat plates, sash weave or boot soles) and a lining
+ * (see WeaponType); a shield face, binding and grip make a shield (see ShieldStats); gauntlet plates and a lining make
+ * gauntlets (see GauntletStats); an armor shell (hat crown, coat plates, sash weave or boot soles) and a lining
  * make that piece of armor. Like the One Piece Mod's stations, the parts don't need to be in a grid. If you carry
  * several sets, they are forged in that order, one per click.
  *
@@ -135,7 +138,7 @@ public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 		}
 	}
 
-	/** The first full set the smith carries, in this order: katana, guns, ship cannon, other hand weapons, armor. Null if none. */
+	/** The first full set the smith carries, in this order: katana, guns, ship cannon, other hand weapons, shield, gauntlets, armor. Null if none. */
 	private static Forged findSet(Inventory inventory, boolean navy) {
 		int[] used = findParts(inventory, navy, PartType.KATANA_BLADE, PartType.TSUBA, PartType.HILT);
 		if (used != null) {
@@ -154,6 +157,12 @@ public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 			if ((navy || type.faction != Faction.NAVY) && (used = findParts(inventory, navy, type.parts())) != null) {
 				return new Forged(inventory, WeaponStats.build(type, material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2])), used);
 			}
+		}
+		if ((used = findParts(inventory, navy, ShieldStats.parts())) != null) {
+			return new Forged(inventory, ShieldStats.build(material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2])), used);
+		}
+		if ((used = findParts(inventory, navy, GauntletStats.parts())) != null) {
+			return new Forged(inventory, GauntletStats.build(material(inventory, used[0]), material(inventory, used[1])), used);
 		}
 		if ((used = findArmor(inventory, navy)) != null) {
 			PartType shell = ((PartItem) inventory.getItem(used[0]).getItem()).type();

@@ -216,6 +216,33 @@
 			]
 		},
 		{
+			"id": "shields_gauntlets",
+			"title": "Shields and Gauntlets",
+			"icon": "arsenal:shield",
+			"icon_material": "cannon_bronze",
+			"color": "B08850",
+			"text": [
+				"Two kinds of gear for your offhand, forged at a Shipwright's Anvil like everything else. Carry one or the other.",
+				"",
+				"# Shield",
+				"A Shield Face, a Binding for its rim and a Grip for its strap. Hold right-click to raise it, like a vanilla shield.",
+				"- The face's material sets how wide it covers: 90 degrees at tier 1, 10 more each tier, up to 130.",
+				"- Heavier faces get knocked down by axes for less time: 5 seconds at tier 1, down to 2 at tier 5 (less again with a Heavy or Legendary Hull rim or strap).",
+				"- Light rims and straps raise it faster.",
+				"- Counter: when it stops a melee hit, the face's trait goes off on the attacker. A Kairoseki face drains a Devil Fruit user who swings at it, flint may set them alight, Dial Shell bursts them back, a Prismarine face pricks them.",
+				"> Every hit it stops wears it, so shields last longer than weapons of the same parts.",
+				"> Upgrade it with a Spiked Boss (Pointed Dripstone) to prick attackers, or Reinforced for durability.",
+				"",
+				"# Gauntlets",
+				"Gauntlet Plates and a Lining. They're armor for your forearms, worn in the offhand: right-click to put them on.",
+				"- The plates give armor like a hat (half the material's set strength) and toughness by tier, like any armor shell. Hides and leathers make plates too.",
+				"- Their traits work like armor's: Spined plates prick, Kairoseki plates drain fruit users, Plated plates turn aside shots.",
+				"- Guard: while sneaking, melee hits from in front lose a quarter of their damage. Each guarded hit wears them a little.",
+				"> Gauntlets don't punch harder. They're for fighters who'd rather keep a free hand than carry a shield.",
+				"> Hull Plating and Padded Lining fit gauntlets as well as armor."
+			]
+		},
+		{
 			"id": "set_bonuses",
 			"title": "Set Bonuses",
 			"icon": "arsenal:hat",

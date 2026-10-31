@@ -1,0 +1,449 @@
+{
+  "model": {
+    "type": "minecraft:composite",
+    "models": [
+      {
+        "type": "minecraft:select",
+        "property": "arsenal:part_material",
+        "index": 0,
+        "cases": [
+          {
+            "when": "driftwood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/driftwood"
+            }
+          },
+          {
+            "when": "ship_iron",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/ship_iron"
+            }
+          },
+          {
+            "when": "marine_steel",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/marine_steel"
+            }
+          },
+          {
+            "when": "flint",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/flint"
+            }
+          },
+          {
+            "when": "stone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/stone"
+            }
+          },
+          {
+            "when": "copper",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/copper"
+            }
+          },
+          {
+            "when": "cannon_bronze",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/cannon_bronze"
+            }
+          },
+          {
+            "when": "sea_king_bone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/sea_king_bone"
+            }
+          },
+          {
+            "when": "sea_king_hide",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/sea_king_hide"
+            }
+          },
+          {
+            "when": "treasure_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/treasure_gold"
+            }
+          },
+          {
+            "when": "dial_shell",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/dial_shell"
+            }
+          },
+          {
+            "when": "sea_pearl",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/sea_pearl"
+            }
+          },
+          {
+            "when": "sabaody_resin",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/sabaody_resin"
+            }
+          },
+          {
+            "when": "amethyst",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/amethyst"
+            }
+          },
+          {
+            "when": "emerald",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/emerald"
+            }
+          },
+          {
+            "when": "prismarine",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/prismarine"
+            }
+          },
+          {
+            "when": "tamahagane",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/tamahagane"
+            }
+          },
+          {
+            "when": "kairoseki",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/kairoseki"
+            }
+          },
+          {
+            "when": "pacifista_alloy",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/pacifista_alloy"
+            }
+          },
+          {
+            "when": "island_whale_leather",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/island_whale_leather"
+            }
+          },
+          {
+            "when": "shandora_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/shandora_gold"
+            }
+          },
+          {
+            "when": "obsidian",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/obsidian"
+            }
+          },
+          {
+            "when": "diamond",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/diamond"
+            }
+          },
+          {
+            "when": "wapometal",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/wapometal"
+            }
+          },
+          {
+            "when": "adam_wood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/adam_wood"
+            }
+          },
+          {
+            "when": "kokuto",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/kokuto"
+            }
+          },
+          {
+            "when": "dragon_scale",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/dragon_scale"
+            }
+          },
+          {
+            "when": "netherite",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/netherite"
+            }
+          },
+          {
+            "when": "black_blade",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/black_blade"
+            }
+          },
+          {
+            "when": "vegapunk_compound",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/plates/vegapunk_compound"
+            }
+          }
+        ],
+        "fallback": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/gauntlets/plates/ship_iron"
+        }
+      },
+      {
+        "type": "minecraft:select",
+        "property": "arsenal:part_material",
+        "index": 1,
+        "cases": [
+          {
+            "when": "driftwood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/driftwood"
+            }
+          },
+          {
+            "when": "ship_iron",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/ship_iron"
+            }
+          },
+          {
+            "when": "marine_steel",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/marine_steel"
+            }
+          },
+          {
+            "when": "flint",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/flint"
+            }
+          },
+          {
+            "when": "stone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/stone"
+            }
+          },
+          {
+            "when": "copper",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/copper"
+            }
+          },
+          {
+            "when": "cannon_bronze",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/cannon_bronze"
+            }
+          },
+          {
+            "when": "sea_king_bone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/sea_king_bone"
+            }
+          },
+          {
+            "when": "sea_king_hide",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/sea_king_hide"
+            }
+          },
+          {
+            "when": "treasure_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/treasure_gold"
+            }
+          },
+          {
+            "when": "dial_shell",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/dial_shell"
+            }
+          },
+          {
+            "when": "sea_pearl",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/sea_pearl"
+            }
+          },
+          {
+            "when": "sabaody_resin",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/sabaody_resin"
+            }
+          },
+          {
+            "when": "amethyst",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/amethyst"
+            }
+          },
+          {
+            "when": "emerald",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/emerald"
+            }
+          },
+          {
+            "when": "prismarine",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/prismarine"
+            }
+          },
+          {
+            "when": "tamahagane",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/tamahagane"
+            }
+          },
+          {
+            "when": "kairoseki",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/kairoseki"
+            }
+          },
+          {
+            "when": "pacifista_alloy",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/pacifista_alloy"
+            }
+          },
+          {
+            "when": "island_whale_leather",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/island_whale_leather"
+            }
+          },
+          {
+            "when": "shandora_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/shandora_gold"
+            }
+          },
+          {
+            "when": "obsidian",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/obsidian"
+            }
+          },
+          {
+            "when": "diamond",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/diamond"
+            }
+          },
+          {
+            "when": "wapometal",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/wapometal"
+            }
+          },
+          {
+            "when": "adam_wood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/adam_wood"
+            }
+          },
+          {
+            "when": "kokuto",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/kokuto"
+            }
+          },
+          {
+            "when": "dragon_scale",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/dragon_scale"
+            }
+          },
+          {
+            "when": "netherite",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/netherite"
+            }
+          },
+          {
+            "when": "black_blade",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/black_blade"
+            }
+          },
+          {
+            "when": "vegapunk_compound",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/gauntlets/lining/vegapunk_compound"
+            }
+          }
+        ],
+        "fallback": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/gauntlets/lining/ship_iron"
+        }
+      }
+    ]
+  }
+}

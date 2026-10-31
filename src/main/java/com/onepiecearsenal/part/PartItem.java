@@ -1,5 +1,6 @@
 package com.onepiecearsenal.part;
 
+import java.util.EnumSet;
 import java.util.function.Consumer;
 
 import net.minecraft.ChatFormatting;
@@ -17,8 +18,10 @@ import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Trait;
 import com.onepiecearsenal.salvage.Salvage;
 import com.onepiecearsenal.tool.ArmorStats;
+import com.onepiecearsenal.tool.GauntletStats;
 import com.onepiecearsenal.tool.GunStats;
 import com.onepiecearsenal.tool.GunType;
+import com.onepiecearsenal.tool.ShieldStats;
 import com.onepiecearsenal.tool.WeaponStats;
 import com.onepiecearsenal.tool.WeaponType;
 
@@ -112,6 +115,11 @@ public class PartItem extends Item {
 				textConsumer.accept(Component.literal("Defense: " + ArmorStats.defense(material, armor)
 						+ (ArmorStats.toughness(material) > 0 ? ", toughness: " + (int) ArmorStats.toughness(material) : "")).withStyle(ChatFormatting.BLUE));
 			}
+			case SHIELD_FACE -> textConsumer.accept(Component.literal(String.format("Shield: covers %.0f°, axes knock it down for %.1fs",
+					ShieldStats.angle(material), 5.0f * ShieldStats.disableScale(material, EnumSet.of(material.headTrait))))
+					.withStyle(ChatFormatting.BLUE));
+			case GAUNTLET_PLATES -> textConsumer.accept(Component.literal("Defense in the offhand: " + GauntletStats.defense(material)
+					+ (ArmorStats.toughness(material) > 0 ? ", toughness: " + (int) ArmorStats.toughness(material) : "")).withStyle(ChatFormatting.BLUE));
 			case LINING -> textConsumer.accept(Component.literal("Comfort: " + material.displayName.toLowerCase() + " padding").withStyle(ChatFormatting.BLUE));
 			default -> {
 			}
