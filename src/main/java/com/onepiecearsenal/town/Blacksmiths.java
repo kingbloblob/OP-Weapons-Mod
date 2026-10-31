@@ -57,9 +57,8 @@ public final class Blacksmiths {
 	public static void initialize() {
 		settings();
 		UseEntityCallback.EVENT.register((player, level, hand, entity, hit) -> {
-			// The game asks twice per click (once with the exact spot hit, once without): answer the second, on the
-			// server only, since only the server knows a townsperson's job.
-			if (hit != null || hand != InteractionHand.MAIN_HAND || player.isSpectator() || player.isSecondaryUseActive()
+			// Server only, since only the server knows a townsperson's job. 26.3 calls this once per click, with a hit.
+			if (hand != InteractionHand.MAIN_HAND || player.isSpectator() || player.isSecondaryUseActive()
 					|| !(player instanceof ServerPlayer customer) || !OnePieceBridge.isTownSmith(entity)
 					|| !wantsSmithing(player.getMainHandItem())) {
 				return InteractionResult.PASS;
