@@ -38,35 +38,35 @@
     "firstperson_righthand": {
       "rotation": [
         0,
-        0,
+        -90,
         0
       ],
       "translation": [
-        -2,
+        22,
         4,
-        -2
+        5
       ],
       "scale": [
-        1.0,
-        1.0,
-        1.0
+        1.1,
+        1.1,
+        1.1
       ]
     },
     "firstperson_lefthand": {
       "rotation": [
         0,
-        0,
+        -90,
         0
       ],
       "translation": [
-        -2,
+        22,
         4,
-        -2
+        5
       ],
       "scale": [
-        1.0,
-        1.0,
-        1.0
+        1.1,
+        1.1,
+        1.1
       ]
     },
     "gui": {

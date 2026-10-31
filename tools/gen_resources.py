@@ -166,20 +166,26 @@ for name, display in {"ragnir": held((1.8, 1.4), lift=3.0, first_lift=0.0),  # a
                                               "textures": {"layer0": f"arsenal:item/famous/{name}"}, "display": display})
 # Shields (shield_parts: face, rim, strap; the strap shows as the boss in the middle). Held flat like a buckler, and
 # brought up in front of you while it's raised (minecraft:using_item). Both poses are the two parent models below.
+# Tuned in game. A flat item/generated sprite lies like a tray in third person and edge-on in first person at
+# rotation 0, so: held = a buckler on the forearm, face outward; raised = face toward the camera, lower middle.
+# Left-hand transforms are mirrored by the game, so both hands get the same numbers.
+SHIELD_HELD_3RD = {"rotation": [0, 90, 90], "translation": [2, 4, 1.5], "scale": [0.85, 0.85, 0.85]}
+SHIELD_HELD_1ST = {"rotation": [0, -90, 10], "translation": [-3, 4, -2], "scale": [0.8, 0.8, 0.8]}
 SHIELD_POSE = {
-    "thirdperson_righthand": {"rotation": [0, 90, 0], "translation": [0, 3, 3], "scale": [0.85, 0.85, 0.85]},
-    "thirdperson_lefthand": {"rotation": [0, -90, 0], "translation": [0, 3, 3], "scale": [0.85, 0.85, 0.85]},
-    "firstperson_righthand": {"rotation": [0, 0, 0], "translation": [3, 2, -3], "scale": [0.75, 0.75, 0.75]},
-    "firstperson_lefthand": {"rotation": [0, 0, 0], "translation": [3, 2, -3], "scale": [0.75, 0.75, 0.75]},
+    "thirdperson_righthand": SHIELD_HELD_3RD,
+    "thirdperson_lefthand": SHIELD_HELD_3RD,
+    "firstperson_righthand": SHIELD_HELD_1ST,
+    "firstperson_lefthand": SHIELD_HELD_1ST,
     "gui": {"rotation": [0, 0, 0], "translation": [0, 0, 0], "scale": [1, 1, 1]},
     "ground": {"rotation": [0, 0, 0], "translation": [0, 2, 0], "scale": [0.5, 0.5, 0.5]},
     "fixed": {"rotation": [0, 180, 0], "translation": [0, 0, 0], "scale": [1, 1, 1]},
 }
+SHIELD_RAISED_1ST = {"rotation": [0, -90, 0], "translation": [22, 4, 5], "scale": [1.1, 1.1, 1.1]}
 SHIELD_RAISED = {**SHIELD_POSE,
     "thirdperson_righthand": {"rotation": [0, 90, 0], "translation": [-3, 5, 3], "scale": [1.0, 1.0, 1.0]},
     "thirdperson_lefthand": {"rotation": [0, -90, 0], "translation": [-3, 5, 3], "scale": [1.0, 1.0, 1.0]},
-    "firstperson_righthand": {"rotation": [0, 0, 0], "translation": [-2, 4, -2], "scale": [1.0, 1.0, 1.0]},
-    "firstperson_lefthand": {"rotation": [0, 0, 0], "translation": [-2, 4, -2], "scale": [1.0, 1.0, 1.0]},
+    "firstperson_righthand": SHIELD_RAISED_1ST,
+    "firstperson_lefthand": SHIELD_RAISED_1ST,
 }
 w(f'{A}/models/item/shield_held.json', {"parent": "minecraft:item/generated", "display": SHIELD_POSE})
 w(f'{A}/models/item/shield_raised.json', {"parent": "minecraft:item/generated", "display": SHIELD_RAISED})
