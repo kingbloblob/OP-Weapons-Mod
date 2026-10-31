@@ -26,8 +26,9 @@ import com.onepiecearsenal.skill.WeaponSkillPayload;
  * uses Z, C, V, B, G, R, Y, H, J, K, U, M, N and I, so X is the free key next to its techniques. You can change
  * it in Options > Controls > Key Binds, under "One Piece Arsenal".
  *
- * O coats the weapon in your hand in Armament Haki (see HakiImbue); the blackened blade is the "arsenal:haki_coat"
- * tint (HakiCoatTint).
+ * Left Alt coats the weapon in your hand in Armament Haki (see HakiImbue); the blackened blade is the
+ * "arsenal:haki_coat" tint (HakiCoatTint). Every letter is taken: vanilla 26.3 opens the Friends List on O and Social
+ * Interactions on P, and the One Piece Mod's quest journal is on O too.
  */
 public class ArsenalClient implements ClientModInitializer {
 	public static final KeyMapping.Category CATEGORY = KeyMapping.Category.register(ArsenalMod.id("arsenal"));
@@ -41,7 +42,7 @@ public class ArsenalClient implements ClientModInitializer {
 		KeyMapping skillKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
 				"key.arsenal.weapon_skill", InputConstants.Type.KEYBOARD, SDLScancode.SDL_SCANCODE_X, CATEGORY));
 		KeyMapping imbueKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
-				"key.arsenal.imbue_haki", InputConstants.Type.KEYBOARD, SDLScancode.SDL_SCANCODE_O, CATEGORY));
+				"key.arsenal.imbue_haki", InputConstants.Type.KEYBOARD, SDLScancode.SDL_SCANCODE_LALT, CATEGORY));
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			while (skillKey.consumeClick()) {
 				if (client.player != null && ClientPlayNetworking.canSend(WeaponSkillPayload.TYPE)) {

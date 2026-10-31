@@ -40,7 +40,7 @@ import com.onepiecearsenal.tool.KatanaStats;
 import com.onepiecearsenal.tool.WeaponStats;
 
 /**
- * Haki imbuing: press the Imbue Haki key (O by default) with a forged Arsenal weapon or gun in hand to coat it in
+ * Haki imbuing: press the Imbue Haki key (Left Alt by default) with a forged Arsenal weapon or gun in hand to coat it in
  * Armament Haki for a while, the way Zoro coats his swords. The main mod's own Armament (B) coats your body; this
  * reaches past it into the weapon, so it needs Armament Haki level 2 or higher, but not switched on.
  *
