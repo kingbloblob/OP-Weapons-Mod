@@ -85,6 +85,8 @@ lang = {
     "item.arsenal.shield": "Shield",
     "item.arsenal.gauntlets": "Gauntlets",
     "block.arsenal.shipwrights_anvil": "Shipwright's Anvil",
+    "block.arsenal.shipwrights_forge": "Shipwright's Forge",
+    "block.arsenal.grand_line_anvil": "Grand Line Anvil",
     "block.arsenal.marine_armory_bench": "Marine Armory Bench",
     "block.arsenal.quartermasters_desk": "Quartermaster's Desk",
     "block.arsenal.marine_base_smeltery": "Marine Base Smeltery"
@@ -245,6 +247,26 @@ variants = {}
 for d, y in [("north", 0), ("east", 90), ("south", 180), ("west", 270)]:
     variants[f"facing={d}"] = {"model": "arsenal:block/shipwrights_anvil", "y": y} if y else {"model": "arsenal:block/shipwrights_anvil"}
 w(f'{A}/blockstates/shipwrights_anvil.json', {"variants": variants})
+# The Grand Line Anvil: the anvil model in dark Wapometal-and-netherite steel (drawn by tools/gen_textures.py).
+w(f'{A}/items/grand_line_anvil.json', {"model": {"type": "minecraft:model", "model": "arsenal:block/grand_line_anvil"}})
+w(f'{A}/models/block/grand_line_anvil.json', {"parent": "minecraft:block/anvil", "textures": {
+    "particle": "arsenal:block/grand_line_anvil", "body": "arsenal:block/grand_line_anvil", "top": "arsenal:block/grand_line_anvil_top"}})
+variants = {}
+for d, y in [("north", 0), ("east", 90), ("south", 180), ("west", 270)]:
+    variants[f"facing={d}"] = {"model": "arsenal:block/grand_line_anvil", "y": y} if y else {"model": "arsenal:block/grand_line_anvil"}
+w(f'{A}/blockstates/grand_line_anvil.json', {"variants": variants})
+# The Shipwright's Forge: a brick forge whose mouth glows while it has heat (ShipwrightsForgeBlock.HEAT, 0 to 15).
+for lit in ["", "_lit"]:
+    w(f'{A}/models/block/shipwrights_forge{lit}.json', {"parent": "minecraft:block/orientable", "textures": {
+        "front": f"arsenal:block/shipwrights_forge_front{lit}", "side": "arsenal:block/shipwrights_forge_side",
+        "top": f"arsenal:block/shipwrights_forge_top{lit}", "particle": "arsenal:block/shipwrights_forge_side"}})
+w(f'{A}/items/shipwrights_forge.json', {"model": {"type": "minecraft:model", "model": "arsenal:block/shipwrights_forge"}})
+variants = {}
+for heat in range(16):
+    m = "arsenal:block/shipwrights_forge" + ("_lit" if heat else "")
+    for d, y in [("north", 0), ("east", 90), ("south", 180), ("west", 270)]:
+        variants[f"facing={d},heat={heat}"] = {"model": m, "y": y} if y else {"model": m}
+w(f'{A}/blockstates/shipwrights_forge.json', {"variants": variants})
 # Navy stations (captured from Marine bases). Drawn by tools/gen_textures.py; a captured one has a Jolly Roger
 # on its front and top.
 navy_stations = {
@@ -287,7 +309,7 @@ w(f'{D}/loot_table/blocks/ship_cannon.json', {"type": "minecraft:block", "pools"
     "random_sequence": "arsenal:blocks/ship_cannon"})
 # The One Piece Mod fires every block in this tag (see its CannonAddons).
 w('data/onepiece/tags/block/cannons.json', {"replace": False, "values": ["arsenal:ship_cannon"]})
-for name in navy_stations:
+for name in list(navy_stations) + ["shipwrights_forge", "grand_line_anvil"]:
     w(f'{D}/loot_table/blocks/{name}.json', {"type": "minecraft:block", "pools": [{
         "rolls": 1, "condition": {"type": "minecraft:survives_explosion"},
         "entries": [{"type": "minecraft:item", "name": f"arsenal:{name}"}]}],
@@ -327,12 +349,20 @@ w('data/minecraft/tags/item/chest_armor.json', {"replace": False, "values": ["ar
 w('data/minecraft/tags/item/leg_armor.json', {"replace": False, "values": ["arsenal:sash"]})
 w('data/minecraft/tags/item/foot_armor.json', {"replace": False, "values": ["arsenal:boots"]})
 w('data/minecraft/tags/block/mineable/pickaxe.json', {"replace": False, "values": [
-    "arsenal:shipwrights_anvil", "arsenal:marine_armory_bench", "arsenal:marine_base_smeltery", "arsenal:ship_cannon"]})
+    "arsenal:shipwrights_anvil", "arsenal:shipwrights_forge", "arsenal:grand_line_anvil", "arsenal:marine_armory_bench", "arsenal:marine_base_smeltery", "arsenal:ship_cannon"]})
 w('data/minecraft/tags/block/mineable/axe.json', {"replace": False, "values": ["arsenal:quartermasters_desk"]})
 
 w(f'{D}/recipe/shipwrights_anvil.json', {"type": "minecraft:crafting_shaped", "category": "misc",
     "key": {"A": "minecraft:anvil", "P": "#minecraft:planks"}, "pattern": ["A", "P"],
     "result": {"id": "arsenal:shipwrights_anvil"}})
+# For the best materials (station/HighTier). The forge is a blast furnace walled in nether bricks over magma, for the
+# heat; the Grand Line Anvil is a Shipwright's Anvil braced with obsidian and a Netherite or Wapometal ingot, for the force.
+w(f'{D}/recipe/shipwrights_forge.json', {"type": "minecraft:crafting_shaped", "category": "misc",
+    "key": {"N": "minecraft:nether_bricks", "B": "minecraft:blast_furnace", "M": "minecraft:magma_block"},
+    "pattern": ["NNN", "NBN", "MMM"], "result": {"id": "arsenal:shipwrights_forge"}})
+w(f'{D}/recipe/grand_line_anvil.json', {"type": "minecraft:crafting_shaped", "category": "misc",
+    "key": {"X": ["minecraft:netherite_ingot", "onepiece:wapometal_ingot"], "A": "arsenal:shipwrights_anvil", "O": "minecraft:obsidian"},
+    "pattern": [" X ", "OAO", "OOO"], "result": {"id": "arsenal:grand_line_anvil"}})
 w(f'{D}/recipe/driftwood.json', {"type": "minecraft:crafting_shapeless", "category": "misc",
     "ingredients": ["minecraft:stick", "minecraft:stick", "minecraft:kelp"],
     "result": {"id": "arsenal:driftwood", "count": 2}})
@@ -360,6 +390,8 @@ for kind in ["flame", "impact", "breath", "flash"]:
 # Navy materials have none: their parts are made at captured Navy stations (Marine Standard Steel at the
 # Quartermaster's Desk; Kairoseki, Pacifista Alloy and Vegapunk Compound at the Marine Base Smeltery; see
 # NavyCastingBlock). Hides and leathers only make armor parts, and Black Blade Steel isn't crafted at all.
+# Tier 4 and up (station/HighTier) have none either: a crafting table isn't hot enough, so they're made at a
+# Shipwright's Forge (ShipwrightsForgeBlock).
 L, S, K, N, F, G = "minecraft:leather", "minecraft:string", "minecraft:stick", "minecraft:iron_nugget", "minecraft:flint", "minecraft:gunpowder"
 DS = "onepiece:dial_shell"  # Skypiea's Dial shells: the Dial cores are built around one
 parts = {
@@ -405,10 +437,11 @@ CLASHES = {
     ("katana_blade", "minecraft:copper_ingot"): (["M ", "M ", "MN"], {"N": N}),  # three copper is a Lightning Rod
     ("long_barrel", "minecraft:flint"): (["MMM", "  N"], {"N": N}),  # a flint lock on flint is the Axe Head mirrored
 }
+HIGH_TIER = 4  # station/HighTier.TIER
 ARMOR_PARTS = {"crown", "coat_plates", "sash_weave", "boot_soles", "lining", "gauntlet_plates"}
 COUNTS = {"cannon_shell": 4, "musket_ball": 8}  # parts that come more than one to a craft
 for m in MATERIALS:
-    if not m.get("craftable", True) or m["faction"] == "navy":
+    if not m.get("craftable", True) or m["faction"] == "navy" or m["tier"] >= HIGH_TIER:
         continue
     for part, shape in parts.items():
         if m.get("armor_only") and part not in ARMOR_PARTS:

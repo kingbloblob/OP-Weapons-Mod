@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": [
+      "minecraft:netherite_ingot",
+      "onepiece:wapometal_ingot"
+    ],
+    "A": "arsenal:shipwrights_anvil",
+    "O": "minecraft:obsidian"
+  },
+  "pattern": [
+    " X ",
+    "OAO",
+    "OOO"
+  ],
+  "result": {
+    "id": "arsenal:grand_line_anvil"
+  }
+}

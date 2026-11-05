@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "arsenal:shipwrights_anvil",
+    "arsenal:shipwrights_forge",
+    "arsenal:grand_line_anvil",
     "arsenal:marine_armory_bench",
     "arsenal:marine_base_smeltery",
     "arsenal:ship_cannon"

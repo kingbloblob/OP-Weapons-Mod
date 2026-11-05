@@ -31,6 +31,7 @@ import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.Faction;
 import com.onepiecearsenal.part.PartItem;
 import com.onepiecearsenal.part.PartType;
+import com.onepiecearsenal.station.HighTier;
 import com.onepiecearsenal.station.NavyCastingBlock;
 import com.onepiecearsenal.station.ShipwrightsAnvilBlock;
 import com.onepiecearsenal.upgrade.Upgrades;
@@ -46,6 +47,7 @@ import com.onepiecearsenal.upgrade.Upgrades;
  * Talking with anything else in hand (or sneaking to haggle) is left to the main mod: their trades, their chatter.
  *
  * They're honest pirate-town smiths: they won't touch Navy materials or put together Navy gear, but they'll mend it.
+ * Their forges and anvils aren't up to the best materials (see HighTier): they won't make, put together or mend those.
  * The fees and specialties are in src/main/resources/arsenal/blacksmiths.json.
  */
 public final class Blacksmiths {
@@ -113,7 +115,7 @@ public final class Blacksmiths {
 			if (candidate.repairItem() != offhand) {
 				continue;
 			}
-			if (candidate.craftable && candidate.faction != Faction.NAVY && (!candidate.armorOnly || type.isArmor())) {
+			if (candidate.craftable && candidate.faction != Faction.NAVY && !HighTier.is(candidate) && (!candidate.armorOnly || type.isArmor())) {
 				material = candidate;
 				break;
 			}
@@ -124,6 +126,8 @@ public final class Blacksmiths {
 				say.accept("I can forge you a copy of that " + type.displayName + ", but what of? Hold the material in your other hand.");
 			} else if (refused.faction == Faction.NAVY) {
 				say.accept(refused.displayName + "? That's Navy stuff. I'm not working it, they'd hang me. Find their own furnaces.");
+			} else if (refused.craftable && HighTier.is(refused)) {
+				say.accept(refused.displayName + "? My forge doesn't get near hot enough. You'll want a Shipwright's Forge for that.");
 			} else if (refused.armorOnly) {
 				say.accept(refused.displayName + " is for armor and linings, not a " + type.displayName + ".");
 			} else {
@@ -176,8 +180,10 @@ public final class Blacksmiths {
 
 	private static boolean assemble(Level level, BlockPos pos, ServerPlayer customer, String town, Consumer<String> say) {
 		Inventory inventory = customer.getInventory();
-		if (!ShipwrightsAnvilBlock.hasSet(inventory, false)) {
-			say.accept(ShipwrightsAnvilBlock.hasSet(inventory, true)
+		if (!ShipwrightsAnvilBlock.hasSet(inventory, false, false)) {
+			say.accept(ShipwrightsAnvilBlock.hasSet(inventory, false, true)
+					? "Parts that tough would crack my anvil. That's work for a Grand Line Anvil."
+					: ShipwrightsAnvilBlock.hasSet(inventory, true, true)
 					? "Navy gear? Not at my anvil. Take that to one of their Armory Benches, if you can get at one."
 					: "Bring me a full set of parts and I'll put them together. Or hold a material in your other hand and I'll copy that part in it.");
 			return false;
@@ -187,7 +193,7 @@ public final class Blacksmiths {
 			say.accept("Putting that together is " + fee + " Berries. Come back when you have them.");
 			return false;
 		}
-		if (!ShipwrightsAnvilBlock.forge(level, pos, customer, false).consumesAction()) {
+		if (!ShipwrightsAnvilBlock.forge(level, pos, customer, false, false).consumesAction()) {
 			return false;
 		}
 		pay(customer, fee);
@@ -200,6 +206,11 @@ public final class Blacksmiths {
 	private static boolean mend(Level level, BlockPos pos, ServerPlayer customer, ItemStack gear, String town, Consumer<String> say) {
 		if (!gear.isDamaged()) {
 			say.accept("That " + gear.getHoverName().getString() + " is in fine shape. Bring it back when it's been through a fight.");
+			return false;
+		}
+		ArsenalMaterial strongest = HighTier.strongest(gear);
+		if (strongest != null) {
+			say.accept(strongest.displayName + "? I can't work that here. It wants a Grand Line Anvil.");
 			return false;
 		}
 		ArsenalMaterial material = Upgrades.headMaterial(gear);

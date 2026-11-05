@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/anvil",
+  "textures": {
+    "particle": "arsenal:block/grand_line_anvil",
+    "body": "arsenal:block/grand_line_anvil",
+    "top": "arsenal:block/grand_line_anvil_top"
+  }
+}
