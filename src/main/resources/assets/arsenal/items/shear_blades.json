@@ -1,0 +1,194 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "property": "arsenal:part_material",
+    "cases": [
+      {
+        "when": "driftwood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/driftwood"
+        }
+      },
+      {
+        "when": "ship_iron",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/ship_iron"
+        }
+      },
+      {
+        "when": "marine_steel",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/marine_steel"
+        }
+      },
+      {
+        "when": "flint",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/flint"
+        }
+      },
+      {
+        "when": "stone",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/stone"
+        }
+      },
+      {
+        "when": "copper",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/copper"
+        }
+      },
+      {
+        "when": "cannon_bronze",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/cannon_bronze"
+        }
+      },
+      {
+        "when": "sea_king_bone",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/sea_king_bone"
+        }
+      },
+      {
+        "when": "treasure_gold",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/treasure_gold"
+        }
+      },
+      {
+        "when": "dial_shell",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/dial_shell"
+        }
+      },
+      {
+        "when": "sea_pearl",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/sea_pearl"
+        }
+      },
+      {
+        "when": "amethyst",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/amethyst"
+        }
+      },
+      {
+        "when": "emerald",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/emerald"
+        }
+      },
+      {
+        "when": "prismarine",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/prismarine"
+        }
+      },
+      {
+        "when": "tamahagane",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/tamahagane"
+        }
+      },
+      {
+        "when": "kairoseki",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/kairoseki"
+        }
+      },
+      {
+        "when": "pacifista_alloy",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/pacifista_alloy"
+        }
+      },
+      {
+        "when": "shandora_gold",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/shandora_gold"
+        }
+      },
+      {
+        "when": "obsidian",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/obsidian"
+        }
+      },
+      {
+        "when": "diamond",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/diamond"
+        }
+      },
+      {
+        "when": "wapometal",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/wapometal"
+        }
+      },
+      {
+        "when": "adam_wood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/adam_wood"
+        }
+      },
+      {
+        "when": "kokuto",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/kokuto"
+        }
+      },
+      {
+        "when": "netherite",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/netherite"
+        }
+      },
+      {
+        "when": "black_blade",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/black_blade"
+        }
+      },
+      {
+        "when": "vegapunk_compound",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/shear_blades/vegapunk_compound"
+        }
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "arsenal:item/part/shear_blades/ship_iron"
+    }
+  }
+}

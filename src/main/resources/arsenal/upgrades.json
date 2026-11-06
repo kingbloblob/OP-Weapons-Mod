@@ -5,7 +5,8 @@
     "repair_share = how much of an item's durability one piece of its head material mends (0.25 = a quarter).",
     "slots = how many upgrade levels each kind of gear holds. Every level of an upgrade takes one slot.",
     "Upgrades: fits = katana, weapon (cutlasses, sabres, axes, jittes, kanabo, spears), melee (both), gun,",
-    "hat, coat, sash, boots, armor (all four and gauntlets), shield, gauntlets, or any. item = what you hold in your offhand to add a level",
+    "hat, coat, sash, boots, armor (all four and gauntlets), shield, gauntlets, tool (pickaxes, hatchets, shovels, hoes,",
+    "shears, sledgehammers, buckets), or any. item = what you hold in your offhand to add a level",
     "(an item id, or #tag), count = how many of it each level takes.",
     "Effects (per level):",
     "  attribute: attribute id, amount, operation (add_value, add_multiplied_base or add_multiplied_total).",
@@ -16,7 +17,7 @@
     "  block_thorns: amount = damage a raised shield deals back to a melee attacker it stops."
   ],
   "repair_share": 0.25,
-  "slots": {"katana": 3, "weapon": 3, "gun": 3, "armor": 2, "shield": 2, "gauntlets": 2},
+  "slots": {"katana": 3, "weapon": 3, "gun": 3, "armor": 2, "shield": 2, "gauntlets": 2, "tool": 3},
   "upgrades": [
     {"id": "honed_edge", "name": "Honed Edge", "fits": "melee", "max_level": 3,
      "item": "minecraft:quartz", "count": 8,
@@ -62,6 +63,15 @@
      "item": "minecraft:pointed_dripstone", "count": 4,
      "description": "A spike in the middle of the shield: a melee hit it stops pricks the attacker for 1.5 damage per level.",
      "effects": [{"type": "block_thorns", "amount": 1.5}]},
+
+    {"id": "honed_bit", "name": "Honed Bit", "fits": "tool", "max_level": 3,
+     "item": "minecraft:redstone", "count": 8,
+     "description": "A keener cutting edge: digs faster, like a level of Efficiency per level.",
+     "effects": [{"type": "attribute", "attribute": "minecraft:mining_efficiency", "amount": 2.0, "operation": "add_value"}]},
+    {"id": "long_haft", "name": "Long Haft", "fits": "tool", "max_level": 2,
+     "item": "arsenal:driftwood", "count": 4,
+     "description": "+0.5 blocks of reach per level, for digging and placing.",
+     "effects": [{"type": "attribute", "attribute": "minecraft:block_interaction_range", "amount": 0.5, "operation": "add_value"}]},
 
     {"id": "reinforced", "name": "Reinforced", "fits": "any", "max_level": 3,
      "item": "minecraft:iron_block", "count": 1,

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_shear_blades",
+  "key": {
+    "M": "minecraft:obsidian",
+    "N": "minecraft:iron_nugget"
+  },
+  "pattern": [
+    " M",
+    "MN"
+  ],
+  "result": {
+    "id": "arsenal:shear_blades",
+    "components": {
+      "arsenal:part_material": "obsidian"
+    }
+  }
+}

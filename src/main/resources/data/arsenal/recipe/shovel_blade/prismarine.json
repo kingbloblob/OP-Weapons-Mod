@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_shovel_blade",
+  "key": {
+    "M": "minecraft:prismarine_shard",
+    "N": "minecraft:iron_nugget"
+  },
+  "pattern": [
+    "M",
+    "N"
+  ],
+  "result": {
+    "id": "arsenal:shovel_blade",
+    "components": {
+      "arsenal:part_material": "prismarine"
+    }
+  }
+}

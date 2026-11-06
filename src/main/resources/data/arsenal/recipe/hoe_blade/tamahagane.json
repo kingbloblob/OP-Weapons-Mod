@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_hoe_blade",
+  "key": {
+    "M": "onepiece:tamahagane_ingot",
+    "N": "minecraft:iron_nugget"
+  },
+  "pattern": [
+    "MM",
+    " N"
+  ],
+  "result": {
+    "id": "arsenal:hoe_blade",
+    "components": {
+      "arsenal:part_material": "tamahagane"
+    }
+  }
+}

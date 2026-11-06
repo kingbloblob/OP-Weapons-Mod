@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.minecraft.core.Holder;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -17,6 +18,7 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.level.block.state.BlockState;
 
 import com.onepiecearsenal.haki.HakiImbue;
 import com.onepiecearsenal.salvage.Breakage;
@@ -33,6 +35,21 @@ public abstract class ItemStackMixin {
 	private int arsenal$keepBrokenGear(int damage) {
 		ItemStack stack = (ItemStack) (Object) this;
 		return HakiImbue.keepUnworn(stack, Breakage.keepBroken(stack, damage));
+	}
+
+	/** Broken tools dig like a bare hand and get no drops a tool is needed for. */
+	@Inject(method = "getDestroySpeed(Lnet/minecraft/world/level/block/state/BlockState;)F", at = @At("HEAD"), cancellable = true)
+	private void arsenal$brokenToolsDigLikeAHand(BlockState state, CallbackInfoReturnable<Float> cir) {
+		if (Breakage.isBroken((ItemStack) (Object) this)) {
+			cir.setReturnValue(1.0f);
+		}
+	}
+
+	@Inject(method = "isCorrectToolForDrops(Lnet/minecraft/world/level/block/state/BlockState;)Z", at = @At("HEAD"), cancellable = true)
+	private void arsenal$brokenToolsGetNoDrops(BlockState state, CallbackInfoReturnable<Boolean> cir) {
+		if (Breakage.isBroken((ItemStack) (Object) this)) {
+			cir.setReturnValue(false);
+		}
 	}
 
 	@Inject(method = "forEachModifier(Lnet/minecraft/world/entity/EquipmentSlot;Ljava/util/function/BiConsumer;)V",

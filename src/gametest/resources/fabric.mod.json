@@ -27,6 +27,7 @@
       "com.onepiecearsenal.test.SetBonusTests",
       "com.onepiecearsenal.test.ShieldGauntletTests",
       "com.onepiecearsenal.test.SkillTests",
+      "com.onepiecearsenal.test.ToolTests",
       "com.onepiecearsenal.test.UpgradeTests",
       "com.onepiecearsenal.test.VanillaMaterialTests"
     ]

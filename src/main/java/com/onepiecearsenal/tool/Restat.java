@@ -27,7 +27,7 @@ import com.onepiecearsenal.upgrade.Upgrades;
  * name and Haki soak. Wear is kept as a share, so a half-worn katana stays half worn.
  *
  * Changes to materials.json are noticed on their own. A change to a formula in code (KatanaStats, WeaponStats,
- * GunStats, ArmorStats, ShieldStats, GauntletStats, WeaponType, GunType or TraitStats) needs FORMULA_VERSION raised by one.
+ * GunStats, ArmorStats, ShieldStats, GauntletStats, ToolStats, WeaponType, GunType, ToolType or TraitStats) needs FORMULA_VERSION raised by one.
  */
 public final class Restat {
 	/** Raise by one whenever a stat formula in code changes, so gear forged before it catches up. */
@@ -74,6 +74,9 @@ public final class Restat {
 		} else {
 			stack.remove(DataComponents.DAMAGE_RESISTANT);
 		}
+		if (fresh.has(DataComponents.TOOL)) {
+			stack.set(DataComponents.TOOL, fresh.get(DataComponents.TOOL)); // A tool's digging speed and level.
+		}
 		if (fresh.has(DataComponents.BLOCKS_ATTACKS)) {
 			stack.set(DataComponents.BLOCKS_ATTACKS, fresh.get(DataComponents.BLOCKS_ATTACKS)); // A shield's block numbers.
 		}
@@ -99,6 +102,7 @@ public final class Restat {
 			case GUN -> GunStats.parts(stack);
 			case SHIELD -> ShieldStats.parts(stack);
 			case GAUNTLETS -> GauntletStats.parts(stack);
+			case TOOL -> ToolStats.parts(stack);
 			default -> ArmorStats.parts(stack);
 		};
 	}
@@ -116,6 +120,7 @@ public final class Restat {
 			case BOOTS -> ArmorStats.build(PartType.BOOT_SOLES, parts.get(0), parts.get(1));
 			case SHIELD -> ShieldStats.build(parts.get(0), parts.get(1), parts.get(2));
 			case GAUNTLETS -> GauntletStats.build(parts.get(0), parts.get(1));
+			case TOOL -> ToolStats.build(((ArsenalTool) stack.getItem()).toolType(), parts);
 		};
 	}
 }

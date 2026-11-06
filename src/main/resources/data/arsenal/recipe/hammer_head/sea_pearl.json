@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_hammer_head",
+  "key": {
+    "M": "onepiece:sea_pearl",
+    "N": "minecraft:iron_nugget"
+  },
+  "pattern": [
+    "MMM",
+    "MMM",
+    " N "
+  ],
+  "result": {
+    "id": "arsenal:hammer_head",
+    "components": {
+      "arsenal:part_material": "sea_pearl"
+    }
+  }
+}
