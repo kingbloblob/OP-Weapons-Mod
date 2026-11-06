@@ -51,9 +51,9 @@ public final class ToolStats {
 			"seastone", tag("onepiece", "incorrect_for_seastone_tool"));
 	/** What each mining_level digs up to, for the tooltip. */
 	private static final Map<String, String> LEVEL_NAMES = Map.of(
-			"wood", "like a wooden pickaxe", "gold", "like a gold pickaxe", "stone", "like a stone pickaxe",
-			"copper", "like a copper pickaxe", "iron", "like an iron pickaxe", "diamond", "like a diamond pickaxe",
-			"netherite", "like a netherite pickaxe", "seastone", "like a Seastone pickaxe (Sea Prism Veins too)");
+			"wood", "wood-tier blocks", "gold", "wood-tier blocks", "stone", "stone-tier blocks",
+			"copper", "copper-tier blocks", "iron", "iron-tier blocks", "diamond", "diamond-tier blocks",
+			"netherite", "netherite-tier blocks", "seastone", "Seastone-tier blocks (Sea Prism Veins too)");
 
 	/**
 	 * The block sets the tools' rules use, looked up while the game registers its content (the only time new ones can
@@ -98,9 +98,9 @@ public final class ToolStats {
 		return shell != ArsenalMaterial.DRIFTWOOD;
 	}
 
-	/** What the head digs up to, like "like an iron pickaxe". */
+	/** What the head digs up to, like "iron-tier blocks". */
 	public static String levelName(ArsenalMaterial head) {
-		return LEVEL_NAMES.getOrDefault(head.miningLevel, "like a wooden pickaxe");
+		return LEVEL_NAMES.getOrDefault(head.miningLevel, "wood-tier blocks");
 	}
 
 	/** Builds a finished tool. The materials are in the order of type.parts(). */
