@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "N": "minecraft:nether_bricks",
+    "B": "minecraft:blast_furnace",
+    "M": "minecraft:magma_block"
+  },
+  "pattern": [
+    "NNN",
+    "NBN",
+    "MMM"
+  ],
+  "result": {
+    "id": "arsenal:shipwrights_forge"
+  }
+}

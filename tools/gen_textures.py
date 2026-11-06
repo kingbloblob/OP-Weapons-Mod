@@ -2127,6 +2127,73 @@ def stations():
     return out
 
 
+# ---- The Shipwright's Forge and the Grand Line Anvil (station/HighTier): for the best materials ----
+
+NETHER_BRICK = ramp('160a0c', '2c1216', '44191e', '5a2228', '732c32')
+EMBER = ramp('5a1404', 'a8340a', 'e0661a', 'f8a83a', 'fff08a')
+DARK_IRON = MATERIALS['netherite']['main']
+
+
+def high_tier_stations():
+    """The forge's faces (cold and lit) and the Grand Line Anvil's body and top, as {texture name: image}."""
+    out = {}
+    side = block()
+    bricks(side, NETHER_BRICK)
+    fill(side, 0, 0, 15, 1, DARK_IRON, 2)  # an iron band round the top
+    for x in range(1, 16, 5):
+        side.putpixel((x, 0), DARK_IRON[4])  # rivets
+    out['shipwrights_forge_side'] = side
+    for lit in (False, True):
+        tag = '_lit' if lit else ''
+        # The front: an arched iron-framed mouth, black when cold, a bed of coals and flames when lit.
+        front = side.copy()
+        fill(front, 3, 6, 12, 15, DARK_IRON, 1)
+        for x in range(4, 12):
+            for y in range(7 if 5 < x < 10 else 8, 15):
+                if not lit:
+                    front.putpixel((x, y), BLACK[0])
+                elif y >= 12:
+                    front.putpixel((x, y), EMBER[(x * 3 + y) % 3 + 1])  # glowing coals
+                else:
+                    front.putpixel((x, y), EMBER[4 if (x + y) % 4 == 0 else 3] if y >= 10 - (x % 3) else BLACK[1])
+        for x in range(3, 13):
+            front.putpixel((x, 15), DARK_IRON[0])
+        out[f'shipwrights_forge_front{tag}'] = front
+        # The top: an iron grate over the fire.
+        top = block()
+        fill(top, 0, 0, 15, 15, DARK_IRON, 2)
+        for y in range(2, 14):
+            for x in range(2, 14):
+                if x % 3 == 2 or y % 3 == 2:
+                    top.putpixel((x, y), DARK_IRON[3])
+                else:
+                    top.putpixel((x, y), EMBER[2 + (x + y) % 2] if lit else BLACK[0])
+        out[f'shipwrights_forge_top{tag}'] = top
+    # The Grand Line Anvil: dark netherite-black steel with a Wapometal sheen and gold rivets.
+    body = block()
+    fill(body, 0, 0, 15, 15, DARK_IRON, 2)
+    for y in range(16):
+        for x in range(16):
+            if (x + y * 2) % 11 == 0:
+                body.putpixel((x, y), MATERIALS['wapometal']['main'][2])  # violet sheen streaks
+    for x in range(16):
+        body.putpixel((x, 0), DARK_IRON[4])
+        body.putpixel((x, 15), DARK_IRON[0])
+    for x, y in ((2, 3), (13, 3), (2, 12), (13, 12)):
+        body.putpixel((x, y), GOLD[3])
+    out['grand_line_anvil'] = body
+    top = block()
+    fill(top, 0, 0, 15, 15, DARK_IRON, 3)
+    for t in range(16):
+        for x, y in ((t, 0), (t, 15), (0, t), (15, t)):
+            top.putpixel((x, y), GOLD[2])
+    for t in range(3, 13):  # the Grand Line, a gold line straight down the face
+        top.putpixel((7, t), GOLD[3])
+        top.putpixel((8, t), GOLD[1])
+    out['grand_line_anvil_top'] = top
+    return out
+
+
 # ---- Write everything ----
 
 # ---- Fishman Gloves and the Skypiea Dial palms ----
@@ -2504,4 +2571,6 @@ if __name__ == '__main__':
     for name, (mask, mats) in FAMOUS.items():
         save(paint(mask, mats), f'item/famous/{name}')
     for name, img in stations().items():
+        save(img, f'block/{name}')
+    for name, img in high_tier_stations().items():
         save(img, f'block/{name}')

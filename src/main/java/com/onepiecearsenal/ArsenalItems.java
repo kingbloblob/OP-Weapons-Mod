@@ -46,9 +46,11 @@ import com.onepiecearsenal.guide.GuideBook;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.part.PartItem;
 import com.onepiecearsenal.part.PartType;
+import com.onepiecearsenal.station.GrandLineAnvilBlock;
 import com.onepiecearsenal.station.MarineArmoryBenchBlock;
 import com.onepiecearsenal.station.NavyCastingBlock;
 import com.onepiecearsenal.station.ShipwrightsAnvilBlock;
+import com.onepiecearsenal.station.ShipwrightsForgeBlock;
 import com.onepiecearsenal.tool.ArmorStats;
 import com.onepiecearsenal.tool.ArsenalArmorItem;
 import com.onepiecearsenal.tool.ArsenalGauntletItem;
@@ -205,6 +207,13 @@ public class ArsenalItems {
 
 	public static final Block SHIPWRIGHTS_ANVIL = block("shipwrights_anvil", ShipwrightsAnvilBlock::new,
 			BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(5.0f).sound(SoundType.ANVIL).requiresCorrectToolForDrops());
+	// For the best materials (see HighTier): the forge makes their parts, the Grand Line Anvil puts their gear together.
+	public static final Block SHIPWRIGHTS_FORGE = block("shipwrights_forge", ShipwrightsForgeBlock::new,
+			BlockBehaviour.Properties.of().mapColor(MapColor.NETHER).strength(5.0f, 6.0f).sound(SoundType.NETHER_BRICKS)
+					.requiresCorrectToolForDrops().lightLevel(state -> state.getValue(ShipwrightsForgeBlock.HEAT) > 0 ? 13 : 0));
+	public static final Block GRAND_LINE_ANVIL = block("grand_line_anvil", GrandLineAnvilBlock::new,
+			BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(8.0f, 1200.0f).sound(SoundType.ANVIL)
+					.requiresCorrectToolForDrops().noOcclusion());
 
 	// Navy stations: no recipes, captured from Marine bases (see NavyStationBlock and NavyStations).
 	// Blast-proof, so a guarded one can't be blown loose with TNT.
@@ -231,6 +240,8 @@ public class ArsenalItems {
 				.displayItems((params, output) -> {
 					output.accept(GUIDE);
 					output.accept(SHIPWRIGHTS_ANVIL);
+					output.accept(SHIPWRIGHTS_FORGE);
+					output.accept(GRAND_LINE_ANVIL);
 					output.accept(MARINE_ARMORY_BENCH);
 					output.accept(QUARTERMASTERS_DESK);
 					output.accept(MARINE_BASE_SMELTERY);

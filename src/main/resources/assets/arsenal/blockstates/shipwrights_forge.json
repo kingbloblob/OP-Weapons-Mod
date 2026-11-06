@@ -1,0 +1,244 @@
+{
+  "variants": {
+    "facing=north,heat=0": {
+      "model": "arsenal:block/shipwrights_forge"
+    },
+    "facing=east,heat=0": {
+      "model": "arsenal:block/shipwrights_forge",
+      "y": 90
+    },
+    "facing=south,heat=0": {
+      "model": "arsenal:block/shipwrights_forge",
+      "y": 180
+    },
+    "facing=west,heat=0": {
+      "model": "arsenal:block/shipwrights_forge",
+      "y": 270
+    },
+    "facing=north,heat=1": {
+      "model": "arsenal:block/shipwrights_forge_lit"
+    },
+    "facing=east,heat=1": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 90
+    },
+    "facing=south,heat=1": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 180
+    },
+    "facing=west,heat=1": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 270
+    },
+    "facing=north,heat=2": {
+      "model": "arsenal:block/shipwrights_forge_lit"
+    },
+    "facing=east,heat=2": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 90
+    },
+    "facing=south,heat=2": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 180
+    },
+    "facing=west,heat=2": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 270
+    },
+    "facing=north,heat=3": {
+      "model": "arsenal:block/shipwrights_forge_lit"
+    },
+    "facing=east,heat=3": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 90
+    },
+    "facing=south,heat=3": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 180
+    },
+    "facing=west,heat=3": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 270
+    },
+    "facing=north,heat=4": {
+      "model": "arsenal:block/shipwrights_forge_lit"
+    },
+    "facing=east,heat=4": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 90
+    },
+    "facing=south,heat=4": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 180
+    },
+    "facing=west,heat=4": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 270
+    },
+    "facing=north,heat=5": {
+      "model": "arsenal:block/shipwrights_forge_lit"
+    },
+    "facing=east,heat=5": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 90
+    },
+    "facing=south,heat=5": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 180
+    },
+    "facing=west,heat=5": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 270
+    },
+    "facing=north,heat=6": {
+      "model": "arsenal:block/shipwrights_forge_lit"
+    },
+    "facing=east,heat=6": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 90
+    },
+    "facing=south,heat=6": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 180
+    },
+    "facing=west,heat=6": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 270
+    },
+    "facing=north,heat=7": {
+      "model": "arsenal:block/shipwrights_forge_lit"
+    },
+    "facing=east,heat=7": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 90
+    },
+    "facing=south,heat=7": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 180
+    },
+    "facing=west,heat=7": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 270
+    },
+    "facing=north,heat=8": {
+      "model": "arsenal:block/shipwrights_forge_lit"
+    },
+    "facing=east,heat=8": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 90
+    },
+    "facing=south,heat=8": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 180
+    },
+    "facing=west,heat=8": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 270
+    },
+    "facing=north,heat=9": {
+      "model": "arsenal:block/shipwrights_forge_lit"
+    },
+    "facing=east,heat=9": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 90
+    },
+    "facing=south,heat=9": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 180
+    },
+    "facing=west,heat=9": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 270
+    },
+    "facing=north,heat=10": {
+      "model": "arsenal:block/shipwrights_forge_lit"
+    },
+    "facing=east,heat=10": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 90
+    },
+    "facing=south,heat=10": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 180
+    },
+    "facing=west,heat=10": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 270
+    },
+    "facing=north,heat=11": {
+      "model": "arsenal:block/shipwrights_forge_lit"
+    },
+    "facing=east,heat=11": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 90
+    },
+    "facing=south,heat=11": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 180
+    },
+    "facing=west,heat=11": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 270
+    },
+    "facing=north,heat=12": {
+      "model": "arsenal:block/shipwrights_forge_lit"
+    },
+    "facing=east,heat=12": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 90
+    },
+    "facing=south,heat=12": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 180
+    },
+    "facing=west,heat=12": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 270
+    },
+    "facing=north,heat=13": {
+      "model": "arsenal:block/shipwrights_forge_lit"
+    },
+    "facing=east,heat=13": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 90
+    },
+    "facing=south,heat=13": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 180
+    },
+    "facing=west,heat=13": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 270
+    },
+    "facing=north,heat=14": {
+      "model": "arsenal:block/shipwrights_forge_lit"
+    },
+    "facing=east,heat=14": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 90
+    },
+    "facing=south,heat=14": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 180
+    },
+    "facing=west,heat=14": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 270
+    },
+    "facing=north,heat=15": {
+      "model": "arsenal:block/shipwrights_forge_lit"
+    },
+    "facing=east,heat=15": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 90
+    },
+    "facing=south,heat=15": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 180
+    },
+    "facing=west,heat=15": {
+      "model": "arsenal:block/shipwrights_forge_lit",
+      "y": 270
+    }
+  }
+}

@@ -36,6 +36,7 @@ import com.onepiecearsenal.meito.Meito;
 import com.onepiecearsenal.part.PartItem;
 import com.onepiecearsenal.part.PartType;
 import com.onepiecearsenal.skill.WeaponSkill;
+import com.onepiecearsenal.station.HighTier;
 import com.onepiecearsenal.station.NavyCastingBlock;
 import com.onepiecearsenal.tool.ArmorStats;
 import com.onepiecearsenal.tool.GunStats;
@@ -225,6 +226,9 @@ public final class GuideChapters {
 			if (station.materials().contains(material)) {
 				return "Parts are cast at a " + station.title() + ".";
 			}
+		}
+		if (HighTier.is(material)) {
+			return "Parts are made at a Shipwright's Forge, and its gear is put together at a Grand Line Anvil.";
 		}
 		return "Parts are made at a crafting table.";
 	}

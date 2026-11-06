@@ -18,6 +18,6 @@ public class MarineArmoryBenchBlock extends NavyStationBlock {
 
 	@Override
 	protected InteractionResult work(BlockState state, Level level, BlockPos pos, ServerPlayer player) {
-		return ShipwrightsAnvilBlock.forge(level, pos, player, true);
+		return ShipwrightsAnvilBlock.forge(level, pos, player, true, true); // The Navy's own anvil works their high-tier gear too.
 	}
 }

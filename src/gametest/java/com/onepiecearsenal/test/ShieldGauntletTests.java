@@ -54,8 +54,8 @@ public class ShieldGauntletTests {
 		smith.getInventory().add(PartItem.of(ArsenalItems.GAUNTLET_PLATES, ArsenalMaterial.SEA_KING_HIDE));
 		smith.getInventory().add(PartItem.of(ArsenalItems.LINING, IRON));
 		BlockPos pos = helper.absolutePos(new BlockPos(1, 1, 1));
-		ShipwrightsAnvilBlock.forge(helper.getLevel(), pos, smith, false);
-		ShipwrightsAnvilBlock.forge(helper.getLevel(), pos, smith, false);
+		ShipwrightsAnvilBlock.forge(helper.getLevel(), pos, smith, false, false);
+		ShipwrightsAnvilBlock.forge(helper.getLevel(), pos, smith, false, false);
 		helper.assertTrue(smith.getInventory().countItem(ArsenalItems.SHIELD) == 1, "it should forge a shield");
 		helper.assertTrue(smith.getInventory().countItem(ArsenalItems.GAUNTLETS) == 1, "it should forge gauntlets, even from a hide");
 		helper.assertTrue(smith.getInventory().countItem(ArsenalItems.SHIELD_FACE) == 0, "the parts should be used up");

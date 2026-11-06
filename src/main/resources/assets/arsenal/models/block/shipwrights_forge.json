@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "arsenal:block/shipwrights_forge_front",
+    "side": "arsenal:block/shipwrights_forge_side",
+    "top": "arsenal:block/shipwrights_forge_top",
+    "particle": "arsenal:block/shipwrights_forge_side"
+  }
+}
