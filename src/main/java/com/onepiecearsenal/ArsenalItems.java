@@ -61,10 +61,7 @@ import com.onepiecearsenal.tool.GauntletStats;
 import com.onepiecearsenal.tool.ShieldStats;
 import com.onepiecearsenal.tool.ArsenalWeaponItem;
 import com.onepiecearsenal.tool.ArsenalBucketItem;
-import com.onepiecearsenal.tool.ArsenalHatchetItem;
-import com.onepiecearsenal.tool.ArsenalHoeItem;
 import com.onepiecearsenal.tool.ArsenalShearsItem;
-import com.onepiecearsenal.tool.ArsenalShovelItem;
 import com.onepiecearsenal.tool.ArsenalToolItem;
 import com.onepiecearsenal.tool.ToolStats;
 import com.onepiecearsenal.tool.ToolType;
@@ -184,8 +181,8 @@ public class ArsenalItems {
 
 	/**
 	 * Pickaxes, hatchets, shovels, hoes, shears, sledgehammers and buckets. Iron numbers until ToolStats puts the parts'
-	 * numbers on. The hatchet, shovel, hoe and shears are vanilla's own kinds of item, so they strip, make paths, till and
-	 * shear like them.
+	 * numbers on. The hatchet, shovel and hoe get vanilla's block_transformer component from Item.Properties, so they strip,
+	 * make paths and till like vanilla's; the shears are vanilla's own kind of item.
 	 */
 	public static final Map<ToolType, Item> TOOLS = new EnumMap<>(ToolType.class);
 
@@ -193,18 +190,18 @@ public class ArsenalItems {
 		ToolStats.initialize(); // While registries are still open: it looks up the block tags the tools' rules use.
 		for (ToolType type : ToolType.values()) {
 			Function<Item.Properties, Item> factory = switch (type) {
-				case HATCHET -> properties -> new ArsenalHatchetItem(type, properties);
-				case SHOVEL -> properties -> new ArsenalShovelItem(type, properties);
-				case HOE -> properties -> new ArsenalHoeItem(type, properties);
 				case SHEARS -> properties -> new ArsenalShearsItem(type, properties);
 				case BUCKET -> properties -> new ArsenalBucketItem(type, properties);
 				default -> properties -> new ArsenalToolItem(type, properties);
 			};
 			Item.Properties properties = switch (type) {
 				case PICKAXE, SLEDGEHAMMER -> new Item.Properties().pickaxe(ToolMaterial.IRON, 1.0f, type.baseSpeed);
+				case HATCHET -> new Item.Properties().axe(ToolMaterial.IRON, 0.0f, type.baseSpeed);
+				case SHOVEL -> new Item.Properties().shovel(ToolMaterial.IRON, 0.0f, type.baseSpeed);
+				case HOE -> new Item.Properties().hoe(ToolMaterial.IRON, 0.0f, type.baseSpeed);
 				case SHEARS -> new Item.Properties().durability(238).component(DataComponents.TOOL, ShearsItem.createToolProperties());
 				case BUCKET -> new Item.Properties().durability(250).stacksTo(1);
-				default -> new Item.Properties(); // The vanilla classes put their own tool numbers on.
+				default -> new Item.Properties();
 			};
 			TOOLS.put(type, register(type.id(), factory, properties));
 		}

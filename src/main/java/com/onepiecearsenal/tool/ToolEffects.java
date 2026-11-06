@@ -22,7 +22,7 @@ public final class ToolEffects {
 
 	public static void initialize() {
 		PlayerBlockBreakEvents.AFTER.register((level, player, pos, state, blockEntity) -> {
-			if (smashing || !(player instanceof ServerPlayer smith) || player.isShiftKeyDown() || player.isCreative()) {
+			if (smashing || !(player instanceof ServerPlayer smith) || player.isShiftKeyDown() || smith.gameMode.isCreative()) {
 				return;
 			}
 			ItemStack tool = player.getMainHandItem();

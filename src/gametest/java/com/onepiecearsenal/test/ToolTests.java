@@ -56,7 +56,12 @@ public class ToolTests {
 			InteractionResult result = ShipwrightsAnvilBlock.forge(helper.getLevel(), pos, smith, false, false);
 			helper.assertTrue(result.consumesAction(), "the anvil should forge a " + type.displayName + " from its parts");
 			helper.assertTrue(smith.getInventory().countItem(ArsenalItems.TOOLS.get(type)) == 1, "the smith should be holding a " + type.displayName);
-			ItemStack made = smith.getInventory().getItem(smith.getInventory().findSlotMatchingItem(new ItemStack(ArsenalItems.TOOLS.get(type))));
+			ItemStack made = ItemStack.EMPTY;
+			for (int slot = 0; slot < smith.getInventory().getContainerSize(); slot++) {
+				if (smith.getInventory().getItem(slot).is(ArsenalItems.TOOLS.get(type))) {
+					made = smith.getInventory().getItem(slot);
+				}
+			}
 			helper.assertTrue(ToolStats.parts(made).size() == type.parts().length, type.displayName + " should remember its parts");
 		}
 		helper.succeed();
