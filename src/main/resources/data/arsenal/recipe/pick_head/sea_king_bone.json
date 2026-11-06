@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_pick_head",
+  "key": {
+    "M": "arsenal:sea_king_bone",
+    "N": "minecraft:iron_nugget"
+  },
+  "pattern": [
+    "MMM",
+    " N "
+  ],
+  "result": {
+    "id": "arsenal:pick_head",
+    "components": {
+      "arsenal:part_material": "sea_king_bone"
+    }
+  }
+}

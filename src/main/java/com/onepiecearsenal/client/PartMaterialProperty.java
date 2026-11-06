@@ -18,7 +18,7 @@ import com.onepiecearsenal.ArsenalComponents;
  * <pre>{"type": "minecraft:select", "property": "arsenal:part_material", "index": 0, "cases": [...]}</pre>
  * Without an index it reads a part's own material. With one it reads that part of a forged weapon or armor piece
  * (0 = blade, barrel, head, shell, bore, face or plates, in the order KatanaStats, GunStats, WeaponStats, ArmorStats, CannonStats,
- * ShieldStats and GauntletStats save them).
+ * ShieldStats, GauntletStats and ToolStats save them).
  */
 public record PartMaterialProperty(int index) implements SelectItemModelProperty<String> {
 	public static final SelectItemModelProperty.Type<PartMaterialProperty, String> TYPE = SelectItemModelProperty.Type.create(
@@ -50,6 +50,9 @@ public record PartMaterialProperty(int index) implements SelectItemModelProperty
 		}
 		if (parts == null) {
 			parts = stack.get(ArsenalComponents.GAUNTLET_PARTS);
+		}
+		if (parts == null) {
+			parts = stack.get(ArsenalComponents.TOOL_PARTS);
 		}
 		return parts != null && index < parts.size() ? parts.get(index) : null;
 	}

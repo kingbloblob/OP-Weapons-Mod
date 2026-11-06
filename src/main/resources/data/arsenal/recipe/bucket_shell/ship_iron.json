@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_bucket_shell",
+  "key": {
+    "M": "minecraft:iron_ingot",
+    "N": "minecraft:iron_nugget"
+  },
+  "pattern": [
+    "M M",
+    "MNM"
+  ],
+  "result": {
+    "id": "arsenal:bucket_shell",
+    "components": {
+      "arsenal:part_material": "ship_iron"
+    }
+  }
+}

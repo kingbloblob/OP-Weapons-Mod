@@ -19,6 +19,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorType;
@@ -59,6 +60,11 @@ import com.onepiecearsenal.tool.ArsenalShieldItem;
 import com.onepiecearsenal.tool.GauntletStats;
 import com.onepiecearsenal.tool.ShieldStats;
 import com.onepiecearsenal.tool.ArsenalWeaponItem;
+import com.onepiecearsenal.tool.ArsenalBucketItem;
+import com.onepiecearsenal.tool.ArsenalShearsItem;
+import com.onepiecearsenal.tool.ArsenalToolItem;
+import com.onepiecearsenal.tool.ToolStats;
+import com.onepiecearsenal.tool.ToolType;
 import com.onepiecearsenal.tool.GunStats;
 import com.onepiecearsenal.tool.GunType;
 import com.onepiecearsenal.tool.KatanaItem;
@@ -128,6 +134,13 @@ public class ArsenalItems {
 	public static final Item CANNON_SHELL = part(PartType.CANNON_SHELL);
 	public static final Item SHIELD_FACE = part(PartType.SHIELD_FACE);
 	public static final Item GAUNTLET_PLATES = part(PartType.GAUNTLET_PLATES);
+	public static final Item PICK_HEAD = part(PartType.PICK_HEAD);
+	public static final Item HATCHET_HEAD = part(PartType.HATCHET_HEAD);
+	public static final Item SHOVEL_BLADE = part(PartType.SHOVEL_BLADE);
+	public static final Item HOE_BLADE = part(PartType.HOE_BLADE);
+	public static final Item SHEAR_BLADES = part(PartType.SHEAR_BLADES);
+	public static final Item HAMMER_HEAD = part(PartType.HAMMER_HEAD);
+	public static final Item BUCKET_SHELL = part(PartType.BUCKET_SHELL);
 	/** Flintlock and musket ammo, one per material (see MusketBalls). A part, so the Navy stations can cast it too. */
 	public static final Item MUSKET_BALL = part(PartType.MUSKET_BALL);
 	/** Bullets with a Sky Island Dial packed behind the ball (see DialRound). */
@@ -163,6 +176,36 @@ public class ArsenalItems {
 	}
 
 	public static final Item FLINTLOCK = GUNS.get(GunType.FLINTLOCK);
+
+	// ---- Tools ----
+
+	/**
+	 * Pickaxes, hatchets, shovels, hoes, shears, sledgehammers and buckets. Iron numbers until ToolStats puts the parts'
+	 * numbers on. The hatchet, shovel and hoe get vanilla's block_transformer component from Item.Properties, so they strip,
+	 * make paths and till like vanilla's; the shears are vanilla's own kind of item.
+	 */
+	public static final Map<ToolType, Item> TOOLS = new EnumMap<>(ToolType.class);
+
+	static {
+		ToolStats.initialize(); // While registries are still open: it looks up the block tags the tools' rules use.
+		for (ToolType type : ToolType.values()) {
+			Function<Item.Properties, Item> factory = switch (type) {
+				case SHEARS -> properties -> new ArsenalShearsItem(type, properties);
+				case BUCKET -> properties -> new ArsenalBucketItem(type, properties);
+				default -> properties -> new ArsenalToolItem(type, properties);
+			};
+			Item.Properties properties = switch (type) {
+				case PICKAXE, SLEDGEHAMMER -> new Item.Properties().pickaxe(ToolMaterial.IRON, 1.0f, type.baseSpeed);
+				case HATCHET -> new Item.Properties().axe(ToolMaterial.IRON, 0.0f, type.baseSpeed);
+				case SHOVEL -> new Item.Properties().shovel(ToolMaterial.IRON, 0.0f, type.baseSpeed);
+				case HOE -> new Item.Properties().hoe(ToolMaterial.IRON, 0.0f, type.baseSpeed);
+				case SHEARS -> new Item.Properties().durability(238).component(DataComponents.TOOL, ShearsItem.createToolProperties());
+				case BUCKET -> new Item.Properties().durability(250).stacksTo(1);
+				default -> new Item.Properties();
+			};
+			TOOLS.put(type, register(type.id(), factory, properties));
+		}
+	}
 
 	// ---- Armor ----
 
@@ -275,6 +318,16 @@ public class ArsenalItems {
 					for (GunType type : GunType.values()) {
 						for (ArsenalMaterial material : metals) {
 							output.accept(GunStats.build(type, material, ArsenalMaterial.SHIP_IRON, ArsenalMaterial.SHIP_IRON));
+						}
+					}
+					// One of each tool per head material, with Ship Iron for the other parts.
+					for (ToolType type : ToolType.values()) {
+						for (ArsenalMaterial material : metals) {
+							List<ArsenalMaterial> parts = new ArrayList<>(List.of(material));
+							while (parts.size() < type.parts().length) {
+								parts.add(ArsenalMaterial.SHIP_IRON);
+							}
+							output.accept(ToolStats.build(type, parts));
 						}
 					}
 					// One Ship Cannon per bore material, with a Ship Iron fuse and carriage.

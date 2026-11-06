@@ -1,5 +1,5 @@
 {
-	"_help": "The Shipwright's Manual (GuideChapters.java). Each chapter is a button on the left of the book. Lines in 'text': '# ' = heading, '- ' = bullet point, '> ' = tip, '' = empty line, anything else = normal text. Pages are split up by themselves. 'icon' is any item id; Arsenal gear in it is shown made of 'icon_material'. 'color' is a hex colour. 'generated' adds lines written from the mod's own data after the text: materials, traits, weapons, skills, guns, cannons, navy_casting, meito, navy_brass, hunter_gear, upgrades or set_bonuses. 'after' is more text that goes after the generated lines.",
+	"_help": "The Shipwright's Manual (GuideChapters.java). Each chapter is a button on the left of the book. Lines in 'text': '# ' = heading, '- ' = bullet point, '> ' = tip, '' = empty line, anything else = normal text. Pages are split up by themselves. 'icon' is any item id; Arsenal gear in it is shown made of 'icon_material'. 'color' is a hex colour. 'generated' adds lines written from the mod's own data after the text: materials, traits, weapons, skills, guns, cannons, navy_casting, meito, navy_brass, hunter_gear, upgrades, set_bonuses or tools. 'after' is more text that goes after the generated lines.",
 	"chapters": [
 		{
 			"id": "welcome",
@@ -292,6 +292,25 @@
 				"- Marines and famous Navy officers in Arsenal armor get the damage bonuses of their sets too."
 			],
 			"generated": "set_bonuses"
+		},
+		{
+			"id": "tools",
+			"title": "Tools",
+			"icon": "arsenal:pickaxe",
+			"icon_material": "tamahagane",
+			"color": "7FA0B8",
+			"text": [
+				"Pickaxes, hatchets, shovels, hoes, shears, sledgehammers and buckets, built from parts at a Shipwright's Anvil like everything else.",
+				"Make the head part at a crafting table (a Pick Head is three of the material over an iron nugget), then carry it with a Binding and a Haft (shears take a Binding and a Grip, a bucket just a Grip) and right-click the anvil with an empty hand.",
+				"- The head's material sets what the tool can dig and how fast, from wood up to netherite. Kairoseki digs like the One Piece Mod's Seastone tools, so it can cut Sea Prism Veins.",
+				"- The Binding and Haft add to its durability and give their handle traits, like a weapon's. Light handles dig 10% faster.",
+				"- Hatchets strip logs, shovels make paths and hoes till, just like vanilla's. Shears shear sheep.",
+				"- Worn out, a tool breaks instead of vanishing: it digs like a bare hand until it's mended. Mend, upgrade and take tools apart at the anvil like any gear.",
+				"> Tier 4 and 5 heads are made at a Shipwright's Forge and put together at a Grand Line Anvil.",
+				"> Abyss Stone only gives way to the One Piece Mod's own Sea Prism pickaxe.",
+				"> Upgrades: Honed Bit (8 Redstone) digs faster, Long Haft (4 Driftwood) reaches further, Reinforced (an Iron Block) lasts longer."
+			],
+			"generated": "tools"
 		},
 		{
 			"id": "high_tier",

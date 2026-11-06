@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_hatchet_head",
+  "key": {
+    "M": "onepiece:sea_pearl",
+    "N": "minecraft:iron_nugget"
+  },
+  "pattern": [
+    "MM",
+    "MN"
+  ],
+  "result": {
+    "id": "arsenal:hatchet_head",
+    "components": {
+      "arsenal:part_material": "sea_pearl"
+    }
+  }
+}

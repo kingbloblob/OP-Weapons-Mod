@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_pick_head",
+  "key": {
+    "M": "onepiece:shandora_gold_ingot",
+    "N": "minecraft:iron_nugget"
+  },
+  "pattern": [
+    "MMM",
+    " N "
+  ],
+  "result": {
+    "id": "arsenal:pick_head",
+    "components": {
+      "arsenal:part_material": "shandora_gold"
+    }
+  }
+}

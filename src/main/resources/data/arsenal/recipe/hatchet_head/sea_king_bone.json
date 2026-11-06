@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_hatchet_head",
+  "key": {
+    "M": "arsenal:sea_king_bone",
+    "N": "minecraft:iron_nugget"
+  },
+  "pattern": [
+    "MM",
+    "MN"
+  ],
+  "result": {
+    "id": "arsenal:hatchet_head",
+    "components": {
+      "arsenal:part_material": "sea_king_bone"
+    }
+  }
+}

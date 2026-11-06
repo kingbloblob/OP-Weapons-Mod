@@ -47,6 +47,8 @@ import com.onepiecearsenal.tool.GunStats;
 import com.onepiecearsenal.tool.KatanaItem;
 import com.onepiecearsenal.tool.KatanaStats;
 import com.onepiecearsenal.tool.WeaponStats;
+import com.onepiecearsenal.tool.ArsenalTool;
+import com.onepiecearsenal.tool.ToolStats;
 
 /**
  * Makes the traits happen. Hand weapon hit traits only fire on fully charged hits (wait for the attack bar to fill),
@@ -394,6 +396,9 @@ public class TraitEffects {
 		}
 		if (stack.getItem() instanceof ArsenalGauntletItem) {
 			return GauntletStats.traits(stack);
+		}
+		if (stack.getItem() instanceof ArsenalTool) {
+			return ToolStats.traits(stack);
 		}
 		return stack.getItem() instanceof ArsenalArmorItem ? ArmorStats.traits(stack) : EnumSet.noneOf(Trait.class);
 	}
