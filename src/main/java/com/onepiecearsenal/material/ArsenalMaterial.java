@@ -58,6 +58,10 @@ public final class ArsenalMaterial {
 	public final boolean armorOnly;
 	/** False for materials with no part recipes or station (Black Blade Steel). */
 	public final boolean craftable;
+	/** What a tool head of it can dig (see tool/ToolStats), or null for hides and leathers, which make no tools. */
+	public final String miningLevel;
+	/** How fast a tool head of it digs the blocks its tool is for (iron 6, diamond 8). */
+	public final float miningSpeed;
 	private final Identifier repairItem;
 
 	private ArsenalMaterial(String id, JsonObject json) {
@@ -73,6 +77,8 @@ public final class ArsenalMaterial {
 		this.handleTrait = Trait.valueOf(json.get("handle_trait").getAsString().toUpperCase(Locale.ROOT));
 		this.armorOnly = json.has("armor_only") && json.get("armor_only").getAsBoolean();
 		this.craftable = !json.has("craftable") || json.get("craftable").getAsBoolean();
+		this.miningLevel = json.has("mining_level") ? json.get("mining_level").getAsString() : null;
+		this.miningSpeed = json.has("mining_speed") ? json.get("mining_speed").getAsFloat() : 1.0f;
 		this.repairItem = Identifier.parse(json.get("item").getAsString());
 	}
 
@@ -83,7 +89,7 @@ public final class ArsenalMaterial {
 
 	/** A fingerprint of the numbers and traits gear is built from. When it changes, Restat brings old gear up to date. */
 	public int statsHash() {
-		return Objects.hash(id, tier, damage, durability, speed, armor, headTrait, handleTrait);
+		return Objects.hash(id, tier, damage, durability, speed, armor, headTrait, handleTrait, miningLevel, miningSpeed);
 	}
 
 	/** The item this material is made from, which also repairs it. */

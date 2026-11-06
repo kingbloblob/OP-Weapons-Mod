@@ -45,6 +45,8 @@ import com.onepiecearsenal.tool.GauntletStats;
 import com.onepiecearsenal.tool.KatanaStats;
 import com.onepiecearsenal.tool.ShieldStats;
 import com.onepiecearsenal.tool.WeaponStats;
+import com.onepiecearsenal.tool.ToolStats;
+import com.onepiecearsenal.tool.ToolType;
 import com.onepiecearsenal.tool.WeaponType;
 import com.onepiecearsenal.upgrade.Upgrade;
 
@@ -155,6 +157,15 @@ public final class GuideChapters {
 		if (item == ArsenalItems.GAUNTLETS) {
 			return GauntletStats.build(material, ArsenalMaterial.DRIFTWOOD);
 		}
+		for (Map.Entry<ToolType, Item> tool : ArsenalItems.TOOLS.entrySet()) {
+			if (tool.getValue() == item) {
+				List<ArsenalMaterial> parts = new ArrayList<>(List.of(material));
+				while (parts.size() < tool.getKey().parts().length) {
+					parts.add(iron);
+				}
+				return ToolStats.build(tool.getKey(), parts);
+			}
+		}
 		if (item instanceof PartItem) {
 			return PartItem.of(item, material);
 		}
@@ -179,6 +190,7 @@ public final class GuideChapters {
 			case "set_bonuses" -> setBonuses();
 			case "fruit_weapons" -> fruitWeapons();
 			case "town_smiths" -> com.onepiecearsenal.town.Blacksmiths.guideLines();
+			case "tools" -> tools();
 			default -> List.of("(Nothing is written here yet: \"" + what + "\" isn't a page the manual knows.)");
 		};
 	}
@@ -272,6 +284,23 @@ public final class GuideChapters {
 			lines.add("- " + type.ability);
 			if (type.faction == Faction.NAVY) {
 				lines.add("- Navy design: put together at a Marine Armory Bench.");
+			}
+		}
+		return lines;
+	}
+
+	private static List<String> tools() {
+		List<String> lines = new ArrayList<>();
+		for (ToolType type : ToolType.values()) {
+			lines.add("# " + type.displayName);
+			lines.add("- Parts: " + parts(type.parts()) + ".");
+			lines.add("- " + type.ability);
+		}
+		lines.add("# What each material digs");
+		for (ArsenalMaterial material : ArsenalMaterial.values()) {
+			if (material.miningLevel != null && material.craftable) {
+				lines.add(String.format("- %s: %s, speed %.1f, bucket holds %d%s.", material.displayName, ToolStats.levelName(material),
+						material.miningSpeed, ToolStats.capacity(material), ToolStats.holdsLava(material) ? "" : " (water only)"));
 			}
 		}
 		return lines;

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "arsenal:item/bucket/handle/vegapunk_compound"
+  }
+}

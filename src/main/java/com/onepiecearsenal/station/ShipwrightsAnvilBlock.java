@@ -1,5 +1,6 @@
 package com.onepiecearsenal.station;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.ChatFormatting;
@@ -35,6 +36,8 @@ import com.onepiecearsenal.tool.GunStats;
 import com.onepiecearsenal.tool.GunType;
 import com.onepiecearsenal.tool.KatanaStats;
 import com.onepiecearsenal.tool.ShieldStats;
+import com.onepiecearsenal.tool.ToolStats;
+import com.onepiecearsenal.tool.ToolType;
 import com.onepiecearsenal.tool.WeaponStats;
 import com.onepiecearsenal.tool.WeaponType;
 import com.onepiecearsenal.upgrade.Upgrades;
@@ -43,7 +46,8 @@ import com.onepiecearsenal.upgrade.Upgrades;
  * The pirate assembly station. Right-click it with an empty hand while you carry a full set of parts
  * anywhere in your inventory, and it joins them: a katana blade, tsuba and hilt make a katana; a barrel, firing
  * part and stock make a gun (see GunType); a cannon bore, fuse and gun carriage make a Ship Cannon; a head, binding and handle make a cutlass, axe, kanabo or spear
- * (see WeaponType); a shield face, binding and grip make a shield (see ShieldStats); gauntlet plates and a lining make
+ * (see WeaponType); a tool head and its binding and haft or grip make a pickaxe, hatchet, shovel, hoe, shears or
+ * sledgehammer, and a bucket shell and grip a bucket (see ToolType); a shield face, binding and grip make a shield (see ShieldStats); gauntlet plates and a lining make
  * gauntlets (see GauntletStats); an armor shell (hat crown, coat plates, sash weave or boot soles) and a lining
  * make that piece of armor. Like the One Piece Mod's stations, the parts don't need to be in a grid. If you carry
  * several sets, they are forged in that order, one per click.
@@ -168,7 +172,7 @@ public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 		}
 	}
 
-	/** The first full set the smith carries, in this order: katana, guns, ship cannon, other hand weapons, shield, gauntlets, armor. Null if none. */
+	/** The first full set the smith carries, in this order: katana, guns, ship cannon, other hand weapons, tools, shield, gauntlets, armor. Null if none. */
 	private static Forged findSet(Inventory inventory, boolean navy, boolean grand) {
 		int[] used = findParts(inventory, navy, grand, PartType.KATANA_BLADE, PartType.TSUBA, PartType.HILT);
 		if (used != null) {
@@ -186,6 +190,15 @@ public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 			// Marine Sabres and Jittes are Navy designs: only the Marine Armory Bench puts them together.
 			if ((navy || type.faction != Faction.NAVY) && (used = findParts(inventory, navy, grand, type.parts())) != null) {
 				return new Forged(inventory, WeaponStats.build(type, material(inventory, used[0]), material(inventory, used[1]), material(inventory, used[2])), used);
+			}
+		}
+		for (ToolType type : ToolType.values()) {
+			if ((used = findParts(inventory, navy, grand, type.parts())) != null) {
+				List<ArsenalMaterial> materials = new ArrayList<>();
+				for (int slot : used) {
+					materials.add(material(inventory, slot));
+				}
+				return new Forged(inventory, ToolStats.build(type, materials), used);
 			}
 		}
 		if ((used = findParts(inventory, navy, grand, ShieldStats.parts())) != null) {

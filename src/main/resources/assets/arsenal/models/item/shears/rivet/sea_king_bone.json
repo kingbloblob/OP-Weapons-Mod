@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "arsenal:item/shears/rivet/sea_king_bone"
+  }
+}

@@ -50,6 +50,8 @@ import com.onepiecearsenal.part.PartItem;
 import com.onepiecearsenal.salvage.Breakage;
 import com.onepiecearsenal.tool.ArmorStats;
 import com.onepiecearsenal.tool.ArsenalGauntletItem;
+import com.onepiecearsenal.tool.ArsenalTool;
+import com.onepiecearsenal.tool.ToolStats;
 import com.onepiecearsenal.tool.ArsenalGunItem;
 import com.onepiecearsenal.tool.ArsenalShieldItem;
 import com.onepiecearsenal.tool.GauntletStats;
@@ -138,6 +140,9 @@ public final class Upgrades {
 		if (item instanceof ArsenalGauntletItem) {
 			return GauntletStats.parts(stack).isEmpty() ? null : Gear.GAUNTLETS;
 		}
+		if (item instanceof ArsenalTool) {
+			return ToolStats.parts(stack).isEmpty() ? null : Gear.TOOL;
+		}
 		if (ArmorStats.parts(stack).isEmpty()) {
 			return null;
 		}
@@ -165,6 +170,7 @@ public final class Upgrades {
 			case GUN -> GunStats.parts(stack).get(0);
 			case SHIELD -> ShieldStats.parts(stack).get(0);
 			case GAUNTLETS -> GauntletStats.parts(stack).get(0);
+			case TOOL -> ToolStats.parts(stack).get(0);
 			default -> ArmorStats.parts(stack).get(0);
 		};
 	}

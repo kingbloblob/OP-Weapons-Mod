@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "arsenal_pick_head",
+  "key": {
+    "M": "onepiece:dial_shell",
+    "N": "minecraft:iron_nugget"
+  },
+  "pattern": [
+    "MMM",
+    " N "
+  ],
+  "result": {
+    "id": "arsenal:pick_head",
+    "components": {
+      "arsenal:part_material": "dial_shell"
+    }
+  }
+}

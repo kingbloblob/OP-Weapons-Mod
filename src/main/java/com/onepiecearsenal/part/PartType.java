@@ -46,7 +46,15 @@ public enum PartType {
 	// A shield's face (its rim is a Binding and its strap a Grip, see ShieldStats), and the plates of a pair of
 	// gauntlets (lined with a Lining, see GauntletStats).
 	SHIELD_FACE("shield_face", "Shield Face", true),
-	GAUNTLET_PLATES("gauntlet_plates", "Gauntlet Plates", true);
+	GAUNTLET_PLATES("gauntlet_plates", "Gauntlet Plates", true),
+	// Tool heads (see tool/ToolType). They share the weapons' Bindings, Hafts and Grips.
+	PICK_HEAD("pick_head", "Pick Head", true),
+	HATCHET_HEAD("hatchet_head", "Hatchet Head", true),
+	SHOVEL_BLADE("shovel_blade", "Shovel Blade", true),
+	HOE_BLADE("hoe_blade", "Hoe Blade", true),
+	SHEAR_BLADES("shear_blades", "Shear Blades", true),
+	HAMMER_HEAD("hammer_head", "Sledgehammer Head", true),
+	BUCKET_SHELL("bucket_shell", "Bucket Shell", true);
 
 	private final String id;
 	public final String displayName;

@@ -30,6 +30,11 @@ WEAPONS = {"cutlass": "Cutlass", "marine_sabre": "Marine Sabre", "boarding_axe":
            "jitte": "Jitte", "kanabo": "Kanabo", "spear": "Spear",
            "fishman_gloves": "Fishman Gloves", "impact_palm": "Impact Palm", "reject_palm": "Reject Palm"}
 GUNS = {"flintlock": "Flintlock", "musket": "Musket", "hand_cannon": "Hand Cannon"}
+# Tool items (ToolType) and their head parts.
+TOOLS = {"pickaxe": "Pickaxe", "hatchet": "Hatchet", "shovel": "Shovel", "hoe": "Hoe", "shears": "Shears",
+         "sledgehammer": "Sledgehammer", "bucket": "Bucket"}
+TOOL_PARTS = {"pick_head": "Pick Head", "hatchet_head": "Hatchet Head", "shovel_blade": "Shovel Blade", "hoe_blade": "Hoe Blade",
+              "shear_blades": "Shear Blades", "hammer_head": "Sledgehammer Head", "bucket_shell": "Bucket Shell"}
 lang = {
     "item.arsenal.driftwood": "Driftwood",
     "item.arsenal.marine_steel_ingot": "Marine Standard Steel Ingot",
@@ -91,7 +96,7 @@ lang = {
     "block.arsenal.quartermasters_desk": "Quartermaster's Desk",
     "block.arsenal.marine_base_smeltery": "Marine Base Smeltery"
 }
-for name, title in {**WEAPONS, **GUNS}.items():
+for name, title in {**WEAPONS, **GUNS, **TOOLS, **TOOL_PARTS}.items():
     lang[f"item.arsenal.{name}"] = title
 # Options > Controls > Key Binds (client/ArsenalClient).
 lang["key.category.arsenal.arsenal"] = "One Piece Arsenal"
@@ -141,7 +146,7 @@ for name in ["driftwood", "marine_steel_ingot", "cannon_bronze_ingot", "sea_king
     w(f'{A}/items/{name}.json', {"model": model(name)})
 for part in ["katana_blade", "tsuba", "hilt", "barrel", "firing_lock", "stock", "long_barrel", "cannon_bore", "fuse",
              "gun_carriage", "cannon_shell", "musket_ball", "cutlass_blade", "sabre_blade", "axe_head", "jitte_rod", "club_head", "spearhead",
-             "knuckles", "impact_core", "reject_core", "hand_guard", "binding", "studs", "grip", "haft", "shield_face"]:
+             "knuckles", "impact_core", "reject_core", "hand_guard", "binding", "studs", "grip", "haft", "shield_face"] + list(TOOL_PARTS):
     w(f'{A}/items/{part}.json', {"model": by_material(f"part/{part}", materials=WEAPON_TEXTURED)})
 for part in ["crown", "coat_plates", "sash_weave", "boot_soles", "lining", "gauntlet_plates"]:
     w(f'{A}/items/{part}.json', {"model": by_material(f"part/{part}")})
@@ -156,7 +161,16 @@ weapon_layers = {
     "kanabo": ["head", "studs", "haft"], "spear": ["head", "binding", "haft"],
     "fishman_gloves": ["knuckles", "strap", "palm"],
     "impact_palm": ["dial", "strap", "palm"], "reject_palm": ["dial", "strap", "palm"],
+    # Tools (tool_parts, in ToolType's order). The bucket is drawn below, with what it holds on top.
+    "pickaxe": ["head", "binding", "haft"], "hatchet": ["head", "binding", "haft"], "shovel": ["blade", "binding", "haft"],
+    "hoe": ["blade", "binding", "haft"], "shears": ["blades", "rivet", "grip"], "sledgehammer": ["head", "binding", "haft"],
 }
+# The bucket: its shell and grip, and the water or lava in it (ArsenalBucketItem sets the custom_model_data string).
+w(f'{A}/items/bucket.json', {"model": {"type": "minecraft:composite", "models": [
+    by_material(f"bucket/{layer}", i, "minecraft:item/generated", WEAPON_TEXTURED) for i, layer in enumerate(["shell", "handle"])] + [
+    {"type": "minecraft:select", "property": "minecraft:custom_model_data", "index": 0,
+     "cases": [{"when": fluid, "model": model(f"bucket/{fluid}")} for fluid in ["water", "lava"]],
+     "fallback": {"type": "minecraft:empty"}}]}})
 # The famous Devil Fruit weapons (fruit/FamousFruitWeapon) are forged gear of these kinds with their own look,
 # picked by the custom_model_data string FamousFruitWeapon.create sets.
 famous = {"hand_cannon": ["lassoo"], "marine_sabre": ["funkfreed"], "cutlass": ["cerberus"], "kanabo": ["ragnir"]}
@@ -323,7 +337,16 @@ w(f'{D}/tags/worldgen/structure/has_base_smeltery.json', {"replace": False, "val
     "onepiece:g5_base", "onepiece:navarone", "onepiece:marineford"]})
 # Cutlasses and sabres are swords too, so the main mod's sword styles, whetstones and Dials work on them.
 w('data/minecraft/tags/item/swords.json', {"replace": False, "values": ["arsenal:katana", "arsenal:cutlass", "arsenal:marine_sabre"]})
-w('data/minecraft/tags/item/axes.json', {"replace": False, "values": ["arsenal:boarding_axe"]})
+w('data/minecraft/tags/item/axes.json', {"replace": False, "values": ["arsenal:boarding_axe", "arsenal:hatchet"]})
+# Tools are vanilla's kinds of tool, so their enchantments (Efficiency, Fortune, Silk Touch) work on them.
+w('data/minecraft/tags/item/pickaxes.json', {"replace": False, "values": ["arsenal:pickaxe", "arsenal:sledgehammer"]})
+w('data/minecraft/tags/item/shovels.json', {"replace": False, "values": ["arsenal:shovel"]})
+w('data/minecraft/tags/item/hoes.json', {"replace": False, "values": ["arsenal:hoe"]})
+w('data/minecraft/tags/item/enchantable/mining.json', {"replace": False, "values": ["arsenal:shears"]})
+# Other mods' names for the same kinds of tool.
+for tag, items in {"pickaxe": ["pickaxe", "sledgehammer"], "axe": ["hatchet"], "shovel": ["shovel"], "hoe": ["hoe"],
+                   "shear": ["shears"], "mining_tool": ["pickaxe", "sledgehammer"]}.items():
+    w(f'data/c/tags/item/tools/{tag}.json', {"replace": False, "values": [f"arsenal:{i}" for i in items]})
 # Sword enchantments (Sharpness, Looting, Fire Aspect...) on the weapons that aren't swords or axes.
 OTHER_WEAPONS = ["arsenal:jitte", "arsenal:kanabo", "arsenal:spear", "arsenal:fishman_gloves", "arsenal:impact_palm", "arsenal:reject_palm"]
 w('data/minecraft/tags/item/enchantable/sword.json', {"replace": False, "values": OTHER_WEAPONS})
@@ -336,7 +359,7 @@ w('data/onepiece/tags/item/holds_dial.json', {"replace": False, "values": [
 # The One Piece Mod's gun enchantments (Quick Draw, Sniper's Eye) and Unbreaking/Mending work on Arsenal guns.
 w('data/onepiece/tags/item/guns.json', {"replace": False, "values": [f"arsenal:{g}" for g in GUNS]})
 w('data/minecraft/tags/item/enchantable/durability.json', {"replace": False,
-    "values": [f"arsenal:{g}" for g in GUNS] + OTHER_WEAPONS + ["arsenal:shield", "arsenal:gauntlets"]})
+    "values": [f"arsenal:{g}" for g in GUNS] + OTHER_WEAPONS + ["arsenal:shield", "arsenal:gauntlets", "arsenal:shears"]})
 # Any part material repairs Arsenal armor at an anvil (the main mod's tags do the same per set).
 w(f'{D}/tags/item/repairs_arsenal_armor.json', {"replace": False,
     "values": sorted({m["item"] for m in MATERIALS if m.get("craftable", True)})})
@@ -431,6 +454,14 @@ parts = {
     # Vanilla's shield shape with a leather pad where its iron goes; gauntlet plates are boot soles upside down.
     "shield_face": (["MLM", "MMM", " M "], {"L": L}),
     "gauntlet_plates": (["M M", "MLM"], {"L": L}),
+    # Tool heads: vanilla's tool shapes with the stick swapped for a nugget (a nugget's the rivet the haft fits on).
+    "pick_head": (["MMM", " N "], {"N": N}),
+    "hatchet_head": (["MM", "MN"], {"N": N}),
+    "shovel_blade": (["M", "N"], {"N": N}),
+    "hoe_blade": (["MM", " N"], {"N": N}),
+    "shear_blades": ([" M", "MN"], {"N": N}),
+    "hammer_head": (["MMM", "MMM", " N "], {"N": N}),
+    "bucket_shell": (["M M", "MNM"], {"N": N}),
 }
 # Shapes that would clash with a vanilla recipe for one material get their own (GameTests check none clash).
 CLASHES = {

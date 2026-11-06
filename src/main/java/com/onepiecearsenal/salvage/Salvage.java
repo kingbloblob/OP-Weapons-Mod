@@ -25,6 +25,7 @@ import com.onepiecearsenal.part.PartItem;
 import com.onepiecearsenal.part.PartType;
 import com.onepiecearsenal.station.ShipwrightsAnvilBlock;
 import com.onepiecearsenal.tool.ArsenalGunItem;
+import com.onepiecearsenal.tool.ArsenalTool;
 import com.onepiecearsenal.tool.ArsenalWeaponItem;
 import com.onepiecearsenal.tool.GauntletStats;
 import com.onepiecearsenal.tool.Restat;
@@ -121,6 +122,7 @@ public final class Salvage {
 			case BOOTS -> new PartType[] {PartType.BOOT_SOLES, PartType.LINING};
 			case SHIELD -> ShieldStats.parts();
 			case GAUNTLETS -> GauntletStats.parts();
+			case TOOL -> ((ArsenalTool) gear.getItem()).toolType().parts();
 		};
 	}
 
@@ -147,7 +149,8 @@ public final class Salvage {
 
 	private static void copyParts(ItemStack from, ItemStack to) {
 		for (var parts : List.of(ArsenalComponents.KATANA_PARTS, ArsenalComponents.WEAPON_PARTS, ArsenalComponents.GUN_PARTS,
-				ArsenalComponents.ARMOR_PARTS, ArsenalComponents.SHIELD_PARTS, ArsenalComponents.GAUNTLET_PARTS)) {
+				ArsenalComponents.ARMOR_PARTS, ArsenalComponents.SHIELD_PARTS, ArsenalComponents.GAUNTLET_PARTS,
+				ArsenalComponents.TOOL_PARTS)) {
 			List<String> materials = from.get(parts);
 			if (materials != null) {
 				to.set(parts, materials);

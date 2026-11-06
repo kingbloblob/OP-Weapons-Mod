@@ -144,6 +144,20 @@ public class ArsenalComponents {
 			DataComponentType.<WeaponMastery>builder().persistent(WeaponMastery.CODEC).networkSynchronized(WeaponMastery.STREAM_CODEC)
 					.ignoreSwapAnimation().build());
 
+	/** The material ids of a tool's parts, head first, in the order its ToolType lists them (see ToolStats). */
+	public static final DataComponentType<List<String>> TOOL_PARTS = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
+			ArsenalMod.id("tool_parts"),
+			DataComponentType.<List<String>>builder().persistent(Codec.STRING.listOf())
+					.networkSynchronized(ByteBufCodecs.STRING_UTF8.apply(ByteBufCodecs.list())).build());
+
+	/** What an Arsenal Bucket holds ("water" or "lava") and how many bucketfuls of it (see ArsenalBucketItem). */
+	public static final DataComponentType<String> BUCKET_FLUID = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
+			ArsenalMod.id("bucket_fluid"),
+			DataComponentType.<String>builder().persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.STRING_UTF8).build());
+	public static final DataComponentType<Integer> BUCKET_AMOUNT = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
+			ArsenalMod.id("bucket_amount"),
+			DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT).build());
+
 	/** Loads this class, which registers the components above. */
 	static void initialize() {
 	}

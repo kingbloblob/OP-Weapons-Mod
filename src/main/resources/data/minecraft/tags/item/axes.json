@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "arsenal:boarding_axe"
+    "arsenal:boarding_axe",
+    "arsenal:hatchet"
   ]
 }

@@ -1,0 +1,194 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "property": "arsenal:part_material",
+    "cases": [
+      {
+        "when": "driftwood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/driftwood"
+        }
+      },
+      {
+        "when": "ship_iron",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/ship_iron"
+        }
+      },
+      {
+        "when": "marine_steel",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/marine_steel"
+        }
+      },
+      {
+        "when": "flint",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/flint"
+        }
+      },
+      {
+        "when": "stone",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/stone"
+        }
+      },
+      {
+        "when": "copper",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/copper"
+        }
+      },
+      {
+        "when": "cannon_bronze",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/cannon_bronze"
+        }
+      },
+      {
+        "when": "sea_king_bone",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/sea_king_bone"
+        }
+      },
+      {
+        "when": "treasure_gold",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/treasure_gold"
+        }
+      },
+      {
+        "when": "dial_shell",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/dial_shell"
+        }
+      },
+      {
+        "when": "sea_pearl",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/sea_pearl"
+        }
+      },
+      {
+        "when": "amethyst",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/amethyst"
+        }
+      },
+      {
+        "when": "emerald",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/emerald"
+        }
+      },
+      {
+        "when": "prismarine",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/prismarine"
+        }
+      },
+      {
+        "when": "tamahagane",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/tamahagane"
+        }
+      },
+      {
+        "when": "kairoseki",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/kairoseki"
+        }
+      },
+      {
+        "when": "pacifista_alloy",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/pacifista_alloy"
+        }
+      },
+      {
+        "when": "shandora_gold",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/shandora_gold"
+        }
+      },
+      {
+        "when": "obsidian",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/obsidian"
+        }
+      },
+      {
+        "when": "diamond",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/diamond"
+        }
+      },
+      {
+        "when": "wapometal",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/wapometal"
+        }
+      },
+      {
+        "when": "adam_wood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/adam_wood"
+        }
+      },
+      {
+        "when": "kokuto",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/kokuto"
+        }
+      },
+      {
+        "when": "netherite",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/netherite"
+        }
+      },
+      {
+        "when": "black_blade",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/black_blade"
+        }
+      },
+      {
+        "when": "vegapunk_compound",
+        "model": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/part/hatchet_head/vegapunk_compound"
+        }
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "arsenal:item/part/hatchet_head/ship_iron"
+    }
+  }
+}

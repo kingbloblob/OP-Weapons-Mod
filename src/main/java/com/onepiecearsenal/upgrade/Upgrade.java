@@ -32,7 +32,7 @@ public final class Upgrade {
 	public enum Gear {
 		KATANA("katana", "Katanas"), WEAPON("weapon", "Hand weapons"), GUN("gun", "Guns"),
 		HAT("armor", "Hats"), COAT("armor", "Coats"), SASH("armor", "Sashes"), BOOTS("armor", "Boots"),
-		SHIELD("shield", "Shields"), GAUNTLETS("gauntlets", "Gauntlets");
+		SHIELD("shield", "Shields"), GAUNTLETS("gauntlets", "Gauntlets"), TOOL("tool", "Tools");
 
 		/** The key in upgrades.json's "slots": armor pieces share one. */
 		final String slotKey;

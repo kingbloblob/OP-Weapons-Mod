@@ -24,6 +24,8 @@ import com.onepiecearsenal.tool.DialCharge;
 import com.onepiecearsenal.tool.GunStats;
 import com.onepiecearsenal.tool.GunType;
 import com.onepiecearsenal.tool.ShieldStats;
+import com.onepiecearsenal.tool.ToolStats;
+import com.onepiecearsenal.tool.ToolType;
 import com.onepiecearsenal.tool.WeaponStats;
 import com.onepiecearsenal.tool.WeaponType;
 
@@ -140,6 +142,15 @@ public class PartItem extends Item {
 					.withStyle(ChatFormatting.BLUE));
 			case GAUNTLET_PLATES -> textConsumer.accept(Component.literal("Defense in the offhand: " + GauntletStats.defense(material)
 					+ (ArmorStats.toughness(material) > 0 ? ", toughness: " + (int) ArmorStats.toughness(material) : "")).withStyle(ChatFormatting.BLUE));
+			case PICK_HEAD, HATCHET_HEAD, SHOVEL_BLADE, HOE_BLADE, HAMMER_HEAD -> {
+				ToolType tool = ToolType.withHead(this.type);
+				textConsumer.accept(Component.literal(String.format("%s: digs %s, speed %.1f", tool.displayName, ToolStats.levelName(material),
+						ToolStats.miningSpeed(tool, material))).withStyle(ChatFormatting.BLUE));
+			}
+			case SHEAR_BLADES -> textConsumer.accept(Component.literal("Shears: cut " + (material.miningSpeed >= 6 ? "as fast as" : "slower than")
+					+ " iron ones").withStyle(ChatFormatting.BLUE));
+			case BUCKET_SHELL -> textConsumer.accept(Component.literal("Bucket: holds " + ToolStats.capacity(material) + " bucketful"
+					+ (ToolStats.capacity(material) > 1 ? "s" : "") + (ToolStats.holdsLava(material) ? "" : ", water only")).withStyle(ChatFormatting.BLUE));
 			case LINING -> textConsumer.accept(Component.literal("Comfort: " + material.displayName.toLowerCase() + " padding").withStyle(ChatFormatting.BLUE));
 			default -> {
 			}

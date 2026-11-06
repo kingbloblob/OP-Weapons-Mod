@@ -1,0 +1,721 @@
+{
+  "model": {
+    "type": "minecraft:composite",
+    "models": [
+      {
+        "type": "minecraft:select",
+        "property": "arsenal:part_material",
+        "index": 0,
+        "cases": [
+          {
+            "when": "driftwood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/driftwood",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "ship_iron",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/ship_iron",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "marine_steel",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/marine_steel",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "flint",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/flint",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "stone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/stone",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "copper",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/copper",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "cannon_bronze",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/cannon_bronze",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "sea_king_bone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/sea_king_bone",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "treasure_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/treasure_gold",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "dial_shell",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/dial_shell",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "sea_pearl",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/sea_pearl",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "amethyst",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/amethyst",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "emerald",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/emerald",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "prismarine",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/prismarine",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "tamahagane",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/tamahagane",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "kairoseki",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/kairoseki",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "pacifista_alloy",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/pacifista_alloy",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "shandora_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/shandora_gold",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "obsidian",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/obsidian",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "diamond",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/diamond",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "wapometal",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/wapometal",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "adam_wood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/adam_wood",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "kokuto",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/kokuto",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "netherite",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/netherite",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "black_blade",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/black_blade",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          },
+          {
+            "when": "vegapunk_compound",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/head/vegapunk_compound",
+              "tints": [
+                {
+                  "type": "arsenal:haki_coat"
+                }
+              ]
+            }
+          }
+        ],
+        "fallback": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/pickaxe/head/ship_iron",
+          "tints": [
+            {
+              "type": "arsenal:haki_coat"
+            }
+          ]
+        }
+      },
+      {
+        "type": "minecraft:select",
+        "property": "arsenal:part_material",
+        "index": 1,
+        "cases": [
+          {
+            "when": "driftwood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/driftwood"
+            }
+          },
+          {
+            "when": "ship_iron",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/ship_iron"
+            }
+          },
+          {
+            "when": "marine_steel",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/marine_steel"
+            }
+          },
+          {
+            "when": "flint",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/flint"
+            }
+          },
+          {
+            "when": "stone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/stone"
+            }
+          },
+          {
+            "when": "copper",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/copper"
+            }
+          },
+          {
+            "when": "cannon_bronze",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/cannon_bronze"
+            }
+          },
+          {
+            "when": "sea_king_bone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/sea_king_bone"
+            }
+          },
+          {
+            "when": "treasure_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/treasure_gold"
+            }
+          },
+          {
+            "when": "dial_shell",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/dial_shell"
+            }
+          },
+          {
+            "when": "sea_pearl",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/sea_pearl"
+            }
+          },
+          {
+            "when": "amethyst",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/amethyst"
+            }
+          },
+          {
+            "when": "emerald",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/emerald"
+            }
+          },
+          {
+            "when": "prismarine",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/prismarine"
+            }
+          },
+          {
+            "when": "tamahagane",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/tamahagane"
+            }
+          },
+          {
+            "when": "kairoseki",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/kairoseki"
+            }
+          },
+          {
+            "when": "pacifista_alloy",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/pacifista_alloy"
+            }
+          },
+          {
+            "when": "shandora_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/shandora_gold"
+            }
+          },
+          {
+            "when": "obsidian",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/obsidian"
+            }
+          },
+          {
+            "when": "diamond",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/diamond"
+            }
+          },
+          {
+            "when": "wapometal",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/wapometal"
+            }
+          },
+          {
+            "when": "adam_wood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/adam_wood"
+            }
+          },
+          {
+            "when": "kokuto",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/kokuto"
+            }
+          },
+          {
+            "when": "netherite",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/netherite"
+            }
+          },
+          {
+            "when": "black_blade",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/black_blade"
+            }
+          },
+          {
+            "when": "vegapunk_compound",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/binding/vegapunk_compound"
+            }
+          }
+        ],
+        "fallback": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/pickaxe/binding/ship_iron"
+        }
+      },
+      {
+        "type": "minecraft:select",
+        "property": "arsenal:part_material",
+        "index": 2,
+        "cases": [
+          {
+            "when": "driftwood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/driftwood"
+            }
+          },
+          {
+            "when": "ship_iron",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/ship_iron"
+            }
+          },
+          {
+            "when": "marine_steel",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/marine_steel"
+            }
+          },
+          {
+            "when": "flint",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/flint"
+            }
+          },
+          {
+            "when": "stone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/stone"
+            }
+          },
+          {
+            "when": "copper",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/copper"
+            }
+          },
+          {
+            "when": "cannon_bronze",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/cannon_bronze"
+            }
+          },
+          {
+            "when": "sea_king_bone",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/sea_king_bone"
+            }
+          },
+          {
+            "when": "treasure_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/treasure_gold"
+            }
+          },
+          {
+            "when": "dial_shell",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/dial_shell"
+            }
+          },
+          {
+            "when": "sea_pearl",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/sea_pearl"
+            }
+          },
+          {
+            "when": "amethyst",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/amethyst"
+            }
+          },
+          {
+            "when": "emerald",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/emerald"
+            }
+          },
+          {
+            "when": "prismarine",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/prismarine"
+            }
+          },
+          {
+            "when": "tamahagane",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/tamahagane"
+            }
+          },
+          {
+            "when": "kairoseki",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/kairoseki"
+            }
+          },
+          {
+            "when": "pacifista_alloy",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/pacifista_alloy"
+            }
+          },
+          {
+            "when": "shandora_gold",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/shandora_gold"
+            }
+          },
+          {
+            "when": "obsidian",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/obsidian"
+            }
+          },
+          {
+            "when": "diamond",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/diamond"
+            }
+          },
+          {
+            "when": "wapometal",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/wapometal"
+            }
+          },
+          {
+            "when": "adam_wood",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/adam_wood"
+            }
+          },
+          {
+            "when": "kokuto",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/kokuto"
+            }
+          },
+          {
+            "when": "netherite",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/netherite"
+            }
+          },
+          {
+            "when": "black_blade",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/black_blade"
+            }
+          },
+          {
+            "when": "vegapunk_compound",
+            "model": {
+              "type": "minecraft:model",
+              "model": "arsenal:item/pickaxe/haft/vegapunk_compound"
+            }
+          }
+        ],
+        "fallback": {
+          "type": "minecraft:model",
+          "model": "arsenal:item/pickaxe/haft/ship_iron"
+        }
+      }
+    ]
+  }
+}
