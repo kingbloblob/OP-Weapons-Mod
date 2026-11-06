@@ -22,6 +22,7 @@
       "com.onepiecearsenal.test.IslandMaterialTests",
       "com.onepiecearsenal.test.MasteryTests",
       "com.onepiecearsenal.test.MeitoTests",
+      "com.onepiecearsenal.test.RareDropUpgradeTests",
       "com.onepiecearsenal.test.RestatTests",
       "com.onepiecearsenal.test.SalvageTests",
       "com.onepiecearsenal.test.SetBonusTests",

@@ -18,7 +18,10 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -42,6 +45,7 @@ import com.onepiecearsenal.fruit.FruitWeapons;
 import com.onepiecearsenal.mastery.Mastery;
 import com.onepiecearsenal.material.ArsenalMaterial;
 import com.onepiecearsenal.material.TraitEffects;
+import com.onepiecearsenal.material.TraitStats;
 import com.onepiecearsenal.part.PartItem;
 import com.onepiecearsenal.salvage.Breakage;
 import com.onepiecearsenal.tool.ArmorStats;
@@ -68,7 +72,8 @@ import com.onepiecearsenal.upgrade.Upgrade.Gear;
  *
  * The upgrades and their levels are saved on the item (ArsenalComponents.UPGRADES). Attribute upgrades go straight
  * on the item's attribute modifiers, Reinforced on its durability; gun upgrades are read by GunStats and Kokuto
- * Inlay by the hit hook below. The One Piece Mod's whetstones, gun parts, Dials and enchantments are separate and
+ * Inlay, Fang Edge and Heartstone Core by the hit hook below. Ambergris Polish mends in tick(), Pacifista Core's
+ * shot guard is in guard(), and Heartstone Core's fireproofing goes straight on the item (applyComponents). The One Piece Mod's whetstones, gun parts, Dials and enchantments are separate and
  * all still work on top.
  */
 public final class Upgrades {
@@ -83,16 +88,30 @@ public final class Upgrades {
 			}
 		}
 
-		// Kokuto Inlay: with Armament Haki on, part of a fully charged hit goes through armor, like the Keen trait.
+		// Fully charged hits: Kokuto Inlay, Fang Edge and Heartstone Core.
 		AttackEntityCallback.EVENT.register((player, level, hand, target, hitResult) -> {
 			if (player instanceof ServerPlayer attacker && level instanceof ServerLevel serverLevel
 					&& target instanceof LivingEntity living && !player.isSpectator()
 					&& player.getAttackStrengthScale(0.5f) >= 0.9f) {
 				ItemStack weapon = player.getMainHandItem();
+				if (Breakage.isBroken(weapon)) {
+					return InteractionResult.PASS;
+				}
+				// Kokuto Inlay: with Armament Haki on, part of the hit goes through armor, like the Keen trait.
 				double share = total(weapon, "haki_pierce");
-				if (share > 0 && !Breakage.isBroken(weapon) && HakiImbue.hakiBehind(attacker, weapon) > 0) {
+				if (share > 0 && HakiImbue.hakiBehind(attacker, weapon) > 0) {
 					float damage = (float) (player.getAttributeValue(Attributes.ATTACK_DAMAGE) * share);
 					TraitEffects.extraHit(attacker, serverLevel, living, damage, attacker.damageSources().indirectMagic(attacker, attacker));
+				}
+				// Fang Edge: a Sea King's own fang bites harder into sea creatures.
+				double seaSlayer = total(weapon, "sea_slayer");
+				if (seaSlayer > 0 && living.getType().builtInRegistryHolder().is(TraitEffects.SEA_CREATURES)) {
+					TraitEffects.extraHit(attacker, serverLevel, living, (float) seaSlayer);
+				}
+				// Heartstone Core: the dragon's heart still burns.
+				double ignite = total(weapon, "ignite");
+				if (ignite > 0) {
+					living.igniteForSeconds((float) ignite);
 				}
 			}
 			return InteractionResult.PASS;
@@ -173,10 +192,15 @@ public final class Upgrades {
 
 	/** The sum of one kind of effect over all the item's upgrades, like the extra shot damage of "gun_damage". */
 	public static double total(ItemStack stack, String effectType) {
+		Map<Upgrade, Integer> upgrades = upgrades(stack);
+		if (upgrades.isEmpty()) {
+			return 0; // Cheap check first: the hit hook and tick() run this a lot.
+		}
+		Gear gear = gearOf(stack);
 		double total = 0;
-		for (Map.Entry<Upgrade, Integer> entry : upgrades(stack).entrySet()) {
+		for (Map.Entry<Upgrade, Integer> entry : upgrades.entrySet()) {
 			for (Effect effect : entry.getKey().effects) {
-				if (effect.type().equals(effectType)) {
+				if (effect.type().equals(effectType) && effect.worksOn(gear)) {
 					total += effect.amount() * entry.getValue();
 				}
 			}
@@ -216,6 +240,7 @@ public final class Upgrades {
 		levels.merge(upgrade.id, 1, Integer::sum);
 		stack.set(ArsenalComponents.UPGRADES, levels);
 		applyAttributes(stack, upgrade);
+		applyComponents(stack);
 		stack.set(DataComponents.MAX_DAMAGE, durability(stack, baseDurability));
 		return true;
 	}
@@ -233,6 +258,7 @@ public final class Upgrades {
 		for (Upgrade upgrade : upgrades(to).keySet()) {
 			applyAttributes(to, upgrade);
 		}
+		applyComponents(to);
 		to.set(DataComponents.MAX_DAMAGE, durability(to, to.getMaxDamage()));
 	}
 
@@ -252,7 +278,7 @@ public final class Upgrades {
 		ItemAttributeModifiers modifiers = new ItemAttributeModifiers(entries);
 		for (int i = 0; i < upgrade.effects.size(); i++) {
 			Effect effect = upgrade.effects.get(i);
-			if (!effect.type().equals("attribute") || level <= 0) {
+			if (!effect.type().equals("attribute") || level <= 0 || !effect.worksOn(gearOf(stack))) {
 				continue;
 			}
 			Holder<Attribute> attribute = BuiltInRegistries.ATTRIBUTE.get(effect.attribute()).orElse(null);
@@ -266,6 +292,55 @@ public final class Upgrades {
 					AttributeModifier.Operation.valueOf(effect.operation().toUpperCase(Locale.ROOT))), slot);
 		}
 		stack.set(DataComponents.ATTRIBUTE_MODIFIERS, modifiers);
+	}
+
+	/** Upgrades that change the item itself: Heartstone Core makes it fireproof, like netherite. */
+	private static void applyComponents(ItemStack stack) {
+		if (total(stack, "fireproof") > 0) {
+			TraitStats.fireproof(stack);
+		}
+	}
+
+	// ---- Over time, and when hit ----
+
+	/** How often Ambergris Polish mends, in ticks. */
+	public static final int MEND_INTERVAL = 100;
+
+	/**
+	 * From the gear's inventoryTick: Ambergris Polish mends a little every five seconds while the gear is carried or
+	 * worn. Broken gear still has to go to the anvil.
+	 */
+	public static void tick(ItemStack stack, long gameTime) {
+		if (gameTime % MEND_INTERVAL != 0 || !stack.isDamaged() || Breakage.isBroken(stack)) {
+			return;
+		}
+		int mend = (int) Math.round(total(stack, "self_repair"));
+		if (mend > 0) {
+			stack.setDamageValue(Math.max(0, stack.getDamageValue() - mend));
+		}
+	}
+
+	/** The most of a shot Pacifista Core armor can stop, however many pieces have it. */
+	public static final float MAX_SHOT_GUARD = 0.4f;
+
+	/**
+	 * A hit's damage after the victim's worn shot_guard upgrades (Pacifista Core armor): shots and other projectiles
+	 * do less. Called by LivingEntityMixin as every hit starts.
+	 */
+	public static float guard(LivingEntity victim, DamageSource source, float amount) {
+		if (amount <= 0 || !source.is(DamageTypeTags.IS_PROJECTILE)) {
+			return amount;
+		}
+		double share = 0;
+		for (EquipmentSlot slot : List.of(EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET, EquipmentSlot.OFFHAND)) {
+			ItemStack piece = victim.getItemBySlot(slot);
+			Gear gear = gearOf(piece);
+			// Only armor counts (gauntlets in the offhand too), and broken armor stops nothing.
+			if (gear != null && (gear.isArmor() || gear == Gear.GAUNTLETS) && !Breakage.isBroken(piece)) {
+				share += total(piece, "shot_guard");
+			}
+		}
+		return share <= 0 ? amount : amount * (1.0f - Math.min(MAX_SHOT_GUARD, (float) share));
 	}
 
 	/** Armor works in its own slot, shields and gauntlets in the offhand, weapons and guns in the main hand. */
@@ -285,6 +360,11 @@ public final class Upgrades {
 	 * or mends it. Returns null if there was nothing to do (or nothing to mend it with), so the anvil can forge instead.
 	 */
 	public static InteractionResult work(Level level, BlockPos pos, ServerPlayer smith, ItemStack gear) {
+		return work(level, pos, smith, gear, false);
+	}
+
+	/** The same, at a Grand Line Anvil when grand is true: only it can add the grand upgrades, like Heartstone Core. */
+	public static InteractionResult work(Level level, BlockPos pos, ServerPlayer smith, ItemStack gear, boolean grand) {
 		ItemStack offhand = smith.getOffhandItem();
 		if (OnePieceBridge.fruitId(offhand) != null) {
 			return FruitWeapons.feed(level, pos, smith, gear, offhand);
@@ -297,7 +377,7 @@ public final class Upgrades {
 		}
 		for (Upgrade upgrade : Upgrade.values()) {
 			if (upgrade.isItem(offhand)) {
-				return upgrade(level, pos, smith, gear, upgrade, offhand);
+				return upgrade(level, pos, smith, gear, upgrade, offhand, grand);
 			}
 		}
 		if (gear.isDamaged()) {
@@ -306,8 +386,12 @@ public final class Upgrades {
 		return null;
 	}
 
-	private static InteractionResult upgrade(Level level, BlockPos pos, ServerPlayer smith, ItemStack gear, Upgrade upgrade, ItemStack offhand) {
+	private static InteractionResult upgrade(Level level, BlockPos pos, ServerPlayer smith, ItemStack gear, Upgrade upgrade, ItemStack offhand,
+			boolean grand) {
 		String problem = whyNot(gear, upgrade);
+		if (problem == null && upgrade.grand && !grand) {
+			problem = upgrade.displayName + " takes the force of a Grand Line Anvil.";
+		}
 		if (problem == null && offhand.getCount() < upgrade.count) {
 			problem = upgrade.displayName + " needs " + upgrade.count + " " + upgrade.itemName() + " in your offhand.";
 		}

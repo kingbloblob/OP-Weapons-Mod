@@ -96,8 +96,15 @@ public final class TraitStats {
 	 * (always true at the anvil; the creative tab's examples may skip it on a server's clients).
 	 */
 	public static void finish(ItemStack stack, Set<Trait> traits) {
+		if (traits.contains(Trait.ULTRA_ALLOY)) {
+			fireproof(stack);
+		}
+	}
+
+	/** Makes the item fireproof, like netherite: it won't burn up in fire or lava. Also used by Heartstone Core. */
+	public static void fireproof(ItemStack stack) {
 		HolderLookup.Provider lookup = registries;
-		if (traits.contains(Trait.ULTRA_ALLOY) && lookup != null) {
+		if (lookup != null) {
 			stack.set(DataComponents.DAMAGE_RESISTANT, new DamageResistant(lookup.getOrThrow(DamageTypeTags.IS_FIRE)));
 		}
 	}

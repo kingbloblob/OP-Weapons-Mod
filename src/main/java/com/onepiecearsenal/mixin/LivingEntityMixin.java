@@ -9,6 +9,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 
 import com.onepiecearsenal.armorset.SetBonuses;
+import com.onepiecearsenal.upgrade.Upgrades;
 import com.onepiecearsenal.tool.GauntletStats;
 import com.onepiecearsenal.haki.HakiImbue;
 
@@ -22,8 +23,9 @@ public abstract class LivingEntityMixin {
 	@ModifyVariable(method = "hurtServer", at = @At("HEAD"), argsOnly = true)
 	private float arsenal$setBonusDamage(float amount, ServerLevel level, DamageSource source) {
 		LivingEntity self = (LivingEntity) (Object) this;
-		// Gauntlets' Guard first (a sneaking wearer's arms take a quarter of a hit from the front), then set bonuses.
-		return SetBonuses.adjustDamage(self, source, GauntletStats.guard(self, source, amount));
+		// Gauntlets' Guard first (a sneaking wearer's arms take a quarter of a hit from the front), then Pacifista Core
+		// armor against shots, then set bonuses.
+		return SetBonuses.adjustDamage(self, source, Upgrades.guard(self, source, GauntletStats.guard(self, source, amount)));
 	}
 
 	/** A Haki-coated weapon or bullet hits harder (HakiImbue.adjustDamage). */

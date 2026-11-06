@@ -108,7 +108,7 @@ public class ShipwrightsAnvilBlock extends HorizontalDirectionalBlock {
 					.withStyle(ChatFormatting.RED));
 			return InteractionResult.FAIL;
 		}
-		InteractionResult result = Upgrades.work(level, pos, smith, stack);
+		InteractionResult result = Upgrades.work(level, pos, smith, stack, grand());
 		if (result != null) {
 			return result;
 		}
