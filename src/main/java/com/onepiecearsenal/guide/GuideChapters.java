@@ -456,7 +456,8 @@ public final class GuideChapters {
 		for (Upgrade upgrade : Upgrade.values()) {
 			lines.add(upgrade.displayName + " (up to " + Upgrade.numeral(upgrade.maxLevel) + ")");
 			lines.add("- Fits: " + upgrade.fitsName() + ".");
-			lines.add("- Each level: " + upgrade.count + " " + upgrade.itemName() + " in your offhand.");
+			lines.add("- Each level: " + upgrade.count + " " + upgrade.itemName() + " in your offhand"
+					+ (upgrade.grand ? ", at a Grand Line Anvil." : "."));
 			lines.add("- " + upgrade.description);
 			lines.add("");
 		}

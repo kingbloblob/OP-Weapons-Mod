@@ -34,6 +34,7 @@ public interface ArsenalTool {
 	static void tick(ItemStack stack, ServerLevel level, Entity owner, EquipmentSlot slot) {
 		Restat.refresh(stack);
 		Breakage.notice(stack, owner);
+		Upgrades.tick(stack, level.getGameTime()); // Ambergris Polish.
 	}
 
 	/** True (after telling them) if a player tried to use a broken tool. */

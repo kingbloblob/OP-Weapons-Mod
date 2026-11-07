@@ -46,6 +46,7 @@ public class ArsenalArmorItem extends Item {
 		// Then, if the materials have been rebalanced since it was forged, bring its numbers up to date.
 		Restat.refresh(stack);
 		Breakage.notice(stack, owner);
+		Upgrades.tick(stack, level.getGameTime()); // Ambergris Polish.
 	}
 
 	@Override

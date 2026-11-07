@@ -49,8 +49,14 @@ public final class Upgrade {
 		}
 	}
 
-	/** What one level of an upgrade does (see upgrades.json's _comment). */
-	public record Effect(String type, Identifier attribute, double amount, String operation) {
+	/**
+	 * What one level of an upgrade does (see upgrades.json's _comment). only lists the gear it works on, for an
+	 * upgrade that fits more than one kind (Pacifista Core: gun numbers on a gun, armor numbers on armor); null means all.
+	 */
+	public record Effect(String type, Identifier attribute, double amount, String operation, List<Gear> only) {
+		public boolean worksOn(Gear gear) {
+			return only == null || only.contains(gear);
+		}
 	}
 
 	/** What "armor" fits in upgrades.json: the four pieces, and gauntlets. */
@@ -65,6 +71,8 @@ public final class Upgrade {
 	public final int count;
 	public final List<Gear> fits;
 	public final List<Effect> effects;
+	/** True if only a Grand Line Anvil can add it (the rarest drops, like the Dragon Heartstone). */
+	public final boolean grand;
 	/** "minecraft:quartz" or "#minecraft:wool". */
 	private final String item;
 
@@ -76,18 +84,32 @@ public final class Upgrade {
 		this.count = json.has("count") ? json.get("count").getAsInt() : 1;
 		this.item = json.get("item").getAsString();
 		this.fits = fits(json.get("fits").getAsString());
+		this.grand = json.has("grand") && json.get("grand").getAsBoolean();
 		List<Effect> effects = new ArrayList<>();
 		for (JsonElement element : json.getAsJsonArray("effects")) {
 			JsonObject effect = element.getAsJsonObject();
 			effects.add(new Effect(effect.get("type").getAsString(),
 					effect.has("attribute") ? Identifier.parse(effect.get("attribute").getAsString()) : null,
 					effect.get("amount").getAsDouble(),
-					effect.has("operation") ? effect.get("operation").getAsString() : "add_value"));
+					effect.has("operation") ? effect.get("operation").getAsString() : "add_value",
+					effect.has("only") ? fits(effect.get("only").getAsString()) : null));
 		}
 		this.effects = List.copyOf(effects);
 	}
 
+	/** One kind ("gun"), or several joined with commas ("gun,armor"). */
 	private static List<Gear> fits(String fits) {
+		if (fits.contains(",")) {
+			List<Gear> all = new ArrayList<>();
+			for (String part : fits.split(",")) {
+				for (Gear gear : fits(part.trim())) {
+					if (!all.contains(gear)) {
+						all.add(gear);
+					}
+				}
+			}
+			return List.copyOf(all);
+		}
 		return switch (fits) {
 			case "any" -> List.of(Gear.values());
 			case "melee" -> List.of(Gear.KATANA, Gear.WEAPON);
@@ -124,13 +146,21 @@ public final class Upgrade {
 		if (fits.size() == Gear.values().length) {
 			return "Any gear";
 		}
-		if (fits.equals(List.of(Gear.KATANA, Gear.WEAPON))) {
-			return "Katanas and hand weapons";
+		List<Gear> rest = new ArrayList<>(fits);
+		List<String> names = new ArrayList<>();
+		if (rest.containsAll(List.of(Gear.KATANA, Gear.WEAPON))) {
+			rest.removeAll(List.of(Gear.KATANA, Gear.WEAPON));
+			names.add("Katanas and hand weapons");
 		}
-		if (fits.equals(ARMOR)) {
-			return "Armor and gauntlets";
+		boolean armor = rest.containsAll(ARMOR);
+		if (armor) {
+			rest.removeAll(ARMOR);
 		}
-		return String.join(", ", fits.stream().map(gear -> gear.displayName).toList());
+		rest.forEach(gear -> names.add(gear.displayName));
+		if (armor) {
+			names.add(names.isEmpty() ? "Armor and gauntlets" : "armor and gauntlets");
+		}
+		return String.join(", ", names);
 	}
 
 	/** Roman numerals for levels, like enchantments. */

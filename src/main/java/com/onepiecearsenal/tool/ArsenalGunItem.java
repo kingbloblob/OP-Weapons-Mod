@@ -108,6 +108,7 @@ public class ArsenalGunItem extends GunItem {
 		super.inventoryTick(stack, level, owner, slot);
 		Restat.refresh(stack);
 		Breakage.notice(stack, owner);
+		Upgrades.tick(stack, level.getGameTime()); // Ambergris Polish.
 		HakiImbue.tidy(stack, level.getGameTime(), slot);
 	}
 

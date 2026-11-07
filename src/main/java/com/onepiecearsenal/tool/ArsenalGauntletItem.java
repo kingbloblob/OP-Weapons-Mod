@@ -31,6 +31,7 @@ public class ArsenalGauntletItem extends Item {
 	public void inventoryTick(ItemStack stack, ServerLevel level, Entity owner, EquipmentSlot slot) {
 		Restat.refresh(stack);
 		Breakage.notice(stack, owner);
+		Upgrades.tick(stack, level.getGameTime()); // Ambergris Polish.
 	}
 
 	@Override
